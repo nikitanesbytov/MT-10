@@ -23,7 +23,6 @@ Stan.AvrgPressure = AvrgPressure #8 - Среднее давление на ва�
 Stan.ContactArcLen = ContactArcLen #9 - Длина дуги контакта
 Stan.ContactArea = ContactArea #10 - Площадь поверхности контакта
 Stan.AbsWidening = AbsWidening #11 - Абсолютное уширение
-Stan.AbsWidening = AbsWidening #11 - Абсолютное уширение
 # Конечная длина
 # Центрирование 
 
