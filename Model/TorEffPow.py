@@ -1,2 +1,0 @@
-def TorrEffPow(self):
-    pass

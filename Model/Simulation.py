@@ -1,15 +1,15 @@
 from Stan import Stan
-from RelDef import RelDef
-from TempDrDMove import TempDrDMove
-from TempDrDR import TempDrDR
-from DefResistance import DefResistance
-from TorEffPow import TorrEffPow
-from CapCondition import CapCondition
-from FricCoef import FricCoef
-from AvrgPressure import AvrgPressure
-from ContactArcLen import ContactArcLen
-from ContactArea import ContactArea
-from AbsWidening import AbsWidening
+from Methods.RelDef import RelDef
+from Methods.TempDrDMove import TempDrDMove
+from Methods.TempDrDR import TempDrDR
+from Methods.DefResistance import DefResistance
+from Methods.TorEffPow import TorrEffPow
+from Methods.CapCondition import CapCondition
+from Methods.FricCoef import FricCoef
+from Methods.AvrgPressure import AvrgPressure
+from Methods.ContactArcLen import ContactArcLen
+from Methods.ContactArea import ContactArea
+from Methods.AbsWidening import AbsWidening
 
 
 Stan.RelDef = RelDef #1 - Относитенльная деформация
@@ -28,5 +28,5 @@ Stan.AbsWidening = AbsWidening #11 - Абсолютное уширение
 
 
 if __name__ == "__main__":
-    Process = Stan(Size=10, StartTemp="25C")
+    Process = Stan()
     
