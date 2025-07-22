@@ -3,8 +3,7 @@ def AvrgPressure(LK, h_average, sigma) -> float:
     if ((LK/h_average) <= 2):
         n_frict = 1 + (LK/h_average)/6
     elif (((LK/h_average) > 2) and ((LK/h_average) <= 4)):
-        #Тут формула, в которой я пока не знаю, откуда брать одну переменную
-        pass
+        n_frict = 1 + (LK/h_average)/5
     elif ((LK/h_average) > 4):
         n_frict = 1 + (LK/h_average)/4
 
@@ -12,3 +11,10 @@ def AvrgPressure(LK, h_average, sigma) -> float:
 
     P = 1.15 * n_frict * n_zone * sigma #sigma - сопротивление деформации
     return P
+
+# LK - длина дуги контакта
+# h_average - средняя толщина сляба
+# sigma - сопротивление деформации
+# n_frict - коэффициент, учитывающий влияние внешнего трения (n')
+# n_zone - коэффициент, учитывающий влияние внешних зон (n'')
+# P - срднее давление на валки
