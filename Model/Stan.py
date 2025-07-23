@@ -32,13 +32,19 @@ class RollingMill:
         "Падение температуры между пропусками"
         pass
     
+    def TempDrDConRoll(self,TempV0,TempV1,h_0,h_1,LK,Avg_V) -> float:
+        "Падение температуры вследствие контакта с валками"
+        TempDrDConRoll = (4,87*(TempV0-TempV1))/(h_0 + h_1)*sqrt((2*LK*h_0-1)/(10**3(h_0 + h_1)*Avg_V))
+        return TempDrDConRoll
+   
     def TempDrPlDeform(self,RelDef,h_0,h_1) -> float:
         "Падение температуры вследствие пластической дфеормации"
         TempDrPlDeform = 0,183*RelDef*log(h_0/h_1)
         return TempDrPlDeform
     
-    def GenTemp(self) -> float:
+    def GenTemp(self,Tvx,TempDrPlDeform,TempDrDConRoll,TempDrBPass) -> float:
         "Общая температура"
+        GenTemp = Tvx - TempDrDConRoll + TempDrPlDeform - TempDrBPass
         pass
 
     def DefResistance(self,sigmaOD,u,a,RelDef,b,t,c) -> float:
@@ -46,11 +52,29 @@ class RollingMill:
         Sigmaf = sigmaOD*u**a(10*RelDef)**b(t/1000)**-c
         return Sigmaf
     
-    def MFP(self):
-        "Расчет момента, усилия и мощности, проверка"
-        pass
+    def Moment(self,LK,Hcp,P):
+        "Расчет момента прокатки, кНм"
+        psi = 0,498 - 0,283 * LK / Hcp
+        Moment = 2 * P * psi * LK
+        return Moment
+    
+    def Effort(self,LK,b):
+        "Расчет усилия прокатки"
+        F = LK * b
+        P = Pcp * F
+        return P
+    
+    def Power(self,M,omega) -> float:
+        """Рассчет мощности прокатки
+        М - Крутящий момент на валках(Н*м)
+        omega - угловая скорость вращения валков(рад/c)
+        N - Мощность прокатки(Вт)
+        """
+        N = M * omega 
+        return N
 
-    def CapCondition(self,Mu, S, Iteration, DV) -> bool:
+
+    def CapCondition(self, Mu, S, Iteration, DV) -> bool:
         "Условие захвата"
         alpha = acos(1 - (S[Iteration] / DV))
         CapCon = (Mu >= tan(alpha))
