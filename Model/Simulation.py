@@ -1,36 +1,61 @@
-from Stan import Stan
-from Methods.RelDef import RelDef
-from Methods.TempDrBPass import TempDrBPass
-from Methods.TempDrPlDeform import TempDrPlDeform
-from Methods.TempDrDConRoll import TempDrDConRoll
-from Methods.GenTemp import GenTemp
-from Methods.DefResistance import DefResistance
-from Model.Methods.MFP import TorrEffPow
-from Methods.CapCondition import CapCondition
-from Methods.FricCoef import FricCoef
-from Methods.AvrgPressure import AvrgPressure
-from Methods.ContactArcLen import ContactArcLen
-from Methods.ContactArea import ContactArea
-from Methods.AbsWidening import AbsWidening
+from Stan import RollingMill
 
-
-Stan.RelDef = RelDef #1 - Относитенльная деформация
-Stan.TempDrBPass = TempDrBPass #2 - Падение температуры между пропусками
-Stan.TempDrPlDeform = TempDrPlDeform #3 - Падение температуры вследствие пластической дфеормации
-Stan.TempDrDConRoll = TempDrDConRoll #4 - Падение температуры вследствие контакта с валками  
-Stan.GenTemp = GenTemp #5 - Общая температура
-Stan.DefResistance = DefResistance #6 - Сопротивление деформации
-Stan.MFP = MFP #7 - Расчет момента, усилие, мощности, проверка
-Stan.CapCondition = CapCondition #8 - Условие захвата
-Stan.FricCoef = FricCoef #9 - Коэффициент трения
-Stan.AvrgPressure = AvrgPressure #10 - Среднее давление на валки
-Stan.ContactArcLen = ContactArcLen #11 - Длина дуги контакта
-Stan.ContactArea = ContactArea #12 - Площадь поверхности контакта
-Stan.AbsWidening = AbsWidening #13 - Абсолютное уширение
-# Конечная длина
-# Центрирование 
-
-
+#Момент, усилие на валках, координаты, температура сляба, скорость вращения, направление вращения, длина сляба(для ПЛК)
 if __name__ == "__main__":
-    Process = Stan()
+    Process = RollingMill()
+    n = 10 #Задает оператор(количество прокатов)
+    flag = 0 #0 - процесс приостанволен/1 - процесс запущен
+    flag1 = 0 #0 - До валков/ 1 - В валках/2 - После валков
+    x = [] #Посекундный массив для координаты начала сляба
+    x_end = [] #Посекундный массив для координаты конца сляба
+    
+    for i in range(n):
+        RelDef = Process.RelDef() #1 
+        while flag == 1:
+            if flag1 == 0:
+                if Process.V_Valk[i] != CurrentV[t]:
+                    CurrentV[t] = CurrentV[t] + Process.accel #Иммитируем ускорение валков до заданной скорости
+                else:
+                    x[t] = x[t] + Process.V0 #Расчет его координаты
+                    TempDrBPass = Process.TempDrBPass()
+                    GenTemp[t] = Process.GenTemp(TempDrDConRoll = 0,TempDrPlDeform=0,TempDrBPass=TempDrBPass) #Рассчет нынешней температуры сляба?
+                    if x[t] >= Process.d1:
+                        FricCoff = Process.FricCoef(GenTemp[t])
+                        if Process.CapCondition(FricCoff):
+                            flag1 = 1
+                        else:
+                            pass #Warning
+            if flag1 == 1:
+                x[t] = x[t] + Process.V1 #Расчет его координаты
+                ContactArcLen = Process.ContactArcLen()
+                TempDrDConRoll = Process.TempDrDConRoll(Process.V_Valk[n],ContactArcLen)
+                TempDrPlDeform = Process.TempDrPlDeform(RelDef)
+                GenTemp[t] = Process.GenTemp(TempDrBPass = 0,TempDrDConRoll=TempDrDConRoll ,TempDrPlDeform=TempDrPlDeform) #Рассчет нынешней температуры сляба?
+                
+                DefResistance = Process.DefResistance(ContactArcLen,RelDef)
+                AvrgPressure = Process.AvrgPressure(DefResistance,ContactArcLen)
+
+                
+                Effort = Process.Effort(AvrgPressure,ContactArcLen)
+                if Effort > Process.MaxEffort:
+                    pass #Warning
+                Moment = Process.Moment(ContactArcLen,Effort)
+                if Moment > Process.MaxMoment:
+                    pass #Warning
+                Power = Process.Power(Moment,Process.V_Valk_Per[n])
+                if Power > Process.MaxPower:
+                    pass #Warning
+                
+                FinalLength = Process.FinalLength()
+                
+                if x[t] - FinalLength >= Process.d1:
+                    flag1 = 2
+
+
+
+
+
+
+
+
     
