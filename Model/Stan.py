@@ -28,9 +28,12 @@ class RollingMill:
         RelDef = (h_0 - h_1) / h_0
         return RelDef
     
-    def TempDrBPass(self) -> float:
+    def TempDrBPass(self,h_0,h_1,Kst,Tvx,P,Cn,Pn,Nv,TempDrDConRoll,LB,Avg_V) -> float:
         "Падение температуры между пропусками"
-        pass
+        Numerator = Kst * (Tvx + 2300 * P * (log(1/(1-(h_0-h_1)/h_1))/(Cn*Pn)) * Nv - TempDrDConRoll + 273)**4 * LB * 10**-12
+        Denominator = h_1 * Avg_V
+        TempDrBPass = Numerator / Denominator
+        return TempDrBPass
     
     def TempDrDConRoll(self,TempV0,TempV1,h_0,h_1,LK,Avg_V) -> float:
         "Падение температуры вследствие контакта с валками"
@@ -72,7 +75,6 @@ class RollingMill:
         """
         N = M * omega 
         return N
-
 
     def CapCondition(self, Mu, S, Iteration, DV) -> bool:
         "Условие захвата"
