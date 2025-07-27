@@ -1,74 +1,88 @@
 from math import *
 
 class RollingMill:
-    def __init__(self, L,b,h_0,StartTemp,OutTemp,PauseBIter,S,DV):
+    def __init__(self,L=100,b=75,h_0=75,):
         #Параметры сляба(Задает оператор)
-        self.L = L #Начальная длина сляба
-        self.b = b #Ширина сляба
-        self.h_0 = h_0 #Начальная толщина сляба
-        self.h_1 = S #Конечная толщина сляба
-        self.StartTemp = StartTemp #Начальная температура сляба(Температура выдачи из печи)
+        self.L = L #Начальная длина сляба(мм)
+        self.b = b #Ширина сляба(мм)
+        self.h_0 = h_0 #Начальная толщина сляба(мм)
+        self.h_1 = S #Конечная толщина сляба(мм)
+        self.StartTemp = StartTemp #Начальная температура сляба(Температура выдачи из печи)(°C)
        
         #Параметры по умолчанию
         self.ZK = 0 #Жесткость клети
-        self.DV = DV #Диаметр валков
-        self.R = DV/2 #Радиус валков
-        self.MV = 0 #Материал валков
-        self.MaxEffort = 10000 #Максимально усилие 
-        self.MaxMoment = 10000 #Максимельный момент
-        self.MaxPower = 10000 #Максимальная мощность
-        self.TempV = OutTemp #Задаваемая температура в цехе приравнивается к температуре валков
-        self.d1 = 100 #Расстояние пути до валков
-        self.d2 = 100 #Расстояние пути после валков
+        self.DV = DV #Диаметр валков(мм)
+        self.R = DV/2 #Радиус валков(мм)
+        self.MV = MV #Материал валков
+        self.MS = MS  # Материал сляба
+        self.MaxEffort = 10000 #Максимально усилие(кН)
+        self.MaxMoment = 10000 #Максимельный момент(кНм)
+        self.MaxPower = 10000 #Максимальная мощность(Вт)
+        self.TempV = OutTemp #Температура валков(°C)
+        self.d1 = 100 #Расстояние пути до валков(мм)
+        self.d2 = 100 #Расстояние пути после валков(мм)
         #Констатны?
 
         #Настройка ТП
+        self.CurrentS = 0
         self.n = n #Количество итераций прокатки
-        self.S = [0] * self.n #Раствор валков(Массив)(Задает оператор)
+        self.S = [0] * self.n #Раствор валков(Массив)(Задает оператор)(мм)
+        self.VS = VS #Скорость выставления валков(м/c)
         self.V0 = V0 #Скорость рольгангов до валков(м/c)(пересчет)
         self.V_Valk_Per = [0]*self.n #Заданная скорость валков оператором в об/c
         self.V_Valk = [0]*self.n #Заданная скорость валков(Массив)
-        self.accel = 0,67 #Рагон валков и рольгангов(об/c),
+        self.accel = 0,67 #Рагон валков и рольгангов(об/c)
         self.V1 = V1 #Скорость рольгангов после валков(м/c)(пересчет)
-        self.PauseBIter = [0] * self.n #Пауза между итерациями 
+        self.PauseBIter = PauseBIter #Пауза между итерациями(с)
 
     def RelDef(self, h_0, h_1) -> float:
         "Относительная деформация"
         RelDef = (h_0 - h_1) / h_0
         return RelDef
     
-    def TempDrBPass(self,h_0,h_1,Kst,Tvx,P,Cn,Pn,Nv,TempDrDConRoll,LB,Avg_V) -> float:
+    
+    def TempDrBPass(self,FinalLength,DV,w,Temp,h_1) -> float:
         "Падение температуры между пропусками"
-        Numerator = Kst * (Tvx + 2300 * P * (log(1/(1-(h_0-h_1)/h_1))/(Cn*Pn)) * Nv - TempDrDConRoll + 273)**4 * LB * 10**-12
-        Denominator = h_1 * Avg_V
-        TempDrBPass = Numerator / Denominator
+        V = pi * DV * w * (1 + 0.05)
+        TempDrBPass = (17.5 * 10**-12) * ((FinalLength/V) + 3*100)/(h_1/1000) * (Temp+273)**4
+        #V - скорость прокатки(м/c)
+        #Temp - температура в проходе(°C)
+        #w - частота вращения валков
         return TempDrBPass
     
-    def TempDrDConRoll(self,TempV0,TempV1,h_0,h_1,LK,V) -> float:
+    def TempDrDConRoll(self,DV,h_0,h_1) -> float:
         "Падение температуры вследствие контакта с валками"
-        TempDrDConRoll = (4,87*(TempV0-TempV1))/(h_0 + h_1)*sqrt((2*LK*h_0-1)/(10**3(h_0 + h_1)*V))
+        TempDrDConRoll = 0.216 * sqrt(DV/2 * acos(1-((h_0-h_1)/DV)))/(h_0 + h_1)
+        #DV - диаметр валков(мм)
         return TempDrDConRoll
    
     def TempDrPlDeform(self,RelDef,h_0,h_1) -> float:
         "Падение температуры вследствие пластической деформации"
         TempDrPlDeform = 0,183*RelDef*log(h_0/h_1)
+        #RelDef - Степень деформации
         return TempDrPlDeform
     
-    def GenTemp(self,Tvx,TempDrPlDeform ,TempDrDConRoll,TempDrBPass) -> float:
-        "Общая температура"
-        GenTemp = Tvx - TempDrDConRoll + TempDrPlDeform - TempDrBPass
+    def GenTemp(self,Temp,TempDrBPass,TempDrDConRoll,TempDrPlDeform) -> float:
+        "Общая температура после итерации прокатки"
+        GenTemp = Temp + TempDrPlDeform - TempDrDConRoll - TempDrBPass
+        #Temp - температура в проходе(°C)
         return GenTemp
 
-    def DefResistance(self,sigmaOD,u,a,RelDef,b,t,c) -> float:
+    def DefResistance(self,sigmaOD,u,a,RelDef,b,t,c,LK,V) -> float:
         "Сопротивление деформации"
-        #u(LK,V,RelDef)
+        u = (V/LK * RelDef)
         Sigmaf = sigmaOD*u**a(10*RelDef)**b(t/1000)**-c
+        #a,b,c - Коэффициенты зависящие от марки стали
+        #u - Средняя скорость деформации(1/c)
+        #V - Скорость валков(м/c)
+        #sigmaOD - Базисное значение сопротивления деформации
+        #RelDef - Степень деформации
         return Sigmaf
     
     def Moment(self,LK,h_0,h_1,P):
-        "Расчет момента прокатки, кНм"
+        "Расчет момента прокатки(кНм)"
         h_average = (h_1 + h_0)/2
-        psi = 0,498 - 0,283 * LK / h_average
+        psi = 0.498 - 0.283 * LK / h_average
         Moment = 2 * P * psi * LK
         return Moment
     
@@ -79,12 +93,11 @@ class RollingMill:
         return P
     
     def Power(self,M,omega) -> float:
-        """Рассчет мощности прокатки
-        М - Крутящий момент на валках(Н*м)
-        omega - угловая скорость вращения валков(рад/c)
-        N - Мощность прокатки(Вт)
-        """
+        "Рассчет мощности прокатки(Вт)"
         N = M * omega 
+        # М - Крутящий момент на валках(Н*м)
+        # omega - угловая скорость вращения валков(рад/c)
+        # N - Мощность прокатки(Вт)
         return N
 
     def CapCondition(self, Mu, S, Iteration, DV) -> bool:

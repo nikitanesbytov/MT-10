@@ -2,18 +2,18 @@ from Stan import RollingMill
 
 #Момент, усилие на валках, координаты, температура сляба, скорость вращения, направление вращения, длина сляба(для ПЛК)
 if __name__ == "__main__":
-    Process = RollingMill()
-    n = 10 #Задает оператор(количество прокатов)
+    Process = RollingMill(n=10)
     flag = 0 #0 - процесс приостанволен/1 - процесс запущен
     flag1 = 0 #0 - До валков/ 1 - В валках/2 - После валков
     x = [] #Посекундный массив для координаты начала сляба
     x_end = [] #Посекундный массив для координаты конца сляба
     
-    for i in range(n):
+    for i in range(Process.n):
         RelDef = Process.RelDef() #1 
         while flag == 1:
             if flag1 == 0:
-                if Process.V_Valk[i] != CurrentV[t]:
+                if Process.V_Valk[i] != CurrentV[t] or Process.CurrentS != Process.S[i]:
+                    Process.CurrentS = #Выставление раствора валков (смимуляция времени)
                     CurrentV[t] = CurrentV[t] + Process.accel #Иммитируем ускорение валков до заданной скорости
                 else:
                     x[t] = x[t] + Process.V0 #Расчет его координаты
@@ -50,6 +50,10 @@ if __name__ == "__main__":
                 
                 if x[t] - FinalLength >= Process.d1:
                     flag1 = 2
+            if flag1 == 2:
+                CurrentV[t] = CurrentV[t] - Process.accel
+                #Иммитация охлаждения 
+                #Выдерживается пауза
 
 
 
