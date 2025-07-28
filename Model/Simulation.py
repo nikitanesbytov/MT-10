@@ -1,8 +1,8 @@
-from Stan import RollingMill
+from Model.RollingMill import RollingMill
 
 #Момент, усилие на валках, координаты, температура сляба, скорость вращения, направление вращения, длина сляба(для ПЛК)
 if __name__ == "__main__":
-    Process = RollingMill(n=10)
+    Process = RollingMill(StartTemp=1200,h_0=200,L=100,b=75,h_0=75,S=180,DV=800,OutTemp=25,n=1,V0=5,V1=5,PauseBIter=5)
     flag = 0 #0 - процесс приостанволен/1 - процесс запущен
     flag1 = 0 #0 - До валков/ 1 - В валках/2 - После валков
     x = [] #Посекундный массив для координаты начала сляба
