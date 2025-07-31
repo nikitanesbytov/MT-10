@@ -1,20 +1,21 @@
 from math import *
 
 class RollingMill:
-    def __init__(self,L,b,h_0,StartTemp,DV,MV,MS,OutTemp,n,V0,V1,S,PauseBIter,V_Valk_Per,StartS,MaxEffort=10000,MaxMoment=10000,MaxPower=10000,d1 = 100,d2=100):
+    def __init__(self,DR,L,b,h_0,StartTemp,DV,MV,MS,OutTemp,n,V0,V1,S,PauseBIter,V_Valk_Per,StartS,MaxEffort,MaxMoment,MaxPower,d1,d2):
         #Параметры сляба(Задает оператор)
         self.L = L #Начальная длина сляба(мм)
         self.b = b #Ширина сляба(мм)
         self.h_0 = h_0 #Начальная толщина сляба(мм)
-        self.h_1 = S #Конечная толщина сляба(мм)
+        self.h_1 = 0 #Конечная толщина сляба(мм)
         self.StartTemp = StartTemp #Начальная температура сляба(Температура выдачи из печи)(°C)
        
         #Параметры по умолчанию
         self.ZK = 0 #Жесткость клети
         self.DV = DV #Диаметр валков(мм)
+        self.DR = DR #Диаметр рольгангов(мм)
         self.R = DV/2 #Радиус валков(мм)
         self.MV = MV #Материал валков
-        self.MS = MS  # Материал сляба
+        self.MS = MS  #Материал сляба
         self.MaxEffort = MaxEffort #Максимально усилие(кН)
         self.MaxMoment = MaxMoment #Максимельный момент(кНм)
         self.MaxPower = MaxPower #Максимальная мощность(Вт)
@@ -45,7 +46,7 @@ class RollingMill:
         TempDrBPass = (17.5 * 10**-12) * ((FinalLength/V) + 3*100)/(h_1/1000) * (Temp+273)**4
         #V - скорость прокатки(м/c)
         #Temp - температура в проходе(°C)
-        #w - частота вращения валков
+        #w - частота вращения валков(об/c)
         return TempDrBPass
     
     def TempDrDConRoll(self,DV,h_0,h_1) -> float:
@@ -74,7 +75,7 @@ class RollingMill:
         t = 1000
         sigmaOD = 0.87
         u = (V/LK * RelDef)
-        Sigmaf = sigmaOD*u**a(10*RelDef)**b(t/1000)**-c
+        Sigmaf = sigmaOD * (u**a) * ((10*RelDef)**b) * ((t/1000)**-c)
         #a,b,c - Коэффициенты зависящие от марки стали
         #u - Средняя скорость деформации(1/c)
         #V - Скорость валков(м/c)
@@ -162,7 +163,7 @@ class RollingMill:
     #     return delta_b
 
     def FinalLength(self,h_0,h_1,L):
-        FinalLength = L / h_1 * h_0
+        FinalLength = L * (h_0 / h_1)
         return FinalLength
             
 
