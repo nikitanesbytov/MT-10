@@ -165,7 +165,6 @@ class RollingMill:
     def FinalLength(self,h_0,h_1,L):
         FinalLength = L * (h_0 / h_1)
         return FinalLength
-            
 
 
      
