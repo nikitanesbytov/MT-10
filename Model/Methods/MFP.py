@@ -1,2 +1,0 @@
-def MFP(self):
-    pass

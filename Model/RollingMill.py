@@ -35,6 +35,7 @@ class RollingMill:
         self.V_Valk = [] #Заданная скорость валков(Массив)(об/c)
         self.PauseBIter = PauseBIter #Пауза между итерациями(с)
 
+    
     def RelDef(self, h_0, h_1) -> float:
         "Относительная деформация"
         RelDef = (h_0 - h_1) / h_0
@@ -67,15 +68,18 @@ class RollingMill:
         #Temp - температура в проходе(°C)
         return GenTemp
 
-    def DefResistance(self,RelDef,LK,V) -> float:
+    def DefResistance(self,RelDef,LK,V,CurrentTemp,SteelGrade) -> float:
         "Сопротивление деформации"
-        a = 0.124
-        b = 0.167
-        c = -2.8
-        t = 1000
-        sigmaOD = 0.87
+        SteelGrades = {"Ст3сп":(87.1,0.124,0.167,-2.8),
+                      "12ХН3А":(89.9,0.095,0.261,-2.84),
+                      "65Г":(73.2,0.166,0.222,-3.02),
+                      "К65":(83.2,0.149,0.213,-4.143),
+                      "X100":(84.5,0.161,0.197,-4.208),
+                      "HARDOX500":(92.3,0.159,0.291,-3.756),
+                      "08Х18Н10Т":(175.4,0.1312,0.1493,-4.2269)}
+        sigmaOD,a,b,c = SteelGrades[SteelGrade] 
         u = (V/LK * RelDef)
-        Sigmaf = sigmaOD * (u**a) * ((10*RelDef)**b) * ((t/1000)**-c)
+        Sigmaf = sigmaOD * (u**a) * ((10*RelDef)**b) * ((CurrentTemp/1000)**-c)
         #a,b,c - Коэффициенты зависящие от марки стали
         #u - Средняя скорость деформации(1/c)
         #V - Скорость валков(м/c)

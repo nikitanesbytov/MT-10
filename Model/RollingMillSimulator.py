@@ -126,7 +126,6 @@ class RollingMillSimulator(RollingMill):
     
     def _simulate_rolling_pass(self,n,filename="rolling_log.txt"):
         "Симуляция прохода сляба через валки"
-        
         start_time = self.time_log[-1]
         #1.Рассчет изменения длины
         h_0 = self.h_0 if n == 0 else self.height_log[-1]
@@ -138,7 +137,7 @@ class RollingMillSimulator(RollingMill):
         def_for_sek = self.linear_interpolation(start_length,FinalLength,rolling_time) #изменение длины за секунду
         #2.Рассчет усилия,момента и мощности и проверка этих показателей с максимальными
         ContactArcLen = self.ContactArcLen(self.DV,self.S[n])
-        DefResistance = self.DefResistance(RelDef,ContactArcLen,self.speed_V[-1])
+       #DefResistance = self.DefResistance(RelDef,ContactArcLen,self.speed_V[-1],)
         AvrgPressure = self.AvrgPressure(DefResistance,ContactArcLen,h_0,h_1)
         Effort = self.Effort(ContactArcLen,AvrgPressure,self.b)
         Moment = self.Moment(ContactArcLen,h_0,h_1,Effort)
