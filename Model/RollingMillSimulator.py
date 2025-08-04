@@ -196,15 +196,16 @@ if __name__ == "__main__":
     V1 = [10, 10, 0.7, 0.7, 0.7]  # конечная скорость(мм/с)
     PauseBIter = 5  # пауза между пропусками, с
     V_Valk_Per = [10, 0.7, 0.7, 0.7, 0.7] # установка скоростей валков для каждого пропуска (мм/с)
+    SteelGrade = "Ст3сп"
    
     simulator = RollingMillSimulator(
-        L=L, b=b, h_0=h_0, S=S, StartTemp=StartTemp,
-        DV=DV, MV=MV, MS=MS, OutTemp=OutTemp,DR=DR,
-        n=n, V0=V0, V1=V1, PauseBIter=PauseBIter,V_Valk_Per = V_Valk_Per,StartS=StartS,
-        MaxEffort=20000, MaxMoment=50000, MaxPower=50000,d1 = 2000,d2=3000
+        L=L,b=b,h_0=h_0,S=S,StartTemp=StartTemp,
+        DV=DV,MV=MV,MS=MS,OutTemp=OutTemp,DR=DR,SteelGrade=SteelGrade,
+        n=n, V0=V0,V1=V1,PauseBIter=PauseBIter,V_Valk_Per=V_Valk_Per,StartS=StartS,
+        MaxEffort=20000,MaxMoment=50000,MaxPower=50000,d1=2000,d2=3000
     )
     
     # Запуск симуляции
-    result = simulator._simulate_approach_to_rolls(0)
+    simulator._simulate_approach_to_rolls(0)
     simulator._simulate_rolling_pass(0) 
   

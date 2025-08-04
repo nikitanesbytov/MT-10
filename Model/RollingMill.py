@@ -1,7 +1,7 @@
 from math import *
 
 class RollingMill:
-    def __init__(self,DR,L,b,h_0,StartTemp,DV,MV,MS,OutTemp,n,V0,V1,S,PauseBIter,V_Valk_Per,StartS,MaxEffort,MaxMoment,MaxPower,d1,d2):
+    def __init__(self,DR,L,b,h_0,StartTemp,DV,MV,MS,OutTemp,n,SteelGrade,V0,V1,S,PauseBIter,V_Valk_Per,StartS,MaxEffort,MaxMoment,MaxPower,d1,d2):
         #Параметры сляба(Задает оператор)
         self.L = L #Начальная длина сляба(мм)
         self.b = b #Ширина сляба(мм)
@@ -34,6 +34,7 @@ class RollingMill:
         self.V_Valk_Per = V_Valk_Per #Заданная скорость валков оператором в об/мин
         self.V_Valk = [] #Заданная скорость валков(Массив)(об/c)
         self.PauseBIter = PauseBIter #Пауза между итерациями(с)
+        self.SteelGrade = SteelGrade #Марка стали
 
     
     def RelDef(self, h_0, h_1) -> float:
