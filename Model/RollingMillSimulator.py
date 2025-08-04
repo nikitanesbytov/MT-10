@@ -15,19 +15,25 @@ class RollingMillSimulator(RollingMill):
         self.speed_V0 = [0]#Лог скорости вращения рольгангов до валков(об/c)
         self.speed_V1 = [0]#Лог скорости вращения рольгангов после валков(об/c)
         #Лог - это ныншнее значение представленных ТПов
-
-    # def simulate_process(self):
-    #     #Запуск симуляции   
         
     def linear_interpolation(self,start, end, steps) -> float:
-        """
-        Линейная интерполяция, возвращающая шаг изменения
-        """
+        "Линейная интерполяция, возвращающая шаг смещения величины"
         if steps <= 0:
             raise ValueError("Количество шагов должно быть положительным")
         
         step_size = (end - start) / steps
         return step_size
+    
+    def _update_logs(self, time, gap, speed_V, temp, pos, speed_V0, speed_V1, length):
+        "Вспомогательный метод для обновления логов"
+        self.time_log.append(time)
+        self.gap_log.append(gap)
+        self.speed_V.append(speed_V)
+        self.temperature_log.append(temp)
+        self.x_log.append(pos)
+        self.speed_V0.append(speed_V0)
+        self.speed_V1.append(speed_V1)
+        self.length_log.append(length)
     
     def _simulate_approach_to_rolls(self, n, filename="rolling_log.txt"):
         "Проход сляба к валкам"
@@ -39,7 +45,7 @@ class RollingMillSimulator(RollingMill):
         initial_temp = self.StartTemp if n == 0 else self.temperature_log[-1]
         current_temp = initial_temp
         target_gap = self.S[n]
-        gap_change_per_sec = self.VS
+        gap_change_per_ms = self.VS/1000
 
         time_gap = abs(self.S[n] - self.CurrentS[-1]) / self.VS # Время выставления зазора
         time_accel = self.V_Valk_Per[n] / self.accel # Время разгона валков
@@ -48,7 +54,6 @@ class RollingMillSimulator(RollingMill):
         final_temp = initial_temp - 50
         temp_drop_per_sec = (initial_temp - final_temp) / total_time
 
-        speed_mm_per_sec = self.V0[n] * pi * self.DR
         target_speed_valk = self.V_Valk_Per[n]
         target_speed_V0 = self.V0[n]
         target_speed_V1 = self.V1[n]
@@ -62,110 +67,89 @@ class RollingMillSimulator(RollingMill):
                     f"{'V0(mm/s)':>8}{'V1(mm/s)':>8}{'Position':>10}{'Length(mm)':>10}\n")
             while abs(CurrentS - target_gap) > 0.1:
                 if CurrentS < target_gap:
-                    CurrentS = min(CurrentS + gap_change_per_sec, target_gap)
+                    CurrentS = min(CurrentS + gap_change_per_ms, target_gap)
                 else:
-                    CurrentS = max(CurrentS - gap_change_per_sec, target_gap)
+                    CurrentS = max(CurrentS - gap_change_per_ms, target_gap)
                 
-                self.time_log.append(current_time)
-                self.gap_log.append(CurrentS)
-                self.speed_V.append(0)
-                self.temperature_log.append(current_temp)
-                self.x_log.append(0)
-                self.speed_V0.append(0)
-                self.speed_V1.append(0)
-                self.length_log.append(self.length_log[-1])
+                self._update_logs(current_time,CurrentS,0,current_temp,0,0,0,self.length_log[-1])
                 
-                f.write(f"{current_time:<5d}{CurrentS:>8.1f}{current_temp:>8.1f}{current_speed:>8.1f}"
+                f.write(f"{current_time:<5f}{CurrentS:>8.1f}{current_temp:>8.1f}{current_speed:>8.1f}"
                         f"{speed_V0:>8.1f}{speed_V1:>8.1f}{current_pos:>10.1f}{self.length_log[-1]:>10.1f}\n")
                 
-                current_time += 1
+                current_time += 0.1
                 current_temp = max(current_temp - temp_drop_per_sec, final_temp)
             #Разгон валков
             
             while current_speed < target_speed_valk and speed_V0 < target_speed_V0 and speed_V1 < target_speed_V1:
-                current_speed = min(current_speed + self.accel, target_speed_valk)
+                current_speed = min(current_speed + self.accel/1000, target_speed_valk)
        
-                self.time_log.append(current_time)
-                self.gap_log.append(CurrentS)
-                self.speed_V.append(current_speed)
-                self.temperature_log.append(current_temp)
-                self.x_log.append(0)
-                self.speed_V0.append(self.speed_V0[-1])
-                self.speed_V1.append(self.speed_V1[-1])
-                self.length_log.append(self.length_log[-1])
+                self._update_logs(current_time,CurrentS,current_speed,current_temp,0,self.speed_V0[-1],self.speed_V1[-1],self.length_log[-1])
                 
-                f.write(f"{current_time:<5d}{CurrentS:>8.1f}{current_temp:>8.1f}{current_speed:>8.1f}"
+                f.write(f"{current_time:<5f}{CurrentS:>8.1f}{current_temp:>8.1f}{current_speed:>8.1f}"
                         f"{speed_V0:>8.1f}{speed_V1:>8.1f}{current_pos:>10.1f}{self.length_log[-1]:>10.1f}\n")
                 
-                current_time += 1
+                current_time += 0.1
                 current_temp = max(current_temp - temp_drop_per_sec, final_temp)
             #Движение сляба
             
             while current_pos < self.d1:
-                speed_V0 = min(speed_V0 + self.accel, target_speed_V0)
-                speed_V1 = min(speed_V1 + self.accel, target_speed_V1)
-                current_pos = min(current_pos + speed_V0, self.d1)
+                speed_V0 = min(speed_V0 + self.accel/1000, target_speed_V0)
+                speed_V1 = min(speed_V1 + self.accel/1000, target_speed_V1)
+                current_pos = min(current_pos + speed_V0/1000, self.d1)
                 
-                # Логирование
-                self.time_log.append(current_time)
-                self.gap_log.append(CurrentS)
-                self.speed_V.append(current_speed)
-                self.temperature_log.append(current_temp)
-                self.x_log.append(current_pos)
-                self.speed_V0.append(speed_V0)
-                self.speed_V1.append(speed_V1)
-                self.length_log.append(self.length_log[-1])
+                self._update_logs(current_time,CurrentS,current_speed,current_temp,current_pos,speed_V0,speed_V1,self.length_log[-1])
                 
-                # Запись в файл
-                f.write(f"{current_time:<5d}{CurrentS:>8.1f}{current_temp:>8.1f}{current_speed:>8.1f}"
+                f.write(f"{current_time:<5f}{CurrentS:>8.1f}{current_temp:>8.1f}{current_speed:>8.1f}"
                         f"{speed_V0:>8.1f}{speed_V1:>8.1f}{current_pos:>10.1f}{self.length_log[-1]:>10.1f}\n")               
                 
-                current_time += 1
+                current_time += 0.1
                 current_temp = max(current_temp - temp_drop_per_sec, final_temp)
         pass
     
-    def _simulate_rolling_pass(self,n,filename="rolling_log.txt"):
-        "Симуляция прохода сляба через валки"
-        start_time = self.time_log[-1]
-        #1.Рассчет изменения длины
-        h_0 = self.h_0 if n == 0 else self.height_log[-1]
-        h_1 = self.S[n] 
-        RelDef = self.RelDef(h_0,h_1)
-        start_length = self.length_log[-1]
-        FinalLength = self.FinalLength(h_0,h_1,self.L if n == 0 else self.length_log[-1])
-        rolling_time = abs(((start_length + FinalLength)/2) / ((self.V0[n] + self.V1[n])/2))
-        def_for_sek = self.linear_interpolation(start_length,FinalLength,rolling_time) #изменение длины за секунду
-        #2.Рассчет усилия,момента и мощности и проверка этих показателей с максимальными
-        ContactArcLen = self.ContactArcLen(self.DV,self.S[n])
-       #DefResistance = self.DefResistance(RelDef,ContactArcLen,self.speed_V[-1],)
-        AvrgPressure = self.AvrgPressure(DefResistance,ContactArcLen,h_0,h_1)
-        Effort = self.Effort(ContactArcLen,AvrgPressure,self.b)
-        Moment = self.Moment(ContactArcLen,h_0,h_1,Effort)
-        Power = self.Power(Moment,self.speed_V[n]*2*pi)
-        #3.Рассчет падения температуры от пластической деформации и контакта с валками
-        TempDrDConRoll = self.TempDrDConRoll(self.DV,h_0,h_1)
-        TempDrPlDeform = self.TempDrPlDeform(RelDef,h_0,h_1)
-        # GenTempDrop = self.GenTemp(self.temperature_log[-1],TempDrDConRoll,TempDrPlDeform,TempDrBPass=0) 
-        with open(filename, 'a') as f:
-            while self.time_log[-1] < start_time + rolling_time:
-                self.length_log.append(self.length_log[-1] + def_for_sek)
-                current_pos = min(self.x_log[-1] + self.V1[n], (self.d1 + self.d2))
+    # def _simulate_rolling_pass(self,n,filename="rolling_log.txt"):
+    #     "Симуляция прохода сляба через валки"
+    #     start_time = self.time_log[-1]
+    #     #1.Рассчет изменения длины
+    #     h_0 = self.h_0 if n == 0 else self.height_log[-1]
+    #     h_1 = self.S[n] 
+    #     RelDef = self.RelDef(h_0,h_1)
+    #     start_length = self.length_log[-1]
+    #     FinalLength = self.FinalLength(h_0,h_1,self.L if n == 0 else self.length_log[-1])
+    #     rolling_time = abs(((start_length + FinalLength)/2) / ((self.V0[n] + self.V1[n])/2))
+    #     def_for_sek = self.linear_interpolation(start_length,FinalLength,rolling_time) #изменение длины за секунду
+    #     #2.Рассчет усилия,момента и мощности и проверка этих показателей с максимальными
+    #     ContactArcLen = self.ContactArcLen(self.DV,self.S[n])
+    #     #DefResistance = self.DefResistance(RelDef,ContactArcLen,self.speed_V[-1],)
+    #     AvrgPressure = self.AvrgPressure(DefResistance,ContactArcLen,h_0,h_1)
+    #     Effort = self.Effort(ContactArcLen,AvrgPressure,self.b)
+    #     Moment = self.Moment(ContactArcLen,h_0,h_1,Effort)
+    #     Power = self.Power(Moment,self.speed_V[n]*2*pi)
+    #     #3.Рассчет падения температуры от пластической деформации и контакта с валками
+    #     TempDrDConRoll = self.TempDrDConRoll(self.DV,h_0,h_1)
+    #     TempDrPlDeform = self.TempDrPlDeform(RelDef,h_0,h_1)
+    #     # GenTempDrop = self.GenTemp(self.temperature_log[-1],TempDrDConRoll,TempDrPlDeform,TempDrBPass=0) 
+    #     with open(filename, 'a') as f:
+    #         while self.time_log[-1] < start_time + rolling_time:
+    #             self.length_log.append(self.length_log[-1] + def_for_sek)
+    #             current_pos = min(self.x_log[-1] + self.V1[n], (self.d1 + self.d2))
                 
-                self.time_log.append(self.time_log[-1] + 1)
-                self.gap_log.append(self.gap_log[-1])
-                self.speed_V.append(self.speed_V[-1])
-                self.x_log.append(current_pos)
-                self.temperature_log.append(self.temperature_log[-1])
-                self.speed_V0.append(self.V0[n])
-                self.speed_V1.append(self.V1[n])
-                self.length_log.append(self.length_log[-1])
+    #             self.time_log.append(self.time_log[-1] + 1)
+    #             self.gap_log.append(self.gap_log[-1])
+    #             self.speed_V.append(self.speed_V[-1])
+    #             self.x_log.append(current_pos)
+    #             self.temperature_log.append(self.temperature_log[-1])
+    #             self.speed_V0.append(self.V0[n])
+    #             self.speed_V1.append(self.V1[n])
+    #             self.length_log.append(self.length_log[-1])
 
-                f.write(f"{self.time_log[-1]:<5d}{self.gap_log[-1]:>8.1f}{self.temperature_log[-1]:>8.1f}{self.speed_V[-1]:>8.1f}"
-                        f"{self.speed_V0[-1]:>8.1f}{self.speed_V1[-1]:>8.1f}{self.x_log[-1]:>10.1f}{self.length_log[-1]:>10.1f}\n")
-                
-        pass
+    #             f.write(f"{self.time_log[-1]:<5d}{self.gap_log[-1]:>8.1f}{self.temperature_log[-1]:>8.1f}{self.speed_V[-1]:>8.1f}"
+    #                     f"{self.speed_V0[-1]:>8.1f}{self.speed_V1[-1]:>8.1f}{self.x_log[-1]:>10.1f}{self.length_log[-1]:>10.1f}\n")
+    #     pass
 
 
+    # def simulate_process(self):
+    #     #Запуск симуляции   
+        
     # def _simulate_exit_from_rolls(self):
     #     #1.Доход сляба до конечного концевика
 
@@ -175,8 +159,16 @@ class RollingMillSimulator(RollingMill):
 
     # def _simulate_pause_between_passes(self):
     #     #1.Выдержка паузы и падение температуры во время этой паузы
- 
-    # def _log_data(self):
+    def _update_logs(self, time, gap, speed_V, temp, pos, speed_V0, speed_V1, length):
+        "Вспомогательный метод для обновления логов"
+        self.time_log.append(time)
+        self.gap_log.append(gap)
+        self.speed_V.append(speed_V)
+        self.temperature_log.append(temp)
+        self.x_log.append(pos)
+        self.speed_V0.append(speed_V0)
+        self.speed_V1.append(speed_V1)
+        self.length_log.append(length)
 
 if __name__ == "__main__":
     # Параметры прокатки
@@ -196,7 +188,7 @@ if __name__ == "__main__":
     V1 = [10, 10, 0.7, 0.7, 0.7]  # конечная скорость(мм/с)
     PauseBIter = 5  # пауза между пропусками, с
     V_Valk_Per = [10, 0.7, 0.7, 0.7, 0.7] # установка скоростей валков для каждого пропуска (мм/с)
-    SteelGrade = "Ст3сп"
+    SteelGrade = "Ст3сп" #Марка стали
    
     simulator = RollingMillSimulator(
         L=L,b=b,h_0=h_0,S=S,StartTemp=StartTemp,
