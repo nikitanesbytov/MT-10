@@ -1,2 +1,0 @@
-Time(s) Gap(mm) Temp(C)Valk(mm/s)V0(mm/s)V1(mm/s)  PositionLength(mm)
-0        10.0  1200.0     0.0     0.0     0.0       0.0    1000.0

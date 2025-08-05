@@ -1,7 +1,7 @@
 from math import *
 
 class RollingMill:
-    def __init__(self,DR,L,b,h_0,StartTemp,DV,MV,MS,OutTemp,n,SteelGrade,V0,V1,S,PauseBIter,V_Valk_Per,StartS,MaxEffort,MaxMoment,MaxPower,d1,d2):
+    def __init__(self,DR,L,b,h_0,StartTemp,DV,MV,MS,OutTemp,n,SteelGrade,V0,V1,S,PauseBIter,V_Valk_Per,StartS,d1,d2):
         #Параметры сляба(Задает оператор)
         self.L = L #Начальная длина сляба(мм)
         self.b = b #Ширина сляба(мм)
@@ -16,9 +16,6 @@ class RollingMill:
         self.R = DV/2 #Радиус валков(мм)
         self.MV = MV #Материал валков
         self.MS = MS  #Материал сляба
-        self.MaxEffort = MaxEffort #Максимально усилие(кН)
-        self.MaxMoment = MaxMoment #Максимельный момент(кНм)
-        self.MaxPower = MaxPower #Максимальная мощность(Вт)
         self.TempV = OutTemp #Температура валков(°C)
         self.d1 = d1 #Расстояние пути до валков(мм)
         self.d2 = d2 #Расстояние пути после валков(мм)
@@ -29,7 +26,7 @@ class RollingMill:
         self.V1 = V1 #Скорость рольгангов после валков(об/c)
         self.V0 = V0 #Скорость рольгангов до валков(об/c)
         self.VS = 10 #Скорость выставления валков(мм/c)
-        self.accel = 0.67 #Рагон валков и рольгангов(об/c)
+        self.accel = 10 #Рагон валков и рольгангов(мм/c2)
         self.S = S #Раствор валков(Массив)(Задает оператор)(мм)
         self.V_Valk_Per = V_Valk_Per #Заданная скорость валков оператором в об/мин
         self.V_Valk = [] #Заданная скорость валков(Массив)(об/c)
