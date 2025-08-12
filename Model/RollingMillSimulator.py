@@ -88,7 +88,7 @@ class RollingMillSimulator(RollingMill):
                     f"{self.x_log[i]:<{col_widths['Pos_x']}.1f}",
                     f"{self.x1_log[i]:<{col_widths['Pos_x1']}.1f}",
                     f"{self.length_log[i]:<{col_widths['Length']}.1f}",
-                    f"{self.effort_log[i]:<{col_widths['Effort']}.1f}",
+                    f"{self.force_log[i]:<{col_widths['Force']}.1f}",
                     f"{self.moment_log[i]:<{col_widths['Moment']}.1f}",
                 ]
                 f.write(" | ".join(row) + "\n")
@@ -106,7 +106,7 @@ class RollingMillSimulator(RollingMill):
         self.speed_V0.append(speed_V0)
         self.speed_V1.append(speed_V1)
         self.length_log.append(length)
-        self.effort_log.append(effort)
+        self.force_log.append(force)
         self.moment_log.append(moment)
 
     def _simulate_approach_to_rolls(self, n):
@@ -171,89 +171,81 @@ class RollingMillSimulator(RollingMill):
         "Симуляция прохода сляба через валки"
         start_time = self.time_log[-1]
         current_time = self.time_log[-1]
-        
         x = self.x_log[-1]
         x1 = self.x1_log[-1]
-    
-        #1.Рассчет изменения длины
+
+        # 1. Расчет изменения длины
         h_0 = self.h_0 if n == 0 else self.height_log[-1]
         h_1 = self.S[n] 
-        RelDef = self.RelDef(h_0,h_1)
+        RelDef = self.RelDef(h_0, h_1)
         start_length = self.length_log[-1]
-        FinalLength = self.FinalLength(h_0,h_1,self.L if n == 0 else self.length_log[-1])
+        FinalLength = self.FinalLength(h_0, h_1, self.L if n == 0 else self.length_log[-1])
         rolling_time = abs(((start_length + FinalLength)/2) / ((self.V0[n] + self.V1[n])/2))
-        def_for_sek = self.linear_interpolation(start_length,FinalLength,rolling_time) #Изменение длины за секунду
-        
-        #2.Рассчет падения температуры от пластической деформации и контакта с валками
-        RelDef = self.RelDef(h_0,h_1)
-        ContactArcLen = self.ContactArcLen(self.DV,h_0=h_0,h_1=h_1)
-        DefResistance = self.DefResistance(RelDef=RelDef,LK=ContactArcLen,V=self.speed_V[-1],CurrentTemp=self.temperature_log[-1],SteelGrade=self.SteelGrade)
-        print("Сопротивление деформации = ", DefResistance)
-        SpeedOfRolling = self.SpeedOfRolling(DV=self.DV,V=self.speed_V[-1])
-        
-        print("Начальная температура = ", self.temperature_log[-1])
-        TempDrDConRoll = self.TempDrDConRoll(DV=self.DV,h_0=h_0,h_1=h_1,Temp=self.temperature_log[-1],SpeedOfRolling=SpeedOfRolling)
-        print("Падение температуры вследствие контакта с валками = ", TempDrDConRoll)
-        TempDrPlDeform = self.TempDrPlDeform(DefResistance=DefResistance,h_0=h_0,h_1=h_1)
-        print("Возростание температуры вследствие пластической деформации = ",int(TempDrPlDeform))
-        GenTemp = self.GenTemp(Temp=self.temperature_log[-1],TempDrDConRoll=TempDrDConRoll,TempDrPlDeform=TempDrPlDeform,TempDrBPass=0) 
-        print("Общая температура = ", GenTemp)
-        
-        part = self.L / 5
-        
-        x0_0 = x
-        x0_1 = x0_0 - part
-        x1_1 = x0_1 - part
-        x2_1 = x1_1 - part
-        x3_1 = x2_1 - part
-        x4_1 = x1
-        arr_h_0 = [h_0 + self.roughness(h_0,0.01),h_0 + self.roughness(h_0,0.01),h_0 + self.roughness(h_0,0.01),h_0 + self.roughness(h_0,0.01),h_0 + self.roughness(h_0,0.01)]
-        h_1 = self.S[n]
-        while x4_1 < self.d1:
-            x0_0 = x0_0 + self.speed_V[-1] * self.time_step
-            x0_1 = x0_1 + self.speed_V[-1] * self.time_step
-            x1_1 = x1_1 + self.speed_V[-1] * self.time_step
-            x2_1 = x2_1 + self.speed_V[-1] * self.time_step
-            x3_1 = x3_1 + self.speed_V[-1] * self.time_step
-            x4_1 = x4_1 + self.speed_V[-1] * self.time_step
+        def_for_sek = self.linear_interpolation(start_length, FinalLength, rolling_time)
+
+        # 2. Расчет температуры
+        RelDef = self.RelDef(h_0, h_1)
+        ContactArcLen = self.ContactArcLen(self.DV, h_0=h_0, h_1=h_1)
+        DefResistance = self.DefResistance(RelDef=RelDef, LK=ContactArcLen, V=self.speed_V[-1], 
+                                        CurrentTemp=self.temperature_log[-1], SteelGrade=self.SteelGrade)
+        print("Сопротивление деформации =", DefResistance)
+        SpeedOfRolling = self.SpeedOfRolling(DV=self.DV, V=self.speed_V[-1])
+
+        print("Начальная температура =", self.temperature_log[-1])
+        TempDrDConRoll = self.TempDrDConRoll(DV=self.DV, h_0=h_0, h_1=h_1, Temp=self.temperature_log[-1], 
+                                            SpeedOfRolling=SpeedOfRolling)
+        print("Падение температуры вследствие контакта с валками =", TempDrDConRoll)
+        TempDrPlDeform = self.TempDrPlDeform(DefResistance=DefResistance, h_0=h_0, h_1=h_1)
+        print("Возрастание температуры вследствие пластической деформации =", int(TempDrPlDeform))
+        GenTemp = self.GenTemp(Temp=self.temperature_log[-1], TempDrDConRoll=TempDrDConRoll, 
+                            TempDrPlDeform=TempDrPlDeform, TempDrBPass=0) 
+        print("Общая температура =", GenTemp)
+
+        # Гибкое разбиение на участки
+        num_sections = 5 
+        section_length = self.L / num_sections
+
+        # Создаем массив начальных точек участков
+        section_points = [x - i * section_length for i in range(num_sections + 1)]
+        section_h0 = [h_0 + self.roughness(h_0, 0.10) for _ in range(num_sections)]
+
+        while section_points[-1] < self.d1:
+            # Обновляем позиции всех точек
+            section_points = [point + self.speed_V[-1] * self.time_step for point in section_points]
             
-            if x0_1 < self.d1 and x1_1 < self.d1 and x2_1 < self.d1 and x3_1 < self.d1 and x4_1 < self.d1:
-                RelDef = self.RelDef(arr_h_0[0],h_1)
-                ContactArcLen = self.ContactArcLen(self.DV,h_0=h_0,h_1=h_1)
-                DefResistance = self.DefResistance(RelDef=RelDef,LK=ContactArcLen,V=self.speed_V[-1],CurrentTemp=self.temperature_log[-1],SteelGrade=self.SteelGrade)
-                AvrgPressure = self.AvrgPressure(DefResistance=DefResistance,LK=ContactArcLen,h_0=arr_h_0[0],h_1=h_1)
-                Effort = self.Effort(LK=ContactArcLen,b=self.b,AvrgPressure=AvrgPressure)
-                Moment = self.Moment(LK=ContactArcLen,h_0=h_0,h_1=h_1,Effort=Effort/1000)
-            if x0_1 >= self.d1 and x1_1 < self.d1 and x2_1 < self.d1 and x3_1 < self.d1 and x4_1 < self.d1:
-                RelDef = self.RelDef(arr_h_0[1],h_1)
-                ContactArcLen = self.ContactArcLen(self.DV,h_0,h_1)
-                DefResistance = self.DefResistance(RelDef=RelDef,LK=ContactArcLen,V=self.speed_V[-1],CurrentTemp=self.temperature_log[-1],SteelGrade=self.SteelGrade)
-                AvrgPressure = self.AvrgPressure(DefResistance=DefResistance,LK=ContactArcLen,h_0=arr_h_0[1],h_1=h_1)
-                Effort = self.Effort(LK=ContactArcLen,b=self.b,AvrgPressure=AvrgPressure)
-                Moment = self.Moment(LK=ContactArcLen,h_0=h_0,h_1=h_1,Effort=Effort/1000)
-            if x0_1 >= self.d1 and x1_1 >= self.d1 and x2_1 < self.d1 and x3_1 < self.d1 and x4_1 < self.d1:
-                RelDef = self.RelDef(arr_h_0[2],h_1)
-                DefResistance = self.DefResistance(RelDef=RelDef,LK=ContactArcLen,V=self.speed_V[-1],CurrentTemp=self.temperature_log[-1],SteelGrade=self.SteelGrade)
-                AvrgPressure = self.AvrgPressure(DefResistance=DefResistance,LK=ContactArcLen,h_0=arr_h_0[2],h_1=h_1)
-                Effort = self.Effort(LK=ContactArcLen,b=self.b,AvrgPressure=AvrgPressure)
-                Moment = self.Moment(LK=ContactArcLen,h_0=h_0,h_1=h_1,Effort=Effort/1000)
-            if x0_1 >= self.d1 and x1_1 >= self.d1 and x2_1 >= self.d1 and x3_1 < self.d1 and x4_1 < self.d1:
-                RelDef = self.RelDef(arr_h_0[3],h_1)
-                ContactArcLen = self.ContactArcLen(self.DV,h_0,h_1)
-                DefResistance = self.DefResistance(RelDef=RelDef,LK=ContactArcLen,V=self.speed_V[-1],CurrentTemp=self.temperature_log[-1],SteelGrade=self.SteelGrade)
-                AvrgPressure = self.AvrgPressure(DefResistance=DefResistance,LK=ContactArcLen,h_0=arr_h_0[3],h_1=h_1)
-                Effort = self.Effort(LK=ContactArcLen,b=self.b,AvrgPressure=AvrgPressure)
-                Moment = self.Moment(LK=ContactArcLen,h_0=h_0,h_1=h_1,Effort=Effort/1000)
-            if x0_1 >= self.d1 and x1_1 >= self.d1 and x2_1 >= self.d1 and x3_1 >= self.d1 and x4_1 < self.d1:
-                RelDef = self.RelDef(arr_h_0[4],h_1)
-                ContactArcLen = self.ContactArcLen(self.DV,h_0,h_1)
-                DefResistance = self.DefResistance(RelDef=RelDef,LK=ContactArcLen,V=self.speed_V[-1],CurrentTemp=self.temperature_log[-1],SteelGrade=self.SteelGrade)
-                AvrgPressure = self.AvrgPressure(DefResistance=DefResistance,LK=ContactArcLen,h_0=arr_h_0[4],h_1=h_1)
-                Effort = self.Effort(LK=ContactArcLen,b=self.b,AvrgPressure=AvrgPressure)
-                Moment = self.Moment(LK=ContactArcLen,h_0=h_0,h_1=h_1,Effort=Effort/1000)
+            # Находим индекс последней точки, которая еще не прошла d1
+            active_section = next((i for i, point in enumerate(section_points) if point >= self.d1), num_sections)
             
+            if active_section < num_sections:
+                # Используем h0 для текущего активного участка
+                current_h0 = section_h0[active_section]
+                
+                RelDef = self.RelDef(current_h0, h_1)
+                ContactArcLen = self.ContactArcLen(self.DV, h_0, h_1)
+                DefResistance = self.DefResistance(RelDef=RelDef, LK=ContactArcLen, V=self.speed_V[-1],
+                                                CurrentTemp=self.temperature_log[-1], SteelGrade=self.SteelGrade)
+                AvrgPressure = self.AvrgPressure(DefResistance=DefResistance, LK=ContactArcLen,
+                                            h_0=current_h0, h_1=h_1)
+                Effort = self.Effort(LK=ContactArcLen, b=self.b, AvrgPressure=AvrgPressure)
+                Moment = self.Moment(LK=ContactArcLen, h_0=h_0, h_1=h_1, Effort=Effort/1000)
+
+            # Обновление логов
             current_time += self.time_step
-            self._update_logs(current_time, self.gap_log[-1], self.speed_V[-1], GenTemp, self.TempV,self.TempV, x0_0, x4_1, self.V0[-1], self.V1[-1], self.length_log[-1],Effort/1000,Moment/1000)   
+            self._update_logs(
+                current_time,
+                self.gap_log[-1],
+                self.speed_V[-1],
+                GenTemp,
+                self.TempV,
+                self.TempV,
+                section_points[0],      
+                section_points[-1],      
+                self.V0[-1],
+                self.V1[-1],
+                self.length_log[-1],
+                Effort/1000,
+                Moment/1000
+            )
         pass
 
     # def _simulate_exit_from_rolls(self):
