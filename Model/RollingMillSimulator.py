@@ -186,18 +186,16 @@ class RollingMillSimulator(RollingMill):
         
         #2.Рассчет падения температуры от пластической деформации и контакта с валками
         RelDef = self.RelDef(h_0,h_1)
+
         ContactArcLen = self.ContactArcLen(self.DV,h_0=h_0,h_1=h_1)
+
         DefResistance = self.DefResistance(RelDef=RelDef,LK=ContactArcLen,V=self.speed_V[-1],CurrentTemp=self.temperature_log[-1],SteelGrade=self.SteelGrade)
-        print("Сопротивление деформации = ", DefResistance)
+
         SpeedOfRolling = self.SpeedOfRolling(DV=self.DV,V=self.speed_V[-1])
         
-        print("Начальная температура = ", self.temperature_log[-1])
         TempDrDConRoll = self.TempDrDConRoll(DV=self.DV,h_0=h_0,h_1=h_1,Temp=self.temperature_log[-1],SpeedOfRolling=SpeedOfRolling)
-        print("Падение температуры вследствие контакта с валками = ", TempDrDConRoll)
         TempDrPlDeform = self.TempDrPlDeform(DefResistance=DefResistance,h_0=h_0,h_1=h_1)
-        print("Возростание температуры вследствие пластической деформации = ",int(TempDrPlDeform))
         GenTemp = self.GenTemp(Temp=self.temperature_log[-1],TempDrDConRoll=TempDrDConRoll,TempDrPlDeform=TempDrPlDeform,TempDrBPass=0) 
-        print("Общая температура = ", GenTemp)
         
         part = self.L / 5
         
@@ -210,12 +208,13 @@ class RollingMillSimulator(RollingMill):
         arr_h_0 = [h_0 + self.roughness(h_0,0.01),h_0 + self.roughness(h_0,0.01),h_0 + self.roughness(h_0,0.01),h_0 + self.roughness(h_0,0.01),h_0 + self.roughness(h_0,0.01)]
         h_1 = self.S[n]
         while x4_1 < self.d1:
-            x0_0 = x0_0 + self.speed_V[-1] * self.time_step
+            x0_0 = x0_0 + self.speed_V[-1] * self.time_step + def_for_sek
             x0_1 = x0_1 + self.speed_V[-1] * self.time_step
             x1_1 = x1_1 + self.speed_V[-1] * self.time_step
             x2_1 = x2_1 + self.speed_V[-1] * self.time_step
             x3_1 = x3_1 + self.speed_V[-1] * self.time_step
             x4_1 = x4_1 + self.speed_V[-1] * self.time_step
+            length = self.length_log[-1] + def_for_sek
             
             if x0_1 < self.d1 and x1_1 < self.d1 and x2_1 < self.d1 and x3_1 < self.d1 and x4_1 < self.d1:
                 RelDef = self.RelDef(arr_h_0[0],h_1)
@@ -253,15 +252,21 @@ class RollingMillSimulator(RollingMill):
                 Moment = self.Moment(LK=ContactArcLen,h_0=h_0,h_1=h_1,Effort=Effort/1000)
             
             current_time += self.time_step
-            self._update_logs(current_time, self.gap_log[-1], self.speed_V[-1], GenTemp, self.TempV,self.TempV, x0_0, x4_1, self.V0[-1], self.V1[-1], self.length_log[-1],Effort/1000,Moment/1000)   
+            self._update_logs(current_time, self.gap_log[-1], self.speed_V[-1], GenTemp, self.TempV,self.TempV, x0_0, x4_1, self.speed_V0[-1], self.speed_V1[-1], length,Effort/1000,Moment/1000)   
         pass
 
-    # def _simulate_exit_from_rolls(self):
-    #     #1.Доход сляба до конечного концевика
-
-    #     #2.Замедление рольгангов и валков до 0 скорости
-
-    #     #3.Рассчет падения температуры    
+    def _simulate_exit_from_rolls(self,n):
+        #1.Доход сляба до конечного концевика
+        current_time = self.time_log[-1]
+        while self.x_log[-1] < self.d1 + self.d2 :
+            x = min(self.x_log[-1] + self.speed_V1[-1] * self.time_step,self.d1 + self.d2)
+            x1 = self.x1_log[-1] + self.speed_V1[-1] * self.time_step
+            current_time += self.time_step
+            self._update_logs(current_time, self.gap_log[-1], self.speed_V[-1], self.temperature_log[-1], self.TempV,self.TempV, x, x1, self.speed_V0[-1], self.speed_V1[-1], self.length_log[-1],0,0)
+        #2.Замедление рольгангов и валков до 0 скорости
+        #3.Рассчет падения температуры  
+    pass
+        
     # def simulate_process(self):
     #     #Запуск симуляции       
 
@@ -270,10 +275,10 @@ class RollingMillSimulator(RollingMill):
 
 if __name__ == "__main__":
     # Параметры прокатки
-    L = 200  # начальная длина сляба, мм
+    L = 100  # начальная длина сляба, мм
     b = 75   # ширина сляба, мм
-    h_0 = 200  # начальная толщина, мм
-    S = [190, 160, 140, 120, 100]  # целевые толщины по пропускам, мм
+    h_0 = 75  # начальная толщина, мм
+    S = [56, 160, 140, 120, 100]  # целевые толщины по пропускам, мм
     StartTemp = 1200  # начальная температура, °C
     StartS = 10 # начальный раствор валков
     DV = 300   # диаметр валков, мм
@@ -282,22 +287,24 @@ if __name__ == "__main__":
     MS = 'Carbon Steel'  # материал сляба
     OutTemp = 25  # температура валков, °C
     n = 5      # количество пропусков
-    V0 = [36, 10, 0.7, 0.7, 0.7]  # начальная скорость(мм/с)
-    V1 = [36, 10, 0.7, 0.7, 0.7]  # конечная скорость(мм/с)
+    V0 = [200, 200, 200, 200, 200]  # начальная скорость(мм/с)
+    V1 = [200, 200, 200, 200, 200]  # конечная скорость(мм/с)   
     PauseBIter = 5  # пауза между пропусками, с
-    V_Valk_Per = [36, 0.7, 0.7, 0.7, 0.7] # установка скоростей валков для каждого пропуска (мм/с)
+    V_Valk_Per = [200, 200, 200, 200, 200] # установка скоростей валков для каждого пропуска (мм/с)
     SteelGrade = "Ст3сп" #Марка стали
    
     simulator = RollingMillSimulator(
         L=L,b=b,h_0=h_0,S=S,StartTemp=StartTemp,
         DV=DV,MV=MV,MS=MS,OutTemp=OutTemp,DR=DR,SteelGrade=SteelGrade,
         n=n, V0=V0,V1=V1,PauseBIter=PauseBIter,
-        d1=1500,d2=1500,V_Valk_Per=V_Valk_Per,StartS=StartS,
+        d1=5000,d2=5000,V_Valk_Per=V_Valk_Per,StartS=StartS,
     )
 
     # Запуск симуляции
     simulator._simulate_approach_to_rolls(0)
-    simulator._simulate_rolling_pass(0) 
+    simulator._simulate_rolling_pass(0)
+    simulator._simulate_exit_from_rolls(0)
     
     #Создание лога
     simulator.save_logs_to_file("my_logs.txt")
+    print("Симуляция окончена")

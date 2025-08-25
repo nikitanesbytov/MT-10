@@ -25,20 +25,22 @@ class RollingMill:
         self.n = n #Количество итераций прокатки
         self.V1 = V1 #Скорость рольгангов после валков(мм/c)
         self.V0 = V0 #Скорость рольгангов до валков(мм/c)
-        self.VS = 10 #Скорость выставления валков(мм/c)
-        self.accel = 10 #Рагон валков и рольгангов(мм/c2)
+        self.VS = 100 #Скорость выставления валков(мм/c)
+        self.accel = 100 #Рагон валков и рольгангов(мм/c2)
+        self.stop_accel = 100 #Ускорение замедления(мм/c2)
         self.S = S #Раствор валков(Массив)(Задает оператор)(мм)
         self.V_Valk_Per = V_Valk_Per #Заданная скорость валков оператором в об/мин
         self.V_Valk = [] #Заданная скорость валков(Массив)(об/c)
         self.PauseBIter = PauseBIter #Пауза между итерациями(с)
         self.SteelGrade = SteelGrade #Марка стали
 
-    def SpeedOfRolling(self,DV,V) -> float:
-        w = (V / 1000) / (pi * DV) #Перевод из мм/c в об/c
-        SpeedOfRolling = pi * DV * w * (1 + 0.05)
-        #w - Частота вращения валков(об/c)
-        #V - Скорость валков(мм/c)
-        return SpeedOfRolling
+    def SpeedOfRolling(self, DV, V) -> float:
+        # w = V / (π * DV) - частота вращения (об/с)
+        # где V в мм/с, DV в мм
+        w = V / (pi * DV)  
+        # Скорость прокатки = π * DV * w * (1 + 0.05)
+        SpeedOfRolling = pi * DV * w * (1 + 0.05) #мм/с
+        return SpeedOfRolling/1000 #мм/с
     
     def RelDef(self, h_0, h_1) -> float:
         "Относительная деформация"
@@ -47,24 +49,33 @@ class RollingMill:
     
     def TempDrBPass(self,FinalLength,SpeedOfRolling,Temp,h_1) -> float:
         "Падение температуры между пропусками"
-        TempDrBPass = (17.5 * 10**-12) * ((FinalLength/SpeedOfRolling) + 3*100)/(h_1/1000) * (Temp+273)**4
-        #V - Скорость прокатки(м/c)
+        TempDrBPass = (17.5 * 10**-12) * (((FinalLength)/SpeedOfRolling) + 3*100)/(h_1/1000) * (Temp+273)**4
+        #SpeedOfRolling - Скорость прокатки(мм/c)
         #Temp - Температура в проходе(°C)
+        #FinalLength - Конечная длина(мм)
         return TempDrBPass
     
-    def TempDrDConRoll(self,DV,h_0,h_1,Temp,SpeedOfRolling) -> float:
+    def TempDrDConRoll(self, DV, h_0, h_1, Temp, SpeedOfRolling) -> float:
         "Падение температуры вследствие контакта с валками"
-        TempDrDConRoll = 0.216 * sqrt(DV/2 * acos(1-(h_0-h_1)/DV))/(h_0 + h_1) * (Temp - 60) * sqrt(1.08/SpeedOfRolling) * 0.8
-        #DV - Диаметр валков(мм)
-        #Temp - Темпертура в проходе
-        #V - Скорость прокатки(м/c)
-        return TempDrDConRoll
+        # Все размеры в мм, скорость в мм/с
+        delta_h = h_0 - h_1  # абсолютное обжатие (мм)
+        
+        # Вычисление угла контакта (в радианах)
+        contact_angle = acos(1 - delta_h / DV)
+        
+        # Длина контакта (мм)
+        contact_length = sqrt((DV/2) * contact_angle)
+        
+        TempDrDConRoll = (0.216 * contact_length / (h_0 + h_1) * 
+                        (Temp - 60) * sqrt(1.08 / SpeedOfRolling) * 0.8)
+        
+        return TempDrDConRoll  # в °C (падение температуры)
    
     def TempDrPlDeform(self,DefResistance,h_0,h_1) -> float:
         "Прирост температуры вследствие пластической деформации"
-        TempDrPlDeform = 0.183 * (DefResistance/1000000) * log(h_0/h_1)
+        TempDrPlDeform = 0.183 * (DefResistance) * log(h_0/h_1)
         #RelDef - Степень деформации
-        #DefResistance - Сопротивление деформации(Па) 
+        #DefResistance - Сопротивление деформации(МПа) 
         return TempDrPlDeform
     
     def GenTemp(self,Temp,TempDrBPass,TempDrDConRoll,TempDrPlDeform) -> float:
@@ -159,7 +170,7 @@ class RollingMill:
     def ContactArcLen(self,DV,h_0,h_1) -> float:
         "Длина дуги контакта"
         LK = sqrt(DV/2 * (h_0 - h_1))
-        return LK
+        return LK #мм
     
     # def ContactArea(self,b_0, b_1, LK) -> float:
     #     "Площадь контакта"
