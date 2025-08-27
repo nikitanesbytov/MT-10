@@ -39,7 +39,7 @@ class RollingMill:
         # где V в мм/с, DV в мм
         w = V / (pi * DV)  
         # Скорость прокатки = π * DV * w * (1 + 0.05)
-        SpeedOfRolling = pi * DV * w * (1 + 0.05) #мм/с
+        SpeedOfRolling = pi * DV * w * (1 + 0.05)
         return SpeedOfRolling/1000 #мм/с
     
     def RelDef(self, h_0, h_1) -> float:
