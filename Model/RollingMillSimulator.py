@@ -2,6 +2,8 @@ import time
 from math import *
 from RollingMill import RollingMill
 import random
+import pymodbus
+
 
 class RollingMillSimulator(RollingMill):
     def __init__(self, *args, **kwargs):
@@ -114,7 +116,7 @@ class RollingMillSimulator(RollingMill):
         self.moment_log.append(moment)
         self.power_log.append(power)
 
-    def _simulate_approach_to_rolls(self, n):
+    def _simulate_approach_to_rolls(self,n):
         "Проход сляба к валкам (чистая версия без работы с файлами)"
         current_pos_x = self.x_log[-1]
         current_pos_x1 = self.x1_log[-1]
@@ -181,7 +183,7 @@ class RollingMillSimulator(RollingMill):
         x1 = self.x1_log[-1]
     
         #1.Рассчет изменения длины
-        h_0 = self.h_0 if n == 0 else self.height_log[-1]
+        h_0 = self.h_0
         h_1 = self.S[n] 
         RelDef = self.RelDef(h_0,h_1)
         start_length = self.length_log[-1]
@@ -311,6 +313,7 @@ class RollingMillSimulator(RollingMill):
 
 if __name__ == "__main__":
     # Параметры прокатки
+    Work_mode = 'Autimatic' #Режим работы
     L = 100  # начальная длина сляба, мм
     b = 75   # ширина сляба, мм
     h_0 = 75  # начальная толщина, мм
@@ -322,7 +325,6 @@ if __name__ == "__main__":
     MV = 'Steel'  # материал валков
     MS = 'Carbon Steel'  # материал сляба
     OutTemp = 25  # температура валков, °C
-    n = 5      # количество пропусков
     V0 = [200, 200, 200, 200, 200]  # начальная скорость(мм/с)
     V1 = [200, 200, 200, 200, 200]  # конечная скорость(мм/с)   
     PauseBIter = 5  # пауза между пропусками, с
@@ -332,8 +334,8 @@ if __name__ == "__main__":
     simulator = RollingMillSimulator(
         L=L,b=b,h_0=h_0,S=S,StartTemp=StartTemp,
         DV=DV,MV=MV,MS=MS,OutTemp=OutTemp,DR=DR,SteelGrade=SteelGrade,
-        n=n, V0=V0,V1=V1,PauseBIter=PauseBIter,
-        d1=5000,d2=5000,V_Valk_Per=V_Valk_Per,StartS=StartS,
+        V0=V0,V1=V1,PauseBIter=PauseBIter,
+        d1=1500,d2=1500,V_Valk_Per=V_Valk_Per,StartS=StartS,
     )
 
     # Запуск симуляции
