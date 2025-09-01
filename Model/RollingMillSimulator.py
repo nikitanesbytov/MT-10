@@ -116,25 +116,25 @@ class RollingMillSimulator(RollingMill):
         self.moment_log.append(moment)
         self.power_log.append(power)
 
-    def _simulate_approach_to_rolls(self,n):
+    def _simulate_approach_to_rolls(self):
         "Проход сляба к валкам (чистая версия без работы с файлами)"
         current_pos_x = self.x_log[-1]
         current_pos_x1 = self.x1_log[-1]
         current_time = self.time_log[-1] if self.time_log else 0
         CurrentS = self.CurrentS[-1] 
-        initial_temp = self.StartTemp if n == 0 else (self.temperature_log[-1] if self.temperature_log else self.StartTemp)
+        initial_temp = self.StartTemp
         current_temp = initial_temp
-        target_gap = self.S[n]
+        target_gap = self.S
         
         gap_change_per_ms = self.VS * self.time_step 
         start_time = self.time_log[-1]
         
-        time_gap = (abs(self.S[n] - CurrentS)) / (self.VS)
-        time_accel = ((self.V_Valk_Per[n]) / (self.accel))
-        time_accel_V0 = ((self.V0[n]) / (self.accel))
+        time_gap = (abs(self.S - CurrentS)) / (self.VS)
+        time_accel = ((self.V_Valk_Per) / (self.accel))
+        time_accel_V0 = ((self.V0) / (self.accel))
         S1 = ((self.accel) * time_accel_V0**2)/2
         S2 = (self.d1 - self.L) - S1
-        time_max_speed = (S2 / (self.V0[n]))
+        time_max_speed = (S2 / (self.V0))
         time_move = (time_accel_V0 + time_max_speed)
         total_time = time_gap + time_accel + time_move
 
@@ -157,7 +157,7 @@ class RollingMillSimulator(RollingMill):
             self._update_logs(current_time, CurrentS, 0, current_temp,self.TempV,self.TempV, self.x_log[-1],0, speed_V0, speed_V1, current_length,0,0,0)
 
         # Фаза 2: Разгон валков
-        while current_speed != V_Valk_Per[n]:
+        while current_speed != self.V_Valk_Per:
             current_speed = current_speed + self.accel * self.time_step
             current_time += self.time_step
             current_temp = max(current_temp - temp_drop_per_ms, final_temp)
@@ -165,8 +165,8 @@ class RollingMillSimulator(RollingMill):
         
         # Фаза 3: Движение сляба
         while  current_pos_x != self.d1:
-            speed_V0 = min(speed_V0 + self.accel * self.time_step, self.V0[n])
-            speed_V1 = min(speed_V1 + self.accel * self.time_step, self.V1[n])
+            speed_V0 = min(speed_V0 + self.accel * self.time_step, self.V0)
+            speed_V1 = min(speed_V1 + self.accel * self.time_step, self.V1)
             current_pos_x = min(current_pos_x + speed_V0 * self.time_step, self.d1)
             current_pos_x1 = min(current_pos_x1 + speed_V0 * self.time_step, self.d1-self.L)
             current_length = self.length_log[-1] if self.length_log else 0
@@ -174,7 +174,7 @@ class RollingMillSimulator(RollingMill):
             current_temp = max(current_temp - temp_drop_per_ms, final_temp)
             self._update_logs(current_time, CurrentS, current_speed, current_temp, self.TempV,self.TempV, current_pos_x,current_pos_x1, speed_V0, speed_V1, current_length,0,0,0)
     
-    def _simulate_rolling_pass(self,n):
+    def _simulate_rolling_pass(self):
         "Симуляция прохода сляба через валки"
         start_time = self.time_log[-1]
         current_time = self.time_log[-1]
@@ -184,11 +184,11 @@ class RollingMillSimulator(RollingMill):
     
         #1.Рассчет изменения длины
         h_0 = self.h_0
-        h_1 = self.S[n] 
+        h_1 = self.S 
         RelDef = self.RelDef(h_0,h_1)
         start_length = self.length_log[-1]
-        FinalLength = self.FinalLength(h_0,h_1,self.L if n == 0 else self.length_log[-1])
-        rolling_time = abs(((start_length + FinalLength)/2) / ((self.V0[n] + self.V1[n])/2))
+        FinalLength = self.FinalLength(h_0,h_1,self.L)
+        rolling_time = abs(((start_length + FinalLength)/2) / ((self.V0 + self.V1)/2))
         def_for_sek = self.linear_interpolation(start_length,FinalLength,rolling_time) #Изменение длины за секунду
         
         #2.Рассчет падения температуры от пластической деформации и контакта с валками
@@ -208,7 +208,7 @@ class RollingMillSimulator(RollingMill):
         x3_1 = x2_1 - part
         x4_1 = x1
         arr_h_0 = [h_0 + self.roughness(h_0,0.01),h_0 + self.roughness(h_0,0.01),h_0 + self.roughness(h_0,0.01),h_0 + self.roughness(h_0,0.01),h_0 + self.roughness(h_0,0.01)]
-        h_1 = self.S[n]
+        h_1 = self.S
         while x4_1 < self.d1:
             x0_0 = x0_0 + self.speed_V[-1] * self.time_step + def_for_sek
             x0_1 = x0_1 + self.speed_V[-1] * self.time_step
@@ -262,7 +262,7 @@ class RollingMillSimulator(RollingMill):
             self._update_logs(current_time, self.gap_log[-1], self.speed_V[-1], GenTemp, self.TempV,self.TempV, x0_0, x4_1, self.speed_V0[-1], self.speed_V1[-1], length,Effort/1000,Moment/1000,Power/1000)   
         pass
 
-    def _simulate_exit_from_rolls(self,n):
+    def _simulate_exit_from_rolls(self):
         "Симуляция дохода сляба до концевика"
         current_time = self.time_log[-1]
         current_temp = self.temperature_log[-1]
@@ -273,7 +273,7 @@ class RollingMillSimulator(RollingMill):
         time_brake_V0 = self.speed_V0[-1] / self.accel  
         time_brake_V1 = self.speed_V1[-1] / self.accel
         time_second_cycle = max(time_brake_speed, time_brake_V0, time_brake_V1)
-        total_time = time_first_cycle + time_second_cycle + PauseBIter
+        total_time = time_first_cycle + time_second_cycle + self.PauseBIter
         final_temp = current_temp - 100
         temp_drop_per_ms = ((current_temp - final_temp) / total_time) * self.time_step
         #2.Доход сляба до конечного концевика
@@ -311,13 +311,11 @@ class RollingMillSimulator(RollingMill):
             currentS = min(currentS + self.VS,self.StartS)       
 
 
-if __name__ == "__main__":
+def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Dir_of_rot,Dir_of_rot_rolg,Mode,Dir_of_rot_valk,Speed_of_diverg):
     # Параметры прокатки
-    Work_mode = 'Autimatic' #Режим работы
     L = 100  # начальная длина сляба, мм
     b = 75   # ширина сляба, мм
     h_0 = 75  # начальная толщина, мм
-    S = [56, 160, 140, 120, 100]  # целевые толщины по пропускам, мм
     StartTemp = 1200  # начальная температура, °C
     StartS = 200 # начальный раствор валков
     DV = 300   # диаметр валков, мм
@@ -325,24 +323,33 @@ if __name__ == "__main__":
     MV = 'Steel'  # материал валков
     MS = 'Carbon Steel'  # материал сляба
     OutTemp = 25  # температура валков, °C
-    V0 = [200, 200, 200, 200, 200]  # начальная скорость(мм/с)
-    V1 = [200, 200, 200, 200, 200]  # конечная скорость(мм/с)   
     PauseBIter = 5  # пауза между пропусками, с
-    V_Valk_Per = [200, 200, 200, 200, 200] # установка скоростей валков для каждого пропуска (мм/с)
+    V_Valk_Per = 0 # Скорость валков (мм/c)
     SteelGrade = "Ст3сп" #Марка стали
-   
+    
+    S = Roll_pos  #Расхождение валков, мм
+    V0 = (2 * pi * DR/2 * Num_of_revol_0rollg) / 60  # начальная скорость(мм/с)
+    V1 = (2 * pi * DR/2 * Num_of_revol_1rollg) / 60  # конечная скорость(мм/с) 
+    V_Valk_Per = 200#(2 * pi * DV/2 * Num_of_revol_rolls) / 60 # Скорость валков (мм/c)
+    Dir_of_rot = Dir_of_rot #Направление вращения валков
+    Dir_of_rot_rolg = Dir_of_rot_rolg #Направление вращения левых рольгангов
+    Mode = Mode #Отправка на частотник флага ручного режима
+    Dir_of_rot_valk = Dir_of_rot_valk #Направление движения валков 
+    
     simulator = RollingMillSimulator(
         L=L,b=b,h_0=h_0,S=S,StartTemp=StartTemp,
         DV=DV,MV=MV,MS=MS,OutTemp=OutTemp,DR=DR,SteelGrade=SteelGrade,
-        V0=V0,V1=V1,PauseBIter=PauseBIter,
+        V0=V0,V1=V1,PauseBIter=PauseBIter,VS=Speed_of_diverg,
         d1=1500,d2=1500,V_Valk_Per=V_Valk_Per,StartS=StartS,
     )
+    print("Начало симуляции")
+    simulator._simulate_approach_to_rolls()
+    print("Сляб подошел к валкам")
+    simulator._simulate_rolling_pass()
+    print("Сляб покинул валки")
+    simulator._simulate_exit_from_rolls()
+    print("Сляб дошел до конца прокатного стана")
 
-    # Запуск симуляции
-    simulator._simulate_approach_to_rolls(0)
-    simulator._simulate_rolling_pass(0)
-    simulator._simulate_exit_from_rolls(0)
-    
     #Создание лога
     simulator.save_logs_to_file("my_logs.txt")
     print("Симуляция окончена")
