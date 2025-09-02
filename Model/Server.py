@@ -333,7 +333,7 @@ class ModbusServerWithMonitoring:
                 data = self.update_variables()
                 if data:
                     self.update_callback(data)
-                time.sleep(2)
+                time.sleep(0.1)
             except Exception as e:
                 print(f"Monitoring error: {e}")
                 time.sleep(0.1)

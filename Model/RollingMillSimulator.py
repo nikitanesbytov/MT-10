@@ -44,34 +44,28 @@ class RollingMillSimulator(RollingMill):
         with open(filename, 'w') as f:
             col_widths = {
                 'Time': 8,
-                'Gap': 8,
-                'Speed_V': 8,
                 # 'Pyro1': 8,
                 # 'Pyro2': 8,
                 'Temp': 8,
-                'Pos_x': 8,
-                'Pos_x1': 8,
+                'Effort' : 8,
+                'Gap': 8,
+                'Speed_V': 8,
                 'Speed_V0': 8,
                 'Speed_V1': 8,
-                'Length': 8 ,
-                'Effort' : 8,
                 'Moment' : 8,
                 'Power' : 8
             }
             # Заголовки таблицы
             headers = [
                 f"{'Time':<{col_widths['Time']}}",
+                # f"{'Pyro1':<{col_widths['Pyro1']}}",
+                # f"{'Pyro2':<{col_widths['Pyro2']}}",
+                f"{'Temp':<{col_widths['Temp']}}",
+                f"{'Effort':<{col_widths['Effort']}}",
                 f"{'Gap':<{col_widths['Gap']}}",
                 f"{'Speed_V':<{col_widths['Speed_V']}}",
                 f"{'Speed_V0':<{col_widths['Speed_V0']}}",
                 f"{'Speed_V1':<{col_widths['Speed_V1']}}",
-                # f"{'Pyro1':<{col_widths['Pyro1']}}",
-                # f"{'Pyro2':<{col_widths['Pyro2']}}",
-                f"{'Temp':<{col_widths['Temp']}}",
-                f"{'Pos_x':<{col_widths['Pos_x']}}",
-                f"{'Pos_x1':<{col_widths['Pos_x1']}}",
-                f"{'Length':<{col_widths['Length']}}",
-                f"{'Effort':<{col_widths['Effort']}}",
                 f"{'Moment':<{col_widths['Moment']}}",
                 f"{'Power':<{col_widths['Power']}}"
 
@@ -83,17 +77,14 @@ class RollingMillSimulator(RollingMill):
             for i in range(len(self.time_log)):
                 row = [
                     f"{self.time_log[i]:<{col_widths['Time']}.1f}",
+                    # f"{self.pyrometr_1[i]:<{col_widths['Pyro1']}.1f}",
+                    # f"{self.pyrometr_2[i]:<{col_widths['Pyro2']}.1f}",
+                    f"{self.temperature_log[i]:<{col_widths['Temp']}.1f}",
+                    f"{self.effort_log[i]:<{col_widths['Effort']}.1f}",
                     f"{self.gap_log[i]:<{col_widths['Gap']}.1f}",
                     f"{self.speed_V[i]:<{col_widths['Speed_V']}.1f}",
                     f"{self.speed_V0[i]:<{col_widths['Speed_V0']}.1f}",
                     f"{self.speed_V1[i]:<{col_widths['Speed_V1']}.1f}",
-                    # f"{self.pyrometr_1[i]:<{col_widths['Pyro1']}.1f}",
-                    # f"{self.pyrometr_2[i]:<{col_widths['Pyro2']}.1f}",
-                    f"{self.temperature_log[i]:<{col_widths['Temp']}.1f}",
-                    f"{self.x_log[i]:<{col_widths['Pos_x']}.1f}",
-                    f"{self.x1_log[i]:<{col_widths['Pos_x1']}.1f}",
-                    f"{self.length_log[i]:<{col_widths['Length']}.1f}",
-                    f"{self.effort_log[i]:<{col_widths['Effort']}.1f}",
                     f"{self.moment_log[i]:<{col_widths['Moment']}.1f}",
                     f"{self.power_log[i]:<{col_widths['Power']}.1f}"
                 ]
@@ -365,13 +356,13 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
             'Gap_feedback':0,
             'Speed_feedback':0}
 
-# if __name__ == "__main__":
-#     print(start(Num_of_revol_rolls = 7,
-#           Roll_pos = 56,
-#           Num_of_revol_0rollg = 38,
-#           Num_of_revol_1rollg = 38,
-#           Dir_of_rot = 0,
-#           Dir_of_rot_rolg = 0,
-#           Mode = 0,
-#           Dir_of_rot_valk = 0,
-#           Speed_of_diverg = 100))
+if __name__ == "__main__":
+    print(start(Num_of_revol_rolls = 7,
+          Roll_pos = 56,
+          Num_of_revol_0rollg = 38,
+          Num_of_revol_1rollg = 38,
+          Dir_of_rot = 0,
+          Dir_of_rot_rolg = 0,
+          Mode = 0,
+          Dir_of_rot_valk = 0,
+          Speed_of_diverg = 100))
