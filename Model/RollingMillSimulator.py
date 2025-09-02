@@ -154,14 +154,14 @@ class RollingMillSimulator(RollingMill):
             CurrentS = min(CurrentS + gap_change_per_ms, target_gap) if CurrentS < target_gap else max(CurrentS - gap_change_per_ms, target_gap)
             current_time += self.time_step
             current_temp = max(current_temp - temp_drop_per_ms, final_temp)
-            self._update_logs(current_time, CurrentS, 0, current_temp,self.TempV,self.TempV, self.x_log[-1],0, speed_V0, speed_V1, current_length,0,0,0)
+            self._update_logs(round(current_time,2), round(CurrentS,2), 0, round(current_temp,2),round(self.TempV,2),round(self.TempV,2), round(self.x_log[-1],2),0, round(speed_V0,2), round(speed_V1,2), round(current_length,2),0,0,0)
 
         # Фаза 2: Разгон валков
         while current_speed != self.V_Valk_Per:
             current_speed = current_speed + self.accel * self.time_step
             current_time += self.time_step
             current_temp = max(current_temp - temp_drop_per_ms, final_temp)
-            self._update_logs(current_time, CurrentS, current_speed, current_temp, self.TempV, self.TempV,self.x_log[-1],0, 0, 0, current_length,0,0,0)
+            self._update_logs(round(current_time,2), round(CurrentS,2), round(current_speed,2), round(current_temp,2), round(self.TempV,2), round(self.TempV,2),round(self.x_log[-1],2),0, 0, 0, round(current_length,2),0,0,0)
         
         # Фаза 3: Движение сляба
         while  current_pos_x != self.d1:
@@ -172,7 +172,7 @@ class RollingMillSimulator(RollingMill):
             current_length = self.length_log[-1] if self.length_log else 0
             current_time += self.time_step
             current_temp = max(current_temp - temp_drop_per_ms, final_temp)
-            self._update_logs(current_time, CurrentS, current_speed, current_temp, self.TempV,self.TempV, current_pos_x,current_pos_x1, speed_V0, speed_V1, current_length,0,0,0)
+            self._update_logs(round(current_time,2), round(CurrentS,2), round(current_speed,2), round(current_temp,2), round(self.TempV,2),round(self.TempV,2), round(current_pos_x,2),round(current_pos_x1,2), round(speed_V0,2), round(speed_V1,2), round(current_length,2),0,0,0)
     
     def _simulate_rolling_pass(self):
         "Симуляция прохода сляба через валки"
@@ -259,7 +259,7 @@ class RollingMillSimulator(RollingMill):
                 Power = self.Power(Moment,self.speed_V[-1]/self.R)
             
             current_time += self.time_step
-            self._update_logs(current_time, self.gap_log[-1], self.speed_V[-1], GenTemp, self.TempV,self.TempV, x0_0, x4_1, self.speed_V0[-1], self.speed_V1[-1], length,Effort/1000,Moment/1000,Power/1000)   
+            self._update_logs(round(current_time,2), round(self.gap_log[-1],2), round(self.speed_V[-1],2), round(GenTemp,2), round(self.TempV,2),round(self.TempV,2), round(x0_0,2), round(x4_1,2), round(self.speed_V0[-1],2), round(self.speed_V1[-1],2), round(length,2),round(Effort/1000,2),round(Moment/1000,2),round(Power/1000,2))   
         pass
 
     def _simulate_exit_from_rolls(self):
@@ -282,7 +282,7 @@ class RollingMillSimulator(RollingMill):
             x1 = self.x1_log[-1] + self.speed_V1[-1] * self.time_step
             current_temp -= temp_drop_per_ms
             current_time += self.time_step
-            self._update_logs(current_time, self.gap_log[-1], self.speed_V[-1], current_temp, self.TempV,self.TempV, x, x1, self.speed_V0[-1], self.speed_V1[-1], self.length_log[-1],0,0,0)
+            self._update_logs(round(current_time,2), round(self.gap_log[-1],2), round(self.speed_V[-1],2), round(current_temp,2), round(self.TempV,2),round(self.TempV,2), round(x,2), round(x1,2), round(self.speed_V0[-1],2), round(self.speed_V1[-1],2), round(self.length_log[-1],2),0,0,0)
         #3.Замедление рольгангов и валков до 0 скорости
         current_speed = self.speed_V[-1]
         current_V0 = self.speed_V0[-1]
@@ -293,7 +293,7 @@ class RollingMillSimulator(RollingMill):
             current_V1 = max(current_V1 - self.accel * self.time_step,0)
             current_temp -= temp_drop_per_ms
             current_time += self.time_step
-            self._update_logs(current_time,self.gap_log[-1],current_speed,current_temp,self.TempV,self.TempV,self.x_log[-1],self.x1_log[-1],current_V0,current_V1,self.length_log[-1],0,0,0)
+            self._update_logs(round(current_time,2),round(self.gap_log[-1],2),round(current_speed,2),round(current_temp,2),round(self.TempV,2),round(self.TempV,2),round(self.x_log[-1],2),round(self.x1_log[-1],2),round(current_V0,2),round(current_V1,2),round(self.length_log[-1],2),0,0,0)
     pass
    
     # def manual_process(self):
@@ -366,7 +366,7 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
             'Speed_feedback':0}
 
 # if __name__ == "__main__":
-#     start(Num_of_revol_rolls = 7,
+#     print(start(Num_of_revol_rolls = 7,
 #           Roll_pos = 56,
 #           Num_of_revol_0rollg = 38,
 #           Num_of_revol_1rollg = 38,
@@ -374,4 +374,4 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
 #           Dir_of_rot_rolg = 0,
 #           Mode = 0,
 #           Dir_of_rot_valk = 0,
-#           Speed_of_diverg = 100)
+#           Speed_of_diverg = 100))
