@@ -295,10 +295,7 @@ class RollingMillSimulator(RollingMill):
             current_time += self.time_step
             self._update_logs(current_time,self.gap_log[-1],current_speed,current_temp,self.TempV,self.TempV,self.x_log[-1],self.x1_log[-1],current_V0,current_V1,self.length_log[-1],0,0,0)
     pass
-        
-    # def auto_process(self):
-    #     #Автоматический режим работы
-    
+   
     # def manual_process(self):
     #     #Ручной режим работы  
 
@@ -353,3 +350,28 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
     #Создание лога
     simulator.save_logs_to_file("my_logs.txt")
     print("Симуляция окончена")
+    return {'Time':simulator.time_log,
+            'Pyro1':simulator.temperature_log,
+            'Pyro2':simulator.temperature_log,
+            'Pressure':simulator.effort_log,
+            'Gap':simulator.gap_log,
+            'VRPM':simulator.speed_V,
+            'V0RPM':simulator.speed_V0,
+            'V1RPM':simulator.speed_V1,
+            'StartCap':0,
+            'EndCap':0,
+            'Moment':simulator.moment_log,
+            'Power':simulator.power_log,
+            'Gap_feedback':0,
+            'Speed_feedback':0}
+
+# if __name__ == "__main__":
+#     start(Num_of_revol_rolls = 7,
+#           Roll_pos = 56,
+#           Num_of_revol_0rollg = 38,
+#           Num_of_revol_1rollg = 38,
+#           Dir_of_rot = 0,
+#           Dir_of_rot_rolg = 0,
+#           Mode = 0,
+#           Dir_of_rot_valk = 0,
+#           Speed_of_diverg = 100)

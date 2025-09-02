@@ -10,6 +10,11 @@ from tkinter import ttk, scrolledtext
 from datetime import datetime
 from RollingMillSimulator import start
 
+def float_to_regs(value):
+    """Преобразует float в два WORD регистра (big-endian)"""
+    b = struct.pack('>f', float(value))
+    return [int.from_bytes(b[:2], 'big'), int.from_bytes(b[2:], 'big')]
+
 class ModbusServerGUI:
     def __init__(self, root):
         self.root = root
@@ -26,8 +31,8 @@ class ModbusServerGUI:
         info_frame = ttk.LabelFrame(main_frame, text="Server Info", padding="5")
         info_frame.grid(row=1, column=0, columnspan=3, sticky=(tk.W, tk.E), pady=5)
         ttk.Label(info_frame, text="Address: localhost:55000").grid(row=0, column=0, sticky=tk.W)
-        ttk.Label(info_frame, text="Write registers: 1-11 (11 registers)").grid(row=1, column=0, sticky=tk.W)
-        ttk.Label(info_frame, text="Read registers: 12-34 (23 registers)").grid(row=2, column=0, sticky=tk.W)
+        ttk.Label(info_frame, text="Write registers: 0-10 (11 registers)").grid(row=1, column=0, sticky=tk.W)
+        ttk.Label(info_frame, text="Read registers: 11-33 (23 registers)").grid(row=2, column=0, sticky=tk.W)
         real_frame = ttk.LabelFrame(main_frame, text="REAL Variables", padding="5")
         real_frame.grid(row=2, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), pady=5, padx=(0, 5))
         self.real_vars = {}
@@ -116,7 +121,6 @@ class ModbusServerGUI:
     def start_simulator(self):
         """Взять значения из регистров и запустить симулятор"""
         regs = self.server.hr_data_combined.getValues(1, 11)
-        # Преобразуем регистры в нужные типы
         def regs_to_float(r1, r2):
             try:
                 b1 = (r1 >> 8) & 0xFF
@@ -130,26 +134,28 @@ class ModbusServerGUI:
         Roll_pos = int(regs_to_float(regs[2], regs[3]))
         Num_of_revol_0rollg = int(regs_to_float(regs[4], regs[5]))
         Num_of_revol_1rollg = int(regs_to_float(regs[6], regs[7]))
-        # Биты для булевых параметров
         reg8 = regs[7]
         Dir_of_rot = bool(reg8 & 0x0001)
         Dir_of_rot_rolg = bool(reg8 & 0x0002)
         Mode = bool(reg8 & 0x0004)
         Dir_of_rot_valk = bool(reg8 & 0x0008)
         Speed_of_diverg = int(regs_to_float(regs[9], regs[10]))
-        # Запуск симулятора
-        start(
-            Num_of_revol_rolls=Num_of_revol_rolls,
-            Roll_pos=Roll_pos,
-            Num_of_revol_0rollg=Num_of_revol_0rollg,
-            Num_of_revol_1rollg=Num_of_revol_1rollg,
-            Dir_of_rot=Dir_of_rot,
-            Dir_of_rot_rolg=Dir_of_rot_rolg,
-            Mode=Mode,
-            Dir_of_rot_valk=Dir_of_rot_valk,
-            Speed_of_diverg=Speed_of_diverg
-        )
-        # Лог
+        # Запуск симуляции в отдельном потоке с обновлением регистров
+        threading.Thread(
+            target=self.server.run_simulation_and_update,
+            kwargs=dict(
+                Num_of_revol_rolls=Num_of_revol_rolls,
+                Roll_pos=Roll_pos,
+                Num_of_revol_0rollg=Num_of_revol_0rollg,
+                Num_of_revol_1rollg=Num_of_revol_1rollg,
+                Dir_of_rot=Dir_of_rot,
+                Dir_of_rot_rolg=Dir_of_rot_rolg,
+                Mode=Mode,
+                Dir_of_rot_valk=Dir_of_rot_valk,
+                Speed_of_diverg=Speed_of_diverg
+            ),
+            daemon=True
+        ).start()
         self.log_text.config(state=tk.NORMAL)
         self.log_text.insert(tk.END, "[{}] Simulator started with values from registers\n".format(datetime.now().strftime("%H:%M:%S")))
         self.log_text.see(tk.END)
@@ -194,6 +200,35 @@ class ModbusServerWithMonitoring:
         except Exception as e:
             print(f"Update error: {e}")
             return False
+
+    def update_simulation_registers(self, sim_data, idx):
+        # Порядок ключей как в return start, кроме 'Time'
+        keys = [
+            'Pyro1', 'Pyro2', 'Pressure', 'Gap', 'VRPM', 'V0RPM', 'V1RPM',
+            'Moment', 'Power', 'Gap_feedback', 'Speed_feedback'
+        ]
+        regs = []
+        for k in keys:
+            v = sim_data[k][idx] if isinstance(sim_data[k], list) else sim_data[k]
+            regs.extend(float_to_regs(v))
+        # Булевые флаги в 1 регистр (регистр 33)
+        flags = 0
+        if sim_data['StartCap']:
+            flags |= 0x01
+        if sim_data['EndCap']:
+            flags |= 0x02
+        # Запись в регистры 12-33 (22 регистра)
+        self.hr_data_combined.setValues(12, regs)
+        self.hr_data_combined.setValues(33, [flags])
+
+    def run_simulation_and_update(self, **kwargs):
+        sim_result = start(**kwargs)
+        steps = len(sim_result['Pyro1'])
+        for i in range(steps):
+            if self.stop_monitoring:
+                break
+            self.update_simulation_registers(sim_result, i)
+            time.sleep(0.1)
 
     def monitor_registers(self):
         while not self.stop_monitoring:
