@@ -357,7 +357,7 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
             'Speed_feedback':0}
 
 if __name__ == "__main__":
-    print(start(Num_of_revol_rolls = 7,
+    start(Num_of_revol_rolls = 7,
           Roll_pos = 56,
           Num_of_revol_0rollg = 38,
           Num_of_revol_1rollg = 38,
@@ -365,4 +365,4 @@ if __name__ == "__main__":
           Dir_of_rot_rolg = 0,
           Mode = 0,
           Dir_of_rot_valk = 0,
-          Speed_of_diverg = 100))
+          Speed_of_diverg = 100)
