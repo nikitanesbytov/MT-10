@@ -9,10 +9,10 @@ class RollingMillSimulator(RollingMill):
         self.temperature_log = [self.StartTemp]#Лог изменения температуры сляба
         self.length_log = [self.L]#Лог изменения длины сляба
         self.height_log = [self.h_0]#Лог толщины сляба(перед началом прокатки)(мм)
-        self.LeftCap = [0]#Левый концевик
-        self.RightCap = [1]#Правый концевик
-        self.x_log = [self.L if self.LeftCap[-1] == 1 else self.d1+self.d2 ]#Лог начальной координаты сляба
-        self.x1_log = [0 if self.LeftCap[-1] == 1 else (self.d1+self.d2) - self.L]#Лог конечной координаты сляба
+        self.LeftCap = [1]#Левый концевик
+        self.RightCap = [0]#Правый концевик
+        self.x_log = [self.L if self.LeftCap[-1] == 1 else self.d1+self.d2 + self.d]#Лог начальной координаты сляба
+        self.x1_log = [0 if self.LeftCap[-1] == 1 else (self.d1+self.d2+self.d) - self.L]#Лог конечной координаты сляба
         self.pyrometr_1 = [self.TempV]#Лог пирометра перед валками
         self.pyrometr_2 = [self.TempV]#Лог пирометра после валков
         self.gap_log = [self.CurrentS]#Лог раствора валков(мм)
@@ -57,8 +57,8 @@ class RollingMillSimulator(RollingMill):
                 'Power' : 8,
                 'GapFeedback': 8,
                 'Speed_V_feedback': 8,
-                'x' : 8,
-                'x1' : 8
+                'x(deb)' : 8,
+                'x1(deb)' : 8
             }
             # Заголовки таблицы
             headers = [
@@ -77,8 +77,8 @@ class RollingMillSimulator(RollingMill):
                 f"{'Power':<{col_widths['Power']}}",
                 # f"{'GapFeedback':<{col_widths['GapFeedback']}}",
                 # f"{'Speed_V_feedback':<{col_widths['Speed_V_feedback']}}"
-                f"{'x':<{col_widths['x']}}",
-                f"{'x1':<{col_widths['x1']}}"
+                f"{'x(deb)':<{col_widths['x(deb)']}}",
+                f"{'x1(deb)':<{col_widths['x1(deb)']}}"
 
 
             ]
@@ -103,8 +103,8 @@ class RollingMillSimulator(RollingMill):
                     f"{self.power_log[i]:<{col_widths['Power']}.1f}",
                     # f"{self.GapFeedbackLog[i]:<{col_widths['GapFeedback']}.1f}",
                     # f"{self.Speed_V_feedback[i]:<{col_widths['Speed_V_feedback']}.1f}"
-                    f"{self.x_log[i]:<{col_widths['x']}.1f}",
-                    f"{self.x1_log[i]:<{col_widths['x1']}.1f}"
+                    f"{self.x_log[i]:<{col_widths['x(deb)']}.1f}",
+                    f"{self.x1_log[i]:<{col_widths['x1(deb)']}.1f}"
                     
                 ]
                 f.write(" | ".join(row) + "\n")
@@ -128,8 +128,9 @@ class RollingMillSimulator(RollingMill):
         self.LeftCap.append(LeftCap)
         self.RightCap.append(RightCap)
 
+
     def _simulate_approach_to_rolls(self):
-        "Проход сляба к валкам (чистая версия без работы с файлами)"
+        "Проход сляба к валкам"
         current_pos_x = self.x_log[-1]
         current_pos_x1 = self.x1_log[-1]
         current_time = self.time_log[-1] 
@@ -137,6 +138,7 @@ class RollingMillSimulator(RollingMill):
         initial_temp = self.StartTemp
         current_temp = initial_temp
         target_gap = self.S
+
         
         gap_change_per_ms = self.VS * self.time_step 
         start_time = self.time_log[-1]
@@ -181,7 +183,7 @@ class RollingMillSimulator(RollingMill):
                               moment=0,
                               power=0,
                               LeftCap=self.LeftCap[-1],
-                              RightCap=self.RightCap[-1])
+                              RightCap=self.RightCap[-1])  
 
         # Фаза 2: Разгон валков
         while current_speed != self.V_Valk_Per:
@@ -204,20 +206,21 @@ class RollingMillSimulator(RollingMill):
                               power=0,
                               LeftCap=self.LeftCap[-1],
                               RightCap=self.RightCap[-1])
+  
                               
         
         # Фаза 3: Движение сляба
-        while  current_pos_x != self.d1 and current_pos_x1 != self.d1:
+        while  current_pos_x != self.d1 and current_pos_x1 != self.d1 + self.d:
             cur_LeftCap = self.LeftCap[-1]
             cur_RightCap = self.RightCap[-1]
             if current_pos_x > 0 and self.Dir_of_rot == 0:
                 cur_LeftCap = 0
-            if current_pos_x < self.d1+self.d2 and self.Dir_of_rot == 1:
+            if current_pos_x < self.d1+self.d2+self.d and self.Dir_of_rot == 1:
                 cur_RightCap = 0
             speed_V0 = min(speed_V0 + self.accel * self.time_step, self.V0)
             speed_V1 = min(speed_V1 + self.accel * self.time_step, self.V1)
-            current_pos_x = min(current_pos_x + speed_V0 * self.time_step, self.d1) if self.Dir_of_rot == 0 else max(current_pos_x - speed_V1 * self.time_step, self.d1+self.L)
-            current_pos_x1 = min(current_pos_x1 + speed_V0 * self.time_step, self.d1-self.L) if self.Dir_of_rot == 0 else max(current_pos_x1 - speed_V1 * self.time_step, self.d1)
+            current_pos_x = min(current_pos_x + speed_V0 * self.time_step, self.d1) if self.Dir_of_rot == 0 else max(current_pos_x - speed_V1 * self.time_step, self.d1+self.L+self.d)
+            current_pos_x1 = min(current_pos_x1 + speed_V0 * self.time_step, self.d1-self.L) if self.Dir_of_rot == 0 else max(current_pos_x1 - speed_V1 * self.time_step, self.d1+self.d)
             current_length = self.length_log[-1]
             current_time += self.time_step
             current_temp = max(current_temp - temp_drop_per_ms, final_temp)
@@ -240,7 +243,6 @@ class RollingMillSimulator(RollingMill):
     
     def _simulate_rolling_pass(self):
         "Симуляция прохода сляба через валки"
-        start_time = self.time_log[-1]
         current_time = self.time_log[-1]
         
         x = self.x_log[-1]
@@ -263,81 +265,28 @@ class RollingMillSimulator(RollingMill):
         TempDrDConRoll = self.TempDrDConRoll(DV=self.DV,h_0=h_0,h_1=h_1,Temp=self.temperature_log[-1],SpeedOfRolling=SpeedOfRolling)
         TempDrPlDeform = self.TempDrPlDeform(DefResistance=DefResistance,h_0=h_0,h_1=h_1)
         GenTemp = self.GenTemp(Temp=self.temperature_log[-1],TempDrDConRoll=TempDrDConRoll,TempDrPlDeform=TempDrPlDeform,TempDrBPass=0) 
+          
         
-        part = self.L / 5
-        x0_0 = x
-        x0_1 = x0_0 - part
-        x1_1 = x0_1 - part
-        x2_1 = x1_1 - part
-        x3_1 = x2_1 - part
-        x4_1 = x1
-        arr_h_0 = [h_0 + self.roughness(h_0,0.01),h_0 + self.roughness(h_0,0.01),h_0 + self.roughness(h_0,0.01),h_0 + self.roughness(h_0,0.01),h_0 + self.roughness(h_0,0.01)]
-        h_1 = self.S
-        while x4_1 < self.d1:
-            x0_0 = x0_0 + self.speed_V[-1] * self.time_step + def_for_sek
-            x0_1 = x0_1 + self.speed_V[-1] * self.time_step
-            x1_1 = x1_1 + self.speed_V[-1] * self.time_step
-            x2_1 = x2_1 + self.speed_V[-1] * self.time_step
-            x3_1 = x3_1 + self.speed_V[-1] * self.time_step
-            x4_1 = x4_1 + self.speed_V[-1] * self.time_step
-            length = self.length_log[-1] + def_for_sek
-            
-            if x0_1 < self.d1 and x1_1 < self.d1 and x2_1 < self.d1 and x3_1 < self.d1 and x4_1 < self.d1:
-                RelDef = self.RelDef(arr_h_0[0],h_1)
-                ContactArcLen = self.ContactArcLen(self.DV,h_0=h_0,h_1=h_1)
-                DefResistance = self.DefResistance(RelDef=RelDef,LK=ContactArcLen,V=self.speed_V[-1],CurrentTemp=self.temperature_log[-1],SteelGrade=self.SteelGrade)
-                AvrgPressure = self.AvrgPressure(DefResistance=DefResistance,LK=ContactArcLen,h_0=arr_h_0[0],h_1=h_1)
-                Effort = self.Effort(LK=ContactArcLen,b=self.b,AvrgPressure=AvrgPressure)
-                Moment = self.Moment(LK=ContactArcLen,h_0=h_0,h_1=h_1,Effort=Effort/1000)
-                Power = self.Power(Moment,self.speed_V[-1]/self.R)
-            if x0_1 >= self.d1 and x1_1 < self.d1 and x2_1 < self.d1 and x3_1 < self.d1 and x4_1 < self.d1:
-                RelDef = self.RelDef(arr_h_0[1],h_1)
-                ContactArcLen = self.ContactArcLen(self.DV,h_0,h_1)
-                DefResistance = self.DefResistance(RelDef=RelDef,LK=ContactArcLen,V=self.speed_V[-1],CurrentTemp=self.temperature_log[-1],SteelGrade=self.SteelGrade)
-                AvrgPressure = self.AvrgPressure(DefResistance=DefResistance,LK=ContactArcLen,h_0=arr_h_0[1],h_1=h_1)
-                Effort = self.Effort(LK=ContactArcLen,b=self.b,AvrgPressure=AvrgPressure)
-                Moment = self.Moment(LK=ContactArcLen,h_0=h_0,h_1=h_1,Effort=Effort/1000)
-                Power = self.Power(Moment,self.speed_V[-1]/self.R)
-            if x0_1 >= self.d1 and x1_1 >= self.d1 and x2_1 < self.d1 and x3_1 < self.d1 and x4_1 < self.d1:
-                RelDef = self.RelDef(arr_h_0[2],h_1)
-                DefResistance = self.DefResistance(RelDef=RelDef,LK=ContactArcLen,V=self.speed_V[-1],CurrentTemp=self.temperature_log[-1],SteelGrade=self.SteelGrade)
-                AvrgPressure = self.AvrgPressure(DefResistance=DefResistance,LK=ContactArcLen,h_0=arr_h_0[2],h_1=h_1)
-                Effort = self.Effort(LK=ContactArcLen,b=self.b,AvrgPressure=AvrgPressure)
-                Moment = self.Moment(LK=ContactArcLen,h_0=h_0,h_1=h_1,Effort=Effort/1000)
-                Power = self.Power(Moment,self.speed_V[-1]/self.R)
-            if x0_1 >= self.d1 and x1_1 >= self.d1 and x2_1 >= self.d1 and x3_1 < self.d1 and x4_1 < self.d1:
-                RelDef = self.RelDef(arr_h_0[3],h_1)
-                ContactArcLen = self.ContactArcLen(self.DV,h_0,h_1)
-                DefResistance = self.DefResistance(RelDef=RelDef,LK=ContactArcLen,V=self.speed_V[-1],CurrentTemp=self.temperature_log[-1],SteelGrade=self.SteelGrade)
-                AvrgPressure = self.AvrgPressure(DefResistance=DefResistance,LK=ContactArcLen,h_0=arr_h_0[3],h_1=h_1)
-                Effort = self.Effort(LK=ContactArcLen,b=self.b,AvrgPressure=AvrgPressure)
-                Moment = self.Moment(LK=ContactArcLen,h_0=h_0,h_1=h_1,Effort=Effort/1000)
-                Power = self.Power(Moment,self.speed_V[-1]/self.R)
-            if x0_1 >= self.d1 and x1_1 >= self.d1 and x2_1 >= self.d1 and x3_1 >= self.d1 and x4_1 < self.d1:
-                RelDef = self.RelDef(arr_h_0[4],h_1)
-                ContactArcLen = self.ContactArcLen(self.DV,h_0,h_1)
-                DefResistance = self.DefResistance(RelDef=RelDef,LK=ContactArcLen,V=self.speed_V[-1],CurrentTemp=self.temperature_log[-1],SteelGrade=self.SteelGrade)
-                AvrgPressure = self.AvrgPressure(DefResistance=DefResistance,LK=ContactArcLen,h_0=arr_h_0[4],h_1=h_1)
-                Effort = self.Effort(LK=ContactArcLen,b=self.b,AvrgPressure=AvrgPressure)
-                Moment = self.Moment(LK=ContactArcLen,h_0=h_0,h_1=h_1,Effort=Effort/1000)
-                Power = self.Power(Moment,self.speed_V[-1]/self.R)
-            
-            current_time += self.time_step
-            self._update_logs(time=round(current_time,2), 
-                              gap=round(self.gap_log[-1],2), 
-                              speed_V=round(self.speed_V[-1],2), 
-                              temp=round(GenTemp,2), 
-                              pyrometr_1=round(self.TempV,2),
-                              pyrometr_2=round(self.TempV,2), 
-                              pos_x=round(x0_0,2), 
-                              pos_x1=round(x4_1,2), 
-                              speed_V0=round(self.speed_V0[-1],2), 
-                              speed_V1=round(self.speed_V1[-1],2), 
-                              length=round(length,2),
-                              effort=round(Effort/1000,2),
-                              moment=round(Moment/1000,2),
-                              power= round(Power/1000,2))   
-        pass
+        
+        #     current_time += self.time_step
+        #     self._update_logs(time=round(current_time,2), 
+        #                       gap=round(self.gap_log[-1],2), 
+        #                       speed_V=round(self.speed_V[-1],2), 
+        #                       temp=round(GenTemp,2), 
+        #                       pyrometr_1=round(self.TempV,2),
+        #                       pyrometr_2=round(self.TempV,2), 
+        #                       pos_x=round(x0_0,2), 
+        #                       pos_x1=round(x4_1,2), 
+        #                       speed_V0=round(self.speed_V0[-1],2), 
+        #                       speed_V1=round(self.speed_V1[-1],2), 
+        #                       length=round(length,2),
+        #                       effort=round(Effort/1000,2),
+        #                       moment=round(Moment/1000,2),
+        #                       power= round(Power/1000,2),
+        #                       LeftCap=self.LeftCap[-1],
+        #                       RightCap=self.RightCap[-1]
+        #                       )   
+        # pass
 
     def _simulate_exit_from_rolls(self):
         "Симуляция дохода сляба до концевика"
@@ -413,7 +362,7 @@ class RollingMillSimulator(RollingMill):
 
 def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Dir_of_rot_valk,Dir_of_rot_L_rolg,Mode,Dir_of_rot_R_rolg,Speed_of_diverg):
     # Параметры прокатки
-    L = 100  # начальная длина сляба, мм
+    L = 250  # начальная длина сляба, мм
     b = 75   # ширина сляба, мм
     h_0 = 75  # начальная толщина, мм
     StartTemp = 1200  # начальная температура, °C
@@ -422,7 +371,7 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
     DR = 100  # диаметр рольгангов, мм
     MV = 'Steel'  # материал валков
     MS = 'Carbon Steel'  # материал сляба
-    OutTemp = 25  # температура валков, °C
+    OutTemp = 28  # температура валков, °C
     PauseBIter = 5  # пауза между пропусками, с
     V_Valk_Per = 0 # Скорость валков (мм/c)
     SteelGrade = "Ст3сп" #Марка стали
@@ -440,7 +389,7 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
         L=L,b=b,h_0=h_0,S=S,StartTemp=StartTemp,
         DV=DV,MV=MV,MS=MS,OutTemp=OutTemp,DR=DR,SteelGrade=SteelGrade,
         V0=V0,V1=V1,PauseBIter=PauseBIter,VS=Speed_of_diverg,Dir_of_rot = Dir_of_rot_valk,
-        d1=1500,d2=1500,V_Valk_Per=V_Valk_Per,StartS=StartS,
+        d1=1500,d2=1500,d=220, V_Valk_Per=V_Valk_Per,StartS=StartS,
     )
     print("Начало симуляции")
     simulator._simulate_approach_to_rolls()
@@ -461,8 +410,8 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
             'VRPM':simulator.speed_V,
             'V0RPM':simulator.speed_V0,
             'V1RPM':simulator.speed_V1,
-            'StartCap':0,
-            'EndCap':0,
+            'StartCap':simulator.LeftCap,
+            'EndCap':simulator.RightCap,
             'Moment':simulator.moment_log,
             'Power':simulator.power_log,
             'Gap_feedback':0,
@@ -473,7 +422,7 @@ if __name__ == "__main__":
           Roll_pos = 56,
           Num_of_revol_0rollg = 38,
           Num_of_revol_1rollg = 38,
-          Dir_of_rot_valk = 1,
+          Dir_of_rot_valk = 0,
           Dir_of_rot_L_rolg = 0,
           Mode = 0,
           Dir_of_rot_R_rolg = 0,

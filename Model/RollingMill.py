@@ -1,7 +1,7 @@
 from math import *
 
 class RollingMill:
-    def __init__(self,DR,L,b,h_0,StartTemp,DV,MV,MS,OutTemp,SteelGrade,V0,V1,S,PauseBIter,V_Valk_Per,StartS,d1,d2,VS,Dir_of_rot):
+    def __init__(self,DR,L,b,h_0,StartTemp,DV,MV,MS,OutTemp,SteelGrade,V0,V1,S,PauseBIter,V_Valk_Per,StartS,d1,d2,d,VS,Dir_of_rot):
         #Параметры сляба(Задает оператор)
         self.L = L #Начальная длина сляба(мм)
         self.b = b #Ширина сляба(мм)
@@ -19,6 +19,7 @@ class RollingMill:
         self.TempV = OutTemp #Температура валков(°C)
         self.d1 = d1 #Расстояние пути до валков(мм)
         self.d2 = d2 #Расстояние пути после валков(мм)
+        self.d = d #Расстояние между левыми и правыми рольгангами
 
         #Настройка ТП
         self.CurrentS = StartS #Нынешнее положение раствора валков
