@@ -162,6 +162,12 @@ class RollingMillSimulator(RollingMill):
         speed_V0 = self.speed_V0[-1] 
         speed_V1 = self.speed_V1[-1] 
         current_length = self.length_log[-1] 
+
+        mu = self.h_0/self.h_1
+        print(mu)
+        S = 1.05 + 0.05 * (mu - 1)
+        target_SpeedV1 = S * self.V_Valk_Per
+        print(target_SpeedV1)
         
         # Фаза 1: Выставление зазора валков
         while CurrentS != target_gap:
@@ -247,6 +253,8 @@ class RollingMillSimulator(RollingMill):
         
         x = self.x_log[-1]
         x1 = self.x1_log[-1]
+
+
     
         #1.Рассчет изменения длины
         h_0 = self.h_0
@@ -266,8 +274,7 @@ class RollingMillSimulator(RollingMill):
         TempDrPlDeform = self.TempDrPlDeform(DefResistance=DefResistance,h_0=h_0,h_1=h_1)
         GenTemp = self.GenTemp(Temp=self.temperature_log[-1],TempDrDConRoll=TempDrDConRoll,TempDrPlDeform=TempDrPlDeform,TempDrBPass=0) 
           
-        
-        
+                
         #     current_time += self.time_step
         #     self._update_logs(time=round(current_time,2), 
         #                       gap=round(self.gap_log[-1],2), 
@@ -421,7 +428,7 @@ if __name__ == "__main__":
     start(Num_of_revol_rolls = 7,
           Roll_pos = 56,
           Num_of_revol_0rollg = 38,
-          Num_of_revol_1rollg = 38,
+          Num_of_revol_1rollg = 0,
           Dir_of_rot_valk = 0,
           Dir_of_rot_L_rolg = 0,
           Mode = 0,
