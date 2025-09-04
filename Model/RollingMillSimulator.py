@@ -26,7 +26,7 @@ class RollingMillSimulator(RollingMill):
         #Лог - это ныншнее значение представленных ТПов
 
     def roughness(self,number,Range) -> float:
-        'Генерация случайного отклонения на +- 5 процентов от заданного числа для симуляции неровностей сляба'
+        'Генерация случайного отклонения на +- n процентов от заданного числа для симуляции неровностей сляба'
         five_percent = number * Range
         random_deviation = random.uniform(-five_percent, five_percent)
         return random_deviation
@@ -139,7 +139,6 @@ class RollingMillSimulator(RollingMill):
         current_temp = initial_temp
         target_gap = self.S
 
-        
         gap_change_per_ms = self.VS * self.time_step 
         start_time = self.time_log[-1]
         
@@ -163,11 +162,14 @@ class RollingMillSimulator(RollingMill):
         speed_V1 = self.speed_V1[-1] 
         current_length = self.length_log[-1] 
 
-        mu = self.h_0/self.h_1
-        S = 1.05 + 0.05 * (mu - 1)
-        target_SpeedV1 = round(self.V0 * (self.h_0 / self.h_1),2)
-        self.V1 = target_SpeedV1
+        if self.Dir_of_rot == 0:
+            target_SpeedV1 = round(self.V0 * (self.h_0 / self.h_1),2)
+            self.V1 = target_SpeedV1
+        else:
+            target_speed_V0 = round(self.V1 * (self.h_0 / self.h_1),2)
+            self.V0 = target_speed_V0
         
+
         # Фаза 1: Выставление зазора валков
         while CurrentS != target_gap:
             CurrentS = min(CurrentS + gap_change_per_ms, target_gap) if CurrentS < target_gap else max(CurrentS - gap_change_per_ms, target_gap)
@@ -212,40 +214,65 @@ class RollingMillSimulator(RollingMill):
                               LeftCap=self.LeftCap[-1],
                               RightCap=self.RightCap[-1])
   
-                              
-        
-        # Фаза 3: Движение сляба
-        while  current_pos_x != self.d1 + self.d and current_pos_x1 != self.d1 + self.d:
-            cur_LeftCap = self.LeftCap[-1]
-            cur_RightCap = self.RightCap[-1]
-            if current_pos_x > 0 and self.Dir_of_rot == 0:
-                cur_LeftCap = 0
-            if current_pos_x < self.d1+self.d2+self.d and self.Dir_of_rot == 1:
-                cur_RightCap = 0
-            speed_V0 = min(speed_V0 + self.accel * self.time_step, self.V0)
-            speed_V1 = min(speed_V1 + self.accel * self.time_step, target_SpeedV1)
-            current_pos_x = min(current_pos_x + speed_V0 * self.time_step, self.d1 + self.d) if self.Dir_of_rot == 0 else max(current_pos_x - speed_V1 * self.time_step, self.d1+self.L+self.d)
-            current_pos_x1 = min(current_pos_x1 + speed_V0 * self.time_step, self.d1 + self.d - self.L) if self.Dir_of_rot == 0 else max(current_pos_x1 - speed_V1 * self.time_step, self.d1+self.d)
-            current_length = self.length_log[-1]
-            current_time += self.time_step
-            current_temp = max(current_temp - temp_drop_per_ms, final_temp)
-            self._update_logs(time=round(current_time,2), 
-                              gap=round(CurrentS,2), 
-                              speed_V=round(current_speed,2), 
-                              temp=round(current_temp,2), 
-                              pyrometr_1=round(self.TempV,2),
-                              pyrometr_2=round(self.TempV,2), 
-                              pos_x=round(current_pos_x,2),
-                              pos_x1=round(current_pos_x1,2), 
-                              speed_V0=round(speed_V0,2), 
-                              speed_V1=round(speed_V1,2), 
-                              length=round(current_length,2),
-                              effort=0,
-                              moment=0,
-                              power=0,
-                              LeftCap=cur_LeftCap,
-                              RightCap=cur_RightCap)
-    
+        # Фаза 3: Движение сляба                    
+        if self.Dir_of_rot == 0:
+            while current_pos_x != self.d1 + self.d/2:
+                cur_LeftCap = self.LeftCap[-1]
+                cur_RightCap = self.RightCap[-1]
+                if current_pos_x > 0:
+                    cur_LeftCap = 0
+                speed_V0 = min(speed_V0 + self.accel * self.time_step, self.V0)
+                speed_V1 = min(speed_V1 + self.accel * self.time_step, target_SpeedV1)
+                current_pos_x = min(current_pos_x + speed_V0 * self.time_step, self.d1 + self.d/2) 
+                current_pos_x1 = min(current_pos_x1 + speed_V0 * self.time_step, self.d1 + self.d/2 - self.L)
+                current_length = self.length_log[-1]
+                current_time += self.time_step
+                current_temp = max(current_temp - temp_drop_per_ms, final_temp)
+                self._update_logs(time=round(current_time,2), 
+                                gap=round(CurrentS,2), 
+                                speed_V=round(current_speed,2), 
+                                temp=round(current_temp,2), 
+                                pyrometr_1=round(self.TempV,2),
+                                pyrometr_2=round(self.TempV,2), 
+                                pos_x=round(current_pos_x,2),
+                                pos_x1=round(current_pos_x1,2), 
+                                speed_V0=round(speed_V0,2), 
+                                speed_V1=round(speed_V1,2), 
+                                length=round(current_length,2),
+                                effort=0,
+                                moment=0,
+                                power=0,
+                                LeftCap=cur_LeftCap,
+                                RightCap=cur_RightCap)
+        else:
+            while current_pos_x1 > self.d1 + self.d:
+                cur_LeftCap = self.LeftCap[-1]
+                cur_RightCap = self.RightCap[-1]
+                if current_pos_x < self.d1+self.d2+self.d:
+                    cur_RightCap = 0
+                speed_V0 = min(speed_V0 + self.accel * self.time_step, target_speed_V0)
+                speed_V1 = min(speed_V1 + self.accel * self.time_step, self.V1)
+                current_pos_x = max(current_pos_x - speed_V1 * self.time_step, self.d1+self.L+self.d/2)
+                current_pos_x1 = max(current_pos_x1 - speed_V1 * self.time_step, self.d1+self.d/2)
+                current_time += self.time_step
+                current_temp = max(current_temp - temp_drop_per_ms, final_temp)
+                self._update_logs(time=round(current_time,2), 
+                                gap=round(CurrentS,2), 
+                                speed_V=round(current_speed,2), 
+                                temp=round(current_temp,2), 
+                                pyrometr_1=round(self.TempV,2),
+                                pyrometr_2=round(self.TempV,2), 
+                                pos_x=round(current_pos_x,2),
+                                pos_x1=round(current_pos_x1,2), 
+                                speed_V0=round(speed_V0,2), 
+                                speed_V1=round(speed_V1,2), 
+                                length=round(current_length,2),
+                                effort=0,
+                                moment=0,
+                                power=0,
+                                LeftCap=cur_LeftCap,
+                                RightCap=cur_RightCap)
+
     def _simulate_rolling_pass(self):
         "Симуляция прохода сляба через валки"
         current_pos_x = self.x_log[-1]
@@ -259,7 +286,6 @@ class RollingMillSimulator(RollingMill):
         RelDef = self.RelDef(h_0,h_1)
         start_length = self.length_log[-1]
         FinalLength = round(self.FinalLength(h_0,h_1,self.L),2)
-        print(FinalLength - start_length)
  
         #2.Рассчет падения температуры от пластической деформации и контакта с валками
         RelDef = self.RelDef(h_0,h_1)
@@ -274,24 +300,41 @@ class RollingMillSimulator(RollingMill):
         TempDrPlDeform = self.TempDrPlDeform(DefResistance=DefResistance,h_0=h_0,h_1=h_1)
         GenTemp = self.GenTemp(Temp=self.temperature_log[-1],TempDrDConRoll=TempDrDConRoll,TempDrPlDeform=TempDrPlDeform,TempDrBPass=0) 
           
-        while current_pos_x1 < self.d1 + self.d and current_pos_x > self.d1 + self.d:
-            if self.Dir_of_rot == 0:
-                current_pos_x += self.speed_V1[-1] * self.time_step
-                current_pos_x1 += self.speed_V0[-1] * self.time_step
+        if self.Dir_of_rot == 0:
+            while current_pos_x1 < self.d1 + self.d/2:
+                current_pos_x = min(current_pos_x + self.speed_V1[-1] * self.time_step,self.d1+self.d/2 + (self.L + (FinalLength - start_length)) + 1)
+                current_pos_x1 = min(current_pos_x1 + self.speed_V0[-1] * self.time_step,self.d1 + self.d/2 + 1)
 
                 Effort += self.roughness(Effort,0.03)
                 Moment += self.roughness(Moment,0.03)
                 Power += self.roughness(Power,0.03)
-            # else:
-            #     current_pos_x -= self.speed_V0[-1] * self.time_step
-            #     current_pos_x1 -= self.speed_V1[-1] * self.time_step
-
-            #     Effort += self.roughness(Effort,0.03)
-            #     Moment += self.roughness(Moment,0.03)
-            #     Power += self.roughness(Power,0.03)
-
-            current_time += self.time_step
-            self._update_logs(time=round(current_time,2), 
+                current_time += self.time_step
+                self._update_logs(time=round(current_time,2), 
+                              gap=round(self.gap_log[-1],2), 
+                              speed_V=round(self.speed_V[-1],2), 
+                              temp=round(GenTemp,2), 
+                              pyrometr_1=round(self.TempV,2),
+                              pyrometr_2=round(self.TempV,2), 
+                              pos_x=round(current_pos_x,2), 
+                              pos_x1=round(current_pos_x1,2), 
+                              speed_V0=round(self.speed_V0[-1],2), 
+                              speed_V1=round(self.speed_V1[-1],2), 
+                              length=round(current_length,2),
+                              effort=round(Effort/1000,2),
+                              moment=round(Moment/1000,2),
+                              power= round(Power/1000,2),
+                              LeftCap=self.LeftCap[-1],
+                              RightCap=self.RightCap[-1]
+                              )   
+        else:
+            while current_pos_x > self.d1 + self.d:
+                current_pos_x = max(current_pos_x - self.speed_V1[-1] * self.time_step,self.d1 + self.d/2 - 1)
+                current_pos_x1 = max(current_pos_x1 - self.speed_V0[-1] * self.time_step,self.d1 + self.d/2 - (self.L + (FinalLength - start_length)) - 1)
+                Effort += self.roughness(Effort,0.03)
+                Moment += self.roughness(Moment,0.03)
+                Power += self.roughness(Power,0.03)
+                current_time += self.time_step
+                self._update_logs(time=round(current_time,2), 
                               gap=round(self.gap_log[-1],2), 
                               speed_V=round(self.speed_V[-1],2), 
                               temp=round(GenTemp,2), 
@@ -443,7 +486,7 @@ if __name__ == "__main__":
     start(Num_of_revol_rolls = 7,
           Roll_pos = 56,
           Num_of_revol_0rollg = 38,
-          Num_of_revol_1rollg = 0,
+          Num_of_revol_1rollg = 38,
           Dir_of_rot_valk = 0,
           Dir_of_rot_L_rolg = 0,
           Mode = 0,
