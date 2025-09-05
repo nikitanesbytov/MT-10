@@ -9,7 +9,7 @@ class RollingMillSimulator(RollingMill):
         self.temperature_log = [self.StartTemp]#Лог изменения температуры сляба
         self.length_log = [self.L]#Лог изменения длины сляба
         self.height_log = [self.h_0]#Лог толщины сляба(перед началом прокатки)(мм)
-        self.LeftCap = [0]#Левый концевик
+        self.LeftCap = [1]#Левый концевик
         self.RightCap = [0]#Правый концевик
         self.x_log = [self.L if self.LeftCap[-1] == 1 else self.d1+self.d2 + self.d]#Лог начальной координаты сляба
         self.x1_log = [0 if self.LeftCap[-1] == 1 else (self.d1+self.d2+self.d) - self.L]#Лог конечной координаты сляба
@@ -426,7 +426,7 @@ class RollingMillSimulator(RollingMill):
                                 LeftCap=LeftCap,
                                 RightCap=RightCap,
                                 Gap_feedback = self.Gap_feedbackLog[-1],
-                                peed_V_feedback = self.Speed_V_feedbackLog[-1])
+                                Speed_V_feedback = self.Speed_V_feedbackLog[-1])
         else:
             while self.x1_log[-1] > 0:
                 x1 = max(self.x1_log[-1] - self.speed_V0[-1] * self.time_step,0)
@@ -554,13 +554,13 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
             'Gap_feedback':0,
             'Speed_feedback':0}
 
-if __name__ == "__main__":
-    start(Num_of_revol_rolls = 7,
-          Roll_pos = 56,
-          Num_of_revol_0rollg = 38,
-          Num_of_revol_1rollg = 38,
-          Dir_of_rot_valk = 1,
-          Dir_of_rot_L_rolg = 0,
-          Mode = 0,
-          Dir_of_rot_R_rolg = 0,
-          Speed_of_diverg = 100)
+# if __name__ == "__main__":
+#     start(Num_of_revol_rolls = 7,
+#           Roll_pos = 56,
+#           Num_of_revol_0rollg = 38,
+#           Num_of_revol_1rollg = 38,
+#           Dir_of_rot_valk = 0,
+#           Dir_of_rot_L_rolg = 0,
+#           Mode = 0,
+#           Dir_of_rot_R_rolg = 0,
+#           Speed_of_diverg = 100)

@@ -204,10 +204,10 @@ class ModbusServerGUI:
         
         # Получаем битовые флаги
         reg8 = regs[7]
-        Dir_of_rot = bool(reg8 & 0x0001)
-        Dir_of_rot_rolg = bool(reg8 & 0x0002)
+        Dir_of_rot_valk = bool(reg8 & 0x0001)
+        Dir_of_rot_L_rolg = bool(reg8 & 0x0002)
         Mode = bool(reg8 & 0x0004)
-        Dir_of_rot_valk = bool(reg8 & 0x0008)
+        Dir_of_rot_R_rolg = bool(reg8 & 0x0008)
         
         # Запуск симуляции в отдельном потоке
         threading.Thread(
@@ -217,10 +217,10 @@ class ModbusServerGUI:
                 Roll_pos=Roll_pos,
                 Num_of_revol_0rollg=Num_of_revol_0rollg,
                 Num_of_revol_1rollg=Num_of_revol_1rollg,
-                Dir_of_rot=Dir_of_rot,
-                Dir_of_rot_rolg=Dir_of_rot_rolg,
-                Mode=Mode,
                 Dir_of_rot_valk=Dir_of_rot_valk,
+                Dir_of_rot_L_rolg=Dir_of_rot_L_rolg,
+                Dir_of_rot_R_rolg=Dir_of_rot_R_rolg,
+                Mode=Mode,
                 Speed_of_diverg=Speed_of_diverg
             ),
             daemon=True
@@ -234,7 +234,7 @@ class ModbusServerGUI:
 class ModbusServerWithMonitoring:
     def __init__(self, update_callback):
         total_registers = 34
-        initial_values = [0] * 11 + [random.randint(0, 1000) for _ in range(23)]
+        initial_values = [0] * 34
         self.hr_data_combined = ModbusSequentialDataBlock(1, initial_values)
         store = ModbusSlaveContext(hr=self.hr_data_combined)
         self.context = ModbusServerContext(slaves=store, single=True)
@@ -325,6 +325,11 @@ class ModbusServerWithMonitoring:
             if self.stop_monitoring:
                 break
             self.update_simulation_registers(sim_result, i)
+            time.sleep(0.1)
+        # После завершения симуляции — поддерживать последние значения
+        last_idx = steps - 1
+        while not self.stop_monitoring:
+            self.update_simulation_registers(sim_result, last_idx)
             time.sleep(0.1)
 
     def monitor_registers(self):
