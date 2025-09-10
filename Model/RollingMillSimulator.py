@@ -434,3 +434,249 @@ if __name__ == "__main__":
           Mode = 0,
           Dir_of_rot_R_rolg = 0,
           Speed_of_diverg = 100)
+
+
+
+
+
+# Ручной режим управления
+
+
+
+
+def manual_movement_right(self):
+    "Движение вправо в ручном режиме"
+    current_pos_x = self.x_log[-1]
+    current_length = self.length_log[-1]
+    current_time = self.time_log[-1]
+    current_temp = self.temp_log[-1]
+
+    current_speed = self.speed_V[-1]
+    current_V0 = self.speed_V0[-1]
+    current_V1 = self.speed_V1[-1]
+    current_length = self.length_log[-1]
+
+    #Разгон подвижных частей
+    if (current_speed < self.V_Valk_Per):
+        current_speed = min(current_speed + self.accel * self.time_step, self.V_Valk_Per)
+    if (current_V0 < self.V0):
+        current_V0 = min(current_V0 + self.accel * self.time_step, self.V0)
+    if (current_V1 < self.V0):
+        speed_V1 = min(speed_V1 + self.accel * self.time_step, self.V1)
+
+    #Движение сляба
+    if (current_V0 >= 0):
+        current_pos_x = min(current_pos_x + current_V0 * self.time, self.d1 + self.d + self.d2 - current_length)
+    else:
+        current_pos_x = max(current_pos_x + current_V0 * self.time, 0)
+
+    current_pos_x1 = current_pos_x + current_length
+
+    #Проверка концевиков
+    if current_pos_x == 0:
+        left_cap = 1
+        right_cap = 0
+    elif current_pos_x1 == (self.d1 + self.d + self.d2):
+        left_cap = 0
+        right_cap = 1
+
+    #Изменение температуры
+
+    #Обновление логов
+    current_time += self.time_step
+
+    self._update_logs(time=round(current_time,2),
+                    gap=round(self.gap_log[-1],2),
+                    speed_V=round(current_speed,2),
+                    temp=round(current_temp,2),
+                    pyrometr_1=round(self.TempV,2),
+                    pyrometr_2=round(self.TempV,2),
+                    pos_x=round(current_pos_x,2),
+                    pos_x1= round(current_pos_x,2),
+                    speed_V0=round(current_V0,2),
+                    speed_V1=round(current_V1,2),
+                    length=round(self.length_log[-1],2),
+                    effort=0,
+                    moment=0,
+                    power=0)
+    
+    self.LeftCap.append(left_cap)
+    self.RightCap.append(right_cap)
+
+
+def manual_movement_left(self):
+    "Движение влево в ручном режиме"
+    current_pos_x = self.x_log[-1]
+    current_length = self.length_log[-1]
+    current_time = self.time_log[-1]
+    current_temp = self.temp_log[-1]
+
+    current_speed = self.speed_V[-1]
+    current_V0 = self.speed_V0[-1]
+    current_V1 = self.speed_V1[-1]
+    current_length = self.length_log[-1]
+
+    #Разгон подвижных частей
+    if (current_speed > self.V_Valk_Per):
+        current_speed = max(current_speed + self.accel * self.time_step, -(self.V_Valk_Per))
+    if (current_V0 > self.V0):
+        current_V0 = max(current_V0 + self.accel * self.time_step, -(self.V0))
+    if (current_V1 > self.V0):
+        current_V1 = max(current_V1 + self.accel * self.time_step, -(self.V1))
+
+    #Движение сляба
+    if (current_V0 <= 0):
+        current_pos_x = max(current_pos_x + current_V0 * self.time, 0)
+    else:
+        current_pos_x = min(current_pos_x + current_V0 * self.time, self.d1 + self.d + self.d2 - current_length)
+
+    current_pos_x1 = current_pos_x + current_length
+
+    #Проверка концевиков
+    if current_pos_x == 0:
+        left_cap = 1
+        right_cap = 0
+    elif current_pos_x1 == (self.d1 + self.d + self.d2):
+        left_cap = 0
+        right_cap = 1
+
+    #Изменение температуры
+
+    #Обновление логов
+    current_time += self.time_step
+
+    self._update_logs(time=round(current_time,2),
+                    gap=round(self.gap_log[-1],2),
+                    speed_V=round(current_speed,2),
+                    temp=round(current_temp,2),
+                    pyrometr_1=round(self.TempV,2),
+                    pyrometr_2=round(self.TempV,2),
+                    pos_x=round(current_pos_x,2),
+                    pos_x1= round(current_pos_x,2),
+                    speed_V0=round(current_V0,2),
+                    speed_V1=round(current_V1,2),
+                    length=round(self.length_log[-1],2),
+                    effort=0,
+                    moment=0,
+                    power=0)
+    
+    self.LeftCap.append(left_cap)
+    self.RightCap.append(right_cap)
+
+def manual_close_gap(self):
+    current_temp = self.temp_log[-1]
+    current_time = self.time_log[-1]
+    CurrentS = self.gap_log[-1]
+    gap_change_per_ms = self.VS * self.time_step
+
+    #Изменение раствора
+    CurrentS = max(CurrentS - gap_change_per_ms, 0)
+    current_time += self.time_step
+
+    #Изменение температуры
+
+    #Обновление логов
+    self._update_logs(time=round(current_time,2),
+                gap=round(self.gap_log[-1],2),
+                speed_V=round(self.speed_V[-1],2),
+                temp=round(current_temp,2),
+                pyrometr_1=round(self.TempV,2),
+                pyrometr_2=round(self.TempV,2),
+                pos_x=round(self.x_log,2),
+                pos_x1= round(self.x1_log,2),
+                speed_V0=round(self.speed_V0[-1],2),
+                speed_V1=round(self.speed_V1[-1],2),
+                length=round(self.length_log[-1],2),
+                effort=0,
+                moment=0,
+                power=0)
+
+
+def idle(self):
+    current_pos_x = self.x_log[-1]
+    current_length = self.length_log[-1]
+    current_time = self.time_log[-1]
+    current_temp = self.temp_log[-1]
+
+    current_speed = self.speed_V[-1]
+    current_V0 = self.speed_V0[-1]
+    current_V1 = self.speed_V1[-1]
+    current_length = self.length_log[-1]
+
+    #Замедление рольгангов и валков
+    if (current_V0 > 0):
+        current_V0 = max(0, current_V0 - self.accel * self.time_step)
+        current_V1 = current_V0
+        current_speed = current_V0
+    elif (current_V0 < 0):
+        current_V0 = min(0, current_V0 + self.accel * self.time_step)
+        current_V1 = current_V0
+        current_speed = current_V0
+
+    #Движение по инерции
+    if (current_V0 > 0):
+        current_pos_x = min(current_pos_x + current_V0 * self.time, self.d1 + self.d + self.d2 - current_length)
+    elif (current_V0 < 0):
+        current_pos_x = max(current_pos_x + current_V0 * self.time, 0)
+
+    current_pos_x1 = current_pos_x + current_length
+    
+    #Проверка концевиков
+    if current_pos_x == 0:
+        left_cap = 1
+        right_cap = 0
+    elif current_pos_x1 == (self.d1 + self.d + self.d2):
+        left_cap = 0
+        right_cap = 1
+
+    #Изменение температуры
+
+    #Обновление логов
+    current_time += self.time_step
+
+    self._update_logs(time=round(current_time,2),
+                    gap=round(self.gap_log[-1],2),
+                    speed_V=round(current_speed,2),
+                    temp=round(current_temp,2),
+                    pyrometr_1=round(self.TempV,2),
+                    pyrometr_2=round(self.TempV,2),
+                    pos_x=round(current_pos_x,2),
+                    pos_x1= round(current_pos_x,2),
+                    speed_V0=round(current_V0,2),
+                    speed_V1=round(current_V1,2),
+                    length=round(self.length_log[-1],2),
+                    effort=0,
+                    moment=0,
+                    power=0)
+    
+    self.LeftCap.append(left_cap)
+    self.RightCap.append(right_cap)
+
+
+def manual_open_gap(self):
+    current_temp = self.temp_log[-1]
+    current_time = self.time_log[-1]
+    CurrentS = self.gap_log[-1]
+    gap_change_per_ms = self.VS * self.time_step
+
+    #Изменение раствора
+    CurrentS = max(CurrentS + gap_change_per_ms, 0)
+    current_time += self.time_step
+
+    #Изменение температуры
+
+    #Обновление логов
+    self._update_logs(time=round(current_time,2),
+                gap=round(self.gap_log[-1],2),
+                speed_V=round(self.speed_V[-1],2),
+                temp=round(current_temp,2),
+                pyrometr_1=round(self.TempV,2),
+                pyrometr_2=round(self.TempV,2),
+                pos_x=round(self.x_log,2),
+                pos_x1= round(self.x1_log,2),
+                speed_V0=round(self.speed_V0[-1],2),
+                speed_V1=round(self.speed_V1[-1],2),
+                length=round(self.length_log[-1],2),
+                effort=0,
+                moment=0,
+                power=0)
