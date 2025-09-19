@@ -3,12 +3,15 @@ from pymodbus.datastore import ModbusSequentialDataBlock
 from pymodbus.datastore import ModbusSlaveContext, ModbusServerContext
 import threading
 import time
-import random
 import struct
-import tkinter as tk
-from tkinter import ttk, scrolledtext
 from datetime import datetime
 from RollingMillSimulator import start
+import sys
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
+                             QHBoxLayout, QTextEdit, QPushButton, QGroupBox,
+                             QLabel, QTableWidget, QTableWidgetItem, QHeaderView)
+from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtGui import QFont, QTextCursor, QColor
 
 def float_to_regs(value):
     """Преобразует float в два WORD регистра (big-endian)"""
@@ -26,192 +29,303 @@ def regs_to_float(reg1, reg2):
     except:
         return 0.0
 
-class ModbusServerGUI:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Modbus Server Monitor")
-        self.root.geometry("1200x800")
-        self.server = ModbusServerWithMonitoring(self.update_gui)
-        self.create_widgets()
+class ModbusServerGUI(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.server = ModbusServerWithMonitoring(self)
+        self.init_ui()
+        self.start_server()
 
-    def create_widgets(self):
-        main_frame = ttk.Frame(self.root, padding="10")
-        main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
-        
-        title_label = ttk.Label(main_frame, text="Modbus Server Monitor", font=("Arial", 16, "bold"))
-        title_label.grid(row=0, column=0, columnspan=2, pady=10)
-        
-        info_frame = ttk.LabelFrame(main_frame, text="Server Info", padding="5")
-        info_frame.grid(row=1, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=5)
-        ttk.Label(info_frame, text="Address: localhost:55000").grid(row=0, column=0, sticky=tk.W)
-        ttk.Label(info_frame, text="Write registers: 0-10 (11 registers)").grid(row=1, column=0, sticky=tk.W)
-        ttk.Label(info_frame, text="Read registers: 11-33 (23 registers)").grid(row=2, column=0, sticky=tk.W)
-        
-        # Фрейм для входных REAL переменных (из write регистров)
-        input_frame = ttk.LabelFrame(main_frame, text="Input REAL Variables (Write Registers)", padding="5")
-        input_frame.grid(row=2, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), pady=5, padx=(0, 5))
-        
-        self.input_vars = {}
-        input_labels = [
-            ("Num_of_revol_rolls (reg 1-2):", "Num_of_revol_rolls"),
-            ("Roll_pos (reg 3-4):", "Roll_pos"),
-            ("Num_of_revol_0rollg (reg 5-6):", "Num_of_revol_0rollg"),
-            ("Num_of_revol_1rollg (reg 7-8):", "Num_of_revol_1rollg"),
-            ("Speed_of_diverg (reg 9-10):", "Speed_of_diverg")
-        ]
-        
-        for i, (label_text, var_name) in enumerate(input_labels):
-            ttk.Label(input_frame, text=label_text).grid(row=i, column=0, sticky=tk.W, pady=2)
-            value_label = ttk.Label(input_frame, text="0.000000", foreground="blue", font=("Arial", 10))
-            value_label.grid(row=i, column=1, sticky=tk.W, pady=2, padx=(10, 0))
-            self.input_vars[var_name] = value_label
-        
-        # Фрейм для битовых флагов
-        bits_frame = ttk.LabelFrame(main_frame, text="Bit Flags (Register 8)", padding="5")
-        bits_frame.grid(row=2, column=1, sticky=(tk.W, tk.E, tk.N, tk.S), pady=5, padx=(5, 0))
-        
-        self.bit_vars = {}
-        bit_labels = [
-            ("Bit 0 - Dir_of_rot:", "Dir_of_rot"),
-            ("Bit 1 - Dir_of_rot_rolg:", "Dir_of_rot_rolg"),
-            ("Bit 2 - Mode:", "Mode"),
-            ("Bit 3 - Dir_of_rot_valk:", "Dir_of_rot_valk")
-        ]
-        
-        for i, (label_text, var_name) in enumerate(bit_labels):
-            ttk.Label(bits_frame, text=label_text).grid(row=i, column=0, sticky=tk.W, pady=2)
-            value_label = ttk.Label(bits_frame, text="False", foreground="red", font=("Arial", 10))
-            value_label.grid(row=i, column=1, sticky=tk.W, pady=2, padx=(10, 0))
-            self.bit_vars[var_name] = value_label
-        
-        # Фрейм для выходных REAL переменных (из read регистров)
-        output_frame = ttk.LabelFrame(main_frame, text="Output REAL Variables (Read Registers)", padding="5")
-        output_frame.grid(row=3, column=0, columnspan=2, sticky=(tk.W, tk.E, tk.N, tk.S), pady=5)
-        
-        self.output_vars = {}
-        output_labels = [
-            ("Pyro1 (reg 12-13):", "Pyro1"),
-            ("Pyro2 (reg 14-15):", "Pyro2"),
-            ("Pressure (reg 16-17):", "Pressure"),
-            ("Gap (reg 18-19):", "Gap"),
-            ("VRPM (reg 20-21):", "VRPM"),
-            ("V0RPM (reg 22-23):", "V0RPM"),
-            ("V1RPM (reg 24-25):", "V1RPM"),
-            ("Moment (reg 26-27):", "Moment"),
-            ("Power (reg 28-29):", "Power"),
-            ("Gap_feedback (reg 30-31):", "Gap_feedback"),
-            ("Speed_feedback (reg 32-33):", "Speed_feedback")
-        ]
-        
-        for i, (label_text, var_name) in enumerate(output_labels):
-            row = i // 2
-            col = (i % 2) * 2
-            ttk.Label(output_frame, text=label_text).grid(row=row, column=col, sticky=tk.W, pady=2, padx=(10, 5))
-            value_label = ttk.Label(output_frame, text="0.000000", foreground="green", font=("Arial", 10))
-            value_label.grid(row=row, column=col+1, sticky=tk.W, pady=2, padx=(5, 10))
-            self.output_vars[var_name] = value_label
-        
-        # Фрейм для статусных флагов
-        status_frame = ttk.LabelFrame(main_frame, text="Status Flags (Register 34)", padding="5")
-        status_frame.grid(row=4, column=0, columnspan=2, sticky=(tk.W, tk.E), pady=5)
-        
-        self.status_vars = {}
-        status_labels = [
-            ("StartCap (Bit 0):", "StartCap"),
-            ("EndCap (Bit 1):", "EndCap")
-        ]
-        
-        for i, (label_text, var_name) in enumerate(status_labels):
-            ttk.Label(status_frame, text=label_text).grid(row=0, column=i*2, sticky=tk.W, pady=2, padx=(10, 5))
-            value_label = ttk.Label(status_frame, text="False", foreground="purple", font=("Arial", 10))
-            value_label.grid(row=0, column=i*2+1, sticky=tk.W, pady=2, padx=(5, 10))
-            self.status_vars[var_name] = value_label
-        
-        # Лог
-        log_frame = ttk.LabelFrame(main_frame, text="Event Log", padding="5")
-        log_frame.grid(row=5, column=0, columnspan=2, sticky=(tk.W, tk.E, tk.N, tk.S), pady=5)
-        
-        self.log_text = scrolledtext.ScrolledText(log_frame, height=8, width=100)
-        self.log_text.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
-        self.log_text.config(state=tk.DISABLED)
-        
-        # Кнопки
-        button_frame = ttk.Frame(main_frame)
-        button_frame.grid(row=6, column=0, columnspan=2, pady=10)
-        
-        ttk.Button(button_frame, text="Clear Log", command=self.clear_log).pack(side=tk.LEFT, padx=5)
-        ttk.Button(button_frame, text="Start Simulator", command=self.start_simulator).pack(side=tk.LEFT, padx=5)
-        ttk.Button(button_frame, text="Exit", command=self.exit_app).pack(side=tk.LEFT, padx=5)
-        
-        # Настройка весов для растягивания
-        self.root.columnconfigure(0, weight=1)
-        self.root.rowconfigure(0, weight=1)
-        main_frame.columnconfigure(0, weight=1)
-        main_frame.columnconfigure(1, weight=1)
-        main_frame.rowconfigure(2, weight=1)
-        main_frame.rowconfigure(3, weight=1)
-        main_frame.rowconfigure(5, weight=1)
+    def init_ui(self):
+        self.setWindowTitle("Modbus Server - Rolling Mill Simulator")
+        self.setGeometry(100, 100, 1400, 900)
 
-    def update_gui(self, data):
-        def update():
-            # Обновляем входные REAL переменные
-            for var_name, value in data['input_vars'].items():
-                self.input_vars[var_name].config(text=f"{value:.6f}")
-            
-            # Обновляем битовые флаги
-            for var_name, value in data['bit_flags'].items():
-                color = "green" if value else "red"
-                text = "True" if value else "False"
-                self.bit_vars[var_name].config(text=text, foreground=color)
-            
-            # Обновляем выходные REAL переменные
-            for var_name, value in data['output_vars'].items():
-                self.output_vars[var_name].config(text=f"{value:.6f}")
-            
-            # Обновляем статусные флаги
-            for var_name, value in data['status_flags'].items():
-                color = "green" if value else "red"
-                text = "True" if value else "False"
-                self.status_vars[var_name].config(text=text, foreground=color)
-            
-            # Логирование
-            self.log_text.config(state=tk.NORMAL)
-            self.log_text.see(tk.END)
-            self.log_text.config(state=tk.DISABLED)
+        central_widget = QWidget()
+        self.setCentralWidget(central_widget)
+        layout = QHBoxLayout(central_widget)
+
+        # Левая панель - таблицы значений
+        left_panel = QWidget()
+        left_layout = QVBoxLayout(left_panel)
+        left_layout.setContentsMargins(0, 0, 10, 0)
+
+        # Таблица входных переменных
+        input_group = QGroupBox("Входные переменные (Write)")
+        input_layout = QVBoxLayout()
+        self.input_table = QTableWidget()
+        self.input_table.setColumnCount(2)
+        self.input_table.setHorizontalHeaderLabels(["Параметр", "Значение"])
+        self.input_table.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
+        input_layout.addWidget(self.input_table)
+        input_group.setLayout(input_layout)
+        left_layout.addWidget(input_group)
+
+        # Таблица выходных переменных
+        output_group = QGroupBox("Выходные переменные (Read)")
+        output_layout = QVBoxLayout()
+        self.output_table = QTableWidget()
+        self.output_table.setColumnCount(2)
+        self.output_table.setHorizontalHeaderLabels(["Параметр", "Значение"])
+        self.output_table.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
+        output_layout.addWidget(self.output_table)
+        output_group.setLayout(output_layout)
+        left_layout.addWidget(output_group)
+
+        # Правая панель - управление и логи
+        right_panel = QWidget()
+        right_layout = QVBoxLayout(right_panel)
+        right_layout.setContentsMargins(10, 0, 0, 0)
+
+        # Панель управления
+        control_group = QGroupBox("Управление")
+        control_layout = QVBoxLayout()
         
-        self.root.after(0, update)
+        self.start_button = QPushButton("СТАРТ симуляции")
+        self.start_button.setStyleSheet("QPushButton { background-color: #4CAF50; color: white; font-weight: bold; }")
+        self.start_button.clicked.connect(self.start_simulation)
+        control_layout.addWidget(self.start_button)
 
-    def clear_log(self):
-        self.log_text.config(state=tk.NORMAL)
-        self.log_text.delete(1.0, tk.END)
-        self.log_text.config(state=tk.DISABLED)
+        self.stop_button = QPushButton("СТОП сервер")
+        self.stop_button.setStyleSheet("QPushButton { background-color: #f44336; color: white; font-weight: bold; }")
+        self.stop_button.clicked.connect(self.stop_server)
+        control_layout.addWidget(self.stop_button)
 
-    def exit_app(self):
+        # Статус
+        self.status_label = QLabel("Статус: Сервер запущен на localhost:55000")
+        self.status_label.setStyleSheet("QLabel { background-color: #e3f2fd; padding: 5px; border: 1px solid #90caf9; }")
+        control_layout.addWidget(self.status_label)
+
+        control_group.setLayout(control_layout)
+        right_layout.addWidget(control_group)
+
+        # Панель логов
+        log_group = QGroupBox("Логи симуляции")
+        log_layout = QVBoxLayout()
+        self.log_text = QTextEdit()
+        self.log_text.setReadOnly(True)
+        self.log_text.setFont(QFont("Courier", 9))
+        self.log_text.setMaximumHeight(300)
+        log_layout.addWidget(self.log_text)
+        log_group.setLayout(log_layout)
+        right_layout.addWidget(log_group)
+
+        # Добавляем панели в основной layout
+        layout.addWidget(left_panel, 2)
+        layout.addWidget(right_panel, 1)
+
+        # Таймер для обновления значений
+        self.update_timer = QTimer()
+        self.update_timer.timeout.connect(self.update_display)
+        self.update_timer.start(100)  # Обновление каждые 100мс
+
+        # Инициализируем таблицы
+        self.init_tables()
+
+    def init_tables(self):
+        # Входные переменные
+        input_vars = [
+            'Num_of_revol_rolls', 'Roll_pos', 'Num_of_revol_0rollg',
+            'Num_of_revol_1rollg', 'Speed_of_diverg'
+        ]
+        self.input_table.setRowCount(len(input_vars))
+        for i, var in enumerate(input_vars):
+            self.input_table.setItem(i, 0, QTableWidgetItem(var))
+            self.input_table.setItem(i, 1, QTableWidgetItem("0.000000"))
+
+        # Выходные переменные
+        output_vars = [
+            'Pyro1', 'Pyro2', 'Pressure', 'Gap', 'VRPM', 
+            'V0RPM', 'V1RPM', 'Moment', 'Power'
+        ]
+        self.output_table.setRowCount(len(output_vars))
+        for i, var in enumerate(output_vars):
+            self.output_table.setItem(i, 0, QTableWidgetItem(var))
+            self.output_table.setItem(i, 1, QTableWidgetItem("0.000000"))
+
+    def update_display(self):
+        """Обновление значений в таблицах"""
+        data = self.server.update_variables()
+        if data:
+            # Обновляем входные переменные
+            for i, (var_name, value) in enumerate(data['input_vars'].items()):
+                if i < self.input_table.rowCount():
+                    item = self.input_table.item(i, 1)
+                    if item:
+                        item.setText(f"{value:.6f}")
+
+            # Обновляем выходные переменные
+            for i, (var_name, value) in enumerate(data['output_vars'].items()):
+                if i < self.output_table.rowCount():
+                    item = self.output_table.item(i, 1)
+                    if item:
+                        item.setText(f"{value:.6f}")
+
+    def start_simulation(self):
+        """Запуск симуляции"""
+        self.start_button.setEnabled(False)
+        self.status_label.setText("Статус: Запуск симуляции...")
+        self.server.start_logging()  # Включаем запись логов
+        self.server.start_simulator_from_registers()
+        
+        # Через 5 секунд после завершения выключаем логи
+        QTimer.singleShot(5000, self.stop_logging)
+
+    def stop_logging(self):
+        """Остановка записи логов"""
+        self.server.stop_logging()
+        self.status_label.setText("Статус: Симуляция завершена, логи сохранены")
+        self.start_button.setEnabled(True)
+
+    def start_server(self):
+        self.server_thread = threading.Thread(target=self.server.run_server, daemon=True)
+        self.server_thread.start()
+
+    def stop_server(self):
         self.server.stop_monitoring = True
-        self.root.quit()
-        self.root.destroy()
+        self.status_label.setText("Статус: Сервер останавливается...")
+        QTimer.singleShot(2000, self.close)
 
-    def start_simulator(self):
-        """Взять значения из регистров и запустить симулятор"""
-        regs = self.server.hr_data_combined.getValues(1, 11)
+    def closeEvent(self, event):
+        self.server.stop_monitoring = True
+        event.accept()
+
+class ModbusServerWithMonitoring:
+    def __init__(self, gui):
+        total_registers = 30
+        initial_values = [0] * total_registers
+        self.hr_data_combined = ModbusSequentialDataBlock(1, initial_values)
+        store = ModbusSlaveContext(hr=self.hr_data_combined)
+        self.context = ModbusServerContext(slaves=store, single=True)
+        self.stop_monitoring = False
+        self.gui = gui
+        self.logging_enabled = False
+        self.log_file = None
+
+    def start_logging(self):
+        """Включение записи логов в файл"""
+        self.logging_enabled = True
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        self.log_file = open(f"simulation_log_{timestamp}.txt", "w", encoding="utf-8")
+        self.log_message("=== НАЧАЛО СИМУЛЯЦИИ ===")
+
+    def stop_logging(self):
+        """Выключение записи логов в файл"""
+        self.logging_enabled = False
+        if self.log_file:
+            self.log_message("=== КОНЕЦ СИМУЛЯЦИИ ===")
+            self.log_file.close()
+            self.log_file = None
+
+    def log_message(self, message):
+        """Запись сообщения в GUI и файл (если включено)"""
+        timestamp = datetime.now().strftime('%H:%M:%S.%f')[:-3]
+        log_line = f"[{timestamp}] {message}"
         
-        # Получаем значения REAL переменных
+        # Всегда в GUI
+        if hasattr(self.gui, 'log_text'):
+            self.gui.log_text.append(log_line)
+            cursor = self.gui.log_text.textCursor()
+            cursor.movePosition(QTextCursor.End)
+            self.gui.log_text.setTextCursor(cursor)
+
+        # В файл только если включено логирование
+        if self.logging_enabled and self.log_file:
+            self.log_file.write(log_line + "\n")
+            self.log_file.flush()
+
+    def update_variables(self):
+        try:
+            current_values = self.hr_data_combined.getValues(1, 30)
+            
+            input_vars = {
+                'Num_of_revol_rolls': regs_to_float(current_values[0], current_values[1]),
+                'Roll_pos': regs_to_float(current_values[2], current_values[3]),
+                'Num_of_revol_0rollg': regs_to_float(current_values[4], current_values[5]),
+                'Num_of_revol_1rollg': regs_to_float(current_values[6], current_values[7]),
+                'Speed_of_diverg': regs_to_float(current_values[9], current_values[10])
+            }
+            
+            output_vars = {
+                'Pyro1': regs_to_float(current_values[11], current_values[12]),
+                'Pyro2': regs_to_float(current_values[13], current_values[14]),
+                'Pressure': regs_to_float(current_values[15], current_values[16]),
+                'Gap': regs_to_float(current_values[17], current_values[18]),
+                'VRPM': regs_to_float(current_values[19], current_values[20]),
+                'V0RPM': regs_to_float(current_values[21], current_values[22]),
+                'V1RPM': regs_to_float(current_values[23], current_values[24]),
+                'Moment': regs_to_float(current_values[25], current_values[26]),
+                'Power': regs_to_float(current_values[27], current_values[28]),
+            }
+            
+            return {'input_vars': input_vars, 'output_vars': output_vars}
+            
+        except Exception as e:
+            self.log_message(f"Ошибка обновления: {e}")
+            return None
+
+    def update_simulation_registers(self, sim_data, idx):
+        keys = [
+            'Pyro1', 'Pyro2', 'Pressure', 'Gap', 'VRPM', 'V0RPM', 'V1RPM',
+            'Moment', 'Power'
+        ]
+        regs = []
+        for k in keys:
+            v = sim_data[k][idx] if isinstance(sim_data[k], list) else sim_data[k]
+            regs.extend(float_to_regs(v))
+        
+        flags = 0
+        if sim_data.get('StartCap'):
+            flags |= 0x01
+        if sim_data.get('EndCap'):
+            flags |= 0x02
+        if sim_data.get('Gap_feedback'):
+            flags |= 0x04
+        if sim_data.get('Speed_feedback'):
+            flags |= 0x08
+        
+        self.hr_data_combined.setValues(12, regs)
+        self.hr_data_combined.setValues(30, [flags])
+
+    def run_simulation_and_update(self, **kwargs):
+        self.log_message("Запуск симуляции...")
+        sim_result = start(**kwargs)
+        steps = len(sim_result['Pyro1'])
+        
+        self.log_message(f"Симуляция запущена, шагов: {steps}")
+        
+        for i in range(steps):
+            if self.stop_monitoring:
+                break
+            self.update_simulation_registers(sim_result, i)
+            time.sleep(0.1)
+        
+        last_idx = steps - 1
+        self.log_message("Симуляция завершена, поддержание последних значений")
+        
+        # Поддерживаем последние значения 5 секунд
+        end_time = time.time() + 5
+        while not self.stop_monitoring and time.time() < end_time:
+            self.update_simulation_registers(sim_result, last_idx)
+            time.sleep(0.1)
+
+    def start_simulator_from_registers(self):
+        regs = self.hr_data_combined.getValues(1, 11)
+        
         Num_of_revol_rolls = regs_to_float(regs[0], regs[1])
         Roll_pos = regs_to_float(regs[2], regs[3])
         Num_of_revol_0rollg = regs_to_float(regs[4], regs[5])
         Num_of_revol_1rollg = regs_to_float(regs[6], regs[7])
         Speed_of_diverg = regs_to_float(regs[9], regs[10])
         
-        # Получаем битовые флаги
-        reg8 = regs[7]
-        Dir_of_rot_valk = bool(reg8 & 0x0001)
-        Dir_of_rot_L_rolg = bool(reg8 & 0x0002)
-        Mode = bool(reg8 & 0x0004)
-        Dir_of_rot_R_rolg = bool(reg8 & 0x0008)
+        reg8 = regs[8]
+        Dir_of_rot_valk = bool(reg8 & 0x01)
+        Dir_of_rot_L_rolg = bool(reg8 & 0x02)
+        Mode = bool(reg8 & 0x04)
+        Dir_of_rot_R_rolg = bool(reg8 & 0x08)
+        Start = bool(reg8 & 0x10)
         
-        # Запуск симуляции в отдельном потоке
         threading.Thread(
-            target=self.server.run_simulation_and_update,
+            target=self.run_simulation_and_update,
             kwargs=dict(
                 Num_of_revol_rolls=Num_of_revol_rolls,
                 Roll_pos=Roll_pos,
@@ -225,141 +339,24 @@ class ModbusServerGUI:
             ),
             daemon=True
         ).start()
-        
-        self.log_text.config(state=tk.NORMAL)
-        self.log_text.insert(tk.END, f"[{datetime.now().strftime('%H:%M:%S')}] Simulator started\n")
-        self.log_text.see(tk.END)
-        self.log_text.config(state=tk.DISABLED)
-
-class ModbusServerWithMonitoring:
-    def __init__(self, update_callback):
-        total_registers = 34
-        initial_values = [0] * 34
-        self.hr_data_combined = ModbusSequentialDataBlock(1, initial_values)
-        store = ModbusSlaveContext(hr=self.hr_data_combined)
-        self.context = ModbusServerContext(slaves=store, single=True)
-        self.stop_monitoring = False
-        self.update_callback = update_callback
-
-    def update_variables(self):
-        try:
-            current_values = self.hr_data_combined.getValues(1, 34)
-            
-            # Входные REAL переменные (write регистры 1-10)
-            input_vars = {
-                'Num_of_revol_rolls': regs_to_float(current_values[0], current_values[1]),
-                'Roll_pos': regs_to_float(current_values[2], current_values[3]),
-                'Num_of_revol_0rollg': regs_to_float(current_values[4], current_values[5]),
-                'Num_of_revol_1rollg': regs_to_float(current_values[6], current_values[7]),
-                'Speed_of_diverg': regs_to_float(current_values[9], current_values[10])
-            }
-            
-            # Битовые флаги (регистр 8)
-            reg8_value = current_values[7]
-            bit_flags = {
-                'Dir_of_rot': bool(reg8_value & 0x0001),
-                'Dir_of_rot_rolg': bool(reg8_value & 0x0002),
-                'Mode': bool(reg8_value & 0x0004),
-                'Dir_of_rot_valk': bool(reg8_value & 0x0008)
-            }
-            
-            # Выходные REAL переменные (read регистры 12-33)
-            output_vars = {
-                'Pyro1': regs_to_float(current_values[11], current_values[12]),
-                'Pyro2': regs_to_float(current_values[13], current_values[14]),
-                'Pressure': regs_to_float(current_values[15], current_values[16]),
-                'Gap': regs_to_float(current_values[17], current_values[18]),
-                'VRPM': regs_to_float(current_values[19], current_values[20]),
-                'V0RPM': regs_to_float(current_values[21], current_values[22]),
-                'V1RPM': regs_to_float(current_values[23], current_values[24]),
-                'Moment': regs_to_float(current_values[25], current_values[26]),
-                'Power': regs_to_float(current_values[27], current_values[28]),
-                'Gap_feedback': regs_to_float(current_values[29], current_values[30]),
-                'Speed_feedback': regs_to_float(current_values[31], current_values[32])
-            }
-            
-            # Статусные флаги (регистр 34)
-            reg34_value = current_values[33] if len(current_values) > 33 else 0
-            status_flags = {
-                'StartCap': bool(reg34_value & 0x01),
-                'EndCap': bool(reg34_value & 0x02)
-            }
-            
-            return {
-                'input_vars': input_vars,
-                'bit_flags': bit_flags,
-                'output_vars': output_vars,
-                'status_flags': status_flags
-            }
-            
-        except Exception as e:
-            print(f"Update error: {e}")
-            return None
-
-    def update_simulation_registers(self, sim_data, idx):
-        # Порядок ключей как в return start, кроме 'Time'
-        keys = [
-            'Pyro1', 'Pyro2', 'Pressure', 'Gap', 'VRPM', 'V0RPM', 'V1RPM',
-            'Moment', 'Power', 'Gap_feedback', 'Speed_feedback'
-        ]
-        regs = []
-        for k in keys:
-            v = sim_data[k][idx] if isinstance(sim_data[k], list) else sim_data[k]
-            regs.extend(float_to_regs(v))
-        
-        # Булевые флаги в 1 регистр (регистр 34)
-        flags = 0
-        if sim_data.get('StartCap', False):
-            flags |= 0x01
-        if sim_data.get('EndCap', False):
-            flags |= 0x02
-        
-        # Запись в регистры 12-34 (23 регистра)
-        self.hr_data_combined.setValues(12, regs)
-        self.hr_data_combined.setValues(34, [flags])
-
-    def run_simulation_and_update(self, **kwargs):
-        sim_result = start(**kwargs)
-        steps = len(sim_result['Pyro1'])
-        for i in range(steps):
-            if self.stop_monitoring:
-                break
-            self.update_simulation_registers(sim_result, i)
-            time.sleep(0.1)
-        # После завершения симуляции — поддерживать последние значения
-        last_idx = steps - 1
-        while not self.stop_monitoring:
-            self.update_simulation_registers(sim_result, last_idx)
-            time.sleep(0.1)
-
-    def monitor_registers(self):
-        while not self.stop_monitoring:
-            try:
-                data = self.update_variables()
-                if data:
-                    self.update_callback(data)
-                time.sleep(0.1)
-            except Exception as e:
-                print(f"Monitoring error: {e}")
-                time.sleep(0.1)
 
     def run_server(self):
-        monitor_thread = threading.Thread(target=self.monitor_registers, daemon=True)
-        monitor_thread.start()
-        print("Starting Modbus server...")
+        self.log_message("Modbus сервер запущен на localhost:55000")
         try:
             StartTcpServer(context=self.context, address=("localhost", 55000))
         except Exception as e:
-            print(f"Server error: {e}")
+            self.log_message(f"Ошибка сервера: {e}")
         finally:
             self.stop_monitoring = True
 
-def run_server():
-    root = tk.Tk()
-    app = ModbusServerGUI(root)
-    server_thread = threading.Thread(target=app.server.run_server, daemon=True)
-    server_thread.start()
-    root.mainloop()
+def main():
+    app = QApplication(sys.argv)
+    app.setStyle('Fusion')
+    
+    window = ModbusServerGUI()
+    window.show()
+    
+    sys.exit(app.exec_())
 
 if __name__ == "__main__":
-    run_server()
+    main()
