@@ -551,8 +551,8 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
             'EndCap':simulator.RightCap,
             'Moment':simulator.moment_log,
             'Power':simulator.power_log,
-            'Gap_feedback':0,
-            'Speed_feedback':0}
+            'Gap_feedback':simulator.Gap_feedbackLog,
+            'Speed_feedback':simulator.Speed_V_feedbackLog}
 
 # if __name__ == "__main__":
 #     start(Num_of_revol_rolls = 7,

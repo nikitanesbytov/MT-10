@@ -9,7 +9,8 @@ from RollingMillSimulator import start
 import sys
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
                              QHBoxLayout, QTextEdit, QPushButton, QGroupBox,
-                             QLabel, QTableWidget, QTableWidgetItem, QHeaderView)
+                             QLabel, QTableWidget, QTableWidgetItem, QHeaderView,
+                             QGridLayout)
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QFont, QTextCursor, QColor
 
@@ -98,6 +99,32 @@ class ModbusServerGUI(QMainWindow):
         control_group.setLayout(control_layout)
         right_layout.addWidget(control_group)
 
+        # Панель флагов
+        flags_group = QGroupBox("Флаги состояния (регистр 30)")
+        flags_layout = QGridLayout()
+        
+        self.flag_labels = {}
+        flags_info = [
+            ("StartCap", "Старт захвата", 0, 0),
+            ("EndCap", "Конец захвата", 0, 1),
+            ("Gap_feedback", "ОС по зазору", 1, 0),
+            ("Speed_feedback", "ОС по скорости", 1, 1)
+        ]
+        
+        for flag_name, description, row, col in flags_info:
+            label = QLabel(description)
+            value_label = QLabel("0")
+            value_label.setStyleSheet("QLabel { background-color: #d3d3d3; padding: 5px; border: 1px solid #666; font-weight: bold; }")
+            value_label.setAlignment(Qt.AlignCenter)
+            value_label.setMinimumWidth(40)
+            
+            flags_layout.addWidget(label, row, col*2)
+            flags_layout.addWidget(value_label, row, col*2+1)
+            self.flag_labels[flag_name] = value_label
+
+        flags_group.setLayout(flags_layout)
+        right_layout.addWidget(flags_group)
+
         # Панель логов
         log_group = QGroupBox("Логи симуляции")
         log_layout = QVBoxLayout()
@@ -143,7 +170,7 @@ class ModbusServerGUI(QMainWindow):
             self.output_table.setItem(i, 1, QTableWidgetItem("0.000000"))
 
     def update_display(self):
-        """Обновление значений в таблицах"""
+        """Обновление значений в таблицах и флагов"""
         data = self.server.update_variables()
         if data:
             # Обновляем входные переменные
@@ -160,21 +187,30 @@ class ModbusServerGUI(QMainWindow):
                     if item:
                         item.setText(f"{value:.6f}")
 
+            # Обновляем флаги
+            flags = data['flags']
+            for flag_name, value in flags.items():
+                if flag_name in self.flag_labels:
+                    label = self.flag_labels[flag_name]
+                    label.setText(str(int(value)))
+                    if value:
+                        label.setStyleSheet("QLabel { background-color: #4CAF50; color: white; padding: 5px; border: 1px solid #666; font-weight: bold; }")
+                    else:
+                        label.setStyleSheet("QLabel { background-color: #d3d3d3; padding: 5px; border: 1px solid #666; font-weight: bold; }")
+
     def start_simulation(self):
         """Запуск симуляции"""
         self.start_button.setEnabled(False)
         self.status_label.setText("Статус: Запуск симуляции...")
-        self.server.start_logging()  # Включаем запись логов
         self.server.start_simulator_from_registers()
         
-        # Через 5 секунд после завершения выключаем логи
-        QTimer.singleShot(5000, self.stop_logging)
+        # Через 5 секунд после завершения включаем кнопку
+        QTimer.singleShot(5000, self.enable_simulation_button)
 
-    def stop_logging(self):
-        """Остановка записи логов"""
-        self.server.stop_logging()
-        self.status_label.setText("Статус: Симуляция завершена, логи сохранены")
+    def enable_simulation_button(self):
+        """Включаем кнопку запуска симуляции"""
         self.start_button.setEnabled(True)
+        self.status_label.setText("Статус: Симуляция завершена")
 
     def start_server(self):
         self.server_thread = threading.Thread(target=self.server.run_server, daemon=True)
@@ -191,51 +227,29 @@ class ModbusServerGUI(QMainWindow):
 
 class ModbusServerWithMonitoring:
     def __init__(self, gui):
-        total_registers = 30
+        total_registers = 31  # 30 регистров + 1 для флагов
         initial_values = [0] * total_registers
         self.hr_data_combined = ModbusSequentialDataBlock(1, initial_values)
         store = ModbusSlaveContext(hr=self.hr_data_combined)
         self.context = ModbusServerContext(slaves=store, single=True)
         self.stop_monitoring = False
         self.gui = gui
-        self.logging_enabled = False
-        self.log_file = None
-
-    def start_logging(self):
-        """Включение записи логов в файл"""
-        self.logging_enabled = True
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        self.log_file = open(f"simulation_log_{timestamp}.txt", "w", encoding="utf-8")
-        self.log_message("=== НАЧАЛО СИМУЛЯЦИИ ===")
-
-    def stop_logging(self):
-        """Выключение записи логов в файл"""
-        self.logging_enabled = False
-        if self.log_file:
-            self.log_message("=== КОНЕЦ СИМУЛЯЦИИ ===")
-            self.log_file.close()
-            self.log_file = None
 
     def log_message(self, message):
-        """Запись сообщения в GUI и файл (если включено)"""
+        """Запись сообщения только в GUI"""
         timestamp = datetime.now().strftime('%H:%M:%S.%f')[:-3]
         log_line = f"[{timestamp}] {message}"
         
-        # Всегда в GUI
+        # Вывод в GUI
         if hasattr(self.gui, 'log_text'):
             self.gui.log_text.append(log_line)
             cursor = self.gui.log_text.textCursor()
             cursor.movePosition(QTextCursor.End)
             self.gui.log_text.setTextCursor(cursor)
 
-        # В файл только если включено логирование
-        if self.logging_enabled and self.log_file:
-            self.log_file.write(log_line + "\n")
-            self.log_file.flush()
-
     def update_variables(self):
         try:
-            current_values = self.hr_data_combined.getValues(1, 30)
+            current_values = self.hr_data_combined.getValues(1, 31)
             
             input_vars = {
                 'Num_of_revol_rolls': regs_to_float(current_values[0], current_values[1]),
@@ -257,7 +271,16 @@ class ModbusServerWithMonitoring:
                 'Power': regs_to_float(current_values[27], current_values[28]),
             }
             
-            return {'input_vars': input_vars, 'output_vars': output_vars}
+            # Чтение флагов из регистра 30
+            flags_register = current_values[29]  # Адрес 30 соответствует индексу 29
+            flags = {
+                'StartCap': bool(flags_register & 0x01),
+                'EndCap': bool(flags_register & 0x02),
+                'Gap_feedback': bool(flags_register & 0x04),
+                'Speed_feedback': bool(flags_register & 0x08)
+            }
+            
+            return {'input_vars': input_vars, 'output_vars': output_vars, 'flags': flags}
             
         except Exception as e:
             self.log_message(f"Ошибка обновления: {e}")
@@ -273,18 +296,25 @@ class ModbusServerWithMonitoring:
             v = sim_data[k][idx] if isinstance(sim_data[k], list) else sim_data[k]
             regs.extend(float_to_regs(v))
         
+        # Установка флагов
         flags = 0
-        if sim_data.get('StartCap'):
+        StartCap_val = sim_data['StartCap'][idx] if isinstance(sim_data['StartCap'], list) else sim_data['StartCap']
+        EndCap_val = sim_data['EndCap'][idx] if isinstance(sim_data['EndCap'], list) else sim_data['EndCap']
+        Gap_feedback_val = sim_data['Gap_feedback'][idx] if isinstance(sim_data['Gap_feedback'], list) else sim_data['Gap_feedback']
+        Speed_feedback_val = sim_data['Speed_feedback'][idx] if isinstance(sim_data['Speed_feedback'], list) else sim_data['Speed_feedback']
+        
+        if StartCap_val:
             flags |= 0x01
-        if sim_data.get('EndCap'):
+        if EndCap_val:
             flags |= 0x02
-        if sim_data.get('Gap_feedback'):
+        if Gap_feedback_val:
             flags |= 0x04
-        if sim_data.get('Speed_feedback'):
+        if Speed_feedback_val:
             flags |= 0x08
         
-        self.hr_data_combined.setValues(12, regs)
-        self.hr_data_combined.setValues(30, [flags])
+        # Обновление регистров данных и флагов
+        self.hr_data_combined.setValues(12, regs)  # Адреса 12-29
+        self.hr_data_combined.setValues(30, [flags])  # Адрес 30 для флагов
 
     def run_simulation_and_update(self, **kwargs):
         self.log_message("Запуск симуляции...")
