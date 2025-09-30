@@ -209,7 +209,7 @@ class RollingMillSimulator(RollingMill):
 
         # Фаза 2: Разгон валков
         while current_speed != self.V_Valk_Per:
-            current_speed = current_speed + self.accel * self.time_step
+            current_speed = min(current_speed + self.accel * self.time_step,self.V_Valk_Per) 
             current_time += self.time_step
             current_temp = max(current_temp - temp_drop_per_ms, final_temp)
             if current_speed == self.V_Valk_Per:
@@ -233,7 +233,6 @@ class RollingMillSimulator(RollingMill):
                               Gap_feedback = Gap_flag,
                               Speed_V_feedback = Speed_V_flag)
         
-
         # Фаза 3: Движение сляба                    
         if self.Dir_of_rot == 0:
             while current_pos_x != self.d1 + self.d/2:
@@ -385,7 +384,6 @@ class RollingMillSimulator(RollingMill):
     def _simulate_exit_from_rolls(self):
         "Симуляция дохода сляба до концевика"
         Speed_V_flag = self.Speed_V_feedbackLog[-1]
-
         current_time = self.time_log[-1]
         current_temp = self.temperature_log[-1]
         LeftCap = self.LeftCap[-1]
@@ -485,9 +483,6 @@ class RollingMillSimulator(RollingMill):
                               Gap_feedback = self.Gap_feedbackLog[-1],
                               Speed_V_feedback = Speed_V_flag)
     pass
-   
-    # def manual_process(self):
-    #     #Ручной режим работы  
 
     # def alarm_stop(self):
     #     "Аварийный останов"
@@ -516,7 +511,7 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
     S = Roll_pos  #Расхождение валков, мм
     V0 = (2 * pi * DR/2 * Num_of_revol_0rollg) / 60  # начальная скорость(мм/с)
     V1 = (2 * pi * DR/2 * Num_of_revol_1rollg) / 60  # конечная скорость(мм/с) 
-    V_Valk_Per = 200 #(2 * pi * DV/2 * Num_of_revol_rolls) / 60 # Скорость валков (мм/c)
+    V_Valk_Per =  (2 * pi * DV/2 * Num_of_revol_rolls) / 60 # Скорость валков (мм/c)
     Dir_of_rot_valk = Dir_of_rot_valk #Направление вращения валков
     Dir_of_rot_L_rolg = Dir_of_rot_L_rolg #Направление вращения левых рольгангов
     Mode = Mode #Отправка на частотник флага ручного режима
@@ -554,13 +549,13 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
             'Gap_feedback':simulator.Gap_feedbackLog,
             'Speed_feedback':simulator.Speed_V_feedbackLog}
 
-# if __name__ == "__main__":
-#     start(Num_of_revol_rolls = 7,
-#           Roll_pos = 56,
-#           Num_of_revol_0rollg = 38,
-#           Num_of_revol_1rollg = 38,
-#           Dir_of_rot_valk = 0,
-#           Dir_of_rot_L_rolg = 0,
-#           Mode = 0,
-#           Dir_of_rot_R_rolg = 0,
-#           Speed_of_diverg = 100)
+if __name__ == "__main__":
+    start(Num_of_revol_rolls = 10,
+          Roll_pos = 56,
+          Num_of_revol_0rollg = 38,
+          Num_of_revol_1rollg = 38,
+          Dir_of_rot_valk = 0,
+          Dir_of_rot_L_rolg = 0,
+          Mode = 0,
+          Dir_of_rot_R_rolg = 0,
+          Speed_of_diverg = 100)
