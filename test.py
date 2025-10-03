@@ -10,11 +10,23 @@ conn = psycopg2.connect(
 
 cur = conn.cursor()
 
-table_name = "slabs"
+Scada_table = "slabs"
 
-cur.execute(f"SELECT * FROM {table_name}")
-rows = cur.fetchall()
+cur.execute("SELECT * FROM your_table_name ORDER BY id DESC LIMIT 1")
 
-print(f"Данные из таблицы {table_name}:")
-for row in rows:
-    print(row)
+
+last_row = cur.fetchone()
+
+    
+id, length_slab, width_slab, thikness_slab, temperature_slab, material_slab, material_roll = last_row
+    
+    
+print("Последняя запись из таблицы:")
+print(f"ID: {id}")
+print(f"Колонка 2: {length_slab}")
+print(f"Колонка 3: {width_slab}")
+print(f"Колонка 4: {thikness_slab}")
+print(f"Колонка 5: {temperature_slab}")
+print(f"Колонка 6: {material_slab}")
+print(f"Колонка 7: {material_roll}")
+
