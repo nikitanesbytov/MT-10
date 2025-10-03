@@ -493,12 +493,12 @@ class RollingMillSimulator(RollingMill):
     #         currentS = min(currentS + self.VS,self.StartS)       
 
 
-def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Dir_of_rot_valk,Dir_of_rot_L_rolg,Mode,Dir_of_rot_R_rolg,Speed_of_diverg):
+def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Dir_of_rot_valk,Dir_of_rot_L_rolg,Mode,Dir_of_rot_R_rolg,Speed_of_diverg,Length_slab,Width_slab,Thikness_slab,Temperature_slab,Material_slab,Material_roll):
     # Параметры прокатки
-    L = 250  # начальная длина сляба, мм
-    b = 75   # ширина сляба, мм
-    h_0 = 75  # начальная толщина, мм
-    StartTemp = 1200  # начальная температура, °C
+    L = Length_slab  # начальная длина сляба, мм
+    b = Width_slab   # ширина сляба, мм
+    h_0 = Thikness_slab  # начальная толщина, мм
+    StartTemp = Temperature_slab  # начальная температура, °C
     StartS = 200 # начальный раствор валков
     DV = 300   # диаметр валков, мм
     DR = 100  # диаметр рольгангов, мм
@@ -506,7 +506,7 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
     MS = 'Carbon Steel'  # материал сляба
     OutTemp = 28  # температура валков, °C
     PauseBIter = 5  # пауза между пропусками, с
-    SteelGrade = "Ст3сп" #Марка стали
+    SteelGrade = 'Ст3сп' #Марка стали
     
     S = Roll_pos  #Расхождение валков, мм
     V0 = (2 * pi * DR/2 * Num_of_revol_0rollg) / 60  # начальная скорость(мм/с)

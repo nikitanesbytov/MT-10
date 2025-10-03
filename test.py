@@ -18,15 +18,15 @@ cur.execute("SELECT * FROM your_table_name ORDER BY id DESC LIMIT 1")
 last_row = cur.fetchone()
 
     
-id, length_slab, width_slab, thikness_slab, temperature_slab, material_slab, material_roll = last_row
+id, Length_slab, Width_slab, Thikness_slab, Temperature_slab, Material_slab, Material_roll = last_row
     
     
 print("Последняя запись из таблицы:")
 print(f"ID: {id}")
-print(f"Колонка 2: {length_slab}")
-print(f"Колонка 3: {width_slab}")
-print(f"Колонка 4: {thikness_slab}")
-print(f"Колонка 5: {temperature_slab}")
-print(f"Колонка 6: {material_slab}")
-print(f"Колонка 7: {material_roll}")
+print(f"Колонка 2: {Length_slab}")
+print(f"Колонка 3: {Width_slab}")
+print(f"Колонка 4: {Thikness_slab}")
+print(f"Колонка 5: {Temperature_slab}")
+print(f"Колонка 6: {Material_slab}")
+print(f"Колонка 7: {Material_roll}")
 
