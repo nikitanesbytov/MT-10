@@ -13,7 +13,7 @@ conn = psycopg2.connect(
     host="localhost",
     database="test_bd_1",  
     user="postgres",          
-    password="sa123456",      
+    password="postgres",      
     port="5432"
 )
 
@@ -37,7 +37,7 @@ def regs_to_float(reg1, reg2):
 
 class ModbusServer:
     def __init__(self):
-        total_registers = 31  # 30 регистров + 1 для флагов
+        total_registers = 31
         initial_values = [0] * total_registers
         self.hr_data_combined = ModbusSequentialDataBlock(1, initial_values)
         store = ModbusSlaveContext(hr=self.hr_data_combined)
@@ -59,7 +59,6 @@ class ModbusServer:
             v = sim_data[k][idx] if isinstance(sim_data[k], list) else sim_data[k]
             regs.extend(float_to_regs(v))
         
-        # Установка флагов
         flags = 0
         StartCap_val = sim_data['StartCap'][idx] if isinstance(sim_data['StartCap'], list) else sim_data['StartCap']
         EndCap_val = sim_data['EndCap'][idx] if isinstance(sim_data['EndCap'], list) else sim_data['EndCap']
@@ -75,9 +74,8 @@ class ModbusServer:
         if Speed_feedback_val:
             flags |= 0x08
         
-        # Обновление регистров данных и флагов
-        self.hr_data_combined.setValues(12, regs)  # Адреса 12-29
-        self.hr_data_combined.setValues(30, [flags])  # Адрес 30 для флагов
+        self.hr_data_combined.setValues(12, regs)  
+        self.hr_data_combined.setValues(30, [flags])  
 
     def run_simulation_and_update(self, **kwargs):
         self.log_message("Запуск симуляции...")
@@ -95,7 +93,6 @@ class ModbusServer:
         last_idx = steps - 1
         self.log_message("Симуляция завершена, поддержание последних значений")
         
-        # Поддерживаем последние значения 5 секунд
         end_time = time.time() + 5
         while not self.stop_monitoring and time.time() < end_time:
             self.update_simulation_registers(sim_result, last_idx)
@@ -103,9 +100,9 @@ class ModbusServer:
 
     def start_simulator_from_registers(self):
         """Запуск симуляции на основе текущих значений регистров"""
-        cur.execute("SELECT * FROM your_table_name ORDER BY id DESC LIMIT 1")
+        cur.execute("SELECT * FROM slabs ORDER BY id DESC LIMIT 1")
         last_row = cur.fetchone()
-        id, Length_slab, Width_slab, Thikness_slab, Temperature_slab, Material_slab, Material_roll = last_row
+        id, Length_slab, Width_slab, Thikness_slab, Temperature_slab, Material_slab, Diametr_roll,Material_roll = last_row
         regs = self.hr_data_combined.getValues(1, 11)
         
         Num_of_revol_rolls = regs_to_float(regs[0], regs[1])
@@ -173,18 +170,16 @@ def monitor_registers(server):
     
     while not server.stop_monitoring:
         try:
-            # Читаем регистр 8 для проверки бита Start
             regs = server.hr_data_combined.getValues(1, 11)
             reg8 = regs[8]
             current_start_state = bool(reg8 & 0x10)
             
-            # Если бит Start изменился с 0 на 1, запускаем симуляцию
             if current_start_state and not last_start_state:
                 server.log_message("Обнаружен запуск симуляции по биту Start")
                 server.start_simulator_from_registers()
             
             last_start_state = current_start_state
-            time.sleep(0.1)  # Проверяем каждые 100мс
+            time.sleep(0.1) 
             
         except Exception as e:
             server.log_message(f"Ошибка мониторинга: {e}")
@@ -193,11 +188,9 @@ def monitor_registers(server):
 def main():
     server = ModbusServer()
     
-    # Запускаем мониторинг регистров в отдельном потоке
     monitor_thread = threading.Thread(target=monitor_registers, args=(server,), daemon=True)
     monitor_thread.start()
     
-    # Запускаем сервер
     server.run_server()
 
 if __name__ == "__main__":
