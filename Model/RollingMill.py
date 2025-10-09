@@ -134,9 +134,9 @@ class RollingMill:
     
     def FricCoef(self,MV, MS, V0, TempS) -> float:
         "Коэффициент трения"
-        if (MV == 'Steel'): 
+        if (MV == 'Сталь'): 
             k1 = 1
-        elif(MV == 'Cast Iron'):
+        elif(MV == 'Чугун'):
             k1 = 0.8
 
         if (V0 <= 3):

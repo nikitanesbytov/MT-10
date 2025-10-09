@@ -502,16 +502,18 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
     StartS = 200 # начальный раствор валков
     DV = 300   # диаметр валков, мм
     DR = 100  # диаметр рольгангов, мм
-    MV = 'Steel'  # материал валков
+    MV = Material_slab  # материал валков
     MS = 'Carbon Steel'  # материал сляба
     OutTemp = 28  # температура валков, °C
     PauseBIter = 5  # пауза между пропусками, с
     SteelGrade = 'Ст3сп' #Марка стали
     
+    #Уставки на итерации
+    V_Valk_Per =  (2 * pi * DV/2 * Num_of_revol_rolls) / 60 # Скорость валков (мм/c)
     S = Roll_pos  #Расхождение валков, мм
     V0 = (2 * pi * DR/2 * Num_of_revol_0rollg) / 60  # начальная скорость(мм/с)
     V1 = (2 * pi * DR/2 * Num_of_revol_1rollg) / 60  # конечная скорость(мм/с) 
-    V_Valk_Per =  (2 * pi * DV/2 * Num_of_revol_rolls) / 60 # Скорость валков (мм/c)
+    VS = Speed_of_diverg 
     Dir_of_rot_valk = Dir_of_rot_valk #Направление вращения валков
     Dir_of_rot_L_rolg = Dir_of_rot_L_rolg #Направление вращения левых рольгангов
     Mode = Mode #Отправка на частотник флага ручного режима
@@ -520,10 +522,30 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
     simulator = RollingMillSimulator(
         L=L,b=b,h_0=h_0,S=S,StartTemp=StartTemp,
         DV=DV,MV=MV,MS=MS,OutTemp=OutTemp,DR=DR,SteelGrade=SteelGrade,
-        V0=V0,V1=V1,PauseBIter=PauseBIter,VS=Speed_of_diverg,Dir_of_rot = Dir_of_rot_valk,
+        V0=V0,V1=V1,PauseBIter=PauseBIter,VS=VS,Dir_of_rot = Dir_of_rot_valk,
         d1=2200.0,d2=2200.0,d=220.0, V_Valk_Per=V_Valk_Per,StartS=StartS,
     )
+
+
     print("Начало симуляции")
+    simulator._simulate_approach_to_rolls()
+    print("Сляб подошел к валкам")
+    simulator._simulate_rolling_pass()
+    print("Сляб покинул валки")
+    simulator._simulate_exit_from_rolls()
+    print("Сляб дошел до конца прокатного стана")
+
+    V_Valk_Per =  11 # Скорость валков (мм/c)
+    S = 48  #Расхождение валков, мм
+    V0 = (2 * pi * DR/2 * 30) / 60  # начальная скорость(мм/с)
+    V1 = (2 * pi * DR/2 * 30) / 60  # конечная скорость(мм/с) 
+    VS = 100 
+    Dir_of_rot_valk = 1 #Направление вращения валков
+    Dir_of_rot_L_rolg = 1 #Направление вращения левых рольгангов
+    Mode = Mode #Отправка на частотник флага ручного режима
+    Dir_of_rot_R_rolg = 1 #Направление вращения правых рольгангов
+
+    print("Продолжение симуляции")
     simulator._simulate_approach_to_rolls()
     print("Сляб подошел к валкам")
     simulator._simulate_rolling_pass()
@@ -554,8 +576,15 @@ if __name__ == "__main__":
           Roll_pos = 56,
           Num_of_revol_0rollg = 38,
           Num_of_revol_1rollg = 38,
+          Speed_of_diverg = 100,
           Dir_of_rot_valk = 0,
           Dir_of_rot_L_rolg = 0,
           Mode = 0,
           Dir_of_rot_R_rolg = 0,
-          Speed_of_diverg = 100)
+          Length_slab = 100 ,
+          Width_slab = 250,
+          Thikness_slab = 350,
+          Temperature_slab = 1200,
+          Material_slab = 'Ст3сп',
+          Material_roll = 'Steel'
+          )
