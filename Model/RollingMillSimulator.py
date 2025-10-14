@@ -493,20 +493,15 @@ class RollingMillSimulator(RollingMill):
     #         currentS = min(currentS + self.VS,self.StartS)       
 
 
-def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Dir_of_rot_valk,Dir_of_rot_L_rolg,Mode,Dir_of_rot_R_rolg,Speed_of_diverg,Length_slab,Width_slab,Thikness_slab,Temperature_slab,Material_slab,Material_roll):
+def Init_model(Length_slab,Width_slab,Thikness_slab,Temperature_slab,Material_slab,Diametr_roll,Material_roll):
     # Параметры прокатки
     L = Length_slab  # начальная длина сляба, мм
     b = Width_slab   # ширина сляба, мм
     h_0 = Thikness_slab  # начальная толщина, мм
     StartTemp = Temperature_slab  # начальная температура, °C
-    StartS = 200 # начальный раствор валков
-    DV = 300   # диаметр валков, мм
-    DR = 100  # диаметр рольгангов, мм
-    MV = Material_slab  # материал валков
-    MS = 'Carbon Steel'  # материал сляба
-    OutTemp = 28  # температура валков, °C
-    PauseBIter = 5  # пауза между пропусками, с
-    SteelGrade = 'Ст3сп' #Марка стали
+    DV = Diametr_roll   # диаметр валков, мм
+    MV = Material_roll  # материал валков
+    SteelGrade = Material_slab #Марка стали
     
     #Уставки на итерации
     V_Valk_Per =  (2 * pi * DV/2 * Num_of_revol_rolls) / 60 # Скорость валков (мм/c)
@@ -521,9 +516,9 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
     
     simulator = RollingMillSimulator(
         L=L,b=b,h_0=h_0,S=S,StartTemp=StartTemp,
-        DV=DV,MV=MV,MS=MS,OutTemp=OutTemp,DR=DR,SteelGrade=SteelGrade,
-        V0=V0,V1=V1,PauseBIter=PauseBIter,VS=VS,Dir_of_rot = Dir_of_rot_valk,
-        d1=2200.0,d2=2200.0,d=220.0, V_Valk_Per=V_Valk_Per,StartS=StartS,
+        DV=DV,MV=MV,MS='Austenitic steel',OutTemp=28,DR=100,SteelGrade=SteelGrade,
+        V0=V0,V1=V1,PauseBIter=5,VS=VS,Dir_of_rot = Dir_of_rot_valk,
+        d1=2200.0,d2=2200.0,d=220.0, V_Valk_Per=V_Valk_Per,StartS=0,
     )
 
     print("Начало симуляции")
@@ -571,20 +566,9 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
             'Gap_feedback':simulator.Gap_feedbackLog,
             'Speed_feedback':simulator.Speed_V_feedbackLog}
 
+def One_Iteration(self,)
+
+
+
 if __name__ == "__main__":
-    start(Num_of_revol_rolls = 10,
-          Roll_pos = 56,
-          Num_of_revol_0rollg = 38,
-          Num_of_revol_1rollg = 38,
-          Speed_of_diverg = 100,
-          Dir_of_rot_valk = 0,
-          Dir_of_rot_L_rolg = 0,
-          Mode = 0,
-          Dir_of_rot_R_rolg = 0,
-          Length_slab = 100 ,
-          Width_slab = 250,
-          Thikness_slab = 350,
-          Temperature_slab = 1200,
-          Material_slab = 'Ст3сп',
-          Material_roll = 'Steel'
-          )
+
