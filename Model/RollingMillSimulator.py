@@ -11,8 +11,8 @@ class RollingMillSimulator(RollingMill):
         self.height_log = [self.h_0]#Лог толщины сляба(перед началом прокатки)(мм)
         self.LeftCap = [1]#Левый концевик
         self.RightCap = [0]#Правый концевик
-        self.x_log = [self.L if self.LeftCap[-1] == 1 else self.d1+self.d2 + self.d]#Лог начальной координаты сляба
-        self.x1_log = [0 if self.LeftCap[-1] == 1 else (self.d1+self.d2+self.d) - self.L]#Лог конечной координаты сляба
+        self.x_log = [0]#Лог начальной координаты сляба
+        self.x1_log = [self.L]#Лог конечной координаты сляба
         self.pyrometr_1 = [self.TempV]#Лог пирометра перед валками
         self.pyrometr_2 = [self.TempV]#Лог пирометра после валков
         self.gap_log = [self.CurrentS]#Лог раствора валков(мм)
@@ -57,8 +57,8 @@ class RollingMillSimulator(RollingMill):
                 'RightCap': 8,
                 'Moment' : 8,
                 'Power' : 8,
-                'GapFeedback': 8,
-                'Speed_V_feedback': 8,
+                'GapCap': 8,
+                'SpeedCap': 8,
                 'x(deb)' : 8,
                 'x1(deb)' : 8,
                 'length(deb)': 8
@@ -78,8 +78,8 @@ class RollingMillSimulator(RollingMill):
                 f"{'RightCap':<{col_widths['RightCap']}}",
                 f"{'Moment':<{col_widths['Moment']}}",
                 f"{'Power':<{col_widths['Power']}}",
-                f"{'GapFeedback':<{col_widths['GapFeedback']}}",
-                f"{'Speed_V_feedback':<{col_widths['Speed_V_feedback']}}"
+                f"{'GapCap':<{col_widths['GapCap']}}",
+                f"{'SpeedCap':<{col_widths['SpeedCap']}}",
                 f"{'x(deb)':<{col_widths['x(deb)']}}",
                 f"{'x1(deb)':<{col_widths['x1(deb)']}}",
                 f"{'length(deb)':<{col_widths['length(deb)']}}"
@@ -105,8 +105,8 @@ class RollingMillSimulator(RollingMill):
                     f"{self.RightCap[i]:<{col_widths['RightCap']}}",
                     f"{self.moment_log[i]:<{col_widths['Moment']}}",
                     f"{self.power_log[i]:<{col_widths['Power']}}",
-                    f"{self.Gap_feedbackLog[i]:<{col_widths['GapFeedback']}}",
-                    f"{self.Speed_V_feedbackLog[i]:<{col_widths['Speed_V_feedback']}}"
+                    f"{self.Gap_feedbackLog[i]:<{col_widths['GapCap']}}",
+                    f"{self.Speed_V_feedbackLog[i]:<{col_widths['SpeedCap']}}",
                     f"{self.x_log[i]:<{col_widths['x(deb)']}}",
                     f"{self.x1_log[i]:<{col_widths['x1(deb)']}}",
                     f"{self.length_log[i]:<{col_widths['length(deb)']}}",
@@ -526,7 +526,6 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
         d1=2200.0,d2=2200.0,d=220.0, V_Valk_Per=V_Valk_Per,StartS=StartS,
     )
 
-
     print("Начало симуляции")
     simulator._simulate_approach_to_rolls()
     print("Сляб подошел к валкам")
@@ -535,16 +534,17 @@ def start(Num_of_revol_rolls,Roll_pos,Num_of_revol_0rollg,Num_of_revol_1rollg,Di
     simulator._simulate_exit_from_rolls()
     print("Сляб дошел до конца прокатного стана")
 
-    V_Valk_Per =  11 # Скорость валков (мм/c)
-    S = 48  #Расхождение валков, мм
-    V0 = (2 * pi * DR/2 * 30) / 60  # начальная скорость(мм/с)
-    V1 = (2 * pi * DR/2 * 30) / 60  # конечная скорость(мм/с) 
-    VS = 100 
-    Dir_of_rot_valk = 1 #Направление вращения валков
-    Dir_of_rot_L_rolg = 1 #Направление вращения левых рольгангов
+    simulator.V_Valk_Per =  11 # Скорость валков (мм/c)
+    simulator.S = 48  #Расхождение валков, мм
+    simulator.V0 = (2 * pi * DR/2 * 30) / 60  # начальная скорость(мм/с)
+    simulator.V1 = (2 * pi * DR/2 * 30) / 60  # конечная скорость(мм/с) 
+    simulator.VS = 100 
+    simulator.Dir_of_rot = 1 #Направление вращения валков
+    simulator.Dir_of_rot_L_rolg = 1 #Направление вращения левых рольгангов
     Mode = Mode #Отправка на частотник флага ручного режима
     Dir_of_rot_R_rolg = 1 #Направление вращения правых рольгангов
 
+    print(simulator.Dir_of_rot)
     print("Продолжение симуляции")
     simulator._simulate_approach_to_rolls()
     print("Сляб подошел к валкам")
