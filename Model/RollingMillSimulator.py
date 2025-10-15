@@ -275,6 +275,7 @@ class RollingMillSimulator(RollingMill):
                 speed_V1 = min(speed_V1 + self.accel * self.time_step, self.V1)
                 current_pos_x = max(current_pos_x - speed_V1 * self.time_step, self.d1+self.L+self.d/2)
                 current_pos_x1 = max(current_pos_x1 - speed_V1 * self.time_step, self.d1+self.d/2)
+                print(current_pos_x,current_pos_x1)
                 current_time += self.time_step
                 current_temp = max(current_temp - temp_drop_per_ms, final_temp)
                 self._update_logs(time=round(current_time,2), 
@@ -308,7 +309,7 @@ class RollingMillSimulator(RollingMill):
         h_1 = self.S 
         RelDef = self.RelDef(h_0,h_1)
         start_length = self.length_log[-1]
-        FinalLength = round(self.FinalLength(h_0,h_1,self.L),2)
+        FinalLength = round(self.FinalLength(h_0,h_1,start_length),2)
  
         #2.Рассчет падения температуры от пластической деформации и контакта с валками
         RelDef = self.RelDef(h_0,h_1)
@@ -327,6 +328,7 @@ class RollingMillSimulator(RollingMill):
             while current_pos_x1 < self.d1 + self.d/2:
                 current_pos_x = min(current_pos_x + self.speed_V1[-1] * self.time_step,self.d1+self.d/2 + (self.L + (FinalLength - start_length)) + 1)
                 current_pos_x1 = min(current_pos_x1 + self.speed_V0[-1] * self.time_step,self.d1 + self.d/2 + 1)
+                
                 current_length = abs((current_pos_x - current_pos_x1))
                 Effort += self.roughness(Effort,0.03)
                 Moment += self.roughness(Moment,0.03)
@@ -355,6 +357,7 @@ class RollingMillSimulator(RollingMill):
             while current_pos_x > self.d1 + self.d:
                 current_pos_x = max(current_pos_x - self.speed_V1[-1] * self.time_step,self.d1 + self.d/2 - 1)
                 current_pos_x1 = max(current_pos_x1 - self.speed_V0[-1] * self.time_step,self.d1 + self.d/2 - (self.L + (FinalLength - start_length)) - 1)
+                print(current_pos_x,current_pos_x1)
                 current_length = abs((current_pos_x - current_pos_x1))
                 Effort += self.roughness(Effort,0.03)
                 Moment += self.roughness(Moment,0.03)
@@ -395,7 +398,7 @@ class RollingMillSimulator(RollingMill):
         time_brake_V0 = self.speed_V0[-1] / self.accel  
         time_brake_V1 = self.speed_V1[-1] / self.accel
         time_second_cycle = max(time_brake_speed, time_brake_V0, time_brake_V1)
-        total_time = time_first_cycle + time_second_cycle + self.PauseBIter
+        total_time = time_first_cycle + time_second_cycle
         final_temp = current_temp - 100
         temp_drop_per_ms = ((current_temp - final_temp) / total_time) * self.time_step
         #2.Доход сляба до конечного концевика
@@ -484,91 +487,84 @@ class RollingMillSimulator(RollingMill):
                               Speed_V_feedback = Speed_V_flag)
     pass
 
-    # def alarm_stop(self):
-    #     "Аварийный останов"
-    #     while self.speed_V[-1] > 0 or self.speed_V0[-1] > 0 or self.speed_V1[-1] > 0 or self.CurrentS[-1] != self.StartS:
-    #         current_speed = max(current_speed - self.accel * self.time_step,0)
-    #         current_V0 = max(current_V0 - self.accel * self.time_step,0)
-    #         current_V1 = max(current_V1 - self.accel * self.time_step,0)
-    #         currentS = min(currentS + self.VS,self.StartS)       
+    def Init(self, Length_slab, Width_slab, Thikness_slab, Temperature_slab, Material_slab, Diametr_roll, Material_roll):
+        self.L = Length_slab
+        self.b = Width_slab
+        self.h_0 = Thikness_slab
+        self.StartTemp = Temperature_slab
+        self.DV = Diametr_roll
+        self.MV = Material_roll
+        self.SteelGrade = Material_slab
+        self.time_log = [0]
+        self.temperature_log = [self.StartTemp]
+        self.length_log = [self.L]
+        self.height_log = [self.h_0]
+        self.LeftCap = [1]
+        self.RightCap = [0]
+        self.x_log = [0]
+        self.x1_log = [self.L]
+        self.pyrometr_1 = [self.TempV]
+        self.pyrometr_2 = [self.TempV]
+        self.gap_log = [self.CurrentS]
+        self.speed_V = [0]
+        self.speed_V0 = [0]
+        self.speed_V1 = [0]
+        self.effort_log = [0]
+        self.moment_log = [0]
+        self.power_log = [0]
+        self.Gap_feedbackLog = [0]
+        self.Speed_V_feedbackLog = [0]
+        self.time_step = 0.1
+        self.DV=300
+        self.R=self.DV/2
+        self.DR=100
+        self.d1=2200.0
+        self.d2=2200.0
+        self.d=110.0
+        self.MS='Austenitic steel'
 
-
-def Init_model(Length_slab,Width_slab,Thikness_slab,Temperature_slab,Material_slab,Diametr_roll,Material_roll):
-    # Параметры прокатки
-    L = Length_slab  # начальная длина сляба, мм
-    b = Width_slab   # ширина сляба, мм
-    h_0 = Thikness_slab  # начальная толщина, мм
-    StartTemp = Temperature_slab  # начальная температура, °C
-    DV = Diametr_roll   # диаметр валков, мм
-    MV = Material_roll  # материал валков
-    SteelGrade = Material_slab #Марка стали
+    def Iteration(self, Num_of_revol_rolls, Roll_pos, Num_of_revol_0rollg, Num_of_revol_1rollg, Speed_of_diverg, Dir_of_rot_valk, Dir_of_rot_L_rolg, Mode, Dir_of_rot_R_rolg):
+        self.V_Valk_Per = (2 * pi * self.DV/2 * Num_of_revol_rolls) / 60
+        self.S = Roll_pos
+        self.h_1 = Roll_pos
+        self.V0 = (2 * pi * self.DR/2 * Num_of_revol_0rollg) / 60
+        self.V1 = (2 * pi * self.DR/2 * Num_of_revol_1rollg) / 60
+        self.VS = Speed_of_diverg
+        self.Dir_of_rot = Dir_of_rot_valk
     
-    #Уставки на итерации
-    V_Valk_Per =  (2 * pi * DV/2 * Num_of_revol_rolls) / 60 # Скорость валков (мм/c)
-    S = Roll_pos  #Расхождение валков, мм
-    V0 = (2 * pi * DR/2 * Num_of_revol_0rollg) / 60  # начальная скорость(мм/с)
-    V1 = (2 * pi * DR/2 * Num_of_revol_1rollg) / 60  # конечная скорость(мм/с) 
-    VS = Speed_of_diverg 
-    Dir_of_rot_valk = Dir_of_rot_valk #Направление вращения валков
-    Dir_of_rot_L_rolg = Dir_of_rot_L_rolg #Направление вращения левых рольгангов
-    Mode = Mode #Отправка на частотник флага ручного режима
-    Dir_of_rot_R_rolg = Dir_of_rot_R_rolg #Направление вращения правых рольгангов
-    
-    simulator = RollingMillSimulator(
-        L=L,b=b,h_0=h_0,S=S,StartTemp=StartTemp,
-        DV=DV,MV=MV,MS='Austenitic steel',OutTemp=28,DR=100,SteelGrade=SteelGrade,
-        V0=V0,V1=V1,PauseBIter=5,VS=VS,Dir_of_rot = Dir_of_rot_valk,
-        d1=2200.0,d2=2200.0,d=220.0, V_Valk_Per=V_Valk_Per,StartS=0,
-    )
-
-    print("Начало симуляции")
-    simulator._simulate_approach_to_rolls()
-    print("Сляб подошел к валкам")
-    simulator._simulate_rolling_pass()
-    print("Сляб покинул валки")
-    simulator._simulate_exit_from_rolls()
-    print("Сляб дошел до конца прокатного стана")
-
-    simulator.V_Valk_Per =  11 # Скорость валков (мм/c)
-    simulator.S = 48  #Расхождение валков, мм
-    simulator.V0 = (2 * pi * DR/2 * 30) / 60  # начальная скорость(мм/с)
-    simulator.V1 = (2 * pi * DR/2 * 30) / 60  # конечная скорость(мм/с) 
-    simulator.VS = 100 
-    simulator.Dir_of_rot = 1 #Направление вращения валков
-    simulator.Dir_of_rot_L_rolg = 1 #Направление вращения левых рольгангов
-    Mode = Mode #Отправка на частотник флага ручного режима
-    Dir_of_rot_R_rolg = 1 #Направление вращения правых рольгангов
-
-    print(simulator.Dir_of_rot)
-    print("Продолжение симуляции")
-    simulator._simulate_approach_to_rolls()
-    print("Сляб подошел к валкам")
-    simulator._simulate_rolling_pass()
-    print("Сляб покинул валки")
-    simulator._simulate_exit_from_rolls()
-    print("Сляб дошел до конца прокатного стана")
-
-    #Создание лога
-    simulator.save_logs_to_file("my_logs.txt")
-    print("Симуляция окончена")
-    return {'Time':simulator.time_log,
-            'Pyro1':simulator.temperature_log,
-            'Pyro2':simulator.temperature_log,
-            'Pressure':simulator.effort_log,
-            'Gap':simulator.gap_log,
-            'VRPM':simulator.speed_V,
-            'V0RPM':simulator.speed_V0,
-            'V1RPM':simulator.speed_V1,
-            'StartCap':simulator.LeftCap,
-            'EndCap':simulator.RightCap,
-            'Moment':simulator.moment_log,
-            'Power':simulator.power_log,
-            'Gap_feedback':simulator.Gap_feedbackLog,
-            'Speed_feedback':simulator.Speed_V_feedbackLog}
-
-def One_Iteration(self,)
-
-
+        print("Продолжение симуляции")
+        self._simulate_approach_to_rolls()
+        print("Сляб подошел к валкам")
+        self._simulate_rolling_pass()
+        print("Сляб покинул валки")
+        self._simulate_exit_from_rolls()
+        print("Сляб дошел до конца прокатного стана")
+        self.save_logs_to_file("my_logs.txt")
+        print("Симуляция окончена")
+        return {'Time':simulator.time_log,
+                'Pyro1':simulator.temperature_log,
+                'Pyro2':simulator.temperature_log,
+                'Pressure':simulator.effort_log,
+                'Gap':simulator.gap_log,
+                'VRPM':simulator.speed_V,
+                'V0RPM':simulator.speed_V0,
+                'V1RPM':simulator.speed_V1,
+                'StartCap':simulator.LeftCap,
+                'EndCap':simulator.RightCap,
+                'Moment':simulator.moment_log,
+                'Power':simulator.power_log,
+                'Gap_feedback':simulator.Gap_feedbackLog,
+                'Speed_feedback':simulator.Speed_V_feedbackLog}
 
 if __name__ == "__main__":
+    simulator = RollingMillSimulator(
+        L=0,b=0,h_0=0,S=0,StartTemp=0,
+        DV=0,MV=0,MS=0,OutTemp=0,DR=0,SteelGrade=0,
+        V0=0,V1=0,VS=0,Dir_of_rot=0,
+        d1=0,d2=0,d=0, V_Valk_Per=0,StartS=0
+    )
+    simulator.Init(Length_slab=300, Width_slab=150, Thikness_slab=200, Temperature_slab=1200, Material_slab='Ст3сп', Diametr_roll=300, Material_roll='Сталь')
+    simulator.Iteration(Num_of_revol_rolls=10, Roll_pos=190, Num_of_revol_0rollg=56, Num_of_revol_1rollg=56, Speed_of_diverg=100, Dir_of_rot_valk=0, Dir_of_rot_L_rolg=0, Mode=0, Dir_of_rot_R_rolg=0)
+    simulator.Iteration(Num_of_revol_rolls=10, Roll_pos=170, Num_of_revol_0rollg=56, Num_of_revol_1rollg=56, Speed_of_diverg=100, Dir_of_rot_valk=1, Dir_of_rot_L_rolg=1, Mode=0, Dir_of_rot_R_rolg=1)
+
 

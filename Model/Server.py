@@ -6,7 +6,7 @@ import time
 import struct
 from datetime import datetime
 import psycopg2
-from RollingMillSimulator import start
+import RollingMillSimulator
 import sys
 
 conn = psycopg2.connect(
@@ -43,6 +43,7 @@ class ModbusServer:
         store = ModbusSlaveContext(hr=self.hr_data_combined)
         self.context = ModbusServerContext(slaves=store, single=True)
         self.stop_monitoring = False
+        self.simulation_running = False  # Флаг занятости симуляцией
 
     def log_message(self, message):
         """Запись сообщения в консоль"""
@@ -78,58 +79,93 @@ class ModbusServer:
         self.hr_data_combined.setValues(30, [flags])  
 
     def run_simulation_and_update(self, **kwargs):
+        self.simulation_running = True
         self.log_message("Запуск симуляции...")
-        sim_result = start(**kwargs)
+        from RollingMillSimulator import RollingMillSimulator  # Импортируем здесь, чтобы избежать циклических импортов
+
+        # 1. Инициализация прокатки из SQL
+        simulator = RollingMillSimulator(
+            L=0, b=0, h_0=0, S=0, StartTemp=0,
+            DV=0, MV=0, MS=0, OutTemp=0, DR=0, SteelGrade=0,
+            V0=0, V1=0, VS=0, Dir_of_rot=0,
+            d1=0, d2=0, d=0, V_Valk_Per=0, StartS=0
+        )
+        simulator.Init(
+            Length_slab=kwargs['Length_slab'],
+            Width_slab=kwargs['Width_slab'],
+            Thikness_slab=kwargs['Thikness_slab'],
+            Temperature_slab=kwargs['Temperature_slab'],
+            Material_slab=kwargs['Material_slab'],
+            Diametr_roll=kwargs.get('Diametr_roll', 300),
+            Material_roll=kwargs['Material_roll']
+        )
+
+        # Логируем уставки для Iteration
+        self.log_message("Параметры Iteration:")
+        for k in [
+            'Num_of_revol_rolls', 'Roll_pos', 'Num_of_revol_0rollg', 'Num_of_revol_1rollg',
+            'Speed_of_diverg', 'Dir_of_rot_valk', 'Dir_of_rot_L_rolg', 'Mode', 'Dir_of_rot_R_rolg'
+        ]:
+            self.log_message(f"  {k}: {kwargs[k]}")
+
+        # 2. Запуск симуляции по данным из регистров
+        sim_result = simulator.Iteration(
+            Num_of_revol_rolls=kwargs['Num_of_revol_rolls'],
+            Roll_pos=kwargs['Roll_pos'],
+            Num_of_revol_0rollg=kwargs['Num_of_revol_0rollg'],
+            Num_of_revol_1rollg=kwargs['Num_of_revol_1rollg'],
+            Speed_of_diverg=kwargs['Speed_of_diverg'],
+            Dir_of_rot_valk=kwargs['Dir_of_rot_valk'],
+            Dir_of_rot_L_rolg=kwargs['Dir_of_rot_L_rolg'],
+            Mode=kwargs['Mode'],
+            Dir_of_rot_R_rolg=kwargs['Dir_of_rot_R_rolg']
+        )
         steps = len(sim_result['Pyro1'])
-        
         self.log_message(f"Симуляция запущена, шагов: {steps}")
-        
+
         for i in range(steps):
             if self.stop_monitoring:
                 break
             self.update_simulation_registers(sim_result, i)
             time.sleep(0.1)
-        
+
         last_idx = steps - 1
         self.log_message("Симуляция завершена, поддержание последних значений")
-        
         end_time = time.time() + 5
         while not self.stop_monitoring and time.time() < end_time:
             self.update_simulation_registers(sim_result, last_idx)
             time.sleep(0.1)
 
+        self.simulation_running = False  # Освобождаем сервер для новых команд
+
     def start_simulator_from_registers(self):
         """Запуск симуляции на основе текущих значений регистров"""
+        if self.simulation_running:
+            self.log_message("Симуляция уже выполняется, новый запуск невозможен!")
+            return
+
         cur.execute("SELECT * FROM slabs ORDER BY id DESC LIMIT 1")
         last_row = cur.fetchone()
-        id, Length_slab, Width_slab, Thikness_slab, Temperature_slab, Material_slab, Diametr_roll,Material_roll = last_row
+        id, Length_slab, Width_slab, Thikness_slab, Temperature_slab, Material_slab, Diametr_roll, Material_roll = last_row
         regs = self.hr_data_combined.getValues(1, 11)
-        
+
         Num_of_revol_rolls = regs_to_float(regs[0], regs[1])
         Roll_pos = regs_to_float(regs[2], regs[3])
         Num_of_revol_0rollg = regs_to_float(regs[4], regs[5])
         Num_of_revol_1rollg = regs_to_float(regs[6], regs[7])
         Speed_of_diverg = regs_to_float(regs[9], regs[10])
-        
+
         reg8 = regs[8]
         Dir_of_rot_valk = bool(reg8 & 0x01)
         Dir_of_rot_L_rolg = bool(reg8 & 0x02)
         Mode = bool(reg8 & 0x04)
         Dir_of_rot_R_rolg = bool(reg8 & 0x08)
         Start = bool(reg8 & 0x10)
-        
-        self.log_message(f"Параметры симуляции:")
-        self.log_message(f"  Num_of_revol_rolls: {Num_of_revol_rolls}")
-        self.log_message(f"  Roll_pos: {Roll_pos}")
-        self.log_message(f"  Num_of_revol_0rollg: {Num_of_revol_0rollg}")
-        self.log_message(f"  Num_of_revol_1rollg: {Num_of_revol_1rollg}")
-        self.log_message(f"  Speed_of_diverg: {Speed_of_diverg}")
-        self.log_message(f"  Dir_of_rot_valk: {Dir_of_rot_valk}")
-        self.log_message(f"  Dir_of_rot_L_rolg: {Dir_of_rot_L_rolg}")
-        self.log_message(f"  Dir_of_rot_R_rolg: {Dir_of_rot_R_rolg}")
-        self.log_message(f"  Mode: {Mode}")
-        self.log_message(f"  Start: {Start}")
-        
+
+        if not Start:
+            self.log_message("Бит Start не установлен, симуляция не запускается.")
+            return
+
         threading.Thread(
             target=self.run_simulation_and_update,
             kwargs=dict(
@@ -142,23 +178,24 @@ class ModbusServer:
                 Dir_of_rot_R_rolg=Dir_of_rot_R_rolg,
                 Mode=Mode,
                 Speed_of_diverg=Speed_of_diverg,
-                Length_slab = Length_slab,
-                Width_slab = Width_slab,
-                Thikness_slab = Thikness_slab,
-                Temperature_slab= Temperature_slab,
-                Material_slab = Material_slab,
-                Material_roll = Material_roll
+                Length_slab=Length_slab,
+                Width_slab=Width_slab,
+                Thikness_slab=Thikness_slab,
+                Temperature_slab=Temperature_slab,
+                Material_slab=Material_slab,
+                Material_roll=Material_roll,
+                Diametr_roll=Diametr_roll
             ),
             daemon=True
         ).start()
 
     def run_server(self):
         """Запуск Modbus сервера"""
-        self.log_message("Modbus сервер запущен на localhost:55000")
+        self.log_message("Modbus сервер запущен на :55000")
         self.log_message("Для запуска симуляции установите бит Start (0x10) в регистре 8")
         
         try:
-            StartTcpServer(context=self.context, address=("localhost", 55000))
+            StartTcpServer(context=self.context, address=("192.168.0.99", 55000))
         except Exception as e:
             self.log_message(f"Ошибка сервера: {e}")
         finally:
@@ -167,20 +204,21 @@ class ModbusServer:
 def monitor_registers(server):
     """Мониторинг регистров для автоматического запуска симуляции"""
     last_start_state = False
-    
+
     while not server.stop_monitoring:
         try:
             regs = server.hr_data_combined.getValues(1, 11)
             reg8 = regs[8]
             current_start_state = bool(reg8 & 0x10)
-            
-            if current_start_state and not last_start_state:
+
+            # Запуск только если не идет симуляция и бит старт изменился на 1
+            if current_start_state and not last_start_state and not server.simulation_running:
                 server.log_message("Обнаружен запуск симуляции по биту Start")
                 server.start_simulator_from_registers()
-            
+
             last_start_state = current_start_state
-            time.sleep(0.1) 
-            
+            time.sleep(0.1)
+
         except Exception as e:
             server.log_message(f"Ошибка мониторинга: {e}")
             time.sleep(1)
