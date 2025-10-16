@@ -23,11 +23,11 @@ id, Length_slab, Width_slab, Thikness_slab, Temperature_slab, Material_slab,Diam
     
 print("Последняя запись из таблицы:")
 print(f"ID: {id}")
-print(f"Колонка 2: {Length_slab}")
-print(f"Колонка 3: {Width_slab}")
-print(f"Колонка 4: {Thikness_slab}")
-print(f"Колонка 5: {Temperature_slab}")
-print(f"Колонка 6: {Material_slab}")
-print(f"Колонка 7: {Diametr_roll}")
+print(f"Колонка 2: {Length_slab.replace(' ', '')}")
+print(f"Колонка 3: {Width_slab.replace(' ', '')}")
+print(f"Колонка 4: {Thikness_slab.replace(' ', '')}")
+print(f"Колонка 5: {Temperature_slab.replace(' ', '')}")
+print(f"Колонка 6: {Material_slab.replace(' ', '')}")
+print(f"Колонка 7: {Diametr_roll.replace(' ', '')}")
 print(f"Колонка 8: {Material_roll}")
 

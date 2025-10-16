@@ -90,6 +90,7 @@ class ModbusServer:
             V0=0, V1=0, VS=0, Dir_of_rot=0,
             d1=0, d2=0, d=0, V_Valk_Per=0, StartS=0
         )
+        kwargs['Material_slab'] = kwargs['Material_slab'].replace(' ', '')
         simulator.Init(
             Length_slab=kwargs['Length_slab'],
             Width_slab=kwargs['Width_slab'],
