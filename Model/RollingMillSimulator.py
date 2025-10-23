@@ -385,25 +385,27 @@ class RollingMillSimulator(RollingMill):
                 else:
                     Pyro1 = self.TempV + self.roughness(self.TempV,0.07)                
                 current_time += self.time_step
+                print(GenTemp)
+                print(type(GenTemp))
                 self._update_logs(time=round(current_time,2), 
-                    gap=round(self.gap_log[-1],2), 
-                    speed_V=round(self.speed_V[-1],2), 
-                    temp=round(GenTemp,2), 
-                    pyrometr_1=round(Pyro1,2),
-                    pyrometr_2=round(Pyro2,2), 
-                    pos_x=round(current_pos_x,2), 
-                    pos_x1=round(current_pos_x1,2), 
-                    speed_V0=round(self.speed_V0[-1],2), 
-                    speed_V1=round(self.speed_V1[-1],2), 
-                    length=round(current_length,2),
-                    effort=round(Effort/1000,2),
-                    moment=round(Moment/1000,2),
-                    power= round(Power/1000,2),
-                    LeftCap=self.LeftCap[-1],
-                    RightCap=self.RightCap[-1],
-                    Gap_feedback = self.Gap_feedbackLog[-1],
-                    Speed_V_feedback = self.Speed_V_feedbackLog[-1]
-                    ) 
+                        gap=round(self.gap_log[-1],2), 
+                        speed_V=round(self.speed_V[-1],2), 
+                        temp=round(GenTemp,2), 
+                        pyrometr_1=round(Pyro1,2),
+                        pyrometr_2=round(Pyro2,2), 
+                        pos_x=round(current_pos_x,2), 
+                        pos_x1=round(current_pos_x1,2), 
+                        speed_V0=round(self.speed_V0[-1],2), 
+                        speed_V1=round(self.speed_V1[-1],2), 
+                        length=round(current_length,2),
+                        effort=round(Effort/1000,2),
+                        moment=round(Moment/1000,2),
+                        power= round(Power/1000,2),
+                        LeftCap=self.LeftCap[-1],
+                        RightCap=self.RightCap[-1],
+                        Gap_feedback = self.Gap_feedbackLog[-1],
+                        Speed_V_feedback = self.Speed_V_feedbackLog[-1]
+                        ) 
 
     def _simulate_exit_from_rolls(self):
         "Симуляция дохода сляба до концевика"
@@ -539,7 +541,7 @@ class RollingMillSimulator(RollingMill):
             self._update_logs(time=round(current_time,2),
                               gap=round(current_gap,2),
                               speed_V=round(current_speed,2),
-                              temp=round(self.temperature_log[-1],2),
+                              temp=round(self.temperature_log[-1]),
                               pyrometr_1=round(self.TempV,2),
                               pyrometr_2=round(self.TempV,2),
                               pos_x=round(self.x_log[-1],2),
@@ -587,7 +589,7 @@ class RollingMillSimulator(RollingMill):
         self.time_step = 0.1
         self.DV=300
         self.R=self.DV/2
-        self.DR=100
+        self.DR=40
         self.d1=2130.0
         self.d2=2130.0
         self.d=440.0
@@ -601,8 +603,9 @@ class RollingMillSimulator(RollingMill):
         self.V1 = (2 * pi * self.DR/2 * Num_of_revol_1rollg) / 60
         self.VS = Speed_of_diverg
         self.Dir_of_rot = Dir_of_rot_valk
-    
-        print("Продолжение симуляции")
+        
+        
+        print("Продолжение симуляции",self.h_0,self.h_1)
         self._simulate_approach_to_rolls()
         print("Сляб подошел к валкам")
         self._simulate_rolling_pass()
@@ -612,8 +615,8 @@ class RollingMillSimulator(RollingMill):
         self.save_logs_to_file("my_logs.txt")
         print("Симуляция окончена")
         return {'Time':self.time_log,
-                'Pyro1':self.temperature_log,
-                'Pyro2':self.temperature_log,
+                'Pyro1':self.pyrometr_1,
+                'Pyro2':self.pyrometr_2,
                 'Pressure':self.effort_log,
                 'Gap':self.gap_log,
                 'VRPM':self.speed_V,
@@ -635,7 +638,7 @@ if __name__ == "__main__":
     )
     simulator.Init(Length_slab=300, Width_slab=150, Thikness_slab=200, Temperature_slab=1200, Material_slab='Ст3сп', Diametr_roll=300, Material_roll='Сталь')
     simulator.Iteration(Num_of_revol_rolls=7, Roll_pos=190, Num_of_revol_0rollg=56, Num_of_revol_1rollg=56, Speed_of_diverg=100, Dir_of_rot_valk=0, Dir_of_rot_L_rolg=0, Mode=0, Dir_of_rot_R_rolg=0)
-    simulator.Iteration(Num_of_revol_rolls=7, Roll_pos=170, Num_of_revol_0rollg=56, Num_of_revol_1rollg=56, Speed_of_diverg=100, Dir_of_rot_valk=1, Dir_of_rot_L_rolg=0, Mode=0, Dir_of_rot_R_rolg=0)
+    
     
     
 

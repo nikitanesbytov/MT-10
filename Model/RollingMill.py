@@ -168,7 +168,9 @@ class RollingMill:
     
     def ContactArcLen(self,DV,h_0,h_1) -> float:
         "Длина дуги контакта"
+        print(h_0,h_1)
         LK = sqrt(DV/2 * (h_0 - h_1))
+        
         return LK #мм
     
     # def ContactArea(self,b_0, b_1, LK) -> float:
