@@ -44,6 +44,8 @@ class ModbusServer:
         self.context = ModbusServerContext(slaves=store, single=True)
         self.stop_monitoring = False
         self.simulation_running = False  # Флаг занятости симуляцией
+        self.simulator = None            # Хранит объект симулятора после Init
+        self.initialized = False         # Флаг — был ли выполнен Init
 
     def log_message(self, message):
         """Запись сообщения в консоль"""
@@ -130,14 +132,8 @@ class ModbusServer:
             self.update_simulation_registers(sim_result, i)
             time.sleep(0.1)
 
-        last_idx = steps - 1
-        self.log_message("Симуляция завершена, поддержание последних значений")
-        end_time = time.time() + 5
-        while not self.stop_monitoring and time.time() < end_time:
-            self.update_simulation_registers(sim_result, last_idx)
-            time.sleep(0.1)
-
-        self.simulation_running = False  # Освобождаем сервер для новых команд
+        self.log_message("Симуляция завершена")
+        self.simulation_running = False  # Сразу освобождаем сервер для новых команд
 
     def start_simulator_from_registers(self):
         """Запуск симуляции на основе текущих значений регистров"""
@@ -190,6 +186,59 @@ class ModbusServer:
             daemon=True
         ).start()
 
+    def start_init_from_registers(self):
+        """Инициализация (Init) прокатки из БД по биту и сохранение симулятора в self.simulator"""
+        if self.simulation_running:
+            self.log_message("Сейчас выполняется симуляция — Init не запускается.")
+            return
+
+        try:
+            cur.execute("SELECT * FROM slabs ORDER BY id DESC LIMIT 1")
+            last_row = cur.fetchone()
+            if not last_row:
+                self.log_message("Нет записей в таблице slabs для Init.")
+                return
+            id, Length_slab, Width_slab, Thikness_slab, Temperature_slab, Material_slab, Diametr_roll, Material_roll = last_row
+
+            # Создаём экземпляр симулятора и выполняем Init с данными из БД
+            from RollingMillSimulator import RollingMillSimulator
+            sim = RollingMillSimulator(
+                L=0,b=0,h_0=0,S=0,StartTemp=0,
+                DV=0,MV=0,MS=0,OutTemp=0,DR=0,SteelGrade=0,
+                V0=0,V1=0,VS=0,Dir_of_rot=0,
+                d1=0,d2=0,d=0, V_Valk_Per=0,StartS=0
+            )
+            ms_clean = (Material_slab or "").replace(' ', '')
+            sim.Init(
+                Length_slab=Length_slab,
+                Width_slab=Width_slab,
+                Thikness_slab=Thikness_slab,
+                Temperature_slab=Temperature_slab,
+                Material_slab=ms_clean,
+                Diametr_roll=Diametr_roll,
+                Material_roll=Material_roll
+            )
+
+            # Сохраняем симулятор в сервере — для возможного дальнейшего использования
+            self.simulator = sim
+            self.initialized = True
+
+            # Логируем уставки Init
+            self.log_message("Выполнен Init с параметрами из БД:")
+            for name, val in [
+                ("Length_slab", Length_slab),
+                ("Width_slab", Width_slab),
+                ("Thikness_slab", Thikness_slab),
+                ("Temperature_slab", Temperature_slab),
+                ("Material_slab", ms_clean),
+                ("Diametr_roll", Diametr_roll),
+                ("Material_roll", Material_roll),
+            ]:
+                self.log_message(f"  {name}: {val}")
+
+        except Exception as e:
+            self.log_message(f"Ошибка Init из БД: {e}")
+
     def run_server(self):
         """Запуск Modbus сервера"""
         self.log_message("Modbus сервер запущен на :55000")
@@ -203,21 +252,29 @@ class ModbusServer:
             self.stop_monitoring = True
 
 def monitor_registers(server):
-    """Мониторинг регистров для автоматического запуска симуляции"""
+    """Мониторинг регистров для автоматического запуска симуляции/Init"""
     last_start_state = False
+    last_init_state = False  # отслеживаем старший бит (на 1 больше чем Start)
 
     while not server.stop_monitoring:
         try:
             regs = server.hr_data_combined.getValues(1, 11)
             reg8 = regs[8]
-            current_start_state = bool(reg8 & 0x10)
+            current_start_state = bool(reg8 & 0x10)  # бит Start (0x10)
+            current_init_state  = bool(reg8 & 0x20)  # старший на 1 бит (0x20)
 
-            # Запуск только если не идет симуляция и бит старт изменился на 1
+            # Запуск Init при переходе старшего бита 0->1 и если не идёт симуляция
+            if current_init_state and not last_init_state:
+                server.log_message("Обнаружен запрос Init по биту 0x20")
+                server.start_init_from_registers()
+
+            # Запуск симуляции только при переходе Start 0->1 и если не идёт симуляция
             if current_start_state and not last_start_state and not server.simulation_running:
                 server.log_message("Обнаружен запуск симуляции по биту Start")
                 server.start_simulator_from_registers()
 
             last_start_state = current_start_state
+            last_init_state = current_init_state
             time.sleep(0.1)
 
         except Exception as e:
