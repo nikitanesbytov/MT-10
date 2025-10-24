@@ -311,9 +311,7 @@ class RollingMillSimulator(RollingMill):
 
         #1.Рассчет изменения длины
         h_0 = self.h_0
-
         h_1 = self.S
-
         RelDef = self.RelDef(h_0,h_1)
         start_length = self.length_log[-1]
         FinalLength = round(self.FinalLength(h_0,h_1,start_length),2)
@@ -457,7 +455,7 @@ class RollingMillSimulator(RollingMill):
                                 Gap_feedback = self.Gap_feedbackLog[-1],
                                 Speed_V_feedback = self.Speed_V_feedbackLog[-1])
         else:
-            while self.x_log[-1] > 0:
+            while self.x_log[-1] == 0:
                 current_temp -= temp_drop_per_ms
                 Pyro2 = self.TempV + self.roughness(self.TempV,0.07)
                 x1 = max(self.x1_log[-1] - self.speed_V0[-1] * self.time_step,self.length_log[-1])
@@ -637,7 +635,7 @@ if __name__ == "__main__":
         d1=0,d2=0,d=0, V_Valk_Per=0,StartS=0
     )
     simulator.Init(Length_slab=300, Width_slab=150, Thikness_slab=200, Temperature_slab=1200, Material_slab='Ст3сп', Diametr_roll=300, Material_roll='Сталь')
-    simulator.Iteration(Num_of_revol_rolls=7, Roll_pos=190, Num_of_revol_0rollg=56, Num_of_revol_1rollg=56, Speed_of_diverg=100, Dir_of_rot_valk=0, Dir_of_rot_L_rolg=0, Mode=0, Dir_of_rot_R_rolg=0)
+    simulator.Iteration(Num_of_revol_rolls=, Roll_pos=190, Num_of_revol_0rollg=56, Num_of_revol_1rollg=56, Speed_of_diverg=100, Dir_of_rot_valk=0, Dir_of_rot_L_rolg=0, Mode=0, Dir_of_rot_R_rolg=0)
     
     
     
