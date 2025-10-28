@@ -43,9 +43,16 @@ class ModbusServer:
         store = ModbusSlaveContext(hr=self.hr_data_combined)
         self.context = ModbusServerContext(slaves=store, single=True)
         self.stop_monitoring = False
-        self.simulation_running = False  # Флаг занятости симуляцией
-        self.simulator = None            # Хранит объект симулятора после Init
-        self.initialized = False         # Флаг — был ли выполнен Init
+        self.simulation_running = False
+        self.simulator = None
+        self.initialized = False
+        # Try to initialize immediately
+        try:
+            self.start_init_from_registers()
+            if self.initialized:
+                self.log_message("Модель успешно инициализирована при запуске")
+        except Exception as e:
+            self.log_message(f"Ошибка автоматической инициализации: {e}")
 
     def log_message(self, message):
         """Запись сообщения в консоль"""
@@ -141,50 +148,117 @@ class ModbusServer:
             self.log_message("Симуляция уже выполняется, новый запуск невозможен!")
             return
 
-        cur.execute("SELECT * FROM slabs ORDER BY id DESC LIMIT 1")
-        last_row = cur.fetchone()
-        id, Length_slab, Width_slab, Thikness_slab, Temperature_slab, Material_slab, Diametr_roll, Material_roll = last_row
-        regs = self.hr_data_combined.getValues(1, 11)
+        if not self.initialized:
+            self.log_message("Модель не инициализирована! Сначала выполните Init.")
+            return
 
+        regs = self.hr_data_combined.getValues(1, 11)
+        reg8 = regs[8]
+
+        # Новая карта битов для reg8
+        Dir_of_rot_valk = bool(reg8 & 0x01)       
+        Dir_of_rot_rolg = bool(reg8 & 0x02)       
+        Mode = bool(reg8 & 0x04)                  # бит 2
+        Alarm = bool(reg8 & 0x08)                 # бит 3
+        Start = bool(reg8 & 0x10)                 # бит 4
+        Start_Gap = bool(reg8 & 0x20)             # бит 5
+        Start_Accel = bool(reg8 & 0x40)           # бит 6
+        Start_Roll = bool(reg8 & 0x80)            # бит 7
+
+        # Получаем остальные параметры
         Num_of_revol_rolls = regs_to_float(regs[0], regs[1])
         Roll_pos = regs_to_float(regs[2], regs[3])
         Num_of_revol_0rollg = regs_to_float(regs[4], regs[5])
         Num_of_revol_1rollg = regs_to_float(regs[6], regs[7])
         Speed_of_diverg = regs_to_float(regs[9], regs[10])
 
-        reg8 = regs[8]
-        Dir_of_rot_valk = bool(reg8 & 0x01)
-        Dir_of_rot_L_rolg = bool(reg8 & 0x02)
-        Mode = bool(reg8 & 0x04)
-        Dir_of_rot_R_rolg = bool(reg8 & 0x08)
-        Start = bool(reg8 & 0x10)
+        # Проверка и выполнение Gap_Valk
+        if Start_Gap:
+            if Roll_pos <= 0:
+                self.log_message("Ошибка: не установлено значение Roll_pos")
+                return
+                
+            self.log_message("Выполняется Gap_Valk...")
+            self.simulator._Gap_Valk_(Roll_pos, Dir_of_rot_valk)
+            self.update_simulation_registers_from_simulator()
+            self.simulator.save_logs_to_file("serv.txt")
+            self.log_message("Выполнился Gap_Valk...")
+            return  # Выходим и ждем следующего вызова
+            
+        # Проверка и выполнение Accel_Valk    
+        if Start_Accel:
+            if Num_of_revol_rolls <= 0:
+                self.log_message("Ошибка: не установлено значение Num_of_revol_rolls")
+                return
+            if not self.simulator.Gap_feedbackLog[-1]:
+                self.log_message("Ошибка: Gap_Valk не завершил работу")
+                return
+                
+            self.log_message("Выполняется Accel_Valk...")
+            self.simulator._Accel_Valk_(Num_of_revol_rolls, Dir_of_rot_rolg, Dir_of_rot_rolg)
+            self.update_simulation_registers_from_simulator()
+            self.simulator.save_logs_to_file("serv.txt")
+            self.log_message("Выполнился Accel_Valk...")
+            return  # Выходим и ждем следующего вызова
+            
+        # Проверка и выполнение Approaching_to_Roll    
+        if Start_Roll:
+            if Num_of_revol_0rollg <= 0 or Num_of_revol_1rollg <= 0:
+                self.log_message("Ошибка: не установлены скорости рольгангов")
+                return
+            if not self.simulator.Speed_V_feedbackLog[-1]:
+                self.log_message("Ошибка: Accel_Valk не завершил работу")
+                return
+                
+            self.log_message("Выполняется Approaching_to_Roll...")
+            sim_result = self.simulator._Approching_to_Roll_(
+                Dir_of_rot_valk,
+                Num_of_revol_0rollg,
+                Num_of_revol_1rollg,
+                Dir_of_rot_rolg,
+                Dir_of_rot_rolg
+            )
+            
+            if sim_result:
+                pyrometr_1, pyrometr_2, power_log, gap_log, speed_V, speed_V0, speed_V1, \
+                moment_log, effort_log, LeftCap, RightCap, Gap_feedback, Speed_feedback = sim_result
+                
+                sim_data = {
+                    'Pyro1': pyrometr_1[-1],
+                    'Pyro2': pyrometr_2[-1],
+                    'Power': power_log[-1],
+                    'Gap': gap_log[-1],
+                    'VRPM': speed_V[-1],
+                    'V0RPM': speed_V0[-1],
+                    'V1RPM': speed_V1[-1],
+                    'Moment': moment_log[-1],
+                    'Pressure': effort_log[-1],
+                    'StartCap': LeftCap[-1],
+                    'EndCap': RightCap[-1],
+                    'Gap_feedback': Gap_feedback[-1],
+                    'Speed_feedback': Speed_feedback[-1]
+                }
+                self.update_simulation_registers(sim_data, -1)
+            return  # Выходим после выполнения
 
-        if not Start:
-            self.log_message("Бит Start не установлен, симуляция не запускается.")
-            return
-
-        threading.Thread(
-            target=self.run_simulation_and_update,
-            kwargs=dict(
-                Num_of_revol_rolls=Num_of_revol_rolls,
-                Roll_pos=Roll_pos,
-                Num_of_revol_0rollg=Num_of_revol_0rollg,
-                Num_of_revol_1rollg=Num_of_revol_1rollg,
-                Dir_of_rot_valk=Dir_of_rot_valk,
-                Dir_of_rot_L_rolg=Dir_of_rot_L_rolg,
-                Dir_of_rot_R_rolg=Dir_of_rot_R_rolg,
-                Mode=Mode,
-                Speed_of_diverg=Speed_of_diverg,
-                Length_slab=Length_slab,
-                Width_slab=Width_slab,
-                Thikness_slab=Thikness_slab,
-                Temperature_slab=Temperature_slab,
-                Material_slab=Material_slab,
-                Material_roll=Material_roll,
-                Diametr_roll=Diametr_roll
-            ),
-            daemon=True
-        ).start()
+    def update_simulation_registers_from_simulator(self):
+        """Вспомогательный метод для обновления регистров текущими значениями симулятора"""
+        sim_data = {
+            'Pyro1': self.simulator.pyrometr_1[-1],
+            'Pyro2': self.simulator.pyrometr_2[-1],
+            'Power': self.simulator.power_log[-1],
+            'Gap': self.simulator.gap_log[-1],
+            'VRPM': self.simulator.speed_V[-1],
+            'V0RPM': self.simulator.speed_V0[-1],
+            'V1RPM': self.simulator.speed_V1[-1],
+            'Moment': self.simulator.moment_log[-1],
+            'Pressure': self.simulator.effort_log[-1],
+            'StartCap': self.simulator.LeftCap[-1],
+            'EndCap': self.simulator.RightCap[-1],
+            'Gap_feedback': self.simulator.Gap_feedbackLog[-1],
+            'Speed_feedback': self.simulator.Speed_V_feedbackLog[-1]
+        }
+        self.update_simulation_registers(sim_data, -1)
 
     def start_init_from_registers(self):
         """Инициализация (Init) прокатки из БД по биту и сохранение симулятора в self.simulator"""
@@ -203,9 +277,9 @@ class ModbusServer:
             # Создаём экземпляр симулятора и выполняем Init с данными из БД
             from RollingMillSimulator import RollingMillSimulator
             sim = RollingMillSimulator(
-                L=0,b=0,h_0=0,S=0,StartTemp=0,
+                L=0,b=0,h_0=0,S=0,StartTemp=0,RightStopCap=0,
                 DV=0,MV=0,MS=0,OutTemp=0,DR=0,SteelGrade=0,
-                V0=0,V1=0,VS=0,Dir_of_rot=0,
+                V0=0,V1=0,VS=0,Dir_of_rot=0,LeftStopCap=0,
                 d1=0,d2=0,d=0, V_Valk_Per=0,StartS=0
             )
             ms_clean = (Material_slab or "").replace(' ', '')
@@ -252,33 +326,109 @@ class ModbusServer:
             self.stop_monitoring = True
 
 def monitor_registers(server):
-    """Мониторинг регистров для автоматического запуска симуляции/Init"""
-    last_start_state = False
-    last_init_state = False  # отслеживаем старший бит (на 1 больше чем Start)
+    """Мониторинг регистров для автоматического запуска симуляции"""
+    last_reg8 = 0
+    method_running = False
+    gap_valk_done = False
+    accel_valk_done = False
 
     while not server.stop_monitoring:
         try:
+            if not server.initialized or server.simulator is None:
+                server.log_message("Ошибка: модель не инициализирована")
+                time.sleep(1)
+                continue
+
             regs = server.hr_data_combined.getValues(1, 11)
             reg8 = regs[8]
-            current_start_state = bool(reg8 & 0x10)  # бит Start (0x10)
-            current_init_state  = bool(reg8 & 0x20)  # старший на 1 бит (0x20)
+            
+            Start_Gap = bool(reg8 & 0x20)    # бит 5
+            Start_Accel = bool(reg8 & 0x40)  # бит 6  
+            Start_Roll = bool(reg8 & 0x80)   # бит 7
 
-            # Запуск Init при переходе старшего бита 0->1 и если не идёт симуляция
-            if current_init_state and not last_init_state:
-                server.log_message("Обнаружен запрос Init по биту 0x20")
-                server.start_init_from_registers()
+            if not method_running:
+                # Проверяем Start_Gap - может выполняться первым
+                if Start_Gap:
+                    method_running = True
+                    server.log_message("Запуск Gap_Valk...")
+                    Roll_pos = regs_to_float(regs[2], regs[3])
+                    Dir_of_rot_valk = bool(reg8 & 0x01)
+                    
+                    if Roll_pos <= 0:
+                        server.log_message("Ошибка: не установлено значение Roll_pos")
+                        method_running = False
+                        continue
+                        
+                    server.simulator._Gap_Valk_(Roll_pos, Dir_of_rot_valk)
+                    server.update_simulation_registers_from_simulator()
+                    if server.simulator.Gap_feedbackLog[-1]:
+                        gap_valk_done = True
+                        server.log_message("Gap_Valk выполнен успешно, можно запускать Accel_Valk...")
+                    method_running = False
+                    
+                # Проверяем Start_Accel - только после успешного Gap_Valk
+                elif Start_Accel:
+                    if not gap_valk_done:
+                        server.log_message("Ошибка: сначала должен быть выполнен Gap_Valk")
+                        continue
+                        
+                    method_running = True
+                    server.log_message("Запуск Accel_Valk...")
+                    Num_of_revol_rolls = regs_to_float(regs[0], regs[1])
+                    Dir_of_rot_rolg = bool(reg8 & 0x02)
+                    
+                    if Num_of_revol_rolls <= 0:
+                        server.log_message("Ошибка: не установлено значение Num_of_revol_rolls")
+                        method_running = False
+                        continue
+                        
+                    server.simulator._Accel_Valk_(Num_of_revol_rolls, Dir_of_rot_rolg, Dir_of_rot_rolg)
+                    server.update_simulation_registers_from_simulator()
+                    if server.simulator.Speed_V_feedbackLog[-1]:
+                        accel_valk_done = True
+                        server.log_message("Accel_Valk выполнен успешно, можно запускать Approaching_to_Roll...")
+                    method_running = False
+                    
+                # Проверяем Start_Roll - только после успешного Accel_Valk
+                elif Start_Roll:
+                    if not accel_valk_done:
+                        server.log_message("Ошибка: сначала должен быть выполнен Accel_Valk")
+                        continue
+                        
+                    method_running = True
+                    server.log_message("Запуск Approaching_to_Roll...")
+                    Num_of_revol_0rollg = regs_to_float(regs[4], regs[5])
+                    Num_of_revol_1rollg = regs_to_float(regs[6], regs[7])
+                    Dir_of_rot_valk = bool(reg8 & 0x01)
+                    Dir_of_rot_rolg = bool(reg8 & 0x02)
+                    
+                    if Num_of_revol_0rollg <= 0 or Num_of_revol_1rollg <= 0:
+                        server.log_message("Ошибка: не установлены скорости рольгангов")
+                        method_running = False
+                        continue
+                        
+                    sim_result = server.simulator._Approching_to_Roll_(
+                        Dir_of_rot_valk,
+                        Num_of_revol_0rollg, 
+                        Num_of_revol_1rollg,
+                        Dir_of_rot_rolg,
+                        Dir_of_rot_rolg
+                    )
+                    
+                    if sim_result:
+                        server.update_simulation_registers(sim_result, -1)
+                        server.log_message("Approaching_to_Roll выполнен")
+                    method_running = False
+                    # Сбрасываем флаги для возможности нового цикла
+                    gap_valk_done = False
+                    accel_valk_done = False
 
-            # Запуск симуляции только при переходе Start 0->1 и если не идёт симуляция
-            if current_start_state and not last_start_state and not server.simulation_running:
-                server.log_message("Обнаружен запуск симуляции по биту Start")
-                server.start_simulator_from_registers()
-
-            last_start_state = current_start_state
-            last_init_state = current_init_state
+            last_reg8 = reg8
             time.sleep(0.1)
 
         except Exception as e:
             server.log_message(f"Ошибка мониторинга: {e}")
+            method_running = False
             time.sleep(1)
 
 def main():

@@ -137,11 +137,8 @@ class RollingMillSimulator(RollingMill):
 
     def _Gap_Valk_(self,Roll_pos,Dir_of_rot_valk):
         Gap_flag = self.Gap_feedbackLog[-1]
-        current_pos_x = self.x_log[-1]
-        current_pos_x1 = self.x1_log[-1]
         current_time = self.time_log[-1]
         CurrentS = self.gap_log[-1]
-        current_length = self.length_log[-1]
         speed_V0 = self.speed_V0[-1] 
         speed_V1 = self.speed_V1[-1] 
         self.Dir_of_rot = Dir_of_rot_valk
@@ -152,18 +149,10 @@ class RollingMillSimulator(RollingMill):
         self.S = Roll_pos
         target_gap = self.S
         time_gap = (abs(self.S - CurrentS)) / (self.VS)
-        final_temp = current_temp - 50
+        final_temp = current_temp - 10
         temp_drop_per_ms = ((current_temp - final_temp) / time_gap) * self.time_step
        
         while CurrentS != target_gap:
-            if current_pos_x == self.LeftStopCap:
-                Left_Cap = 1
-            else:
-                Left_Cap = 0
-            if current_pos_x1 == self.RightStopCap:
-                Right_Cap = 1
-            else:
-                Right_Cap = 0
             CurrentS = min(CurrentS + gap_change_per_ms, target_gap) if CurrentS < target_gap else max(CurrentS - gap_change_per_ms, target_gap)
             if CurrentS == self.S:
                 Gap_flag = 1
@@ -183,12 +172,12 @@ class RollingMillSimulator(RollingMill):
                               pos_x1=round(self.x1_log[-1]), 
                               speed_V0=round(speed_V0,2), 
                               speed_V1=round(speed_V1,2), 
-                              length=round(current_length,2),
+                              length=round(self.length_log[-1],2),
                               effort=0,
                               moment=0,
                               power=0,
-                              LeftCap = Left_Cap,
-                              RightCap = Right_Cap,
+                              LeftCap = self.LeftCap[-1],
+                              RightCap = self.RightCap[-1],
                               Gap_feedback = Gap_flag,
                               Speed_V_feedback = self.Speed_V_feedbackLog[-1]) 
     
@@ -199,7 +188,7 @@ class RollingMillSimulator(RollingMill):
         Speed_V_flag = self.Speed_V_feedbackLog[-1]
         
         self.V_Valk_Per = (2 * pi * self.DV/2 * Num_of_revol_rolls) / 60
-        final_temp = current_temp - 50
+        final_temp = current_temp - 10
         time_accel = ((self.V_Valk_Per) / (self.accel))
         temp_drop_per_ms = ((current_temp - final_temp) / time_accel) * self.time_step
         
@@ -229,7 +218,7 @@ class RollingMillSimulator(RollingMill):
                               RightCap=self.RightCap[-1],
                               Gap_feedback = self.Gap_feedbackLog[-1],
                               Speed_V_feedback = Speed_V_flag)
-
+        pass
 
     def _Approching_to_Roll_(self,Dir_of_rot,Num_of_revol_0rollg,Num_of_revol_1rollg,Dir_of_rot_L_rolg,Dir_of_rot_R_rolg):
         "Проход сляба к валкам"
@@ -280,7 +269,6 @@ class RollingMillSimulator(RollingMill):
                 else:
                     Pyro1 = self.TempV + self.roughness(self.TempV,0.07)
                 Pyro2 = self.TempV + self.roughness(self.TempV,0.07)
-                current_length = self.length_log[-1]
                 current_time += self.time_step
                 self._update_logs(time=round(current_time,2), 
                                 gap=round(self.gap_log[-1],2), 
@@ -292,7 +280,7 @@ class RollingMillSimulator(RollingMill):
                                 pos_x1=round(current_pos_x1,2), 
                                 speed_V0=round(speed_V0,2), 
                                 speed_V1=round(speed_V1,2), 
-                                length=round(current_length,2),
+                                length=round(self.length_log[-1],2),
                                 effort=0,
                                 moment=0,
                                 power=0,
@@ -301,12 +289,12 @@ class RollingMillSimulator(RollingMill):
                                 Gap_feedback = self.Gap_feedbackLog[-1],
                                 Speed_V_feedback = self.Speed_V_feedbackLog[-1])
         else:
-            while current_pos_x != self.d1 + self.d/2:
+            while current_pos_x != self.d1 + self.d/2 + Offset:
                 current_temp = max(current_temp - temp_drop_per_ms, final_temp)
                 speed_V0 = min(speed_V0 + self.accel * self.time_step, self.V0)
                 speed_V1 = min(speed_V1 + self.accel * self.time_step, self.V1)
-                current_pos_x = max(current_pos_x - speed_V1 * self.time_step, self.d1 + self.d/2)
-                current_pos_x1 = max(current_pos_x1 - speed_V1 * self.time_step, self.d1+self.d/2 + self.length_log[-1])
+                current_pos_x = max(current_pos_x - speed_V1 * self.time_step, self.d1 + self.d/2 + Offset)
+                current_pos_x1 = max(current_pos_x1 - speed_V1 * self.time_step, self.d1+self.d/2 + Offset + self.length_log[-1])
                 if current_pos_x <= self.RightStopCap and current_pos_x1 >= self.RightStopCap:
                     Right_Cap = 1
                 else:
@@ -327,7 +315,7 @@ class RollingMillSimulator(RollingMill):
                                 pos_x1=round(current_pos_x1,2), 
                                 speed_V0=round(speed_V0,2), 
                                 speed_V1=round(speed_V1,2), 
-                                length=round(current_length,2),
+                                length=round(self.length_log[-1],2),
                                 effort=0,
                                 moment=0,
                                 power=0,
@@ -337,8 +325,19 @@ class RollingMillSimulator(RollingMill):
                                 Speed_V_feedback = self.Speed_V_feedbackLog[-1])
         self._simulate_rolling_pass()
         self._simulate_exit_from_rolls()
-        self.save_logs_to_file("my_logs.txt")
-        pass
+        return (self.pyrometr_1,
+                self.pyrometr_2,
+                self.power_log,
+                self.gap_log,
+                self.speed_V,
+                self.speed_V0,
+                self.speed_V1,
+                self.moment_log,
+                self.effort_log,
+                self.LeftCap,
+                self.RightCap,
+                self.Gap_feedbackLog,
+                self.Speed_V_feedbackLog)
 
 
     def _simulate_rolling_pass(self):
@@ -463,6 +462,7 @@ class RollingMillSimulator(RollingMill):
                         Gap_feedback = self.Gap_feedbackLog[-1],
                         Speed_V_feedback = self.Speed_V_feedbackLog[-1]
                         ) 
+        pass
 
     def _simulate_exit_from_rolls(self):
         "Симуляция дохода сляба до концевика"
@@ -471,6 +471,8 @@ class RollingMillSimulator(RollingMill):
         current_temp = self.temperature_log[-1]
         LeftCap = self.LeftCap[-1]
         RightCap = self.RightCap[-1]
+        x = self.x_log[-1]
+        x1 = self.x1_log[-1]
         #1.Рассчет падения температуры  
         distance_to_cover = (self.d/2 + self.d2) - self.x_log[-1]
         time_first_cycle = distance_to_cover / self.speed_V1[-1]
@@ -479,7 +481,7 @@ class RollingMillSimulator(RollingMill):
         time_brake_V1 = self.speed_V1[-1] / self.accel
         time_second_cycle = max(time_brake_speed, time_brake_V0, time_brake_V1)
         total_time = time_first_cycle + time_second_cycle
-        final_temp = current_temp - 100
+        final_temp = current_temp - 10
         temp_drop_per_ms = ((current_temp - final_temp) / total_time) * self.time_step
         #2.Доход сляба до конечного концевика
         if self.Dir_of_rot == 0:
@@ -558,6 +560,7 @@ class RollingMillSimulator(RollingMill):
         current_speed = self.speed_V[-1]
         current_V0 = self.speed_V0[-1]
         current_V1 = self.speed_V1[-1]
+        current_temp = self.temperature_log[-1]
         if self.Dir_of_rot == 0:
             while current_speed > 0 or current_V0 > 0 or current_V1 > 0:
                 current_speed = max(current_speed - self.accel * self.time_step,0)
@@ -568,7 +571,7 @@ class RollingMillSimulator(RollingMill):
                 
                 if current_speed != self.V_Valk_Per:
                     Speed_V_flag = 0
-                current_temp -= temp_drop_per_ms
+                current_temp = max(current_temp - temp_drop_per_ms, final_temp)
                 
                 if x1 >= self.RightStopCap and x <= self.RightStopCap:
                     RightCap = 1
@@ -595,7 +598,7 @@ class RollingMillSimulator(RollingMill):
                                 moment=0,
                                 power=0,
                                 LeftCap=self.LeftCap[-1],
-                                RightCap=self.RightCap[-1],
+                                RightCap=RightCap,
                                 Gap_feedback = self.Gap_feedbackLog[-1],
                                 Speed_V_feedback = Speed_V_flag)
         else:
@@ -605,9 +608,17 @@ class RollingMillSimulator(RollingMill):
                 current_V1 = max(current_V1 - self.accel * self.time_step,0)
                 x = self.x_log[-1] - self.speed_V1[-1] * self.time_step
                 x1 = self.x1_log[-1] - self.speed_V1[-1] * self.time_step
+                                
+                if x <= self.LeftStopCap and x1 >= self.LeftStopCap:
+                    LeftCap = 1
+                else:
+                    LeftCap = 0  
+                
                 if current_speed != self.V_Valk_Per:
                     Speed_V_flag = 0
-                current_temp -= temp_drop_per_ms
+                
+                current_temp = max(current_temp - temp_drop_per_ms, final_temp)
+                
                 if self.x_log[-1] <= 2000 and self.x1_log[-1] >= 2000:
                     Pyro1 = current_temp
                 else:
@@ -627,7 +638,7 @@ class RollingMillSimulator(RollingMill):
                                 effort=0,
                                 moment=0,
                                 power=0,
-                                LeftCap=self.LeftCap[-1],
+                                LeftCap=LeftCap,
                                 RightCap=self.RightCap[-1],
                                 Gap_feedback = self.Gap_feedbackLog[-1],
                                 Speed_V_feedback = Speed_V_flag)
@@ -660,7 +671,7 @@ class RollingMillSimulator(RollingMill):
                               Gap_feedback = self.Gap_feedbackLog[-1],
                               Speed_V_feedback = 0)
         pass
-
+    
     def Init(self, Length_slab, Width_slab, Thikness_slab, Temperature_slab, Material_slab, Diametr_roll, Material_roll):
         self.TempV=28
         self.L = Length_slab
@@ -674,7 +685,7 @@ class RollingMillSimulator(RollingMill):
         self.temperature_log = [self.StartTemp]
         self.length_log = [self.L]
         self.height_log = [self.h_0]
-        self.LeftCap = [1]
+        self.LeftCap = [0]
         self.RightCap = [0]
         self.x_log = [0]
         self.x1_log = [self.L]
@@ -708,11 +719,16 @@ if __name__ == "__main__":
         V0=0,V1=0,VS=0,Dir_of_rot=0,LeftStopCap=0,
         d1=0,d2=0,d=0, V_Valk_Per=0,StartS=0
     )
-    simulator.Init(Length_slab=300, Width_slab=150, Thikness_slab=200, Temperature_slab=1200, Material_slab='Ст3сп', Diametr_roll=300, Material_roll='Сталь')
-    simulator._Gap_Valk_(190,0)
+    simulator.Init(Length_slab=300, Width_slab=250, Thikness_slab=350, Temperature_slab=1200, Material_slab='Ст3сп', Diametr_roll=300, Material_roll='Сталь')
+    #1 Итерация
+    simulator._Gap_Valk_(300,0)
     simulator._Accel_Valk_(10,0,0)
-    simulator._Approching_to_Roll_(0,38,38,0,0)
-    
+    simulator._Approching_to_Roll_(0,38,40,0,0)
+    simulator.save_logs_to_file("my_logs.txt")
+    # #2 Итерация
+    # simulator._Gap_Valk_(180,1)
+    # simulator._Accel_Valk_(10,1,1)
+    # simulator._Approching_to_Roll_(1,40,38,1,1)
     
     
 
