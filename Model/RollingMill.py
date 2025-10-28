@@ -1,7 +1,7 @@
 from math import *
 
 class RollingMill:
-    def __init__(self,DR,L,b,h_0,StartTemp,DV,MV,MS,OutTemp,SteelGrade,V0,V1,S,V_Valk_Per,StartS,d1,d2,d,VS,Dir_of_rot):
+    def __init__(self,DR,L,b,h_0,StartTemp,DV,MV,MS,OutTemp,SteelGrade,V0,V1,S,V_Valk_Per,StartS,d1,d2,d,VS,Dir_of_rot,LeftStopCap,RightStopCap):
         #Параметры сляба(Задает оператор)
         self.L = L #Начальная длина сляба(мм)
         self.b = b #Ширина сляба(мм)
@@ -32,6 +32,7 @@ class RollingMill:
         self.V_Valk_Per = V_Valk_Per #Заданная скорость валков оператором в об/мин
         self.SteelGrade = SteelGrade #Марка стали
         self.Dir_of_rot = Dir_of_rot #Направление варщения 
+ 
 
     def SpeedOfRolling(self, DV, V) -> float:
         # w = V / (π * DV) - частота вращения (об/с)
@@ -168,9 +169,7 @@ class RollingMill:
     
     def ContactArcLen(self,DV,h_0,h_1) -> float:
         "Длина дуги контакта"
-        print(h_0,h_1)
         LK = sqrt(DV/2 * (h_0 - h_1))
-        
         return LK #мм
     
     # def ContactArea(self,b_0, b_1, LK) -> float:
