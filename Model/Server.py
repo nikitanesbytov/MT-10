@@ -170,7 +170,7 @@ class ModbusServer:
         self.log_message("Для запуска симуляции установите бит Start (0x10) в регистре 8")
         
         try:
-            StartTcpServer(context=self.context, address=("10.77.100.52", 55000))
+            StartTcpServer(context=self.context, address=("192.168.0.99", 55000))
         except Exception as e:
             self.log_message(f"Ошибка сервера: {e}")
         finally:
@@ -254,10 +254,10 @@ class ModbusServer:
             
             # Флаги в компактном формате
             flags_str = []
-            if StartCap_val: flags_str.append("SC")
-            if EndCap_val: flags_str.append("EC") 
-            if Gap_feedback_val: flags_str.append("GF")
-            if Speed_feedback_val: flags_str.append("SF")
+            if StartCap_val: flags_str.append("LCap")
+            if EndCap_val: flags_str.append("RCap") 
+            if Gap_feedback_val: flags_str.append("Gap")
+            if Speed_feedback_val: flags_str.append("Speed")
             
             f.write("F:" + ("".join(flags_str) if flags_str else "---"))
             f.write("\n")
@@ -278,7 +278,7 @@ class ModbusServer:
                 if Start_Gap and self.counter == 0 and self.counter2 < 2:
                     Roll_pos = regs_to_float(regs[2], regs[3])
                     Dir_of_rot_valk = bool(reg8 & 0x01)
-                    self.log_message("🚀 ЗАПУСК Gap_Valk...")
+                    self.log_message("ЗАПУСК Gap_Valk...")
                     self.log_message(f"Параметры: Roll_pos={Roll_pos}, Dir_of_rot_valk={Dir_of_rot_valk}")
                     sim_result = self.simulator._Gap_Valk_(Roll_pos, Dir_of_rot_valk)
                     while self.flag != 1:
@@ -291,7 +291,7 @@ class ModbusServer:
                 if Start_Accel and self.counter == 1 and self.counter2 < 2:
                     Num_of_revol_rolls = regs_to_float(regs[0], regs[1])
                     Dir_of_rot_rolg = bool(reg8 & 0x02)
-                    self.log_message("🚀 ЗАПУСК Accel_Valk...")
+                    self.log_message("ЗАПУСК Accel_Valk...")
                     self.log_message(f"Параметры: Num_of_revol_rolls={Num_of_revol_rolls}")
                     sim_result = self.simulator._Accel_Valk_(Num_of_revol_rolls, Dir_of_rot_rolg, Dir_of_rot_rolg)
                     while self.flag != 1:
@@ -306,7 +306,7 @@ class ModbusServer:
                     Num_of_revol_1rollg = regs_to_float(regs[6], regs[7])
                     Dir_of_rot_valk = bool(reg8 & 0x01)
                     Dir_of_rot_rolg = bool(reg8 & 0x02)
-                    self.log_message("🚀 ЗАПУСК Approaching_to_Roll...")
+                    self.log_message("ЗАПУСК Approaching_to_Roll...")
                     sim_result = self.simulator._Approching_to_Roll_(
                         Dir_of_rot_valk,
                         Num_of_revol_0rollg,
