@@ -181,6 +181,7 @@ class RollingMillSimulator(RollingMill):
                               Gap_feedback = Gap_flag,
                               Speed_V_feedback = self.Speed_V_feedbackLog[-1]) 
         return {
+            'Time': self.time_log,
             'Pyro1': self.pyrometr_1,
             'Pyro2': self.pyrometr_2,
             'Power': self.power_log,
@@ -234,6 +235,7 @@ class RollingMillSimulator(RollingMill):
                               Gap_feedback = self.Gap_feedbackLog[-1],
                               Speed_V_feedback = Speed_V_flag)
         return {
+            'Time': self.time_log,
             'Pyro1': self.pyrometr_1,
             'Pyro2': self.pyrometr_2,
             'Power': self.power_log,
@@ -354,6 +356,7 @@ class RollingMillSimulator(RollingMill):
                                 Gap_feedback = self.Gap_feedbackLog[-1],
                                 Speed_V_feedback = self.Speed_V_feedbackLog[-1])
         return {
+            'Time': self.time_log,
             'Pyro1': self.pyrometr_1,
             'Pyro2': self.pyrometr_2,
             'Power': self.power_log,
@@ -493,6 +496,7 @@ class RollingMillSimulator(RollingMill):
                         Speed_V_feedback = self.Speed_V_feedbackLog[-1]
                         ) 
         return {
+            'Time': self.time_log,
             'Pyro1': self.pyrometr_1,
             'Pyro2': self.pyrometr_2,
             'Power': self.power_log,
@@ -687,6 +691,7 @@ class RollingMillSimulator(RollingMill):
                                 Gap_feedback = self.Gap_feedbackLog[-1],
                                 Speed_V_feedback = Speed_V_flag)
         return {
+            'Time': self.time_log,
             'Pyro1': self.pyrometr_1,
             'Pyro2': self.pyrometr_2,
             'Power': self.power_log,
@@ -770,25 +775,25 @@ class RollingMillSimulator(RollingMill):
         self.LeftStopCap = 850 #Считаем от 0 координаты
         self.RightStopCap = 3850 #Считаем от 0 координаты
 
-# if __name__ == "__main__":
-#     simulator = RollingMillSimulator(
-#         L=0,b=0,h_0=0,S=0,StartTemp=0,RightStopCap=0,
-#         DV=0,MV=0,MS=0,OutTemp=0,DR=0,SteelGrade=0,
-#         V0=0,V1=0,VS=0,Dir_of_rot=0,LeftStopCap=0,
-#         d1=0,d2=0,d=0, V_Valk_Per=0,StartS=0
-#     )
-#     simulator.Init(Length_slab=300, Width_slab=250, Thikness_slab=350, Temperature_slab=1200, Material_slab='Ст3сп', Diametr_roll=300, Material_roll='Сталь')
-#     #1 Итерация
-#     simulator._Gap_Valk_(300,0)
-#     simulator._Accel_Valk_(100,0,0)
-#     simulator._Approching_to_Roll_(0,100,200,0,0)
-#     simulator._simulate_rolling_pass()
-#     simulator._simulate_exit_from_rolls()
-#     simulator.save_logs_to_file("my_logs.txt")
-#     # #2 Итерация
-#     # simulator._Gap_Valk_(180,1)
-#     # simulator._Accel_Valk_(10,1,1)
-#     # simulator._Approching_to_Roll_(1,40,38,1,1)
+if __name__ == "__main__":
+    simulator = RollingMillSimulator(
+        L=0,b=0,h_0=0,S=0,StartTemp=0,RightStopCap=0,
+        DV=0,MV=0,MS=0,OutTemp=0,DR=0,SteelGrade=0,
+        V0=0,V1=0,VS=0,Dir_of_rot=0,LeftStopCap=0,
+        d1=0,d2=0,d=0, V_Valk_Per=0,StartS=0
+    )
+    simulator.Init(Length_slab=300, Width_slab=250, Thikness_slab=350, Temperature_slab=1200, Material_slab='Ст3сп', Diametr_roll=300, Material_roll='Сталь')
+    #1 Итерация
+    print(len(simulator._Gap_Valk_(300,0)['Time']))
+    print(len(simulator._Accel_Valk_(100,0,0)['Time']))
+    simulator._Approching_to_Roll_(0,100,200,0,0)
+    simulator._simulate_rolling_pass()
+    simulator._simulate_exit_from_rolls()
+    simulator.save_logs_to_file("my_logs.txt")
+    # #2 Итерация
+    # simulator._Gap_Valk_(180,1)
+    # simulator._Accel_Valk_(10,1,1)
+    # simulator._Approching_to_Roll_(1,40,38,1,1)
     
     
 

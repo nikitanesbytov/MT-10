@@ -1,465 +1,336 @@
-Step 0: Pyro1=28 Pyro2=28 Pressure=0 Gap=0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 1: Pyro1=28.88 Pyro2=29.77 Pressure=0 Gap=10.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 2: Pyro1=26.44 Pyro2=26.54 Pressure=0 Gap=20.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 3: Pyro1=29.88 Pyro2=28.88 Pressure=0 Gap=30.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 4: Pyro1=28.35 Pyro2=26.66 Pressure=0 Gap=40.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 5: Pyro1=27.34 Pyro2=29.94 Pressure=0 Gap=50.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 6: Pyro1=28.98 Pyro2=29.89 Pressure=0 Gap=60.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 7: Pyro1=27.44 Pyro2=28.82 Pressure=0 Gap=70.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 8: Pyro1=26.19 Pyro2=28.24 Pressure=0 Gap=80.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 9: Pyro1=27.01 Pyro2=29.8 Pressure=0 Gap=90.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 10: Pyro1=28.29 Pyro2=29.57 Pressure=0 Gap=100.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 11: Pyro1=29.21 Pyro2=26.67 Pressure=0 Gap=110.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 12: Pyro1=29.13 Pyro2=27.98 Pressure=0 Gap=120.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 13: Pyro1=27.32 Pyro2=26.6 Pressure=0 Gap=130.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 14: Pyro1=28.9 Pyro2=28.74 Pressure=0 Gap=140.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 15: Pyro1=28.68 Pyro2=26.21 Pressure=0 Gap=150.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 16: Pyro1=26.25 Pyro2=29.9 Pressure=0 Gap=160.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 17: Pyro1=26.31 Pyro2=28.99 Pressure=0 Gap=170.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 18: Pyro1=26.08 Pyro2=29.23 Pressure=0 Gap=180.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 19: Pyro1=28.18 Pyro2=26.27 Pressure=0 Gap=190.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 20: Pyro1=28.82 Pyro2=27.2 Pressure=0 Gap=200.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 21: Pyro1=29.15 Pyro2=26.11 Pressure=0 Gap=210.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 22: Pyro1=28.25 Pyro2=26.6 Pressure=0 Gap=220.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 23: Pyro1=29.14 Pyro2=28.56 Pressure=0 Gap=230.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 24: Pyro1=29.28 Pyro2=28.94 Pressure=0 Gap=240.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 25: Pyro1=27.94 Pyro2=26.97 Pressure=0 Gap=250.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 26: Pyro1=28.66 Pyro2=29.49 Pressure=0 Gap=260.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 27: Pyro1=28.41 Pyro2=29.48 Pressure=0 Gap=270.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 28: Pyro1=26.39 Pyro2=26.4 Pressure=0 Gap=280.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 29: Pyro1=26.1 Pyro2=28.17 Pressure=0 Gap=290.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 30: Pyro1=27.19 Pyro2=28.64 Pressure=0 Gap=300.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 0: Pyro1=28 Pyro2=28 Pressure=0 Gap=0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 1: Pyro1=28.88 Pyro2=29.77 Pressure=0 Gap=10.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 2: Pyro1=26.44 Pyro2=26.54 Pressure=0 Gap=20.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 3: Pyro1=29.88 Pyro2=28.88 Pressure=0 Gap=30.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 4: Pyro1=28.35 Pyro2=26.66 Pressure=0 Gap=40.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 5: Pyro1=27.34 Pyro2=29.94 Pressure=0 Gap=50.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 6: Pyro1=28.98 Pyro2=29.89 Pressure=0 Gap=60.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 7: Pyro1=27.44 Pyro2=28.82 Pressure=0 Gap=70.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 8: Pyro1=26.19 Pyro2=28.24 Pressure=0 Gap=80.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 9: Pyro1=27.01 Pyro2=29.8 Pressure=0 Gap=90.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 10: Pyro1=28.29 Pyro2=29.57 Pressure=0 Gap=100.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 11: Pyro1=29.21 Pyro2=26.67 Pressure=0 Gap=110.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 12: Pyro1=29.13 Pyro2=27.98 Pressure=0 Gap=120.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 13: Pyro1=27.32 Pyro2=26.6 Pressure=0 Gap=130.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 14: Pyro1=28.9 Pyro2=28.74 Pressure=0 Gap=140.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 15: Pyro1=28.68 Pyro2=26.21 Pressure=0 Gap=150.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 16: Pyro1=26.25 Pyro2=29.9 Pressure=0 Gap=160.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 17: Pyro1=26.31 Pyro2=28.99 Pressure=0 Gap=170.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 18: Pyro1=26.08 Pyro2=29.23 Pressure=0 Gap=180.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 19: Pyro1=28.18 Pyro2=26.27 Pressure=0 Gap=190.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 20: Pyro1=28.82 Pyro2=27.2 Pressure=0 Gap=200.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 21: Pyro1=29.15 Pyro2=26.11 Pressure=0 Gap=210.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 22: Pyro1=28.25 Pyro2=26.6 Pressure=0 Gap=220.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 23: Pyro1=29.14 Pyro2=28.56 Pressure=0 Gap=230.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 24: Pyro1=29.28 Pyro2=28.94 Pressure=0 Gap=240.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 25: Pyro1=27.94 Pyro2=26.97 Pressure=0 Gap=250.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 26: Pyro1=28.66 Pyro2=29.49 Pressure=0 Gap=260.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 27: Pyro1=28.41 Pyro2=29.48 Pressure=0 Gap=270.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 28: Pyro1=26.39 Pyro2=26.4 Pressure=0 Gap=280.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 29: Pyro1=26.1 Pyro2=28.17 Pressure=0 Gap=290.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 30: Pyro1=27.19 Pyro2=28.64 Pressure=0 Gap=300.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 31: Pyro1=27.26 Pyro2=26.11 Pressure=0 Gap=300.0 VRPM=50.0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 32: Pyro1=29.78 Pyro2=27.71 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 0: Pyro1=28 Pyro2=28 Pressure=0 Gap=0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 1: Pyro1=28.88 Pyro2=29.77 Pressure=0 Gap=10.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 2: Pyro1=26.44 Pyro2=26.54 Pressure=0 Gap=20.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 3: Pyro1=29.88 Pyro2=28.88 Pressure=0 Gap=30.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 4: Pyro1=28.35 Pyro2=26.66 Pressure=0 Gap=40.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 5: Pyro1=27.34 Pyro2=29.94 Pressure=0 Gap=50.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 6: Pyro1=28.98 Pyro2=29.89 Pressure=0 Gap=60.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 7: Pyro1=27.44 Pyro2=28.82 Pressure=0 Gap=70.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 8: Pyro1=26.19 Pyro2=28.24 Pressure=0 Gap=80.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 9: Pyro1=27.01 Pyro2=29.8 Pressure=0 Gap=90.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 10: Pyro1=28.29 Pyro2=29.57 Pressure=0 Gap=100.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 11: Pyro1=29.21 Pyro2=26.67 Pressure=0 Gap=110.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 12: Pyro1=29.13 Pyro2=27.98 Pressure=0 Gap=120.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 13: Pyro1=27.32 Pyro2=26.6 Pressure=0 Gap=130.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 14: Pyro1=28.9 Pyro2=28.74 Pressure=0 Gap=140.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 15: Pyro1=28.68 Pyro2=26.21 Pressure=0 Gap=150.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 16: Pyro1=26.25 Pyro2=29.9 Pressure=0 Gap=160.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 17: Pyro1=26.31 Pyro2=28.99 Pressure=0 Gap=170.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 18: Pyro1=26.08 Pyro2=29.23 Pressure=0 Gap=180.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 19: Pyro1=28.18 Pyro2=26.27 Pressure=0 Gap=190.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 20: Pyro1=28.82 Pyro2=27.2 Pressure=0 Gap=200.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 21: Pyro1=29.15 Pyro2=26.11 Pressure=0 Gap=210.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 22: Pyro1=28.25 Pyro2=26.6 Pressure=0 Gap=220.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 23: Pyro1=29.14 Pyro2=28.56 Pressure=0 Gap=230.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 24: Pyro1=29.28 Pyro2=28.94 Pressure=0 Gap=240.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 25: Pyro1=27.94 Pyro2=26.97 Pressure=0 Gap=250.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 26: Pyro1=28.66 Pyro2=29.49 Pressure=0 Gap=260.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 27: Pyro1=28.41 Pyro2=29.48 Pressure=0 Gap=270.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 28: Pyro1=26.39 Pyro2=26.4 Pressure=0 Gap=280.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 29: Pyro1=26.1 Pyro2=28.17 Pressure=0 Gap=290.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 30: Pyro1=27.19 Pyro2=28.64 Pressure=0 Gap=300.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 31: Pyro1=27.26 Pyro2=26.11 Pressure=0 Gap=300.0 VRPM=50.0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 32: Pyro1=29.78 Pyro2=27.71 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 33: Pyro1=26.71 Pyro2=26.32 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=50.0 V1RPM=50.0 Moment=0 Power=0 
-Step 34: Pyro1=26.2 Pyro2=27.7 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=100.0 Moment=0 Power=0 
-Step 35: Pyro1=28.39 Pyro2=28.41 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=150.0 Moment=0 Power=0 
-Step 36: Pyro1=28.69 Pyro2=28.06 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 37: Pyro1=27.93 Pyro2=27.08 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 38: Pyro1=28.88 Pyro2=29.0 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 39: Pyro1=27.39 Pyro2=29.86 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 40: Pyro1=26.19 Pyro2=29.51 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 41: Pyro1=28.73 Pyro2=26.31 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 42: Pyro1=29.1 Pyro2=27.99 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 43: Pyro1=29.66 Pyro2=26.19 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 44: Pyro1=28.26 Pyro2=29.17 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 45: Pyro1=28.56 Pyro2=27.01 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 46: Pyro1=29.36 Pyro2=28.17 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 47: Pyro1=27.7 Pyro2=28.68 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 48: Pyro1=26.79 Pyro2=29.84 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 49: Pyro1=26.95 Pyro2=28.0 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 50: Pyro1=28.75 Pyro2=27.82 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 51: Pyro1=28.74 Pyro2=29.0 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 52: Pyro1=27.9 Pyro2=26.77 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 53: Pyro1=28.43 Pyro2=28.48 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 54: Pyro1=29.93 Pyro2=28.19 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 55: Pyro1=26.19 Pyro2=26.4 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 56: Pyro1=29.57 Pyro2=26.17 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 57: Pyro1=26.28 Pyro2=26.59 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 58: Pyro1=26.55 Pyro2=29.35 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 59: Pyro1=28.94 Pyro2=27.0 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 60: Pyro1=28.83 Pyro2=27.71 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 61: Pyro1=29.62 Pyro2=29.79 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 62: Pyro1=27.54 Pyro2=27.27 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 63: Pyro1=27.58 Pyro2=27.25 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 64: Pyro1=28.88 Pyro2=27.07 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 65: Pyro1=27.31 Pyro2=28.67 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 66: Pyro1=28.94 Pyro2=27.13 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 67: Pyro1=28.26 Pyro2=29.69 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 68: Pyro1=26.28 Pyro2=27.35 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 69: Pyro1=27.26 Pyro2=28.76 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 70: Pyro1=28.4 Pyro2=27.73 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 71: Pyro1=28.62 Pyro2=26.93 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 72: Pyro1=26.23 Pyro2=29.34 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 73: Pyro1=29.92 Pyro2=29.67 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 74: Pyro1=28.66 Pyro2=29.04 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 75: Pyro1=28.8 Pyro2=28.0 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 76: Pyro1=27.18 Pyro2=26.58 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 77: Pyro1=28.1 Pyro2=27.41 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 78: Pyro1=27.09 Pyro2=27.83 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 79: Pyro1=26.09 Pyro2=28.45 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 80: Pyro1=27.78 Pyro2=26.46 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 81: Pyro1=29.39 Pyro2=28.95 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 82: Pyro1=27.9 Pyro2=27.24 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 83: Pyro1=26.14 Pyro2=26.92 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 84: Pyro1=28.29 Pyro2=28.05 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 85: Pyro1=27.51 Pyro2=27.31 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 86: Pyro1=28.13 Pyro2=28.3 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 87: Pyro1=29.19 Pyro2=26.91 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 88: Pyro1=27.87 Pyro2=29.53 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 89: Pyro1=28.74 Pyro2=27.26 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 90: Pyro1=26.96 Pyro2=29.47 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 91: Pyro1=28.92 Pyro2=28.12 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 92: Pyro1=26.45 Pyro2=26.07 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 93: Pyro1=29.46 Pyro2=27.26 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 94: Pyro1=26.39 Pyro2=26.89 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 95: Pyro1=28.94 Pyro2=29.23 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 96: Pyro1=26.98 Pyro2=28.16 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 97: Pyro1=28.75 Pyro2=26.54 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 98: Pyro1=28.64 Pyro2=26.14 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 99: Pyro1=28.19 Pyro2=26.17 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 100: Pyro1=29.18 Pyro2=26.51 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 101: Pyro1=29.84 Pyro2=29.43 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 102: Pyro1=27.15 Pyro2=26.36 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 103: Pyro1=28.64 Pyro2=28.81 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 104: Pyro1=29.24 Pyro2=26.8 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 105: Pyro1=29.68 Pyro2=27.45 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 106: Pyro1=28.6 Pyro2=26.53 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 107: Pyro1=26.29 Pyro2=29.06 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 108: Pyro1=27.43 Pyro2=28.5 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 109: Pyro1=26.99 Pyro2=29.75 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 110: Pyro1=29.0 Pyro2=26.31 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 111: Pyro1=27.66 Pyro2=27.77 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 112: Pyro1=27.59 Pyro2=28.87 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 113: Pyro1=26.8 Pyro2=26.68 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 114: Pyro1=26.58 Pyro2=29.51 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 115: Pyro1=29.03 Pyro2=29.88 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 116: Pyro1=28.16 Pyro2=28.83 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 117: Pyro1=29.68 Pyro2=29.05 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 118: Pyro1=29.23 Pyro2=28.36 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 119: Pyro1=28.34 Pyro2=27.13 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 120: Pyro1=27.49 Pyro2=27.59 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 121: Pyro1=29.13 Pyro2=27.72 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 122: Pyro1=28.03 Pyro2=28.06 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 123: Pyro1=26.22 Pyro2=29.24 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 124: Pyro1=28.81 Pyro2=26.8 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 125: Pyro1=27.24 Pyro2=28.24 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 126: Pyro1=29.23 Pyro2=28.44 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 127: Pyro1=28.93 Pyro2=29.66 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 128: Pyro1=28.01 Pyro2=26.25 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 129: Pyro1=29.6 Pyro2=26.45 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 130: Pyro1=28.43 Pyro2=27.16 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 131: Pyro1=26.4 Pyro2=26.09 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 132: Pyro1=26.28 Pyro2=26.82 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 133: Pyro1=27.72 Pyro2=28.81 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 134: Pyro1=28.04 Pyro2=27.37 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 135: Pyro1=28.82 Pyro2=28.25 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 136: Pyro1=27.02 Pyro2=26.97 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 137: Pyro1=29.25 Pyro2=26.33 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 138: Pyro1=29.28 Pyro2=27.82 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 139: Pyro1=29.84 Pyro2=26.54 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 140: Pyro1=26.77 Pyro2=27.02 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 141: Pyro1=29.04 Pyro2=29.82 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 142: Pyro1=28.22 Pyro2=26.06 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 143: Pyro1=26.06 Pyro2=29.81 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 144: Pyro1=29.54 Pyro2=29.72 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 145: Pyro1=27.42 Pyro2=28.59 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 146: Pyro1=27.55 Pyro2=26.79 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 147: Pyro1=27.63 Pyro2=29.42 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 148: Pyro1=28.72 Pyro2=27.58 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 149: Pyro1=28.85 Pyro2=29.21 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 150: Pyro1=27.7 Pyro2=28.95 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 151: Pyro1=29.06 Pyro2=27.82 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 152: Pyro1=26.48 Pyro2=29.02 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 153: Pyro1=26.42 Pyro2=26.3 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 154: Pyro1=29.25 Pyro2=29.57 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 155: Pyro1=26.13 Pyro2=26.62 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 156: Pyro1=27.2 Pyro2=26.07 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 157: Pyro1=26.26 Pyro2=27.11 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 158: Pyro1=28.63 Pyro2=28.03 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 159: Pyro1=27.03 Pyro2=26.04 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 160: Pyro1=29.73 Pyro2=29.6 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 161: Pyro1=27.44 Pyro2=29.68 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 162: Pyro1=26.5 Pyro2=29.34 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 163: Pyro1=28.43 Pyro2=27.0 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 164: Pyro1=27.36 Pyro2=27.75 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 165: Pyro1=28.77 Pyro2=26.44 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 166: Pyro1=29.12 Pyro2=28.06 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 167: Pyro1=27.19 Pyro2=26.39 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 168: Pyro1=28.65 Pyro2=27.95 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 169: Pyro1=28.12 Pyro2=27.18 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 170: Pyro1=27.68 Pyro2=26.55 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 171: Pyro1=28.78 Pyro2=28.46 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 172: Pyro1=26.56 Pyro2=27.87 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 173: Pyro1=29.45 Pyro2=29.27 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 174: Pyro1=27.27 Pyro2=27.78 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 175: Pyro1=29.72 Pyro2=26.74 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 176: Pyro1=28.32 Pyro2=29.23 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 177: Pyro1=28.77 Pyro2=29.69 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 178: Pyro1=27.24 Pyro2=28.7 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 179: Pyro1=27.99 Pyro2=29.72 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 180: Pyro1=28.91 Pyro2=29.17 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 181: Pyro1=28.99 Pyro2=29.08 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 182: Pyro1=27.68 Pyro2=28.16 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 183: Pyro1=26.72 Pyro2=27.57 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 184: Pyro1=27.16 Pyro2=28.91 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 185: Pyro1=27.65 Pyro2=29.28 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 186: Pyro1=28.57 Pyro2=29.67 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 187: Pyro1=27.03 Pyro2=26.15 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 188: Pyro1=28.69 Pyro2=27.77 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 189: Pyro1=26.38 Pyro2=26.57 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 190: Pyro1=28.92 Pyro2=27.19 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 191: Pyro1=27.36 Pyro2=29.3 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 192: Pyro1=28.3 Pyro2=26.58 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 193: Pyro1=27.45 Pyro2=27.42 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 194: Pyro1=27.46 Pyro2=29.5 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 195: Pyro1=28.22 Pyro2=26.52 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 196: Pyro1=28.95 Pyro2=28.28 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 197: Pyro1=29.64 Pyro2=27.37 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 198: Pyro1=29.07 Pyro2=28.54 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 199: Pyro1=28.23 Pyro2=29.07 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 200: Pyro1=26.38 Pyro2=27.13 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 201: Pyro1=28.02 Pyro2=28.4 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 202: Pyro1=28.1 Pyro2=26.3 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 203: Pyro1=1136.53 Pyro2=28.69 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 204: Pyro1=1136.28 Pyro2=26.77 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 205: Pyro1=1136.03 Pyro2=28.47 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 206: Pyro1=1135.77 Pyro2=28.4 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 207: Pyro1=1135.52 Pyro2=26.29 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 208: Pyro1=1135.26 Pyro2=29.48 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 209: Pyro1=1135.01 Pyro2=27.66 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 210: Pyro1=1134.76 Pyro2=28.17 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 211: Pyro1=1134.5 Pyro2=26.09 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 212: Pyro1=1134.25 Pyro2=28.69 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 213: Pyro1=1133.99 Pyro2=28.06 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 214: Pyro1=1133.74 Pyro2=26.77 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 215: Pyro1=1133.48 Pyro2=27.26 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 216: Pyro1=1133.23 Pyro2=28.03 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 217: Pyro1=1132.98 Pyro2=26.91 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 218: Pyro1=1132.72 Pyro2=28.72 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 219: Pyro1=1132.47 Pyro2=27.82 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 220: Pyro1=1132.21 Pyro2=29.49 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 221: Pyro1=1131.96 Pyro2=28.75 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 222: Pyro1=1131.71 Pyro2=26.99 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 223: Pyro1=1131.45 Pyro2=26.84 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 224: Pyro1=1131.2 Pyro2=27.92 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 225: Pyro1=1130.94 Pyro2=27.41 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 226: Pyro1=1130.69 Pyro2=26.63 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 227: Pyro1=1130.43 Pyro2=29.22 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 228: Pyro1=1130.18 Pyro2=27.14 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 229: Pyro1=1130.0 Pyro2=27.15 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 230: Pyro1=1130.0 Pyro2=26.26 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 0: Pyro1=28 Pyro2=28 Pressure=0 Gap=0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 1: Pyro1=28.88 Pyro2=29.77 Pressure=0 Gap=10.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 2: Pyro1=26.44 Pyro2=26.54 Pressure=0 Gap=20.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 3: Pyro1=29.88 Pyro2=28.88 Pressure=0 Gap=30.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 4: Pyro1=28.35 Pyro2=26.66 Pressure=0 Gap=40.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 5: Pyro1=27.34 Pyro2=29.94 Pressure=0 Gap=50.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 6: Pyro1=28.98 Pyro2=29.89 Pressure=0 Gap=60.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 7: Pyro1=27.44 Pyro2=28.82 Pressure=0 Gap=70.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 8: Pyro1=26.19 Pyro2=28.24 Pressure=0 Gap=80.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 9: Pyro1=27.01 Pyro2=29.8 Pressure=0 Gap=90.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 10: Pyro1=28.29 Pyro2=29.57 Pressure=0 Gap=100.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 11: Pyro1=29.21 Pyro2=26.67 Pressure=0 Gap=110.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 12: Pyro1=29.13 Pyro2=27.98 Pressure=0 Gap=120.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 13: Pyro1=27.32 Pyro2=26.6 Pressure=0 Gap=130.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 14: Pyro1=28.9 Pyro2=28.74 Pressure=0 Gap=140.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 15: Pyro1=28.68 Pyro2=26.21 Pressure=0 Gap=150.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 16: Pyro1=26.25 Pyro2=29.9 Pressure=0 Gap=160.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 17: Pyro1=26.31 Pyro2=28.99 Pressure=0 Gap=170.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 18: Pyro1=26.08 Pyro2=29.23 Pressure=0 Gap=180.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 19: Pyro1=28.18 Pyro2=26.27 Pressure=0 Gap=190.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 20: Pyro1=28.82 Pyro2=27.2 Pressure=0 Gap=200.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 21: Pyro1=29.15 Pyro2=26.11 Pressure=0 Gap=210.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 22: Pyro1=28.25 Pyro2=26.6 Pressure=0 Gap=220.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 23: Pyro1=29.14 Pyro2=28.56 Pressure=0 Gap=230.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 24: Pyro1=29.28 Pyro2=28.94 Pressure=0 Gap=240.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 25: Pyro1=27.94 Pyro2=26.97 Pressure=0 Gap=250.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 26: Pyro1=28.66 Pyro2=29.49 Pressure=0 Gap=260.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 27: Pyro1=28.41 Pyro2=29.48 Pressure=0 Gap=270.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 28: Pyro1=26.39 Pyro2=26.4 Pressure=0 Gap=280.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 29: Pyro1=26.1 Pyro2=28.17 Pressure=0 Gap=290.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 30: Pyro1=27.19 Pyro2=28.64 Pressure=0 Gap=300.0 VRPM=0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 31: Pyro1=27.26 Pyro2=26.11 Pressure=0 Gap=300.0 VRPM=50.0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 32: Pyro1=29.78 Pyro2=27.71 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=0 V1RPM=0 Moment=0 Power=0 
-Step 33: Pyro1=26.71 Pyro2=26.32 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=50.0 V1RPM=50.0 Moment=0 Power=0 
-Step 34: Pyro1=26.2 Pyro2=27.7 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=100.0 Moment=0 Power=0 
-Step 35: Pyro1=28.39 Pyro2=28.41 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=150.0 Moment=0 Power=0 
-Step 36: Pyro1=28.69 Pyro2=28.06 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 37: Pyro1=27.93 Pyro2=27.08 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 38: Pyro1=28.88 Pyro2=29.0 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 39: Pyro1=27.39 Pyro2=29.86 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 40: Pyro1=26.19 Pyro2=29.51 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 41: Pyro1=28.73 Pyro2=26.31 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 42: Pyro1=29.1 Pyro2=27.99 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 43: Pyro1=29.66 Pyro2=26.19 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 44: Pyro1=28.26 Pyro2=29.17 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 45: Pyro1=28.56 Pyro2=27.01 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 46: Pyro1=29.36 Pyro2=28.17 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 47: Pyro1=27.7 Pyro2=28.68 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 48: Pyro1=26.79 Pyro2=29.84 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 49: Pyro1=26.95 Pyro2=28.0 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 50: Pyro1=28.75 Pyro2=27.82 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 51: Pyro1=28.74 Pyro2=29.0 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 52: Pyro1=27.9 Pyro2=26.77 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 53: Pyro1=28.43 Pyro2=28.48 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 54: Pyro1=29.93 Pyro2=28.19 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 55: Pyro1=26.19 Pyro2=26.4 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 56: Pyro1=29.57 Pyro2=26.17 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 57: Pyro1=26.28 Pyro2=26.59 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 58: Pyro1=26.55 Pyro2=29.35 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 59: Pyro1=28.94 Pyro2=27.0 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 60: Pyro1=28.83 Pyro2=27.71 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 61: Pyro1=29.62 Pyro2=29.79 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 62: Pyro1=27.54 Pyro2=27.27 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 63: Pyro1=27.58 Pyro2=27.25 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 64: Pyro1=28.88 Pyro2=27.07 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 65: Pyro1=27.31 Pyro2=28.67 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 66: Pyro1=28.94 Pyro2=27.13 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 67: Pyro1=28.26 Pyro2=29.69 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 68: Pyro1=26.28 Pyro2=27.35 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 69: Pyro1=27.26 Pyro2=28.76 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 70: Pyro1=28.4 Pyro2=27.73 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 71: Pyro1=28.62 Pyro2=26.93 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 72: Pyro1=26.23 Pyro2=29.34 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 73: Pyro1=29.92 Pyro2=29.67 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 74: Pyro1=28.66 Pyro2=29.04 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 75: Pyro1=28.8 Pyro2=28.0 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 76: Pyro1=27.18 Pyro2=26.58 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 77: Pyro1=28.1 Pyro2=27.41 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 78: Pyro1=27.09 Pyro2=27.83 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 79: Pyro1=26.09 Pyro2=28.45 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 80: Pyro1=27.78 Pyro2=26.46 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 81: Pyro1=29.39 Pyro2=28.95 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 82: Pyro1=27.9 Pyro2=27.24 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 83: Pyro1=26.14 Pyro2=26.92 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 84: Pyro1=28.29 Pyro2=28.05 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 85: Pyro1=27.51 Pyro2=27.31 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 86: Pyro1=28.13 Pyro2=28.3 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 87: Pyro1=29.19 Pyro2=26.91 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 88: Pyro1=27.87 Pyro2=29.53 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 89: Pyro1=28.74 Pyro2=27.26 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 90: Pyro1=26.96 Pyro2=29.47 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 91: Pyro1=28.92 Pyro2=28.12 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 92: Pyro1=26.45 Pyro2=26.07 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 93: Pyro1=29.46 Pyro2=27.26 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 94: Pyro1=26.39 Pyro2=26.89 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 95: Pyro1=28.94 Pyro2=29.23 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 96: Pyro1=26.98 Pyro2=28.16 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 97: Pyro1=28.75 Pyro2=26.54 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 98: Pyro1=28.64 Pyro2=26.14 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 99: Pyro1=28.19 Pyro2=26.17 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 100: Pyro1=29.18 Pyro2=26.51 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 101: Pyro1=29.84 Pyro2=29.43 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 102: Pyro1=27.15 Pyro2=26.36 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 103: Pyro1=28.64 Pyro2=28.81 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 104: Pyro1=29.24 Pyro2=26.8 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 105: Pyro1=29.68 Pyro2=27.45 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 106: Pyro1=28.6 Pyro2=26.53 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 107: Pyro1=26.29 Pyro2=29.06 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 108: Pyro1=27.43 Pyro2=28.5 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 109: Pyro1=26.99 Pyro2=29.75 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 110: Pyro1=29.0 Pyro2=26.31 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 111: Pyro1=27.66 Pyro2=27.77 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 112: Pyro1=27.59 Pyro2=28.87 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 113: Pyro1=26.8 Pyro2=26.68 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 114: Pyro1=26.58 Pyro2=29.51 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 115: Pyro1=29.03 Pyro2=29.88 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 116: Pyro1=28.16 Pyro2=28.83 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 117: Pyro1=29.68 Pyro2=29.05 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 118: Pyro1=29.23 Pyro2=28.36 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 119: Pyro1=28.34 Pyro2=27.13 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 120: Pyro1=27.49 Pyro2=27.59 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 121: Pyro1=29.13 Pyro2=27.72 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 122: Pyro1=28.03 Pyro2=28.06 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 123: Pyro1=26.22 Pyro2=29.24 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 124: Pyro1=28.81 Pyro2=26.8 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 125: Pyro1=27.24 Pyro2=28.24 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 126: Pyro1=29.23 Pyro2=28.44 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 127: Pyro1=28.93 Pyro2=29.66 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 128: Pyro1=28.01 Pyro2=26.25 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 129: Pyro1=29.6 Pyro2=26.45 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 130: Pyro1=28.43 Pyro2=27.16 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 131: Pyro1=26.4 Pyro2=26.09 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 132: Pyro1=26.28 Pyro2=26.82 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 133: Pyro1=27.72 Pyro2=28.81 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 134: Pyro1=28.04 Pyro2=27.37 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 135: Pyro1=28.82 Pyro2=28.25 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 136: Pyro1=27.02 Pyro2=26.97 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 137: Pyro1=29.25 Pyro2=26.33 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 138: Pyro1=29.28 Pyro2=27.82 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 139: Pyro1=29.84 Pyro2=26.54 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 140: Pyro1=26.77 Pyro2=27.02 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 141: Pyro1=29.04 Pyro2=29.82 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 142: Pyro1=28.22 Pyro2=26.06 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 143: Pyro1=26.06 Pyro2=29.81 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 144: Pyro1=29.54 Pyro2=29.72 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 145: Pyro1=27.42 Pyro2=28.59 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 146: Pyro1=27.55 Pyro2=26.79 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 147: Pyro1=27.63 Pyro2=29.42 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 148: Pyro1=28.72 Pyro2=27.58 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 149: Pyro1=28.85 Pyro2=29.21 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 150: Pyro1=27.7 Pyro2=28.95 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 151: Pyro1=29.06 Pyro2=27.82 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 152: Pyro1=26.48 Pyro2=29.02 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 153: Pyro1=26.42 Pyro2=26.3 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 154: Pyro1=29.25 Pyro2=29.57 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 155: Pyro1=26.13 Pyro2=26.62 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 156: Pyro1=27.2 Pyro2=26.07 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 157: Pyro1=26.26 Pyro2=27.11 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 158: Pyro1=28.63 Pyro2=28.03 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 159: Pyro1=27.03 Pyro2=26.04 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 160: Pyro1=29.73 Pyro2=29.6 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 161: Pyro1=27.44 Pyro2=29.68 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 162: Pyro1=26.5 Pyro2=29.34 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 163: Pyro1=28.43 Pyro2=27.0 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 164: Pyro1=27.36 Pyro2=27.75 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 165: Pyro1=28.77 Pyro2=26.44 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 166: Pyro1=29.12 Pyro2=28.06 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 167: Pyro1=27.19 Pyro2=26.39 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 168: Pyro1=28.65 Pyro2=27.95 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
-Step 169: Pyro1=28.12 Pyro2=27.18 Pressure=0 Gap=300.0 VRPM=100.0 V0RPM=100.0 V1RPM=200.0 Moment=0 Power=0 
+=== ЛОГ СЕРВЕРА 31.10 16:28 ===
+Формат: Время Шаг | Параметры | Флаги
+Параметры: Py1 Py2 Pre Gap VRPM V0R V1R M P
+Флаги: SC=StartCap EC=EndCap GF=GapFeedback SF=SpeedFeedback
+--------------------------------------------------------------------------------
+T   0.0s S   0 | Pyr:  28.0 Pyr:  28.0 Pre:   0.0 Gap:   0.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   0.1s S   1 | Pyr:  27.5 Pyr:  27.6 Pre:   0.0 Gap:  10.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   0.2s S   2 | Pyr:  29.8 Pyr:  29.5 Pre:   0.0 Gap:  20.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   0.3s S   3 | Pyr:  29.8 Pyr:  29.7 Pre:   0.0 Gap:  30.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   0.4s S   4 | Pyr:  26.4 Pyr:  28.4 Pre:   0.0 Gap:  40.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   0.5s S   5 | Pyr:  26.6 Pyr:  28.9 Pre:   0.0 Gap:  50.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   0.6s S   6 | Pyr:  27.4 Pyr:  29.3 Pre:   0.0 Gap:  60.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   0.7s S   7 | Pyr:  28.9 Pyr:  29.9 Pre:   0.0 Gap:  70.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   0.8s S   8 | Pyr:  26.1 Pyr:  28.8 Pre:   0.0 Gap:  80.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   0.9s S   9 | Pyr:  29.8 Pyr:  29.4 Pre:   0.0 Gap:  90.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   1.0s S  10 | Pyr:  27.0 Pyr:  28.9 Pre:   0.0 Gap: 100.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   1.1s S  11 | Pyr:  29.8 Pyr:  27.1 Pre:   0.0 Gap: 110.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   1.2s S  12 | Pyr:  27.7 Pyr:  26.5 Pre:   0.0 Gap: 120.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   1.3s S  13 | Pyr:  26.8 Pyr:  26.3 Pre:   0.0 Gap: 130.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   1.4s S  14 | Pyr:  28.5 Pyr:  26.6 Pre:   0.0 Gap: 140.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   1.5s S  15 | Pyr:  26.3 Pyr:  26.4 Pre:   0.0 Gap: 150.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   1.6s S  16 | Pyr:  29.6 Pyr:  28.2 Pre:   0.0 Gap: 160.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   1.7s S  17 | Pyr:  28.8 Pyr:  29.8 Pre:   0.0 Gap: 170.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   1.8s S  18 | Pyr:  28.7 Pyr:  27.4 Pre:   0.0 Gap: 180.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   1.9s S  19 | Pyr:  26.4 Pyr:  26.8 Pre:   0.0 Gap: 190.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   2.0s S  20 | Pyr:  26.5 Pyr:  27.9 Pre:   0.0 Gap: 200.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   2.1s S  21 | Pyr:  28.0 Pyr:  26.1 Pre:   0.0 Gap: 210.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   2.2s S  22 | Pyr:  27.5 Pyr:  27.2 Pre:   0.0 Gap: 220.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   2.3s S  23 | Pyr:  26.7 Pyr:  27.6 Pre:   0.0 Gap: 230.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   2.4s S  24 | Pyr:  26.4 Pyr:  29.2 Pre:   0.0 Gap: 240.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   2.5s S  25 | Pyr:  26.3 Pyr:  26.7 Pre:   0.0 Gap: 250.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   2.6s S  26 | Pyr:  29.3 Pyr:  27.9 Pre:   0.0 Gap: 260.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   2.7s S  27 | Pyr:  28.7 Pyr:  26.2 Pre:   0.0 Gap: 270.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   2.8s S  28 | Pyr:  29.8 Pyr:  28.8 Pre:   0.0 Gap: 280.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   2.9s S  29 | Pyr:  27.0 Pyr:  28.3 Pre:   0.0 Gap: 290.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
+T   3.0s S  30 | Pyr:  27.4 Pyr:  27.6 Pre:   0.0 Gap: 300.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:GF
+T   3.1s S  31 | Pyr:  29.6 Pyr:  28.1 Pre:   0.0 Gap: 300.0 VRP:  50.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:GF
+T   3.2s S  32 | Pyr:  29.7 Pyr:  29.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:GFSF
+T   3.3s S  33 | Pyr:  27.9 Pyr:  26.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R:  50.0 V1R:  50.0 M:   0.0 P:   0.0 | F:GFSF
+T   3.4s S  34 | Pyr:  28.5 Pyr:  26.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GFSF
+T   3.5s S  35 | Pyr:  27.2 Pyr:  27.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 150.0 M:   0.0 P:   0.0 | F:GFSF
+T   3.6s S  36 | Pyr:  27.2 Pyr:  28.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   3.7s S  37 | Pyr:  27.6 Pyr:  26.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   3.8s S  38 | Pyr:  28.2 Pyr:  26.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   3.9s S  39 | Pyr:  26.4 Pyr:  27.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   4.0s S  40 | Pyr:  28.6 Pyr:  29.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   4.1s S  41 | Pyr:  27.0 Pyr:  28.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   4.2s S  42 | Pyr:  26.9 Pyr:  26.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   4.3s S  43 | Pyr:  26.5 Pyr:  27.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   4.4s S  44 | Pyr:  27.0 Pyr:  28.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   4.5s S  45 | Pyr:  26.9 Pyr:  29.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   4.6s S  46 | Pyr:  27.6 Pyr:  29.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   4.7s S  47 | Pyr:  28.4 Pyr:  26.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   4.8s S  48 | Pyr:  28.7 Pyr:  26.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   4.9s S  49 | Pyr:  28.9 Pyr:  26.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   5.0s S  50 | Pyr:  29.6 Pyr:  29.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   5.1s S  51 | Pyr:  27.2 Pyr:  29.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   5.2s S  52 | Pyr:  29.3 Pyr:  29.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   5.3s S  53 | Pyr:  26.5 Pyr:  29.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   5.4s S  54 | Pyr:  29.4 Pyr:  28.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   5.5s S  55 | Pyr:  29.0 Pyr:  28.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   5.6s S  56 | Pyr:  28.6 Pyr:  26.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   5.7s S  57 | Pyr:  28.7 Pyr:  26.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   5.8s S  58 | Pyr:  29.0 Pyr:  29.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   5.9s S  59 | Pyr:  27.6 Pyr:  26.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   6.0s S  60 | Pyr:  28.1 Pyr:  27.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   6.1s S  61 | Pyr:  29.1 Pyr:  28.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   6.2s S  62 | Pyr:  28.4 Pyr:  27.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   6.3s S  63 | Pyr:  27.1 Pyr:  26.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   6.4s S  64 | Pyr:  26.1 Pyr:  27.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   6.5s S  65 | Pyr:  27.5 Pyr:  28.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   6.6s S  66 | Pyr:  28.9 Pyr:  26.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   6.7s S  67 | Pyr:  26.2 Pyr:  27.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   6.8s S  68 | Pyr:  28.5 Pyr:  27.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   6.9s S  69 | Pyr:  26.9 Pyr:  29.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   7.0s S  70 | Pyr:  26.5 Pyr:  28.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   7.1s S  71 | Pyr:  28.5 Pyr:  29.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   7.2s S  72 | Pyr:  28.5 Pyr:  29.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   7.3s S  73 | Pyr:  28.2 Pyr:  29.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   7.4s S  74 | Pyr:  29.7 Pyr:  29.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   7.5s S  75 | Pyr:  26.5 Pyr:  28.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   7.6s S  76 | Pyr:  26.8 Pyr:  29.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   7.7s S  77 | Pyr:  28.6 Pyr:  27.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   7.8s S  78 | Pyr:  28.3 Pyr:  27.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   7.9s S  79 | Pyr:  27.4 Pyr:  29.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   8.0s S  80 | Pyr:  26.9 Pyr:  29.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   8.1s S  81 | Pyr:  27.2 Pyr:  28.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   8.2s S  82 | Pyr:  28.7 Pyr:  26.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   8.3s S  83 | Pyr:  27.5 Pyr:  27.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   8.4s S  84 | Pyr:  26.8 Pyr:  28.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   8.5s S  85 | Pyr:  27.5 Pyr:  27.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   8.6s S  86 | Pyr:  27.2 Pyr:  26.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   8.7s S  87 | Pyr:  27.4 Pyr:  28.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T   8.8s S  88 | Pyr:  26.7 Pyr:  26.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T   8.9s S  89 | Pyr:  28.7 Pyr:  28.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T   9.0s S  90 | Pyr:  28.1 Pyr:  26.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T   9.1s S  91 | Pyr:  26.3 Pyr:  28.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T   9.2s S  92 | Pyr:  26.8 Pyr:  28.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T   9.3s S  93 | Pyr:  27.6 Pyr:  29.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T   9.4s S  94 | Pyr:  26.2 Pyr:  26.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T   9.5s S  95 | Pyr:  28.6 Pyr:  26.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T   9.6s S  96 | Pyr:  28.3 Pyr:  27.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T   9.7s S  97 | Pyr:  29.6 Pyr:  27.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T   9.8s S  98 | Pyr:  28.1 Pyr:  26.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T   9.9s S  99 | Pyr:  29.5 Pyr:  26.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  10.0s S 100 | Pyr:  27.5 Pyr:  29.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  10.1s S 101 | Pyr:  27.5 Pyr:  26.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  10.2s S 102 | Pyr:  26.8 Pyr:  29.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  10.3s S 103 | Pyr:  28.1 Pyr:  28.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  10.4s S 104 | Pyr:  29.1 Pyr:  27.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  10.5s S 105 | Pyr:  29.4 Pyr:  26.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  10.6s S 106 | Pyr:  29.4 Pyr:  26.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  10.7s S 107 | Pyr:  27.9 Pyr:  29.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  10.8s S 108 | Pyr:  26.8 Pyr:  26.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  10.9s S 109 | Pyr:  27.0 Pyr:  26.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  11.0s S 110 | Pyr:  29.2 Pyr:  29.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  11.1s S 111 | Pyr:  26.3 Pyr:  29.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  11.2s S 112 | Pyr:  27.2 Pyr:  28.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  11.3s S 113 | Pyr:  28.9 Pyr:  29.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  11.4s S 114 | Pyr:  26.4 Pyr:  29.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  11.5s S 115 | Pyr:  29.4 Pyr:  29.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  11.6s S 116 | Pyr:  28.6 Pyr:  27.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  11.7s S 117 | Pyr:  29.9 Pyr:  29.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:SCGFSF
+T  11.8s S 118 | Pyr:  27.6 Pyr:  29.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  11.9s S 119 | Pyr:  28.5 Pyr:  26.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  12.0s S 120 | Pyr:  28.8 Pyr:  27.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  12.1s S 121 | Pyr:  27.2 Pyr:  28.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  12.2s S 122 | Pyr:  27.4 Pyr:  26.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  12.3s S 123 | Pyr:  27.5 Pyr:  29.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  12.4s S 124 | Pyr:  26.9 Pyr:  29.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  12.5s S 125 | Pyr:  26.2 Pyr:  27.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  12.6s S 126 | Pyr:  28.4 Pyr:  26.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  12.7s S 127 | Pyr:  28.8 Pyr:  27.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  12.8s S 128 | Pyr:  27.8 Pyr:  27.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  12.9s S 129 | Pyr:  26.1 Pyr:  28.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  13.0s S 130 | Pyr:  28.1 Pyr:  28.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  13.1s S 131 | Pyr:  28.8 Pyr:  28.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  13.2s S 132 | Pyr:  28.6 Pyr:  28.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  13.3s S 133 | Pyr:  28.1 Pyr:  26.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  13.4s S 134 | Pyr:  27.3 Pyr:  29.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  13.5s S 135 | Pyr:  26.3 Pyr:  27.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  13.6s S 136 | Pyr:  29.2 Pyr:  28.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  13.7s S 137 | Pyr:  27.4 Pyr:  26.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  13.8s S 138 | Pyr:  27.9 Pyr:  28.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  13.9s S 139 | Pyr:  29.3 Pyr:  26.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  14.0s S 140 | Pyr:  29.1 Pyr:  27.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  14.1s S 141 | Pyr:  28.9 Pyr:  28.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  14.2s S 142 | Pyr:  27.5 Pyr:  29.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  14.3s S 143 | Pyr:  27.1 Pyr:  28.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  14.4s S 144 | Pyr:  29.0 Pyr:  29.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  14.5s S 145 | Pyr:  26.4 Pyr:  26.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  14.6s S 146 | Pyr:  27.5 Pyr:  27.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  14.7s S 147 | Pyr:  26.6 Pyr:  28.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  14.8s S 148 | Pyr:  26.8 Pyr:  28.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  14.9s S 149 | Pyr:  29.1 Pyr:  27.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  15.0s S 150 | Pyr:  26.4 Pyr:  27.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  15.1s S 151 | Pyr:  28.2 Pyr:  29.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  15.2s S 152 | Pyr:  29.1 Pyr:  28.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  15.3s S 153 | Pyr:  29.4 Pyr:  29.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  15.4s S 154 | Pyr:  26.1 Pyr:  27.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  15.5s S 155 | Pyr:  27.5 Pyr:  26.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  15.6s S 156 | Pyr:  28.5 Pyr:  28.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  15.7s S 157 | Pyr:  27.8 Pyr:  26.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  15.8s S 158 | Pyr:  27.4 Pyr:  27.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  15.9s S 159 | Pyr:  28.7 Pyr:  29.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  16.0s S 160 | Pyr:  29.1 Pyr:  29.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  16.1s S 161 | Pyr:  26.2 Pyr:  27.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  16.2s S 162 | Pyr:  27.6 Pyr:  26.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  16.3s S 163 | Pyr:  26.6 Pyr:  26.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  16.4s S 164 | Pyr:  29.1 Pyr:  28.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  16.5s S 165 | Pyr:  28.1 Pyr:  29.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  16.6s S 166 | Pyr:  28.5 Pyr:  27.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  16.7s S 167 | Pyr:  27.8 Pyr:  27.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  16.8s S 168 | Pyr:  29.2 Pyr:  29.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  16.9s S 169 | Pyr:  27.7 Pyr:  26.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  17.0s S 170 | Pyr:  28.9 Pyr:  27.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  17.1s S 171 | Pyr:  26.4 Pyr:  28.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  17.2s S 172 | Pyr:  26.1 Pyr:  28.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  17.3s S 173 | Pyr:  29.2 Pyr:  26.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  17.4s S 174 | Pyr:  26.6 Pyr:  26.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  17.5s S 175 | Pyr:  26.3 Pyr:  29.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  17.6s S 176 | Pyr:  28.4 Pyr:  27.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  17.7s S 177 | Pyr:  26.9 Pyr:  29.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  17.8s S 178 | Pyr:  28.2 Pyr:  27.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  17.9s S 179 | Pyr:  26.1 Pyr:  28.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  18.0s S 180 | Pyr:  29.7 Pyr:  28.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  18.1s S 181 | Pyr:  28.6 Pyr:  29.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  18.2s S 182 | Pyr:  26.7 Pyr:  28.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  18.3s S 183 | Pyr:  27.9 Pyr:  28.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  18.4s S 184 | Pyr:  26.9 Pyr:  27.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  18.5s S 185 | Pyr:  27.7 Pyr:  28.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  18.6s S 186 | Pyr:  28.7 Pyr:  28.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  18.7s S 187 | Pyr:  26.9 Pyr:  27.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  18.8s S 188 | Pyr:  29.1 Pyr:  28.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  18.9s S 189 | Pyr:  26.9 Pyr:  27.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  19.0s S 190 | Pyr:  26.7 Pyr:  29.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  19.1s S 191 | Pyr:  28.6 Pyr:  28.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  19.2s S 192 | Pyr:  29.3 Pyr:  27.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  19.3s S 193 | Pyr:  26.9 Pyr:  27.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  19.4s S 194 | Pyr:  29.5 Pyr:  28.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  19.5s S 195 | Pyr:  26.1 Pyr:  29.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  19.6s S 196 | Pyr:  28.2 Pyr:  26.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  19.7s S 197 | Pyr:  26.1 Pyr:  27.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  19.8s S 198 | Pyr:  29.2 Pyr:  28.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  19.9s S 199 | Pyr:  27.3 Pyr:  26.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  20.0s S 200 | Pyr:  29.2 Pyr:  27.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  20.1s S 201 | Pyr:  26.7 Pyr:  28.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  20.2s S 202 | Pyr:  26.5 Pyr:  29.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  20.3s S 203 | Pyr:1136.5 Pyr:  29.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  20.4s S 204 | Pyr:1136.3 Pyr:  28.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  20.5s S 205 | Pyr:1136.0 Pyr:  29.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  20.6s S 206 | Pyr:1135.8 Pyr:  27.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  20.7s S 207 | Pyr:1135.5 Pyr:  27.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  20.8s S 208 | Pyr:1135.3 Pyr:  28.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  20.9s S 209 | Pyr:1135.0 Pyr:  28.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  21.0s S 210 | Pyr:1134.8 Pyr:  26.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  21.1s S 211 | Pyr:1134.5 Pyr:  26.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  21.2s S 212 | Pyr:1134.2 Pyr:  28.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  21.3s S 213 | Pyr:1134.0 Pyr:  29.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  21.4s S 214 | Pyr:1133.7 Pyr:  26.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  21.5s S 215 | Pyr:1133.5 Pyr:  29.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  21.6s S 216 | Pyr:1133.2 Pyr:  26.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  21.7s S 217 | Pyr:1133.0 Pyr:  26.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  21.8s S 218 | Pyr:1132.7 Pyr:  26.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  21.9s S 219 | Pyr:1132.5 Pyr:  27.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  22.0s S 220 | Pyr:1132.2 Pyr:  29.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  22.1s S 221 | Pyr:1132.0 Pyr:  28.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  22.2s S 222 | Pyr:1131.7 Pyr:  29.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  22.3s S 223 | Pyr:1131.5 Pyr:  27.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  22.4s S 224 | Pyr:1131.2 Pyr:  27.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  22.5s S 225 | Pyr:1130.9 Pyr:  29.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  22.6s S 226 | Pyr:1130.7 Pyr:  29.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  22.7s S 227 | Pyr:1130.4 Pyr:  29.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  22.8s S 228 | Pyr:1130.2 Pyr:  26.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  22.9s S 229 | Pyr:1130.0 Pyr:  28.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  23.0s S 230 | Pyr:1130.0 Pyr:  27.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  23.1s S 231 | Pyr:1124.4 Pyr:  28.9 Pre:4671.8 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 345.4 P: 229.8 | F:GFSF
+T  23.2s S 232 | Pyr:1124.4 Pyr:  27.4 Pre:4727.2 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 347.7 P: 235.5 | F:GFSF
+T  23.3s S 233 | Pyr:1124.4 Pyr:  27.9 Pre:4821.4 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 341.1 P: 237.6 | F:GFSF
+T  23.4s S 234 | Pyr:  29.2 Pyr:  29.2 Pre:4942.2 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 345.3 P: 242.9 | F:GFSF
+T  23.5s S 235 | Pyr:  28.9 Pyr:  26.4 Pre:4981.9 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 338.2 P: 247.5 | F:GFSF
+T  23.6s S 236 | Pyr:  28.6 Pyr:  26.9 Pre:4857.4 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 331.2 P: 242.8 | F:GFSF
+T  23.7s S 237 | Pyr:  26.6 Pyr:  26.7 Pre:4954.8 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 328.8 P: 243.7 | F:GFSF
+T  23.8s S 238 | Pyr:  29.7 Pyr:  28.6 Pre:4857.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 320.3 P: 248.9 | F:GFSF
+T  23.9s S 239 | Pyr:  26.9 Pyr:  29.8 Pre:4852.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 317.7 P: 249.4 | F:GFSF
+T  24.0s S 240 | Pyr:  29.1 Pyr:  26.1 Pre:4900.1 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 316.5 P: 248.4 | F:GFSF
+T  24.1s S 241 | Pyr:  27.7 Pyr:  29.1 Pre:4878.2 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 311.0 P: 242.2 | F:GFSF
+T  24.2s S 242 | Pyr:  26.3 Pyr:  26.6 Pre:4812.5 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 305.3 P: 238.8 | F:GFSF
+T  24.3s S 243 | Pyr:  27.7 Pyr:  29.8 Pre:4951.2 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 307.6 P: 232.2 | F:GFSF
+T  24.4s S 244 | Pyr:  29.3 Pyr:  28.7 Pre:4879.2 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 310.6 P: 227.6 | F:GFSF
+T  24.5s S 245 | Pyr:  26.8 Pyr:  27.8 Pre:4932.8 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 313.8 P: 224.6 | F:GFSF
+T  24.6s S 246 | Pyr:  26.5 Pyr:  28.3 Pre:4808.4 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 317.0 P: 221.0 | F:GFSF
+T  24.7s S 247 | Pyr:  26.7 Pyr:  28.9 Pre:4949.4 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 323.9 P: 216.4 | F:GFSF
+T  24.8s S 248 | Pyr:  28.8 Pyr:  28.9 Pre:5035.8 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 326.1 P: 211.3 | F:GFSF
+T  24.9s S 249 | Pyr:  26.6 Pyr:  28.0 Pre:4894.7 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 320.9 P: 212.1 | F:GFSF
+T  25.0s S 250 | Pyr:  26.8 Pyr:  27.3 Pre:4822.1 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 328.3 P: 211.9 | F:GFSF
+T  25.1s S 251 | Pyr:  26.1 Pyr:  26.2 Pre:4775.4 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 332.4 P: 216.8 | F:GFSF
+T  25.2s S 252 | Pyr:  26.7 Pyr:  28.7 Pre:4720.5 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 338.6 P: 217.2 | F:GFSF
+T  25.3s S 253 | Pyr:  27.4 Pyr:  29.2 Pre:4640.4 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 330.0 P: 217.5 | F:GFSF
+T  25.4s S 254 | Pyr:  28.1 Pyr:  27.7 Pre:4531.4 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 323.6 P: 221.6 | F:GFSF
+T  25.5s S 255 | Pyr:  28.6 Pyr:  26.2 Pre:4512.4 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 328.8 P: 220.2 | F:GFSF
+T  25.6s S 256 | Pyr:  28.6 Pyr:  28.5 Pre:4552.2 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 321.8 P: 224.2 | F:GFSF
+T  25.7s S 257 | Pyr:  28.8 Pyr:  27.0 Pre:4653.2 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 315.1 P: 220.7 | F:GFSF
+T  25.8s S 258 | Pyr:  29.3 Pyr:  26.1 Pre:4613.8 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 313.1 P: 217.7 | F:GFSF
+T  25.9s S 259 | Pyr:  29.9 Pyr:  28.1 Pre:4681.6 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 312.5 P: 219.7 | F:GFSF
+T  26.0s S 260 | Pyr:  29.1 Pyr:  29.3 Pre:4699.6 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 315.9 P: 222.9 | F:GFSF
+T  26.1s S 261 | Pyr:  29.7 Pyr:  29.6 Pre:4688.6 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 315.3 P: 229.2 | F:GFSF
+T  26.2s S 262 | Pyr:  28.6 Pyr:  27.3 Pre:4657.6 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 312.2 P: 224.4 | F:GFSF
+T  26.3s S 263 | Pyr:  28.3 Pyr:  28.0 Pre:4687.1 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 306.9 P: 219.0 | F:GFSF
+T  26.4s S 264 | Pyr:  28.9 Pyr:  29.0 Pre:4676.1 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 304.3 P: 213.6 | F:GFSF
+T  26.5s S 265 | Pyr:  28.4 Pyr:  29.9 Pre:4649.9 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 298.5 P: 212.7 | F:GFSF
+T  26.6s S 266 | Pyr:  27.4 Pyr:  27.5 Pre:4719.2 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 293.2 P: 217.9 | F:GFSF
+T  26.7s S 267 | Pyr:  29.4 Pyr:  29.4 Pre:4738.6 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 302.0 P: 216.3 | F:GFSF
+T  26.8s S 268 | Pyr:  28.4 Pyr:1124.4 Pre:4762.2 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 298.9 P: 220.6 | F:GFSF
+T  26.9s S 269 | Pyr:  26.2 Pyr:1124.4 Pre:4674.6 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 299.6 P: 219.3 | F:GFSF
+T  27.0s S 270 | Pyr:  26.2 Pyr:1121.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  27.1s S 271 | Pyr:  28.6 Pyr:1118.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  27.2s S 272 | Pyr:  27.6 Pyr:1116.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  27.3s S 273 | Pyr:  27.0 Pyr:1113.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  27.4s S 274 | Pyr:  26.1 Pyr:1110.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  27.5s S 275 | Pyr:  26.1 Pyr:1107.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  27.6s S 276 | Pyr:  28.7 Pyr:1105.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  27.7s S 277 | Pyr:  27.5 Pyr:1102.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  27.8s S 278 | Pyr:  26.9 Pyr:1099.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  27.9s S 279 | Pyr:  26.6 Pyr:1097.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  28.0s S 280 | Pyr:  27.0 Pyr:1094.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  28.1s S 281 | Pyr:  26.6 Pyr:1091.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  28.2s S 282 | Pyr:  26.4 Pyr:1088.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  28.3s S 283 | Pyr:  27.4 Pyr:1086.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  28.4s S 284 | Pyr:  27.7 Pyr:1083.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  28.5s S 285 | Pyr:  27.0 Pyr:1080.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  28.6s S 286 | Pyr:  29.1 Pyr:1077.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  28.7s S 287 | Pyr:  26.9 Pyr:  27.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  28.8s S 288 | Pyr:  28.6 Pyr:  28.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  28.9s S 289 | Pyr:  28.9 Pyr:  26.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  29.0s S 290 | Pyr:  26.3 Pyr:  29.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  29.1s S 291 | Pyr:  27.6 Pyr:  28.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  29.2s S 292 | Pyr:  26.2 Pyr:  27.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  29.3s S 293 | Pyr:  29.0 Pyr:  28.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  29.4s S 294 | Pyr:  29.2 Pyr:  28.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  29.5s S 295 | Pyr:  27.5 Pyr:  27.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  29.6s S 296 | Pyr:  27.1 Pyr:  27.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  29.7s S 297 | Pyr:  28.9 Pyr:  29.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  29.8s S 298 | Pyr:  27.5 Pyr:  29.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  29.9s S 299 | Pyr:  29.0 Pyr:  28.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  30.0s S 300 | Pyr:  27.7 Pyr:  26.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  30.1s S 301 | Pyr:  26.4 Pyr:  26.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  30.2s S 302 | Pyr:  26.7 Pyr:  29.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  30.3s S 303 | Pyr:  29.0 Pyr:  28.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  30.4s S 304 | Pyr:  28.2 Pyr:  29.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  30.5s S 305 | Pyr:  29.4 Pyr:  27.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  30.6s S 306 | Pyr:  29.6 Pyr:  26.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  30.7s S 307 | Pyr:  28.4 Pyr:  27.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  30.8s S 308 | Pyr:  27.9 Pyr:  27.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  30.9s S 309 | Pyr:  28.4 Pyr:  27.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  31.0s S 310 | Pyr:  28.5 Pyr:  26.5 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  31.1s S 311 | Pyr:  27.6 Pyr:  26.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  31.2s S 312 | Pyr:  26.5 Pyr:  29.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  31.3s S 313 | Pyr:  29.9 Pyr:  27.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  31.4s S 314 | Pyr:  26.2 Pyr:  29.3 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  31.5s S 315 | Pyr:  26.8 Pyr:  27.9 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  31.6s S 316 | Pyr:  29.8 Pyr:  28.0 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  31.7s S 317 | Pyr:  27.4 Pyr:  28.6 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  31.8s S 318 | Pyr:  27.6 Pyr:  28.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  31.9s S 319 | Pyr:  26.1 Pyr:  27.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  32.0s S 320 | Pyr:  26.3 Pyr:  27.4 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  32.1s S 321 | Pyr:  26.2 Pyr:  28.2 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  32.2s S 322 | Pyr:  26.2 Pyr:  29.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  32.3s S 323 | Pyr:  29.8 Pyr:  29.7 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  32.4s S 324 | Pyr:  29.8 Pyr:  26.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  32.5s S 325 | Pyr:  26.0 Pyr:  26.8 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GFSF
+T  32.6s S 326 | Pyr:  28.4 Pyr:  27.1 Pre:   0.0 Gap: 300.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:ECGFSF
+T  32.7s S 327 | Pyr:  28.4 Pyr:  29.8 Pre:   0.0 Gap: 300.0 VRP:  50.0 V0R:  50.0 V1R: 150.0 M:   0.0 P:   0.0 | F:ECGF
+T  32.8s S 328 | Pyr:  28.4 Pyr:  29.2 Pre:   0.0 Gap: 300.0 VRP:   0.0 V0R:   0.0 V1R: 100.0 M:   0.0 P:   0.0 | F:ECGF
+T  32.9s S 329 | Pyr:  28.4 Pyr:  29.4 Pre:   0.0 Gap: 300.0 VRP:   0.0 V0R:   0.0 V1R:  50.0 M:   0.0 P:   0.0 | F:ECGF
+T  33.0s S 330 | Pyr:  28.4 Pyr:  29.5 Pre:   0.0 Gap: 300.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:ECGF
