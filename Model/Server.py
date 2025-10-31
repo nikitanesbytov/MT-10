@@ -46,6 +46,11 @@ class ModbusServer:
         self.simulation_running = False
         self.simulator = None
         self.initialized = False
+        self.current_step = 0  # 0 - ready for Gap_Valk, 1 - ready for Accel_Valk, 2 - ready for Approaching
+        self.writing_to_registers = False
+        self.step_complete = False
+        self.current_data = None
+
         # Try to initialize immediately
         try:
             self.start_init_from_registers()
@@ -86,6 +91,14 @@ class ModbusServer:
         
         self.hr_data_combined.setValues(12, regs)  
         self.hr_data_combined.setValues(30, [flags])  
+
+        # После записи в регистры:
+        with open("serv.txt", "a") as f:
+            f.write(f"Step {idx}: ")
+            for k in keys:
+                v = sim_data[k][idx] if isinstance(sim_data[k], list) else sim_data[k]
+                f.write(f"{k}={v} ")
+            f.write("\n")
 
     def run_simulation_and_update(self, **kwargs):
         self.simulation_running = True
@@ -172,14 +185,15 @@ class ModbusServer:
         Num_of_revol_1rollg = regs_to_float(regs[6], regs[7])
         Speed_of_diverg = regs_to_float(regs[9], regs[10])
 
+
         # Проверка и выполнение Gap_Valk
         if Start_Gap:
             if Roll_pos <= 0:
                 self.log_message("Ошибка: не установлено значение Roll_pos")
                 return
-                
-            self.log_message("Выполняется Gap_Valk...")
-            self.simulator._Gap_Valk_(Roll_pos, Dir_of_rot_valk)
+ 
+            self.log_message("Выполняется Gap_Valk...",Roll_pos)
+            self.simulator._Gap_Valk_(Roll_pos=Roll_pos, Dir_of_rot_valk=Dir_of_rot_valk)
             self.update_simulation_registers_from_simulator()
             self.simulator.save_logs_to_file("serv.txt")
             self.log_message("Выполнился Gap_Valk...")
@@ -239,7 +253,7 @@ class ModbusServer:
                     'Speed_feedback': Speed_feedback[-1]
                 }
                 self.update_simulation_registers(sim_data, -1)
-            return  # Выходим после выполнения
+            return 
 
     def update_simulation_registers_from_simulator(self):
         """Вспомогательный метод для обновления регистров текущими значениями симулятора"""
@@ -325,110 +339,118 @@ class ModbusServer:
         finally:
             self.stop_monitoring = True
 
-def monitor_registers(server):
-    """Мониторинг регистров для автоматического запуска симуляции"""
-    last_reg8 = 0
-    method_running = False
-    gap_valk_done = False
-    accel_valk_done = False
+def write_data_to_registers(server):
+    """Постепенно записывает значения из current_data в регистры 12-30"""
+    if not server.current_data:
+        return
 
+    # Определяем длину лога (например, по Pyro1)
+    steps = len(server.current_data['Pyro1'])
+    if not hasattr(server, 'write_idx'):
+        server.write_idx = 0
+
+    if server.write_idx < steps:
+        server.update_simulation_registers(server.current_data, server.write_idx)
+        server.write_idx += 1
+    else:
+        # После окончания лога можно либо держать последнее значение, либо ничего не делать
+        pass
+
+def monitor_registers(server):
     while not server.stop_monitoring:
         try:
-            if not server.initialized or server.simulator is None:
-                server.log_message("Ошибка: модель не инициализирована")
-                time.sleep(1)
+            # Если идёт запись — только пишем в регистры, команды не проверяем!
+            if server.writing_to_registers:
+                write_data_to_registers(server)
+                flags = server.hr_data_combined.getValues(30, 1)[0]
+                if server.current_step == 0 and (flags & 0x04):  # Gap_feedback
+                    server.writing_to_registers = False
+                    server.current_step = 1
+                    server.write_idx = 0
+                elif server.current_step == 1 and (flags & 0x08):  # Speed_feedback
+                    server.writing_to_registers = False
+                    server.current_step = 2
+                    server.write_idx = 0
+                elif server.current_step in (2, 3, 4) and server.write_idx >= server.current_steps_total:
+                    server.writing_to_registers = False
+                    server.current_step += 1
+                    server.write_idx = 0
+                time.sleep(0.1)
                 continue
 
-            regs = server.hr_data_combined.getValues(1, 11)
+            # Только если НЕ идёт запись — проверяем команды ПЛК:
+            regs = server.hr_data_combined.getValues(1, 31)
             reg8 = regs[8]
-            
-            Start_Gap = bool(reg8 & 0x20)    # бит 5
-            Start_Accel = bool(reg8 & 0x40)  # бит 6  
-            Start_Roll = bool(reg8 & 0x80)   # бит 7
 
-            if not method_running:
-                # Проверяем Start_Gap - может выполняться первым
-                if Start_Gap:
-                    method_running = True
-                    server.log_message("Запуск Gap_Valk...")
-                    Roll_pos = regs_to_float(regs[2], regs[3])
-                    Dir_of_rot_valk = bool(reg8 & 0x01)
-                    
-                    if Roll_pos <= 0:
-                        server.log_message("Ошибка: не установлено значение Roll_pos")
-                        method_running = False
-                        continue
-                        
-                    server.simulator._Gap_Valk_(Roll_pos, Dir_of_rot_valk)
-                    server.update_simulation_registers_from_simulator()
-                    if server.simulator.Gap_feedbackLog[-1]:
-                        gap_valk_done = True
-                        server.log_message("Gap_Valk выполнен успешно, можно запускать Accel_Valk...")
-                    method_running = False
-                    
-                # Проверяем Start_Accel - только после успешного Gap_Valk
-                elif Start_Accel:
-                    if not gap_valk_done:
-                        server.log_message("Ошибка: сначала должен быть выполнен Gap_Valk")
-                        continue
-                        
-                    method_running = True
-                    server.log_message("Запуск Accel_Valk...")
-                    Num_of_revol_rolls = regs_to_float(regs[0], regs[1])
-                    Dir_of_rot_rolg = bool(reg8 & 0x02)
-                    
-                    if Num_of_revol_rolls <= 0:
-                        server.log_message("Ошибка: не установлено значение Num_of_revol_rolls")
-                        method_running = False
-                        continue
-                        
-                    server.simulator._Accel_Valk_(Num_of_revol_rolls, Dir_of_rot_rolg, Dir_of_rot_rolg)
-                    server.update_simulation_registers_from_simulator()
-                    if server.simulator.Speed_V_feedbackLog[-1]:
-                        accel_valk_done = True
-                        server.log_message("Accel_Valk выполнен успешно, можно запускать Approaching_to_Roll...")
-                    method_running = False
-                    
-                # Проверяем Start_Roll - только после успешного Accel_Valk
-                elif Start_Roll:
-                    if not accel_valk_done:
-                        server.log_message("Ошибка: сначала должен быть выполнен Accel_Valk")
-                        continue
-                        
-                    method_running = True
-                    server.log_message("Запуск Approaching_to_Roll...")
-                    Num_of_revol_0rollg = regs_to_float(regs[4], regs[5])
-                    Num_of_revol_1rollg = regs_to_float(regs[6], regs[7])
-                    Dir_of_rot_valk = bool(reg8 & 0x01)
-                    Dir_of_rot_rolg = bool(reg8 & 0x02)
-                    
-                    if Num_of_revol_0rollg <= 0 or Num_of_revol_1rollg <= 0:
-                        server.log_message("Ошибка: не установлены скорости рольгангов")
-                        method_running = False
-                        continue
-                        
-                    sim_result = server.simulator._Approching_to_Roll_(
-                        Dir_of_rot_valk,
-                        Num_of_revol_0rollg, 
-                        Num_of_revol_1rollg,
-                        Dir_of_rot_rolg,
-                        Dir_of_rot_rolg
-                    )
-                    
-                    if sim_result:
-                        server.update_simulation_registers(sim_result, -1)
-                        server.log_message("Approaching_to_Roll выполнен")
-                    method_running = False
-                    # Сбрасываем флаги для возможности нового цикла
-                    gap_valk_done = False
-                    accel_valk_done = False
+            Start_Gap = bool(reg8 & 0x20)
+            Start_Accel = bool(reg8 & 0x40)
+            Start_Roll = bool(reg8 & 0x80)
 
-            last_reg8 = reg8
+            if server.current_step == 0 and Start_Gap:
+                Roll_pos = regs_to_float(regs[2], regs[3])
+                Dir_of_rot_valk = bool(reg8 & 0x01)
+                server.log_message(f"Запуск Gap_Valk... {Roll_pos}")
+                sim_result = server.simulator._Gap_Valk_(Roll_pos, Dir_of_rot_valk)
+                server.current_data = sim_result
+                server.current_steps_total = len(sim_result['Pyro1'])
+                server.write_idx = 0
+                server.writing_to_registers = True
+
+            elif server.current_step == 1 and Start_Accel:
+                Num_of_revol_rolls = regs_to_float(regs[0], regs[1])
+                Dir_of_rot_rolg = bool(reg8 & 0x02)
+                server.log_message("Запуск Accel_Valk...")
+                sim_result = server.simulator._Accel_Valk_(Num_of_revol_rolls, Dir_of_rot_rolg, Dir_of_rot_rolg)
+                server.current_data = sim_result
+                server.current_steps_total = len(sim_result['Pyro1'])
+                server.write_idx = 0
+                server.writing_to_registers = True
+
+            elif server.current_step == 2 and Start_Roll:
+                Num_of_revol_0rollg = regs_to_float(regs[4], regs[5])
+                Num_of_revol_1rollg = regs_to_float(regs[6], regs[7])
+                Dir_of_rot_valk = bool(reg8 & 0x01)
+                Dir_of_rot_rolg = bool(reg8 & 0x02)
+                server.log_message("Запуск Approaching_to_Roll...")
+                sim_result = server.simulator._Approching_to_Roll_(
+                    Dir_of_rot_valk,
+                    Num_of_revol_0rollg,
+                    Num_of_revol_1rollg,
+                    Dir_of_rot_rolg,
+                    Dir_of_rot_rolg
+                )
+                server.current_data = sim_result
+                server.current_steps_total = len(sim_result['Pyro1'])
+                server.write_idx = 0
+                server.writing_to_registers = True
+
+            elif server.current_step == 3:
+                server.log_message("Запуск simulate_rolling_pass...")
+                sim_result = server.simulator._simulate_rolling_pass()
+                server.current_data = sim_result
+                server.current_steps_total = len(sim_result['Pyro1'])
+                server.write_idx = 0
+                server.writing_to_registers = True
+
+            elif server.current_step == 4:
+                server.log_message("Запуск simulate_exit_from_rolls...")
+                sim_result = server.simulator._simulate_exit_from_rolls()
+                server.current_data = sim_result
+                server.current_steps_total = len(sim_result['Pyro1'])
+                server.write_idx = 0
+                server.writing_to_registers = True
+
+            elif server.current_step > 4:
+                # Ждём, пока все управляющие биты будут сброшены (Start_Gap, Start_Accel, Start_Roll)
+                if not (Start_Gap or Start_Accel or Start_Roll):
+                    server.current_step = 0
+                # Если хотя бы один бит поднят — ничего не делаем, ждём сброса
+
             time.sleep(0.1)
-
         except Exception as e:
             server.log_message(f"Ошибка мониторинга: {e}")
-            method_running = False
+            server.writing_to_registers = False
+            server.write_idx = 0
             time.sleep(1)
 
 def main():
