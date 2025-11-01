@@ -313,6 +313,12 @@ class ModbusServer:
                 self.counter2 = 0
             time.sleep(0.1)
 
+    # def monitoring_alarm(self):
+    #     while not self.stop_monitoring:
+    #         reg8 = self.hr_data_combined.getValues(9, 1)[0] 
+    #         alarm = bool(reg8 & 0x08)
+    #         if alarm 
+
 def main():
 
     server = ModbusServer()
