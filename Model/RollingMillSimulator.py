@@ -150,8 +150,9 @@ class RollingMillSimulator(RollingMill):
         target_gap = self.S
         time_gap = (abs(self.S - CurrentS)) / (self.VS)
         final_temp = current_temp - 10
-        temp_drop_per_ms = ((current_temp - final_temp) / time_gap) * self.time_step
-       
+        # temp_drop_per_ms = ((current_temp - final_temp) / time_gap) * self.time_step
+        temp_drop_per_ms = 0.5
+        
         while CurrentS != target_gap:
             CurrentS = min(CurrentS + gap_change_per_ms, target_gap) if CurrentS < target_gap else max(CurrentS - gap_change_per_ms, target_gap)
             if CurrentS == self.S:
@@ -252,7 +253,7 @@ class RollingMillSimulator(RollingMill):
         }
 
 
-    def _Approching_to_Roll_(self,Dir_of_rot,Num_of_revol_0rollg,Num_of_revol_1rollg,Dir_of_rot_L_rolg,Dir_of_rot_R_rolg):
+    def _Approching_to_Roll_(self,Dir_of_rot,Num_of_revol_0rollg,Num_of_revol_1rollg):
         "Проход сляба к валкам"
         current_pos_x = self.x_log[-1]
         current_pos_x1 = self.x1_log[-1]
@@ -268,7 +269,7 @@ class RollingMillSimulator(RollingMill):
         # self.V1 = (2 * pi * self.DR/2 * Num_of_revol_1rollg) / 60
         #Находим ближайшую точку соприкосновения сляба с валками
         Offset = sqrt((self.DV/2)**2 - (self.DV/2 - ((self.h_0 - self.h_1)/2))**2)
-        if Dir_of_rot_L_rolg == 0:
+        if self.Dir_of_rot == 0:
             time_accel = ((self.V0) / (self.accel))
             S1 = ((self.accel) * time_accel**2)/2
             S2 = (self.d1 + self.d/2 - self.L - Offset) - S1
@@ -449,7 +450,7 @@ class RollingMillSimulator(RollingMill):
                         Speed_V_feedback = self.Speed_V_feedbackLog[-1]
                         ) 
         else:
-            while current_pos_x1 <= self.d1 + self.d/2:
+            while current_pos_x1 >= self.d1 + self.d/2:
                 current_pos_x = current_pos_x - self.speed_V[-1] * Length_coef * self.time_step
                 current_pos_x1 = current_pos_x1 - self.speed_V[-1] * self.time_step
                 current_length = current_pos_x1 - current_pos_x
@@ -547,6 +548,7 @@ class RollingMillSimulator(RollingMill):
                     RightCap = 1
                 else:
                     RightCap = 0
+                
                 current_time += self.time_step
                 self._update_logs(time=round(current_time,2), 
                                 gap=round(self.gap_log[-1],2), 
@@ -618,6 +620,8 @@ class RollingMillSimulator(RollingMill):
                 
                 if current_speed != self.V_Valk_Per:
                     Speed_V_flag = 0
+                if current_speed == 0:
+                    Speed_V_flag = 1
                 current_temp = max(current_temp - temp_drop_per_ms, final_temp)
                 
                 if x1 >= self.RightStopCap and x <= self.RightStopCap:
@@ -663,6 +667,9 @@ class RollingMillSimulator(RollingMill):
                 
                 if current_speed != self.V_Valk_Per:
                     Speed_V_flag = 0
+                
+                if current_speed == 0:
+                    Speed_V_flag = 1
                 
                 current_temp = max(current_temp - temp_drop_per_ms, final_temp)
                 
@@ -801,20 +808,19 @@ if __name__ == "__main__":
         V0=0,V1=0,VS=0,Dir_of_rot=0,LeftStopCap=0,
         d1=0,d2=0,d=0, V_Valk_Per=0,StartS=0
     )
-    simulator.Init(Length_slab=300, Width_slab=250, Thikness_slab=310, Temperature_slab=1200, Material_slab='Ст3сп', Diametr_roll=300, Material_roll='Сталь')
+    simulator.Init(Length_slab=300, Width_slab=250, Thikness_slab=350, Temperature_slab=1200, Material_slab='Ст3сп', Diametr_roll=300, Material_roll='Сталь')
     #1 Итерация
-    simulator._Gap_Valk_(300,0)
+    simulator._Gap_Valk_(320,0)
     simulator._Accel_Valk_(100,0,0)
-    simulator._Approching_to_Roll_(0,100,200,0,0)
+    simulator._Approching_to_Roll_(0,100,200)
     simulator._simulate_rolling_pass()
-    simulator.Alarm_stop()
-    # simulator._simulate_exit_from_rolls()
-    # #2 Итерация
-    # simulator._Gap_Valk_(180,1)
-    # simulator._Accel_Valk_(100,1,1)
-    # simulator._Approching_to_Roll_(1,100,200,1,1)
-    # simulator._simulate_rolling_pass()
-    # simulator._simulate_exit_from_rolls()
+    simulator._simulate_exit_from_rolls()
+    #2 Итерация
+    simulator._Gap_Valk_(290,1)
+    simulator._Accel_Valk_(100,1,1)
+    simulator._Approching_to_Roll_(1,200,100)
+    simulator._simulate_rolling_pass()
+    simulator._simulate_exit_from_rolls()
     
     simulator.save_logs_to_file("my_logs.txt")
     

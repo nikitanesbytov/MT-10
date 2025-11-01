@@ -251,8 +251,7 @@ class ModbusServer:
             # Читаем регистры
             regs = self.hr_data_combined.getValues(1, 31)
             reg8 = regs[8]
-            
-            # Обнаружение фронтов
+
             Start = bool(reg8 & 0x10)
             Start_Gap = bool(reg8 & 0x20)
             Start_Accel = bool(reg8 & 0x40)
@@ -261,6 +260,7 @@ class ModbusServer:
             if Start:
                 if Start_Gap and self.counter == 0 and self.counter2 < 2:
                     Roll_pos = regs_to_float(regs[2], regs[3])
+                    self.log_message(Roll_pos)
                     Dir_of_rot_valk = bool(reg8 & 0x01)
                     self.log_message("ЗАПУСК Gap_Valk...")
                     self.log_message(f"Параметры: Roll_pos={Roll_pos}, Dir_of_rot_valk={Dir_of_rot_valk}")
@@ -273,6 +273,7 @@ class ModbusServer:
 
                 if Start_Accel and self.counter == 1 and self.counter2 < 2:
                     Num_of_revol_rolls = regs_to_float(regs[0], regs[1])
+                    self.log_message(Num_of_revol_rolls)
                     Dir_of_rot_rolg = bool(reg8 & 0x02)
                     self.log_message("ЗАПУСК Accel_Valk...")
                     self.log_message(f"Параметры: Num_of_revol_rolls={Num_of_revol_rolls}")
@@ -286,15 +287,14 @@ class ModbusServer:
                 if Start_Roll and self.counter == 2 and self.counter2 <= 2:
                     Num_of_revol_0rollg = regs_to_float(regs[4], regs[5])
                     Num_of_revol_1rollg = regs_to_float(regs[6], regs[7])
-                    Dir_of_rot_valk = bool(reg8 & 0x01)
-                    Dir_of_rot_rolg = bool(reg8 & 0x02)
+                    self.log_message(Num_of_revol_0rollg)
+                    self.log_message(Num_of_revol_1rollg)
+                    Dir_of_rot = bool(reg8 & 0x02)
                     self.log_message("ЗАПУСК Approaching_to_Roll...")
                     sim_result = self.simulator._Approching_to_Roll_(
-                        Dir_of_rot_valk,
+                        Dir_of_rot,
                         Num_of_revol_0rollg,
                         Num_of_revol_1rollg,
-                        Dir_of_rot_rolg,
-                        Dir_of_rot_rolg
                     )
                     self.write_simulation_data_to_registers(sim_result)
                     self.flag = 0
@@ -308,7 +308,7 @@ class ModbusServer:
                     self.flag = 0
                     self.counter2 += 1
                     self.log_message(f"Завершено")
-            if Start == 0:
+            if Start == False:
                 self.counter = 0
                 self.counter2 = 0
             time.sleep(0.1)
@@ -334,7 +334,7 @@ def main():
     monitor_thread = threading.Thread(target=server.monitor_registers, args=(), daemon=True)
     monitor_thread.start()
     
-    server.run_server("10.77.100.52",55000)
+    server.run_server("192.168.0.99",55000)
 
 if __name__ == "__main__":
     main()
