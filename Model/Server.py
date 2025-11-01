@@ -34,13 +34,7 @@ def regs_to_float(reg1, reg2):
         return 0.0
 
 class ModbusServer:
-    def __init__(self):
-        self.gap_executed = False
-        self.accel_executed = False  
-        self.roll_executed = False
-        self.last_Start_Gap = False
-        self.last_Start_Accel = False
-        self.last_Start_Roll = False       
+    def __init__(self):  
         total_registers = 31
         initial_values = [0] * total_registers
         self.hr_data_combined = ModbusSequentialDataBlock(1, initial_values)
@@ -50,16 +44,11 @@ class ModbusServer:
         self.simulation_running = False
         self.simulator = None
         self.initialized = False
-        self.current_step = 0  # 0 - ready for Gap_Valk, 1 - ready for Accel_Valk, 2 - ready for Approaching, 3 - ready for Rolling, 4 - ready for Exit
-        self.writing_to_registers = False
-        self.step_complete = False
-        self.current_data = None
+        self.current_step = 0  # 0 - ready for Gap_Valk, 1 - ready for Accel_Valk, 2 - ready for Approaching, 3 - ready for Rolling
         self.counter = 0
-        self.write_idx = None 
         self.counter2 = 0
-        self.flag = 0
         self.nex_idx = 0
-        # Try to initialize immediately
+
         try:
             self.start_init_from_registers()
             if self.initialized:
@@ -164,24 +153,19 @@ class ModbusServer:
         except Exception as e:
             self.log_message(f"Ошибка Init из БД: {e}")
 
-    def run_server(self):
+    def run_server(self,IP,port):
         """Запуск Modbus сервера"""
-        self.log_message("Modbus сервер запущен на :55000")
-        self.log_message("Для запуска симуляции установите бит Start (0x10) в регистре 8")
-        
+        self.log_message(f"Modbus сервер запущен на {IP}:{port}")
         try:
-            StartTcpServer(context=self.context, address=("192.168.0.99", 55000))
+            StartTcpServer(context=self.context, address=(IP, port))
         except Exception as e:
             self.log_message(f"Ошибка сервера: {e}")
         finally:
             self.stop_monitoring = True
 
     def write_simulation_data_to_registers(self, sim_data):
-        prev = self.nex_idx
-
         total_steps = len(sim_data['Time']) 
 
-    
         # Инициализация переменных для управления временем
         write_start_time = time.time()
         
@@ -195,7 +179,7 @@ class ModbusServer:
             total_time = time.time() - write_start_time
             self.log_message(f" Запись данных завершена! Всего шагов: {total_steps}, время: {total_time:.1f}с")
             self.log_message(f" Переход к следующему этапу. Текущий счетчик: {self.counter}")
-            self.flag = 1
+
     
     def _write_single_step_to_registers(self, sim_data, idx):
         """Записывает данные одного шага симуляции в регистры"""
@@ -281,8 +265,7 @@ class ModbusServer:
                     self.log_message("ЗАПУСК Gap_Valk...")
                     self.log_message(f"Параметры: Roll_pos={Roll_pos}, Dir_of_rot_valk={Dir_of_rot_valk}")
                     sim_result = self.simulator._Gap_Valk_(Roll_pos, Dir_of_rot_valk)
-                    while self.flag != 1:
-                        self.write_simulation_data_to_registers(sim_result)
+                    self.write_simulation_data_to_registers(sim_result)
                     self.log_message(f"Завершено")
                     self.counter = 1
                     self.counter2 += 1
@@ -294,8 +277,7 @@ class ModbusServer:
                     self.log_message("ЗАПУСК Accel_Valk...")
                     self.log_message(f"Параметры: Num_of_revol_rolls={Num_of_revol_rolls}")
                     sim_result = self.simulator._Accel_Valk_(Num_of_revol_rolls, Dir_of_rot_rolg, Dir_of_rot_rolg)
-                    while self.flag != 1:
-                        self.write_simulation_data_to_registers(sim_result)
+                    self.write_simulation_data_to_registers(sim_result)
                     self.log_message(f"Завершено")
                     self.counter = 2
                     self.counter2 += 1
@@ -314,27 +296,21 @@ class ModbusServer:
                         Dir_of_rot_rolg,
                         Dir_of_rot_rolg
                     )
-                    while self.flag != 1:
-                        self.write_simulation_data_to_registers(sim_result)
+                    self.write_simulation_data_to_registers(sim_result)
                     self.flag = 0
 
-                    
                     sim_result = self.simulator._simulate_rolling_pass()
-                    while self.flag != 1:
-                        self.write_simulation_data_to_registers(sim_result)
+                    self.write_simulation_data_to_registers(sim_result)
                     self.flag = 0
                     
                     sim_result = self.simulator._simulate_exit_from_rolls()
-                    while self.flag != 1:
-                        self.write_simulation_data_to_registers(sim_result)
+                    self.write_simulation_data_to_registers(sim_result)
                     self.flag = 0
                     self.counter2 += 1
                     self.log_message(f"Завершено")
             if Start == 0:
-                # Сбрасываем счетчик, если бит Start сброшен
                 self.counter = 0
                 self.counter2 = 0
-            
             time.sleep(0.1)
 
 def main():
@@ -352,7 +328,7 @@ def main():
     monitor_thread = threading.Thread(target=server.monitor_registers, args=(), daemon=True)
     monitor_thread.start()
     
-    server.run_server()
+    server.run_server("10.77.100.52",55000)
 
 if __name__ == "__main__":
     main()

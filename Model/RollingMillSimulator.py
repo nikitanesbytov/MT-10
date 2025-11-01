@@ -268,7 +268,6 @@ class RollingMillSimulator(RollingMill):
         # self.V1 = (2 * pi * self.DR/2 * Num_of_revol_1rollg) / 60
         #Находим ближайшую точку соприкосновения сляба с валками
         Offset = sqrt((self.DV/2)**2 - (self.DV/2 - ((self.h_0 - self.h_1)/2))**2)
-        print(Offset)
         if Dir_of_rot_L_rolg == 0:
             time_accel = ((self.V0) / (self.accel))
             S1 = ((self.accel) * time_accel**2)/2
@@ -709,12 +708,17 @@ class RollingMillSimulator(RollingMill):
 
     def Alarm_stop(self):
         "Аварийная остановка прокатного стана"
+        current_time = self.time_log[-1]
         while self.speed_V[-1] > 0 or self.speed_V0[-1] > 0 or self.speed_V1[-1] > 0 or self.gap_log[-1] != 300:
             current_speed = max(self.speed_V[-1] - self.accel * self.time_step,0)
             current_V0 = max(self.speed_V0[-1] - self.accel * self.time_step,0)
             current_V1 = max(self.speed_V1[-1] - self.accel * self.time_step,0)
-            current_gap  = min(self.gap_log[-1] + self.VS * self.time_step,300) 
-            current_time = self.time_log[-1] + self.time_step
+            current_gap =  min(current_gap + self.VS, 300) if current_gap < 300 else max(current_gap - self.VS, 300)
+            if current_gap == 300:
+                GapCap = 1
+            else:
+                GapCap = 0
+            current_time += self.time_step
             self._update_logs(time=round(current_time,2),
                               gap=round(current_gap,2),
                               speed_V=round(current_speed,2),
@@ -731,9 +735,24 @@ class RollingMillSimulator(RollingMill):
                               power=0,
                               LeftCap=self.LeftCap[-1],
                               RightCap=self.RightCap[-1],
-                              Gap_feedback = self.Gap_feedbackLog[-1],
+                              Gap_feedback = GapCap,
                               Speed_V_feedback = 0)
-        pass
+        return {
+            'Time': self.time_log,
+            'Pyro1': self.pyrometr_1,
+            'Pyro2': self.pyrometr_2,
+            'Power': self.power_log,
+            'Gap': self.gap_log,
+            'VRPM': self.speed_V,
+            'V0RPM': self.speed_V0,
+            'V1RPM': self.speed_V1,
+            'Moment': self.moment_log,
+            'Pressure': self.effort_log,
+            'StartCap': self.LeftCap,
+            'EndCap':self.RightCap,
+            'Gap_feedback': self.Gap_feedbackLog,
+            'Speed_feedback': self.Speed_V_feedbackLog
+        } 
     
     def Init(self, Length_slab, Width_slab, Thikness_slab, Temperature_slab, Material_slab, Diametr_roll, Material_roll):
         self.TempV=28
@@ -782,18 +801,22 @@ if __name__ == "__main__":
         V0=0,V1=0,VS=0,Dir_of_rot=0,LeftStopCap=0,
         d1=0,d2=0,d=0, V_Valk_Per=0,StartS=0
     )
-    simulator.Init(Length_slab=300, Width_slab=250, Thikness_slab=350, Temperature_slab=1200, Material_slab='Ст3сп', Diametr_roll=300, Material_roll='Сталь')
+    simulator.Init(Length_slab=300, Width_slab=250, Thikness_slab=310, Temperature_slab=1200, Material_slab='Ст3сп', Diametr_roll=300, Material_roll='Сталь')
     #1 Итерация
-    print(len(simulator._Gap_Valk_(300,0)['Time']))
-    print(len(simulator._Accel_Valk_(100,0,0)['Time']))
+    simulator._Gap_Valk_(300,0)
+    simulator._Accel_Valk_(100,0,0)
     simulator._Approching_to_Roll_(0,100,200,0,0)
     simulator._simulate_rolling_pass()
-    simulator._simulate_exit_from_rolls()
-    simulator.save_logs_to_file("my_logs.txt")
+    simulator.Alarm_stop()
+    # simulator._simulate_exit_from_rolls()
     # #2 Итерация
     # simulator._Gap_Valk_(180,1)
-    # simulator._Accel_Valk_(10,1,1)
-    # simulator._Approching_to_Roll_(1,40,38,1,1)
+    # simulator._Accel_Valk_(100,1,1)
+    # simulator._Approching_to_Roll_(1,100,200,1,1)
+    # simulator._simulate_rolling_pass()
+    # simulator._simulate_exit_from_rolls()
+    
+    simulator.save_logs_to_file("my_logs.txt")
     
     
 
