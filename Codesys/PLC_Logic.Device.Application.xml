@@ -103,8 +103,10 @@
         <Node name="F_right_position" type="T_BOOL" access="ReadWrite" />
         <Node name="L_roll" type="T_REAL" access="ReadWrite" />
         <Node name="M_rolling" type="T_REAL" access="ReadWrite" />
+        <Node name="N_iterrations_SCADA" type="T_INT" access="ReadWrite" />
         <Node name="N_rolling" type="T_REAL" access="ReadWrite" />
         <Node name="P_top_roll" type="T_REAL" access="ReadWrite" />
+        <Node name="reset_alarm_SCADA" type="T_BOOL" access="ReadWrite" />
         <Node name="t_pyrometer_1" type="T_REAL" access="ReadWrite" />
         <Node name="t_pyrometer_2" type="T_REAL" access="ReadWrite" />
         <Node name="V_left_rollers_PLC_P" type="T_REAL" access="ReadWrite" />

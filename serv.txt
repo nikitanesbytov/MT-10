@@ -1,564 +1,311 @@
-=== ËÎÃ ÑÅÐÂÅÐÀ 01.11 21:16 ===
+=== ËÎÃ ÑÅÐÂÅÐÀ 04.11 17:31 ===
 Ôîðìàò: Âðåìÿ Øàã | Ïàðàìåòðû | Ôëàãè
 Ïàðàìåòðû: Py1 Py2 Pre Gap VRPM V0R V1R M P
 Ôëàãè: SC=StartCap EC=EndCap GF=GapFeedback SF=SpeedFeedback
 --------------------------------------------------------------------------------
-T   0.0s S   0 | Pyr:  28.0 Pyr:  28.0 Pre:   0.0 Gap:   0.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   0.1s S   1 | Pyr:  28.4 Pyr:  26.5 Pre:   0.0 Gap:  10.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   0.2s S   2 | Pyr:  29.7 Pyr:  29.3 Pre:   0.0 Gap:  20.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   0.3s S   3 | Pyr:  27.8 Pyr:  26.6 Pre:   0.0 Gap:  30.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   0.4s S   4 | Pyr:  26.2 Pyr:  26.7 Pre:   0.0 Gap:  40.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   0.5s S   5 | Pyr:  27.1 Pyr:  29.7 Pre:   0.0 Gap:  50.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   0.6s S   6 | Pyr:  27.2 Pyr:  28.7 Pre:   0.0 Gap:  60.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   0.7s S   7 | Pyr:  29.7 Pyr:  28.7 Pre:   0.0 Gap:  70.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   0.8s S   8 | Pyr:  28.7 Pyr:  27.8 Pre:   0.0 Gap:  80.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   0.9s S   9 | Pyr:  26.6 Pyr:  29.7 Pre:   0.0 Gap:  90.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   1.0s S  10 | Pyr:  26.7 Pyr:  28.4 Pre:   0.0 Gap: 100.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   1.1s S  11 | Pyr:  27.2 Pyr:  27.6 Pre:   0.0 Gap: 110.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   1.2s S  12 | Pyr:  27.3 Pyr:  26.1 Pre:   0.0 Gap: 120.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   1.3s S  13 | Pyr:  26.5 Pyr:  26.2 Pre:   0.0 Gap: 130.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   1.4s S  14 | Pyr:  28.7 Pyr:  26.9 Pre:   0.0 Gap: 140.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   1.5s S  15 | Pyr:  27.5 Pyr:  28.4 Pre:   0.0 Gap: 150.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   1.6s S  16 | Pyr:  26.3 Pyr:  29.6 Pre:   0.0 Gap: 160.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   1.7s S  17 | Pyr:  29.9 Pyr:  27.2 Pre:   0.0 Gap: 170.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   1.8s S  18 | Pyr:  29.3 Pyr:  26.7 Pre:   0.0 Gap: 180.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   1.9s S  19 | Pyr:  26.4 Pyr:  26.3 Pre:   0.0 Gap: 190.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   2.0s S  20 | Pyr:  29.6 Pyr:  26.9 Pre:   0.0 Gap: 200.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   2.1s S  21 | Pyr:  27.5 Pyr:  29.6 Pre:   0.0 Gap: 210.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   2.2s S  22 | Pyr:  28.0 Pyr:  26.4 Pre:   0.0 Gap: 220.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   2.3s S  23 | Pyr:  26.8 Pyr:  29.3 Pre:   0.0 Gap: 230.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   2.4s S  24 | Pyr:  27.2 Pyr:  27.2 Pre:   0.0 Gap: 240.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   2.5s S  25 | Pyr:  27.8 Pyr:  29.3 Pre:   0.0 Gap: 250.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   2.6s S  26 | Pyr:  29.8 Pyr:  29.4 Pre:   0.0 Gap: 260.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   2.7s S  27 | Pyr:  28.0 Pyr:  26.6 Pre:   0.0 Gap: 270.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   2.8s S  28 | Pyr:  27.5 Pyr:  29.4 Pre:   0.0 Gap: 280.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   2.9s S  29 | Pyr:  27.4 Pyr:  28.1 Pre:   0.0 Gap: 290.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   3.0s S  30 | Pyr:  26.1 Pyr:  29.7 Pre:   0.0 Gap: 300.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   3.1s S  31 | Pyr:  27.3 Pyr:  26.8 Pre:   0.0 Gap: 310.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:---
-T   3.2s S  32 | Pyr:  26.1 Pyr:  27.0 Pre:   0.0 Gap: 320.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:Gap
-T   3.3s S  33 | Pyr:  26.1 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP:  50.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:Gap
-T   3.4s S  34 | Pyr:  26.2 Pyr:  26.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   3.5s S  35 | Pyr:  28.7 Pyr:  26.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R:  50.0 V1R:  50.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   3.6s S  36 | Pyr:  28.8 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   3.7s S  37 | Pyr:  28.6 Pyr:  26.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 150.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   3.8s S  38 | Pyr:  27.5 Pyr:  27.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   3.9s S  39 | Pyr:  26.4 Pyr:  28.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   4.0s S  40 | Pyr:  28.4 Pyr:  29.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   4.1s S  41 | Pyr:  28.0 Pyr:  29.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   4.2s S  42 | Pyr:  29.6 Pyr:  26.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   4.3s S  43 | Pyr:  28.8 Pyr:  29.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   4.4s S  44 | Pyr:  28.4 Pyr:  29.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   4.5s S  45 | Pyr:  29.6 Pyr:  28.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   4.6s S  46 | Pyr:  28.5 Pyr:  26.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   4.7s S  47 | Pyr:  28.2 Pyr:  29.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   4.8s S  48 | Pyr:  29.8 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   4.9s S  49 | Pyr:  29.6 Pyr:  26.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   5.0s S  50 | Pyr:  29.0 Pyr:  28.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   5.1s S  51 | Pyr:  27.3 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   5.2s S  52 | Pyr:  28.8 Pyr:  27.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   5.3s S  53 | Pyr:  27.5 Pyr:  29.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   5.4s S  54 | Pyr:  27.2 Pyr:  27.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   5.5s S  55 | Pyr:  28.1 Pyr:  28.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   5.6s S  56 | Pyr:  28.2 Pyr:  29.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   5.7s S  57 | Pyr:  26.1 Pyr:  26.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   5.8s S  58 | Pyr:  26.8 Pyr:  27.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   5.9s S  59 | Pyr:  26.1 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   6.0s S  60 | Pyr:  29.6 Pyr:  27.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   6.1s S  61 | Pyr:  28.9 Pyr:  27.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   6.2s S  62 | Pyr:  27.8 Pyr:  27.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   6.3s S  63 | Pyr:  26.3 Pyr:  28.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   6.4s S  64 | Pyr:  29.4 Pyr:  29.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   6.5s S  65 | Pyr:  27.2 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   6.6s S  66 | Pyr:  27.7 Pyr:  27.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   6.7s S  67 | Pyr:  26.4 Pyr:  28.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   6.8s S  68 | Pyr:  28.4 Pyr:  29.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   6.9s S  69 | Pyr:  27.4 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   7.0s S  70 | Pyr:  27.9 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   7.1s S  71 | Pyr:  27.9 Pyr:  27.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   7.2s S  72 | Pyr:  27.9 Pyr:  26.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   7.3s S  73 | Pyr:  29.7 Pyr:  28.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   7.4s S  74 | Pyr:  27.7 Pyr:  27.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   7.5s S  75 | Pyr:  27.9 Pyr:  27.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   7.6s S  76 | Pyr:  27.8 Pyr:  28.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   7.7s S  77 | Pyr:  27.2 Pyr:  29.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   7.8s S  78 | Pyr:  29.7 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   7.9s S  79 | Pyr:  27.5 Pyr:  27.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   8.0s S  80 | Pyr:  27.9 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   8.1s S  81 | Pyr:  29.4 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   8.2s S  82 | Pyr:  27.1 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   8.3s S  83 | Pyr:  27.6 Pyr:  29.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   8.4s S  84 | Pyr:  29.1 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   8.5s S  85 | Pyr:  26.1 Pyr:  27.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   8.6s S  86 | Pyr:  29.5 Pyr:  29.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   8.7s S  87 | Pyr:  29.8 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   8.8s S  88 | Pyr:  27.3 Pyr:  26.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   8.9s S  89 | Pyr:  26.9 Pyr:  26.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   9.0s S  90 | Pyr:  26.2 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   9.1s S  91 | Pyr:  30.0 Pyr:  28.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   9.2s S  92 | Pyr:  26.8 Pyr:  27.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   9.3s S  93 | Pyr:  27.4 Pyr:  26.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   9.4s S  94 | Pyr:  28.2 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T   9.5s S  95 | Pyr:  26.6 Pyr:  27.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T   9.6s S  96 | Pyr:  28.8 Pyr:  27.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T   9.7s S  97 | Pyr:  27.7 Pyr:  29.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T   9.8s S  98 | Pyr:  29.2 Pyr:  27.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T   9.9s S  99 | Pyr:  28.6 Pyr:  29.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  10.0s S 100 | Pyr:  28.7 Pyr:  29.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  10.1s S 101 | Pyr:  28.4 Pyr:  29.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  10.2s S 102 | Pyr:  26.1 Pyr:  29.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  10.3s S 103 | Pyr:  26.8 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  10.4s S 104 | Pyr:  28.9 Pyr:  27.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  10.5s S 105 | Pyr:  26.7 Pyr:  28.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  10.6s S 106 | Pyr:  28.2 Pyr:  27.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  10.7s S 107 | Pyr:  28.9 Pyr:  28.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  10.8s S 108 | Pyr:  29.0 Pyr:  29.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  10.9s S 109 | Pyr:  27.4 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  11.0s S 110 | Pyr:  26.3 Pyr:  28.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  11.1s S 111 | Pyr:  27.1 Pyr:  28.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  11.2s S 112 | Pyr:  26.8 Pyr:  27.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  11.3s S 113 | Pyr:  29.1 Pyr:  29.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  11.4s S 114 | Pyr:  27.0 Pyr:  27.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  11.5s S 115 | Pyr:  29.9 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  11.6s S 116 | Pyr:  27.0 Pyr:  29.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  11.7s S 117 | Pyr:  28.4 Pyr:  26.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  11.8s S 118 | Pyr:  29.8 Pyr:  27.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  11.9s S 119 | Pyr:  28.2 Pyr:  28.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  12.0s S 120 | Pyr:  29.7 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  12.1s S 121 | Pyr:  27.6 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  12.2s S 122 | Pyr:  26.8 Pyr:  26.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  12.3s S 123 | Pyr:  29.6 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  12.4s S 124 | Pyr:  29.3 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  12.5s S 125 | Pyr:  26.2 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  12.6s S 126 | Pyr:  26.2 Pyr:  26.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  12.7s S 127 | Pyr:  26.8 Pyr:  27.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  12.8s S 128 | Pyr:  29.9 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  12.9s S 129 | Pyr:  27.0 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  13.0s S 130 | Pyr:  29.8 Pyr:  29.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  13.1s S 131 | Pyr:  28.8 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  13.2s S 132 | Pyr:  27.5 Pyr:  29.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  13.3s S 133 | Pyr:  28.4 Pyr:  28.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  13.4s S 134 | Pyr:  28.5 Pyr:  27.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  13.5s S 135 | Pyr:  29.6 Pyr:  28.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  13.6s S 136 | Pyr:  26.6 Pyr:  29.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  13.7s S 137 | Pyr:  28.8 Pyr:  27.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  13.8s S 138 | Pyr:  27.2 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  13.9s S 139 | Pyr:  27.1 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  14.0s S 140 | Pyr:  28.9 Pyr:  29.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  14.1s S 141 | Pyr:  29.5 Pyr:  28.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  14.2s S 142 | Pyr:  27.8 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  14.3s S 143 | Pyr:  28.3 Pyr:  29.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  14.4s S 144 | Pyr:  27.0 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  14.5s S 145 | Pyr:  27.4 Pyr:  27.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  14.6s S 146 | Pyr:  28.4 Pyr:  26.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  14.7s S 147 | Pyr:  28.6 Pyr:  27.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  14.8s S 148 | Pyr:  28.9 Pyr:  28.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  14.9s S 149 | Pyr:  28.7 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  15.0s S 150 | Pyr:  26.5 Pyr:  29.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  15.1s S 151 | Pyr:  26.1 Pyr:  28.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  15.2s S 152 | Pyr:  27.1 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  15.3s S 153 | Pyr:  28.6 Pyr:  26.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  15.4s S 154 | Pyr:  26.1 Pyr:  27.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  15.5s S 155 | Pyr:  29.5 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  15.6s S 156 | Pyr:  29.0 Pyr:  28.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  15.7s S 157 | Pyr:  27.4 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  15.8s S 158 | Pyr:  29.7 Pyr:  27.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  15.9s S 159 | Pyr:  28.3 Pyr:  27.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  16.0s S 160 | Pyr:  28.0 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  16.1s S 161 | Pyr:  26.8 Pyr:  29.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  16.2s S 162 | Pyr:  27.9 Pyr:  28.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  16.3s S 163 | Pyr:  27.7 Pyr:  27.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  16.4s S 164 | Pyr:  27.4 Pyr:  29.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  16.5s S 165 | Pyr:  29.9 Pyr:  29.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  16.6s S 166 | Pyr:  28.2 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  16.7s S 167 | Pyr:  29.3 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  16.8s S 168 | Pyr:  27.2 Pyr:  27.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  16.9s S 169 | Pyr:  26.8 Pyr:  29.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  17.0s S 170 | Pyr:  26.1 Pyr:  26.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  17.1s S 171 | Pyr:  29.9 Pyr:  28.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  17.2s S 172 | Pyr:  29.9 Pyr:  29.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  17.3s S 173 | Pyr:  26.8 Pyr:  27.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  17.4s S 174 | Pyr:  27.8 Pyr:  27.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  17.5s S 175 | Pyr:  27.4 Pyr:  29.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  17.6s S 176 | Pyr:  28.8 Pyr:  26.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  17.7s S 177 | Pyr:  27.8 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  17.8s S 178 | Pyr:  27.9 Pyr:  29.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  17.9s S 179 | Pyr:  26.2 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  18.0s S 180 | Pyr:  27.5 Pyr:  26.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  18.1s S 181 | Pyr:  26.6 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  18.2s S 182 | Pyr:  26.7 Pyr:  27.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  18.3s S 183 | Pyr:  26.5 Pyr:  29.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  18.4s S 184 | Pyr:  28.3 Pyr:  28.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  18.5s S 185 | Pyr:  27.3 Pyr:  28.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  18.6s S 186 | Pyr:  29.8 Pyr:  27.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  18.7s S 187 | Pyr:  27.9 Pyr:  29.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  18.8s S 188 | Pyr:  28.1 Pyr:  29.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  18.9s S 189 | Pyr:  28.0 Pyr:  26.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  19.0s S 190 | Pyr:  26.2 Pyr:  26.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  19.1s S 191 | Pyr:  29.9 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  19.2s S 192 | Pyr:  27.2 Pyr:  28.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  19.3s S 193 | Pyr:  29.1 Pyr:  26.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  19.4s S 194 | Pyr:  27.3 Pyr:  26.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  19.5s S 195 | Pyr:  27.0 Pyr:  29.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  19.6s S 196 | Pyr:  27.0 Pyr:  28.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  19.7s S 197 | Pyr:  27.1 Pyr:  28.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  19.8s S 198 | Pyr:  26.1 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  19.9s S 199 | Pyr:  29.9 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  20.0s S 200 | Pyr:  27.9 Pyr:  29.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  20.1s S 201 | Pyr:  26.7 Pyr:  27.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  20.2s S 202 | Pyr:  29.3 Pyr:  27.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  20.3s S 203 | Pyr:  28.5 Pyr:  27.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  20.4s S 204 | Pyr:  29.5 Pyr:  27.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  20.5s S 205 | Pyr:  26.7 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  20.6s S 206 | Pyr:  28.6 Pyr:  29.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  20.7s S 207 | Pyr:  27.0 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  20.8s S 208 | Pyr:  26.6 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  20.9s S 209 | Pyr:  26.1 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  21.0s S 210 | Pyr:1136.8 Pyr:  28.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  21.1s S 211 | Pyr:1136.5 Pyr:  27.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  21.2s S 212 | Pyr:1136.3 Pyr:  28.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  21.3s S 213 | Pyr:1136.0 Pyr:  27.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  21.4s S 214 | Pyr:1135.8 Pyr:  28.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  21.5s S 215 | Pyr:1135.5 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  21.6s S 216 | Pyr:1135.3 Pyr:  26.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  21.7s S 217 | Pyr:1135.0 Pyr:  28.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  21.8s S 218 | Pyr:1134.8 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  21.9s S 219 | Pyr:1134.5 Pyr:  29.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  22.0s S 220 | Pyr:1134.3 Pyr:  28.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  22.1s S 221 | Pyr:1134.0 Pyr:  27.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  22.2s S 222 | Pyr:1133.8 Pyr:  26.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  22.3s S 223 | Pyr:1133.5 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  22.4s S 224 | Pyr:1133.3 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  22.5s S 225 | Pyr:1133.1 Pyr:  27.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  22.6s S 226 | Pyr:1132.8 Pyr:  29.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  22.7s S 227 | Pyr:1132.6 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  22.8s S 228 | Pyr:1132.3 Pyr:  27.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  22.9s S 229 | Pyr:1132.1 Pyr:  27.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  23.0s S 230 | Pyr:1131.8 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  23.1s S 231 | Pyr:1131.6 Pyr:  29.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  23.2s S 232 | Pyr:1131.3 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  23.3s S 233 | Pyr:1131.1 Pyr:  28.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  23.4s S 234 | Pyr:1130.8 Pyr:  29.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  23.5s S 235 | Pyr:  27.4 Pyr:  28.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  23.6s S 236 | Pyr:  28.6 Pyr:  26.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  23.7s S 237 | Pyr:  28.0 Pyr:  26.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  23.8s S 238 | Pyr:  28.4 Pyr:  29.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  23.9s S 239 | Pyr:  28.2 Pyr:  26.8 Pre:3481.4 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 213.8 P: 134.9 | F:GapSpeed
-T  24.0s S 240 | Pyr:  26.7 Pyr:  26.4 Pre:3551.4 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 213.8 P: 137.8 | F:GapSpeed
-T  24.1s S 241 | Pyr:  28.3 Pyr:  28.2 Pre:3556.8 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 214.4 P: 134.7 | F:GapSpeed
-T  24.2s S 242 | Pyr:  26.5 Pyr:  26.2 Pre:3586.5 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 212.8 P: 136.2 | F:GapSpeed
-T  24.3s S 243 | Pyr:  28.2 Pyr:  26.9 Pre:3687.6 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 208.3 P: 133.1 | F:GapSpeed
-T  24.4s S 244 | Pyr:  27.9 Pyr:  27.8 Pre:3680.4 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 208.2 P: 135.9 | F:GapSpeed
-T  24.5s S 245 | Pyr:  29.4 Pyr:  29.7 Pre:3611.7 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 211.2 P: 132.1 | F:GapSpeed
-T  24.6s S 246 | Pyr:  26.3 Pyr:  26.3 Pre:3644.5 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 206.1 P: 130.0 | F:GapSpeed
-T  24.7s S 247 | Pyr:  26.1 Pyr:  26.4 Pre:3537.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 203.4 P: 128.1 | F:GapSpeed
-T  24.8s S 248 | Pyr:  28.2 Pyr:  27.8 Pre:3598.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 199.1 P: 130.0 | F:GapSpeed
-T  24.9s S 249 | Pyr:  26.9 Pyr:  27.2 Pre:3528.1 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 199.5 P: 131.5 | F:GapSpeed
-T  25.0s S 250 | Pyr:  29.1 Pyr:  27.2 Pre:3435.9 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 205.2 P: 130.7 | F:GapSpeed
-T  25.1s S 251 | Pyr:  26.6 Pyr:  28.6 Pre:3444.9 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 205.2 P: 131.3 | F:GapSpeed
-T  25.2s S 252 | Pyr:  29.6 Pyr:  29.0 Pre:3411.7 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 206.2 P: 131.9 | F:GapSpeed
-T  25.3s S 253 | Pyr:  27.8 Pyr:  27.1 Pre:3331.1 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 204.1 P: 135.4 | F:GapSpeed
-T  25.4s S 254 | Pyr:  27.7 Pyr:  29.3 Pre:3387.2 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 207.8 P: 135.9 | F:GapSpeed
-T  25.5s S 255 | Pyr:  26.0 Pyr:  27.6 Pre:3315.6 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 209.9 P: 138.5 | F:GapSpeed
-T  25.6s S 256 | Pyr:  29.7 Pyr:  29.4 Pre:3354.2 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 208.6 P: 140.2 | F:GapSpeed
-T  25.7s S 257 | Pyr:  29.5 Pyr:  29.6 Pre:3340.8 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 209.7 P: 141.2 | F:GapSpeed
-T  25.8s S 258 | Pyr:  26.9 Pyr:  26.2 Pre:3296.7 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 207.5 P: 142.5 | F:GapSpeed
-T  25.9s S 259 | Pyr:  29.6 Pyr:  28.3 Pre:3312.4 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 203.5 P: 143.1 | F:GapSpeed
-T  26.0s S 260 | Pyr:  28.1 Pyr:  27.0 Pre:3268.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 208.3 P: 146.6 | F:GapSpeed
-T  26.1s S 261 | Pyr:  28.3 Pyr:  29.9 Pre:3208.1 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 212.4 P: 145.6 | F:GapSpeed
-T  26.2s S 262 | Pyr:  27.9 Pyr:  27.9 Pre:3247.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 216.8 P: 144.3 | F:GapSpeed
-T  26.3s S 263 | Pyr:  27.3 Pyr:  29.3 Pre:3210.3 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 219.5 P: 144.9 | F:GapSpeed
-T  26.4s S 264 | Pyr:  27.8 Pyr:  27.9 Pre:3148.3 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 217.3 P: 141.0 | F:GapSpeed
-T  26.5s S 265 | Pyr:  28.7 Pyr:  29.9 Pre:3212.8 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 221.2 P: 140.4 | F:GapSpeed
-T  26.6s S 266 | Pyr:  26.3 Pyr:  28.0 Pre:3293.4 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 227.8 P: 144.4 | F:GapSpeed
-T  26.7s S 267 | Pyr:  27.3 Pyr:  27.8 Pre:3280.9 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 233.1 P: 143.8 | F:GapSpeed
-T  26.8s S 268 | Pyr:  28.8 Pyr:  27.2 Pre:3324.8 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 236.3 P: 145.5 | F:GapSpeed
-T  26.9s S 269 | Pyr:  27.7 Pyr:  29.8 Pre:3331.4 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 241.0 P: 144.2 | F:GapSpeed
-T  27.0s S 270 | Pyr:  28.2 Pyr:  29.0 Pre:3385.5 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 237.6 P: 146.5 | F:GapSpeed
-T  27.1s S 271 | Pyr:  29.8 Pyr:  26.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  27.2s S 272 | Pyr:  29.6 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  27.3s S 273 | Pyr:  26.2 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  27.4s S 274 | Pyr:  28.2 Pyr:1113.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  27.5s S 275 | Pyr:  29.9 Pyr:1111.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  27.6s S 276 | Pyr:  27.0 Pyr:1108.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  27.7s S 277 | Pyr:  26.6 Pyr:1105.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  27.8s S 278 | Pyr:  28.1 Pyr:1103.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  27.9s S 279 | Pyr:  26.7 Pyr:1100.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  28.0s S 280 | Pyr:  28.4 Pyr:1097.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  28.1s S 281 | Pyr:  26.2 Pyr:1095.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  28.2s S 282 | Pyr:  26.2 Pyr:1092.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  28.3s S 283 | Pyr:  28.3 Pyr:1089.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  28.4s S 284 | Pyr:  28.5 Pyr:1087.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  28.5s S 285 | Pyr:  26.3 Pyr:1084.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  28.6s S 286 | Pyr:  27.0 Pyr:1081.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  28.7s S 287 | Pyr:  29.1 Pyr:1079.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  28.8s S 288 | Pyr:  28.8 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  28.9s S 289 | Pyr:  29.7 Pyr:  27.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  29.0s S 290 | Pyr:  29.1 Pyr:  28.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  29.1s S 291 | Pyr:  29.5 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  29.2s S 292 | Pyr:  26.6 Pyr:  28.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  29.3s S 293 | Pyr:  29.4 Pyr:  26.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  29.4s S 294 | Pyr:  27.6 Pyr:  28.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  29.5s S 295 | Pyr:  27.6 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  29.6s S 296 | Pyr:  28.6 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  29.7s S 297 | Pyr:  26.2 Pyr:  28.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  29.8s S 298 | Pyr:  28.4 Pyr:  28.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  29.9s S 299 | Pyr:  28.1 Pyr:  27.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  30.0s S 300 | Pyr:  26.1 Pyr:  27.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  30.1s S 301 | Pyr:  29.3 Pyr:  27.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  30.2s S 302 | Pyr:  28.6 Pyr:  27.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  30.3s S 303 | Pyr:  26.3 Pyr:  27.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  30.4s S 304 | Pyr:  27.2 Pyr:  26.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  30.5s S 305 | Pyr:  27.0 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  30.6s S 306 | Pyr:  26.7 Pyr:  29.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  30.7s S 307 | Pyr:  26.9 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  30.8s S 308 | Pyr:  28.8 Pyr:  26.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  30.9s S 309 | Pyr:  26.6 Pyr:  26.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  31.0s S 310 | Pyr:  27.1 Pyr:  26.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  31.1s S 311 | Pyr:  27.4 Pyr:  27.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  31.2s S 312 | Pyr:  28.0 Pyr:  27.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  31.3s S 313 | Pyr:  27.8 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  31.4s S 314 | Pyr:  26.3 Pyr:  28.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  31.5s S 315 | Pyr:  28.5 Pyr:  29.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  31.6s S 316 | Pyr:  27.2 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  31.7s S 317 | Pyr:  29.7 Pyr:  27.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  31.8s S 318 | Pyr:  29.7 Pyr:  29.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  31.9s S 319 | Pyr:  26.5 Pyr:  27.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  32.0s S 320 | Pyr:  27.8 Pyr:  29.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  32.1s S 321 | Pyr:  27.9 Pyr:  26.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  32.2s S 322 | Pyr:  27.6 Pyr:  26.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  32.3s S 323 | Pyr:  29.5 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  32.4s S 324 | Pyr:  28.3 Pyr:  27.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  32.5s S 325 | Pyr:  28.0 Pyr:  26.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  32.6s S 326 | Pyr:  28.0 Pyr:  29.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  32.7s S 327 | Pyr:  26.4 Pyr:  26.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  32.8s S 328 | Pyr:  28.5 Pyr:  28.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  32.9s S 329 | Pyr:  27.8 Pyr:  26.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  33.0s S 330 | Pyr:  29.9 Pyr:  29.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  33.1s S 331 | Pyr:  28.9 Pyr:  28.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 | F:RCapGapSpeed
-T  33.2s S 332 | Pyr:  28.9 Pyr:  29.4 Pre:   0.0 Gap: 320.0 VRP:  50.0 V0R:  50.0 V1R: 150.0 M:   0.0 P:   0.0 | F:RCapGap
-T  33.3s S 333 | Pyr:  28.9 Pyr:  26.6 Pre:   0.0 Gap: 320.0 VRP:   0.0 V0R:   0.0 V1R: 100.0 M:   0.0 P:   0.0 | F:RCapGapSpeed
-T  33.4s S 334 | Pyr:  28.9 Pyr:  26.7 Pre:   0.0 Gap: 320.0 VRP:   0.0 V0R:   0.0 V1R:  50.0 M:   0.0 P:   0.0 | F:RCapGapSpeed
-T  33.5s S 335 | Pyr:  28.9 Pyr:  26.7 Pre:   0.0 Gap: 320.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:RCapGapSpeed
-T  33.6s S 336 | Pyr:  28.2 Pyr:  29.1 Pre:   0.0 Gap: 310.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:RCapSpeed
-T  33.7s S 337 | Pyr:  29.6 Pyr:  29.7 Pre:   0.0 Gap: 300.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:RCapSpeed
-T  33.8s S 338 | Pyr:  26.6 Pyr:  27.0 Pre:   0.0 Gap: 290.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:RCapGapSpeed
-T  33.9s S 339 | Pyr:  27.3 Pyr:  27.9 Pre:   0.0 Gap: 290.0 VRP:  50.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:RCapGapSpeed
-T  34.0s S 340 | Pyr:  27.5 Pyr:  29.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:RCapGapSpeed
-T  34.1s S 341 | Pyr:  28.7 Pyr:  29.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R:  50.0 V1R:  50.0 M:   0.0 P:   0.0 | F:RCapGapSpeed
-T  34.2s S 342 | Pyr:  28.3 Pyr:  28.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 100.0 V1R: 100.0 M:   0.0 P:   0.0 | F:RCapGapSpeed
-T  34.3s S 343 | Pyr:  27.0 Pyr:  26.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 150.0 V1R: 100.0 M:   0.0 P:   0.0 | F:RCapGapSpeed
-T  34.4s S 344 | Pyr:  28.0 Pyr:  29.4 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:RCapGapSpeed
-T  34.5s S 345 | Pyr:  28.5 Pyr:  26.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:RCapGapSpeed
-T  34.6s S 346 | Pyr:  27.6 Pyr:  28.5 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  34.7s S 347 | Pyr:  26.2 Pyr:  29.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  34.8s S 348 | Pyr:  26.6 Pyr:  29.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  34.9s S 349 | Pyr:  29.4 Pyr:  27.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  35.0s S 350 | Pyr:  26.6 Pyr:  28.5 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  35.1s S 351 | Pyr:  29.9 Pyr:  26.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  35.2s S 352 | Pyr:  27.2 Pyr:  28.4 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  35.3s S 353 | Pyr:  29.0 Pyr:  26.4 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  35.4s S 354 | Pyr:  27.0 Pyr:  27.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  35.5s S 355 | Pyr:  29.4 Pyr:  28.5 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  35.6s S 356 | Pyr:  28.2 Pyr:  29.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  35.7s S 357 | Pyr:  26.8 Pyr:  27.0 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  35.8s S 358 | Pyr:  26.5 Pyr:  29.4 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  35.9s S 359 | Pyr:  29.2 Pyr:  29.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  36.0s S 360 | Pyr:  26.6 Pyr:  29.0 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  36.1s S 361 | Pyr:  27.1 Pyr:  29.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  36.2s S 362 | Pyr:  29.9 Pyr:  26.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  36.3s S 363 | Pyr:  28.7 Pyr:  26.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  36.4s S 364 | Pyr:  27.0 Pyr:  27.0 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  36.5s S 365 | Pyr:  27.7 Pyr:  27.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  36.6s S 366 | Pyr:  28.4 Pyr:  27.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  36.7s S 367 | Pyr:  28.4 Pyr:  29.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  36.8s S 368 | Pyr:  28.1 Pyr:  28.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  36.9s S 369 | Pyr:  29.8 Pyr:  29.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  37.0s S 370 | Pyr:  29.1 Pyr:  27.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  37.1s S 371 | Pyr:  29.5 Pyr:  26.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  37.2s S 372 | Pyr:  29.2 Pyr:  27.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  37.3s S 373 | Pyr:  27.5 Pyr:  28.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  37.4s S 374 | Pyr:  27.6 Pyr:  29.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  37.5s S 375 | Pyr:  27.3 Pyr:  28.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  37.6s S 376 | Pyr:  26.9 Pyr:  28.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  37.7s S 377 | Pyr:  27.2 Pyr:  26.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  37.8s S 378 | Pyr:  27.7 Pyr:  27.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  37.9s S 379 | Pyr:  28.0 Pyr:  26.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  38.0s S 380 | Pyr:  27.4 Pyr:  27.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  38.1s S 381 | Pyr:  26.4 Pyr:  29.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  38.2s S 382 | Pyr:  26.2 Pyr:  29.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  38.3s S 383 | Pyr:  29.0 Pyr:  26.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  38.4s S 384 | Pyr:  27.6 Pyr:  26.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  38.5s S 385 | Pyr:  26.1 Pyr:  29.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  38.6s S 386 | Pyr:  26.5 Pyr:  26.5 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  38.7s S 387 | Pyr:  27.8 Pyr:  27.5 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  38.8s S 388 | Pyr:  29.7 Pyr:  26.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  38.9s S 389 | Pyr:  27.1 Pyr:  26.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  39.0s S 390 | Pyr:  29.0 Pyr:  28.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  39.1s S 391 | Pyr:  29.7 Pyr:  27.4 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  39.2s S 392 | Pyr:  26.1 Pyr:  26.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  39.3s S 393 | Pyr:  29.2 Pyr:  27.0 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  39.4s S 394 | Pyr:  26.9 Pyr:  29.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  39.5s S 395 | Pyr:  29.7 Pyr:  28.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  39.6s S 396 | Pyr:  29.2 Pyr:  28.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  39.7s S 397 | Pyr:  29.4 Pyr:  27.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  39.8s S 398 | Pyr:  29.0 Pyr:  28.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  39.9s S 399 | Pyr:  29.8 Pyr:  28.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  40.0s S 400 | Pyr:  26.9 Pyr:  26.4 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  40.1s S 401 | Pyr:  29.4 Pyr:  29.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  40.2s S 402 | Pyr:  26.4 Pyr:  27.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  40.3s S 403 | Pyr:  29.3 Pyr:  26.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  40.4s S 404 | Pyr:  29.6 Pyr:  27.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  40.5s S 405 | Pyr:  27.5 Pyr:  27.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  40.6s S 406 | Pyr:  29.2 Pyr:  27.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  40.7s S 407 | Pyr:  27.9 Pyr:  28.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  40.8s S 408 | Pyr:  28.7 Pyr:  29.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  40.9s S 409 | Pyr:  26.8 Pyr:  26.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  41.0s S 410 | Pyr:  28.4 Pyr:  28.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  41.1s S 411 | Pyr:  27.3 Pyr:  28.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  41.2s S 412 | Pyr:  27.2 Pyr:  27.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  41.3s S 413 | Pyr:  26.1 Pyr:  28.0 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  41.4s S 414 | Pyr:  29.1 Pyr:  27.4 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  41.5s S 415 | Pyr:  27.7 Pyr:  27.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  41.6s S 416 | Pyr:  28.6 Pyr:  29.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  41.7s S 417 | Pyr:  26.2 Pyr:  28.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  41.8s S 418 | Pyr:  29.9 Pyr:  28.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  41.9s S 419 | Pyr:  28.1 Pyr:  28.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  42.0s S 420 | Pyr:  28.7 Pyr:  26.5 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  42.1s S 421 | Pyr:  28.3 Pyr:  26.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  42.2s S 422 | Pyr:  29.5 Pyr:  28.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  42.3s S 423 | Pyr:  26.9 Pyr:  27.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  42.4s S 424 | Pyr:  28.0 Pyr:  27.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  42.5s S 425 | Pyr:  28.1 Pyr:  27.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  42.6s S 426 | Pyr:  28.0 Pyr:  28.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  42.7s S 427 | Pyr:  27.1 Pyr:  29.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  42.8s S 428 | Pyr:  27.4 Pyr:  26.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  42.9s S 429 | Pyr:  27.2 Pyr:  27.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  43.0s S 430 | Pyr:  28.0 Pyr:  27.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  43.1s S 431 | Pyr:  26.1 Pyr:  29.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  43.2s S 432 | Pyr:  27.6 Pyr:  29.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  43.3s S 433 | Pyr:  29.8 Pyr:1060.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  43.4s S 434 | Pyr:  26.9 Pyr:1060.4 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  43.5s S 435 | Pyr:  28.6 Pyr:1060.0 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  43.6s S 436 | Pyr:  28.7 Pyr:1059.5 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  43.7s S 437 | Pyr:  27.8 Pyr:1059.0 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  43.8s S 438 | Pyr:  29.1 Pyr:1058.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  43.9s S 439 | Pyr:  29.8 Pyr:1058.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  44.0s S 440 | Pyr:  28.9 Pyr:1057.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  44.1s S 441 | Pyr:  26.2 Pyr:1057.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  44.2s S 442 | Pyr:  27.8 Pyr:1056.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  44.3s S 443 | Pyr:  26.5 Pyr:1056.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  44.4s S 444 | Pyr:  29.2 Pyr:1055.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  44.5s S 445 | Pyr:  26.6 Pyr:1055.4 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  44.6s S 446 | Pyr:  27.0 Pyr:1055.0 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  44.7s S 447 | Pyr:  29.8 Pyr:1054.5 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  44.8s S 448 | Pyr:  27.1 Pyr:1054.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  44.9s S 449 | Pyr:  28.9 Pyr:1053.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  45.0s S 450 | Pyr:  28.8 Pyr:1053.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  45.1s S 451 | Pyr:  27.2 Pyr:1052.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  45.2s S 452 | Pyr:  27.4 Pyr:1052.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  45.3s S 453 | Pyr:  29.4 Pyr:1052.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  45.4s S 454 | Pyr:  28.0 Pyr:1052.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  45.5s S 455 | Pyr:  28.7 Pyr:1052.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  45.6s S 456 | Pyr:  27.0 Pyr:1052.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  45.7s S 457 | Pyr:  29.4 Pyr:1052.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  45.8s S 458 | Pyr:  28.6 Pyr:1052.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  45.9s S 459 | Pyr:  27.1 Pyr:1052.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  46.0s S 460 | Pyr:  27.0 Pyr:  26.8 Pre:4055.1 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 333.6 P: 217.7 | F:GapSpeed
-T  46.1s S 461 | Pyr:  26.7 Pyr:  26.5 Pre:4080.8 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 337.9 P: 222.2 | F:GapSpeed
-T  46.2s S 462 | Pyr:  27.3 Pyr:  28.1 Pre:4059.9 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 344.7 P: 223.8 | F:GapSpeed
-T  46.3s S 463 | Pyr:  26.9 Pyr:  26.9 Pre:4095.9 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 352.5 P: 226.2 | F:GapSpeed
-T  46.4s S 464 | Pyr:  29.4 Pyr:  28.5 Pre:4170.9 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 353.8 P: 233.0 | F:GapSpeed
-T  46.5s S 465 | Pyr:  26.8 Pyr:  26.5 Pre:4255.4 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 353.3 P: 229.2 | F:GapSpeed
-T  46.6s S 466 | Pyr:  26.5 Pyr:  27.1 Pre:4285.2 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 363.4 P: 231.6 | F:GapSpeed
-T  46.7s S 467 | Pyr:  27.2 Pyr:  28.4 Pre:4410.8 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 361.3 P: 232.8 | F:GapSpeed
-T  46.8s S 468 | Pyr:  28.6 Pyr:  27.3 Pre:4423.9 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 352.1 P: 233.8 | F:GapSpeed
-T  46.9s S 469 | Pyr:  28.3 Pyr:  28.4 Pre:4437.3 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 354.5 P: 234.3 | F:GapSpeed
-T  47.0s S 470 | Pyr:  28.0 Pyr:  26.4 Pre:4391.6 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 344.2 P: 229.1 | F:GapSpeed
-T  47.1s S 471 | Pyr:  29.8 Pyr:  29.1 Pre:4503.5 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 351.2 P: 227.7 | F:GapSpeed
-T  47.2s S 472 | Pyr:  29.4 Pyr:  28.2 Pre:4622.9 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 355.6 P: 221.6 | F:GapSpeed
-T  47.3s S 473 | Pyr:  27.9 Pyr:  27.2 Pre:4636.8 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 364.5 P: 226.2 | F:GapSpeed
-T  47.4s S 474 | Pyr:  28.3 Pyr:  27.2 Pre:4566.3 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 362.2 P: 229.4 | F:GapSpeed
-T  47.5s S 475 | Pyr:  26.8 Pyr:  27.4 Pre:4608.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 359.7 P: 229.8 | F:GapSpeed
-T  47.6s S 476 | Pyr:  26.8 Pyr:  27.8 Pre:4677.5 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 364.6 P: 225.1 | F:GapSpeed
-T  47.7s S 477 | Pyr:  29.0 Pyr:  26.6 Pre:4795.8 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 360.1 P: 219.1 | F:GapSpeed
-T  47.8s S 478 | Pyr:  29.0 Pyr:  27.4 Pre:4738.6 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 361.9 P: 219.3 | F:GapSpeed
-T  47.9s S 479 | Pyr:  28.4 Pyr:  29.0 Pre:4680.6 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 361.5 P: 215.9 | F:GapSpeed
-T  48.0s S 480 | Pyr:  26.2 Pyr:  27.2 Pre:4597.3 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 372.0 P: 217.9 | F:GapSpeed
-T  48.1s S 481 | Pyr:  26.2 Pyr:  26.9 Pre:4482.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 381.6 P: 220.6 | F:GapSpeed
-T  48.2s S 482 | Pyr:  28.1 Pyr:  27.1 Pre:4421.7 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 370.4 P: 221.7 | F:GapSpeed
-T  48.3s S 483 | Pyr:  29.0 Pyr:  29.2 Pre:4427.1 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 367.7 P: 223.2 | F:GapSpeed
-T  48.4s S 484 | Pyr:  26.8 Pyr:  27.6 Pre:4387.2 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 374.0 P: 225.7 | F:GapSpeed
-T  48.5s S 485 | Pyr:  26.2 Pyr:  28.3 Pre:4366.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 364.0 P: 230.9 | F:GapSpeed
-T  48.6s S 486 | Pyr:  27.5 Pyr:  28.9 Pre:4395.8 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 363.7 P: 236.2 | F:GapSpeed
-T  48.7s S 487 | Pyr:  26.5 Pyr:  26.4 Pre:4285.4 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 358.4 P: 241.1 | F:GapSpeed
-T  48.8s S 488 | Pyr:  26.7 Pyr:  27.5 Pre:4181.7 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 348.9 P: 240.8 | F:GapSpeed
-T  48.9s S 489 | Pyr:  27.0 Pyr:  26.2 Pre:4219.6 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 356.4 P: 242.8 | F:GapSpeed
-T  49.0s S 490 | Pyr:  28.1 Pyr:  26.2 Pre:4204.6 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 366.9 P: 238.9 | F:GapSpeed
-T  49.1s S 491 | Pyr:  27.4 Pyr:  27.2 Pre:4326.4 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 371.7 P: 242.4 | F:GapSpeed
-T  49.2s S 492 | Pyr:  28.1 Pyr:  26.7 Pre:4318.1 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 374.3 P: 246.9 | F:GapSpeed
-T  49.3s S 493 | Pyr:  27.7 Pyr:  28.1 Pre:4229.4 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 366.0 P: 251.9 | F:GapSpeed
-T  49.4s S 494 | Pyr:  28.1 Pyr:  28.8 Pre:4345.4 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 375.7 P: 251.6 | F:GapSpeed
-T  49.5s S 495 | Pyr:  28.3 Pyr:  28.3 Pre:4322.8 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 379.9 P: 255.6 | F:GapSpeed
-T  49.6s S 496 | Pyr:1047.4 Pyr:  28.6 Pre:4277.2 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 374.4 P: 262.8 | F:GapSpeed
-T  49.7s S 497 | Pyr:1047.4 Pyr:  28.5 Pre:4378.5 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M: 381.1 P: 264.1 | F:GapSpeed
-T  49.8s S 498 | Pyr:1047.1 Pyr:  26.4 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  49.9s S 499 | Pyr:1046.9 Pyr:  29.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  50.0s S 500 | Pyr:1046.6 Pyr:  28.5 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  50.1s S 501 | Pyr:1046.4 Pyr:  27.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  50.2s S 502 | Pyr:1046.1 Pyr:  26.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  50.3s S 503 | Pyr:1045.9 Pyr:  27.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  50.4s S 504 | Pyr:1045.7 Pyr:  29.0 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  50.5s S 505 | Pyr:1045.4 Pyr:  26.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  50.6s S 506 | Pyr:1045.2 Pyr:  29.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  50.7s S 507 | Pyr:1044.9 Pyr:  26.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  50.8s S 508 | Pyr:1044.7 Pyr:  27.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  50.9s S 509 | Pyr:1044.4 Pyr:  29.4 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  51.0s S 510 | Pyr:1044.2 Pyr:  26.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  51.1s S 511 | Pyr:1043.9 Pyr:  26.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  51.2s S 512 | Pyr:1043.7 Pyr:  28.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  51.3s S 513 | Pyr:1043.4 Pyr:  26.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  51.4s S 514 | Pyr:1043.2 Pyr:  29.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  51.5s S 515 | Pyr:  27.3 Pyr:  28.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  51.6s S 516 | Pyr:  28.7 Pyr:  26.5 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  51.7s S 517 | Pyr:  29.8 Pyr:  27.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  51.8s S 518 | Pyr:  29.5 Pyr:  27.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  51.9s S 519 | Pyr:  26.7 Pyr:  28.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  52.0s S 520 | Pyr:  29.0 Pyr:  29.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  52.1s S 521 | Pyr:  28.4 Pyr:  26.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  52.2s S 522 | Pyr:  26.9 Pyr:  27.0 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  52.3s S 523 | Pyr:  28.7 Pyr:  26.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  52.4s S 524 | Pyr:  28.7 Pyr:  28.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  52.5s S 525 | Pyr:  26.9 Pyr:  27.4 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  52.6s S 526 | Pyr:  27.4 Pyr:  26.5 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  52.7s S 527 | Pyr:  26.2 Pyr:  29.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  52.8s S 528 | Pyr:  27.9 Pyr:  26.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  52.9s S 529 | Pyr:  28.5 Pyr:  26.5 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  53.0s S 530 | Pyr:  29.2 Pyr:  29.9 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  53.1s S 531 | Pyr:  26.2 Pyr:  27.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  53.2s S 532 | Pyr:  28.6 Pyr:  28.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  53.3s S 533 | Pyr:  28.5 Pyr:  27.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  53.4s S 534 | Pyr:  26.1 Pyr:  29.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  53.5s S 535 | Pyr:  26.4 Pyr:  26.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  53.6s S 536 | Pyr:  26.6 Pyr:  27.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  53.7s S 537 | Pyr:  27.3 Pyr:  26.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  53.8s S 538 | Pyr:  29.3 Pyr:  28.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  53.9s S 539 | Pyr:  29.0 Pyr:  28.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  54.0s S 540 | Pyr:  27.2 Pyr:  26.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  54.1s S 541 | Pyr:  29.3 Pyr:  28.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  54.2s S 542 | Pyr:  27.5 Pyr:  28.5 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  54.3s S 543 | Pyr:  26.5 Pyr:  28.6 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  54.4s S 544 | Pyr:  29.2 Pyr:  26.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  54.5s S 545 | Pyr:  27.1 Pyr:  28.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  54.6s S 546 | Pyr:  26.6 Pyr:  27.8 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  54.7s S 547 | Pyr:  28.6 Pyr:  27.2 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  54.8s S 548 | Pyr:  28.1 Pyr:  27.1 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  54.9s S 549 | Pyr:  27.9 Pyr:  30.0 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  55.0s S 550 | Pyr:  26.1 Pyr:  29.4 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  55.1s S 551 | Pyr:  27.9 Pyr:  27.0 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  55.2s S 552 | Pyr:  28.9 Pyr:  28.3 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  55.3s S 553 | Pyr:  26.2 Pyr:  27.4 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  55.4s S 554 | Pyr:  29.9 Pyr:  27.7 Pre:   0.0 Gap: 290.0 VRP: 100.0 V0R: 200.0 V1R: 100.0 M:   0.0 P:   0.0 | F:GapSpeed
-T  55.5s S 555 | Pyr:  26.1 Pyr:  27.7 Pre:   0.0 Gap: 290.0 VRP:  50.0 V0R: 150.0 V1R:  50.0 M:   0.0 P:   0.0 | F:LCapGap
-T  55.6s S 556 | Pyr:  27.9 Pyr:  27.7 Pre:   0.0 Gap: 290.0 VRP:   0.0 V0R: 100.0 V1R:   0.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  55.7s S 557 | Pyr:  27.6 Pyr:  27.7 Pre:   0.0 Gap: 290.0 VRP:   0.0 V0R:  50.0 V1R:   0.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
-T  55.8s S 558 | Pyr:  29.7 Pyr:  27.7 Pre:   0.0 Gap: 290.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 | F:LCapGapSpeed
+T   0.0s S   0 | Pyr:  28.0 Pyr:  28.0 Pre:   0.0 Gap: 350.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 Len: 300.0 | F:---
+T   0.1s S   1 | Pyr:  26.6 Pyr:  28.0 Pre:   0.0 Gap: 340.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 Len: 300.0 | F:---
+T   0.2s S   2 | Pyr:  26.1 Pyr:  28.2 Pre:   0.0 Gap: 330.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 Len: 300.0 | F:---
+T   0.3s S   3 | Pyr:  27.1 Pyr:  27.0 Pre:   0.0 Gap: 320.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 Len: 300.0 | F:Gap
+T   0.4s S   4 | Pyr:  27.5 Pyr:  26.3 Pre:   0.0 Gap: 320.0 VRP:  50.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 Len: 300.0 | F:Gap
+T   0.5s S   5 | Pyr:  28.2 Pyr:  27.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   0.6s S   6 | Pyr:  26.4 Pyr:  27.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R:  50.0 V1R:  50.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   0.7s S   7 | Pyr:  29.6 Pyr:  28.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 100.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   0.8s S   8 | Pyr:  27.7 Pyr:  29.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 150.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   0.9s S   9 | Pyr:  29.2 Pyr:  28.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   1.0s S  10 | Pyr:  26.9 Pyr:  29.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   1.1s S  11 | Pyr:  27.1 Pyr:  29.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   1.2s S  12 | Pyr:  26.6 Pyr:  29.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   1.3s S  13 | Pyr:  28.3 Pyr:  27.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   1.4s S  14 | Pyr:  29.9 Pyr:  28.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   1.5s S  15 | Pyr:  27.4 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   1.6s S  16 | Pyr:  28.6 Pyr:  29.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   1.7s S  17 | Pyr:  29.6 Pyr:  27.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   1.8s S  18 | Pyr:  29.0 Pyr:  27.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   1.9s S  19 | Pyr:  27.0 Pyr:  29.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   2.0s S  20 | Pyr:  26.5 Pyr:  28.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   2.1s S  21 | Pyr:  28.5 Pyr:  27.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   2.2s S  22 | Pyr:  26.2 Pyr:  27.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   2.3s S  23 | Pyr:  29.1 Pyr:  29.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   2.4s S  24 | Pyr:  29.5 Pyr:  27.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   2.5s S  25 | Pyr:  28.0 Pyr:  27.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   2.6s S  26 | Pyr:  28.6 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   2.7s S  27 | Pyr:  29.8 Pyr:  29.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   2.8s S  28 | Pyr:  29.3 Pyr:  27.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   2.9s S  29 | Pyr:  26.4 Pyr:  26.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   3.0s S  30 | Pyr:  27.1 Pyr:  27.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   3.1s S  31 | Pyr:  26.6 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   3.2s S  32 | Pyr:  28.7 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   3.3s S  33 | Pyr:  26.7 Pyr:  27.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   3.4s S  34 | Pyr:  29.7 Pyr:  28.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   3.5s S  35 | Pyr:  26.4 Pyr:  29.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   3.6s S  36 | Pyr:  28.3 Pyr:  29.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   3.7s S  37 | Pyr:  27.8 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   3.8s S  38 | Pyr:  27.9 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   3.9s S  39 | Pyr:  27.7 Pyr:  27.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   4.0s S  40 | Pyr:  26.1 Pyr:  27.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   4.1s S  41 | Pyr:  27.2 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   4.2s S  42 | Pyr:  28.8 Pyr:  26.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   4.3s S  43 | Pyr:  28.8 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   4.4s S  44 | Pyr:  28.6 Pyr:  29.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   4.5s S  45 | Pyr:  27.4 Pyr:  26.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   4.6s S  46 | Pyr:  27.9 Pyr:  28.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   4.7s S  47 | Pyr:  27.6 Pyr:  27.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   4.8s S  48 | Pyr:  28.5 Pyr:  28.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   4.9s S  49 | Pyr:  26.1 Pyr:  27.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   5.0s S  50 | Pyr:  28.7 Pyr:  26.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   5.1s S  51 | Pyr:  26.5 Pyr:  28.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   5.2s S  52 | Pyr:  28.9 Pyr:  26.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   5.3s S  53 | Pyr:  27.4 Pyr:  26.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   5.4s S  54 | Pyr:  26.5 Pyr:  27.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   5.5s S  55 | Pyr:  26.9 Pyr:  27.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   5.6s S  56 | Pyr:  28.6 Pyr:  27.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   5.7s S  57 | Pyr:  28.6 Pyr:  27.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   5.8s S  58 | Pyr:  27.5 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   5.9s S  59 | Pyr:  29.8 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   6.0s S  60 | Pyr:  27.9 Pyr:  26.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   6.1s S  61 | Pyr:  29.3 Pyr:  29.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   6.2s S  62 | Pyr:  26.6 Pyr:  29.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   6.3s S  63 | Pyr:  29.7 Pyr:  28.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   6.4s S  64 | Pyr:  28.9 Pyr:  27.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   6.5s S  65 | Pyr:  26.1 Pyr:  28.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   6.6s S  66 | Pyr:  26.6 Pyr:  27.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   6.7s S  67 | Pyr:  29.9 Pyr:  27.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   6.8s S  68 | Pyr:  26.6 Pyr:  27.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   6.9s S  69 | Pyr:  29.8 Pyr:  26.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   7.0s S  70 | Pyr:  28.1 Pyr:  29.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   7.1s S  71 | Pyr:  27.2 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   7.2s S  72 | Pyr:  26.2 Pyr:  28.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   7.3s S  73 | Pyr:  28.5 Pyr:  27.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   7.4s S  74 | Pyr:  29.3 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   7.5s S  75 | Pyr:  29.9 Pyr:  29.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   7.6s S  76 | Pyr:  26.2 Pyr:  28.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   7.7s S  77 | Pyr:  26.3 Pyr:  26.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   7.8s S  78 | Pyr:  27.4 Pyr:  29.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   7.9s S  79 | Pyr:  27.0 Pyr:  29.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   8.0s S  80 | Pyr:  26.2 Pyr:  28.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   8.1s S  81 | Pyr:  26.1 Pyr:  28.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   8.2s S  82 | Pyr:  29.3 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   8.3s S  83 | Pyr:  27.4 Pyr:  26.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   8.4s S  84 | Pyr:  28.7 Pyr:  26.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   8.5s S  85 | Pyr:  26.8 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   8.6s S  86 | Pyr:  28.3 Pyr:  27.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   8.7s S  87 | Pyr:  28.4 Pyr:  27.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   8.8s S  88 | Pyr:  27.1 Pyr:  26.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   8.9s S  89 | Pyr:  28.3 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   9.0s S  90 | Pyr:  28.5 Pyr:  28.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:LCapGapSpeed
+T   9.1s S  91 | Pyr:  27.2 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   9.2s S  92 | Pyr:  27.4 Pyr:  26.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   9.3s S  93 | Pyr:  26.9 Pyr:  29.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   9.4s S  94 | Pyr:  29.2 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   9.5s S  95 | Pyr:  27.7 Pyr:  28.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   9.6s S  96 | Pyr:  26.6 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   9.7s S  97 | Pyr:  26.6 Pyr:  28.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   9.8s S  98 | Pyr:  28.8 Pyr:  29.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T   9.9s S  99 | Pyr:  29.7 Pyr:  28.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  10.0s S 100 | Pyr:  26.8 Pyr:  29.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  10.1s S 101 | Pyr:  26.1 Pyr:  29.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  10.2s S 102 | Pyr:  27.4 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  10.3s S 103 | Pyr:  28.4 Pyr:  26.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  10.4s S 104 | Pyr:  27.3 Pyr:  28.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  10.5s S 105 | Pyr:  26.3 Pyr:  27.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  10.6s S 106 | Pyr:  28.8 Pyr:  26.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  10.7s S 107 | Pyr:  29.3 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  10.8s S 108 | Pyr:  26.5 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  10.9s S 109 | Pyr:  26.5 Pyr:  27.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  11.0s S 110 | Pyr:  29.1 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  11.1s S 111 | Pyr:  27.4 Pyr:  28.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  11.2s S 112 | Pyr:  27.8 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  11.3s S 113 | Pyr:  28.6 Pyr:  27.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  11.4s S 114 | Pyr:  28.6 Pyr:  28.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  11.5s S 115 | Pyr:  29.0 Pyr:  28.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  11.6s S 116 | Pyr:  28.2 Pyr:  29.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  11.7s S 117 | Pyr:  28.5 Pyr:  29.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  11.8s S 118 | Pyr:  28.2 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  11.9s S 119 | Pyr:  29.7 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  12.0s S 120 | Pyr:  27.0 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  12.1s S 121 | Pyr:  29.8 Pyr:  28.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  12.2s S 122 | Pyr:  26.5 Pyr:  29.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  12.3s S 123 | Pyr:  28.5 Pyr:  27.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  12.4s S 124 | Pyr:  27.6 Pyr:  26.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  12.5s S 125 | Pyr:  27.9 Pyr:  28.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  12.6s S 126 | Pyr:  28.8 Pyr:  29.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  12.7s S 127 | Pyr:  28.8 Pyr:  29.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  12.8s S 128 | Pyr:  29.0 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  12.9s S 129 | Pyr:  26.1 Pyr:  27.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  13.0s S 130 | Pyr:  28.5 Pyr:  26.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  13.1s S 131 | Pyr:  27.5 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  13.2s S 132 | Pyr:  28.9 Pyr:  29.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  13.3s S 133 | Pyr:  27.5 Pyr:  29.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  13.4s S 134 | Pyr:  28.8 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  13.5s S 135 | Pyr:  26.1 Pyr:  27.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  13.6s S 136 | Pyr:  26.6 Pyr:  28.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  13.7s S 137 | Pyr:  27.8 Pyr:  26.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  13.8s S 138 | Pyr:  27.3 Pyr:  27.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  13.9s S 139 | Pyr:  26.2 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  14.0s S 140 | Pyr:  28.9 Pyr:  28.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  14.1s S 141 | Pyr:  29.6 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  14.2s S 142 | Pyr:  29.5 Pyr:  28.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  14.3s S 143 | Pyr:  26.9 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  14.4s S 144 | Pyr:  26.3 Pyr:  27.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  14.5s S 145 | Pyr:  27.4 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  14.6s S 146 | Pyr:  26.2 Pyr:  29.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  14.7s S 147 | Pyr:  28.5 Pyr:  29.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  14.8s S 148 | Pyr:  28.9 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  14.9s S 149 | Pyr:  27.4 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  15.0s S 150 | Pyr:  27.4 Pyr:  29.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  15.1s S 151 | Pyr:  28.7 Pyr:  26.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  15.2s S 152 | Pyr:  26.2 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  15.3s S 153 | Pyr:  27.1 Pyr:  29.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  15.4s S 154 | Pyr:  29.9 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  15.5s S 155 | Pyr:  26.7 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  15.6s S 156 | Pyr:  29.1 Pyr:  27.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  15.7s S 157 | Pyr:  29.2 Pyr:  29.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  15.8s S 158 | Pyr:  28.9 Pyr:  27.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  15.9s S 159 | Pyr:  28.8 Pyr:  27.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  16.0s S 160 | Pyr:  27.5 Pyr:  29.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  16.1s S 161 | Pyr:  27.1 Pyr:  27.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  16.2s S 162 | Pyr:  29.8 Pyr:  26.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  16.3s S 163 | Pyr:  28.0 Pyr:  29.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  16.4s S 164 | Pyr:  26.6 Pyr:  27.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  16.5s S 165 | Pyr:  27.6 Pyr:  29.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  16.6s S 166 | Pyr:  28.2 Pyr:  28.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  16.7s S 167 | Pyr:  29.9 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  16.8s S 168 | Pyr:  29.6 Pyr:  29.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  16.9s S 169 | Pyr:  27.6 Pyr:  28.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  17.0s S 170 | Pyr:  27.1 Pyr:  27.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  17.1s S 171 | Pyr:  28.1 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  17.2s S 172 | Pyr:  27.3 Pyr:  27.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  17.3s S 173 | Pyr:  27.3 Pyr:  28.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  17.4s S 174 | Pyr:  29.1 Pyr:  28.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  17.5s S 175 | Pyr:  28.1 Pyr:  26.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  17.6s S 176 | Pyr:1145.4 Pyr:  27.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  17.7s S 177 | Pyr:1145.2 Pyr:  27.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  17.8s S 178 | Pyr:1144.9 Pyr:  26.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  17.9s S 179 | Pyr:1144.7 Pyr:  27.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  18.0s S 180 | Pyr:1144.4 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  18.1s S 181 | Pyr:1144.2 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  18.2s S 182 | Pyr:1143.9 Pyr:  28.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  18.3s S 183 | Pyr:1143.7 Pyr:  29.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  18.4s S 184 | Pyr:1143.4 Pyr:  26.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  18.5s S 185 | Pyr:1143.2 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  18.6s S 186 | Pyr:1142.9 Pyr:  26.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  18.7s S 187 | Pyr:1142.7 Pyr:  27.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  18.8s S 188 | Pyr:1142.4 Pyr:  27.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  18.9s S 189 | Pyr:1142.1 Pyr:  29.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  19.0s S 190 | Pyr:1141.9 Pyr:  29.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  19.1s S 191 | Pyr:1141.6 Pyr:  29.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  19.2s S 192 | Pyr:1141.4 Pyr:  29.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  19.3s S 193 | Pyr:1141.1 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  19.4s S 194 | Pyr:1140.9 Pyr:  27.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  19.5s S 195 | Pyr:1140.6 Pyr:  28.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  19.6s S 196 | Pyr:1140.4 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  19.7s S 197 | Pyr:1140.1 Pyr:  27.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  19.8s S 198 | Pyr:1139.9 Pyr:  29.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  19.9s S 199 | Pyr:1139.6 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  20.0s S 200 | Pyr:1139.4 Pyr:  26.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  20.1s S 201 | Pyr:1139.1 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  20.2s S 202 | Pyr:1138.9 Pyr:  29.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  20.3s S 203 | Pyr:1138.6 Pyr:  27.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  20.4s S 204 | Pyr:1138.5 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 300.0 | F:GapSpeed
+T  20.5s S 205 | Pyr:1132.7 Pyr:  28.4 Pre:3574.9 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 215.6 P: 145.5 Len: 300.0 | F:GapSpeed
+T  20.6s S 206 | Pyr:  29.7 Pyr:  29.9 Pre:3501.4 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 221.5 P: 141.3 Len: 300.0 | F:GapSpeed
+T  20.7s S 207 | Pyr:  29.5 Pyr:  29.4 Pre:3594.2 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 221.4 P: 140.8 Len: 300.0 | F:GapSpeed
+T  20.8s S 208 | Pyr:  27.1 Pyr:  29.7 Pre:3595.2 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 224.9 P: 139.2 Len: 300.0 | F:GapSpeed
+T  20.9s S 209 | Pyr:  28.3 Pyr:  27.3 Pre:3516.1 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 229.5 P: 136.2 Len: 300.0 | F:GapSpeed
+T  21.0s S 210 | Pyr:  28.5 Pyr:  27.1 Pre:3549.2 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 229.7 P: 135.8 Len: 300.0 | F:GapSpeed
+T  21.1s S 211 | Pyr:  28.5 Pyr:  27.5 Pre:3532.1 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 225.0 P: 134.9 Len: 300.0 | F:GapSpeed
+T  21.2s S 212 | Pyr:  28.1 Pyr:  28.0 Pre:3568.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 229.2 P: 134.6 Len: 300.9 | F:GapSpeed
+T  21.3s S 213 | Pyr:  29.1 Pyr:  26.8 Pre:3630.3 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 225.8 P: 131.9 Len: 301.9 | F:GapSpeed
+T  21.4s S 214 | Pyr:  27.1 Pyr:  26.4 Pre:3738.6 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 224.4 P: 130.5 Len: 302.8 | F:GapSpeed
+T  21.5s S 215 | Pyr:  29.4 Pyr:  29.2 Pre:3766.2 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 227.0 P: 130.7 Len: 303.8 | F:GapSpeed
+T  21.6s S 216 | Pyr:  27.4 Pyr:  29.0 Pre:3844.7 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 224.5 P: 132.2 Len: 304.7 | F:GapSpeed
+T  21.7s S 217 | Pyr:  26.7 Pyr:  28.0 Pre:3949.6 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 221.9 P: 134.9 Len: 305.6 | F:GapSpeed
+T  21.8s S 218 | Pyr:  29.8 Pyr:  26.3 Pre:4004.2 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 215.7 P: 135.5 Len: 306.6 | F:GapSpeed
+T  21.9s S 219 | Pyr:  29.3 Pyr:  26.3 Pre:3971.6 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 215.2 P: 139.3 Len: 307.5 | F:GapSpeed
+T  22.0s S 220 | Pyr:  29.4 Pyr:  26.7 Pre:4039.6 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 218.1 P: 139.5 Len: 308.4 | F:GapSpeed
+T  22.1s S 221 | Pyr:  27.1 Pyr:  26.9 Pre:4027.4 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 218.8 P: 138.0 Len: 309.4 | F:GapSpeed
+T  22.2s S 222 | Pyr:  28.2 Pyr:  26.6 Pre:4025.5 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 214.3 P: 136.0 Len: 310.3 | F:GapSpeed
+T  22.3s S 223 | Pyr:  27.9 Pyr:  29.7 Pre:3911.8 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 220.0 P: 133.5 Len: 311.2 | F:GapSpeed
+T  22.4s S 224 | Pyr:  29.7 Pyr:  29.9 Pre:3846.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 214.5 P: 129.9 Len: 312.2 | F:GapSpeed
+T  22.5s S 225 | Pyr:  28.9 Pyr:  27.6 Pre:3872.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 208.8 P: 127.6 Len: 313.1 | F:GapSpeed
+T  22.6s S 226 | Pyr:  26.1 Pyr:  27.2 Pre:3877.8 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 202.7 P: 125.8 Len: 314.1 | F:GapSpeed
+T  22.7s S 227 | Pyr:  28.5 Pyr:  29.5 Pre:3770.1 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 203.7 P: 122.1 Len: 315.0 | F:GapSpeed
+T  22.8s S 228 | Pyr:  26.3 Pyr:  29.9 Pre:3795.6 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 205.8 P: 121.9 Len: 315.9 | F:GapSpeed
+T  22.9s S 229 | Pyr:  26.2 Pyr:  28.7 Pre:3781.4 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 207.5 P: 124.6 Len: 316.9 | F:GapSpeed
+T  23.0s S 230 | Pyr:  29.8 Pyr:  29.2 Pre:3771.5 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 213.7 P: 122.7 Len: 317.8 | F:GapSpeed
+T  23.1s S 231 | Pyr:  26.8 Pyr:  29.9 Pre:3718.7 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 219.0 P: 125.7 Len: 318.8 | F:GapSpeed
+T  23.2s S 232 | Pyr:  28.3 Pyr:  26.6 Pre:3640.6 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 224.0 P: 122.2 Len: 319.7 | F:GapSpeed
+T  23.3s S 233 | Pyr:  26.2 Pyr:  29.6 Pre:3589.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 230.7 P: 124.0 Len: 320.6 | F:GapSpeed
+T  23.4s S 234 | Pyr:  28.3 Pyr:  29.6 Pre:3602.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 230.8 P: 121.6 Len: 321.6 | F:GapSpeed
+T  23.5s S 235 | Pyr:  29.9 Pyr:  28.8 Pre:3564.9 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 227.8 P: 123.9 Len: 322.5 | F:GapSpeed
+T  23.6s S 236 | Pyr:  27.6 Pyr:  26.3 Pre:3650.2 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 221.7 P: 124.5 Len: 323.4 | F:GapSpeed
+T  23.7s S 237 | Pyr:  26.4 Pyr:  26.5 Pre:3590.8 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 216.1 P: 122.9 Len: 324.4 | F:GapSpeed
+T  23.8s S 238 | Pyr:  29.2 Pyr:  29.3 Pre:3606.6 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 211.9 P: 125.3 Len: 325.3 | F:GapSpeed
+T  23.9s S 239 | Pyr:  29.6 Pyr:  27.2 Pre:3648.8 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 217.5 P: 124.8 Len: 326.2 | F:GapSpeed
+T  24.0s S 240 | Pyr:  29.3 Pyr:  29.3 Pre:3690.5 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 213.6 P: 123.7 Len: 327.2 | F:GapSpeed
+T  24.1s S 241 | Pyr:  29.9 Pyr:  26.6 Pre:3672.5 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 208.9 P: 121.3 Len: 328.1 | F:GapSpeed
+T  24.2s S 242 | Pyr:  29.3 Pyr:  26.8 Pre:3633.2 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M: 203.5 P: 121.1 Len: 329.1 | F:GapSpeed
+T  24.3s S 243 | Pyr:  26.7 Pyr:1129.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  24.4s S 244 | Pyr:  26.8 Pyr:1127.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  24.5s S 245 | Pyr:  27.3 Pyr:1124.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  24.6s S 246 | Pyr:  26.6 Pyr:1121.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  24.7s S 247 | Pyr:  26.3 Pyr:1118.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  24.8s S 248 | Pyr:  29.4 Pyr:1115.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  24.9s S 249 | Pyr:  29.3 Pyr:1112.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  25.0s S 250 | Pyr:  28.0 Pyr:1109.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  25.1s S 251 | Pyr:  27.4 Pyr:1107.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  25.2s S 252 | Pyr:  27.4 Pyr:1104.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  25.3s S 253 | Pyr:  26.7 Pyr:1101.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  25.4s S 254 | Pyr:  29.5 Pyr:1098.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  25.5s S 255 | Pyr:  29.5 Pyr:1095.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  25.6s S 256 | Pyr:  27.4 Pyr:1092.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  25.7s S 257 | Pyr:  26.1 Pyr:1089.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  25.8s S 258 | Pyr:  26.6 Pyr:1087.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  25.9s S 259 | Pyr:  27.0 Pyr:1084.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  26.0s S 260 | Pyr:  29.8 Pyr:  26.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  26.1s S 261 | Pyr:  27.9 Pyr:  26.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  26.2s S 262 | Pyr:  29.2 Pyr:  29.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  26.3s S 263 | Pyr:  26.3 Pyr:  27.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  26.4s S 264 | Pyr:  28.3 Pyr:  26.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  26.5s S 265 | Pyr:  29.4 Pyr:  28.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  26.6s S 266 | Pyr:  29.9 Pyr:  26.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  26.7s S 267 | Pyr:  28.4 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  26.8s S 268 | Pyr:  27.4 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  26.9s S 269 | Pyr:  27.3 Pyr:  27.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  27.0s S 270 | Pyr:  28.8 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  27.1s S 271 | Pyr:  26.2 Pyr:  28.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  27.2s S 272 | Pyr:  29.9 Pyr:  29.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  27.3s S 273 | Pyr:  27.4 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  27.4s S 274 | Pyr:  27.9 Pyr:  29.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  27.5s S 275 | Pyr:  28.0 Pyr:  27.3 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  27.6s S 276 | Pyr:  27.7 Pyr:  29.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  27.7s S 277 | Pyr:  29.5 Pyr:  28.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  27.8s S 278 | Pyr:  26.2 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  27.9s S 279 | Pyr:  29.9 Pyr:  26.2 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  28.0s S 280 | Pyr:  26.5 Pyr:  28.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  28.1s S 281 | Pyr:  28.5 Pyr:  29.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  28.2s S 282 | Pyr:  28.6 Pyr:  29.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  28.3s S 283 | Pyr:  28.1 Pyr:  27.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  28.4s S 284 | Pyr:  27.9 Pyr:  27.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  28.5s S 285 | Pyr:  28.2 Pyr:  27.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  28.6s S 286 | Pyr:  26.9 Pyr:  26.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  28.7s S 287 | Pyr:  27.2 Pyr:  26.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  28.8s S 288 | Pyr:  29.2 Pyr:  29.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  28.9s S 289 | Pyr:  27.8 Pyr:  27.8 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  29.0s S 290 | Pyr:  26.3 Pyr:  27.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  29.1s S 291 | Pyr:  26.1 Pyr:  26.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  29.2s S 292 | Pyr:  29.6 Pyr:  29.4 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  29.3s S 293 | Pyr:  27.2 Pyr:  26.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  29.4s S 294 | Pyr:  26.7 Pyr:  28.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  29.5s S 295 | Pyr:  28.7 Pyr:  27.0 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  29.6s S 296 | Pyr:  27.9 Pyr:  29.7 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  29.7s S 297 | Pyr:  27.3 Pyr:  27.5 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  29.8s S 298 | Pyr:  26.3 Pyr:  27.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  29.9s S 299 | Pyr:  26.8 Pyr:  28.1 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  30.0s S 300 | Pyr:  29.1 Pyr:  27.6 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:GapSpeed
+T  30.1s S 301 | Pyr:  26.8 Pyr:  27.9 Pre:   0.0 Gap: 320.0 VRP: 100.0 V0R: 100.0 V1R: 200.0 M:   0.0 P:   0.0 Len: 329.1 | F:RCapGapSpeed
+T  30.2s S 302 | Pyr:  26.8 Pyr:  29.0 Pre:   0.0 Gap: 320.0 VRP:  50.0 V0R:  50.0 V1R: 150.0 M:   0.0 P:   0.0 Len: 329.1 | F:RCapGap
+T  30.3s S 303 | Pyr:  26.8 Pyr:  29.9 Pre:   0.0 Gap: 320.0 VRP:   0.0 V0R:   0.0 V1R: 100.0 M:   0.0 P:   0.0 Len: 329.1 | F:RCapGapSpeed
+T  30.4s S 304 | Pyr:  26.8 Pyr:  26.5 Pre:   0.0 Gap: 320.0 VRP:   0.0 V0R:   0.0 V1R:  50.0 M:   0.0 P:   0.0 Len: 329.1 | F:RCapGapSpeed
+T  30.5s S 305 | Pyr:  26.8 Pyr:  28.5 Pre:   0.0 Gap: 320.0 VRP:   0.0 V0R:   0.0 V1R:   0.0 M:   0.0 P:   0.0 Len: 329.1 | F:RCapGapSpeed

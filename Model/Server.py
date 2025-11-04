@@ -7,15 +7,6 @@ import struct
 from datetime import datetime
 import psycopg2
 
-conn = psycopg2.connect(
-    host="localhost",
-    database="test_bd_1",  
-    user="postgres",          
-    password="postgres",      
-    port="5432"
-)
-
-cur = conn.cursor()
 
 def float_to_regs(value):
     """Преобразует float в два WORD регистра (big-endian)"""
@@ -48,18 +39,46 @@ class ModbusServer:
         self.counter = 0
         self.counter2 = 0
         self.nex_idx = 0
+        self.timer = 0
+        self.method_steps = 0
+        self.prev_total_steps = 0
 
-        try:
-            self.start_init_from_registers()
-            if self.initialized:
-                self.log_message("Модель успешно инициализирована при запуске")
-        except Exception as e:
-            self.log_message(f"Ошибка автоматической инициализации: {e}")
+        self.start_init_from_registers()
+        if self.initialized:
+            self.log_message("Модель успешно инициализирована при запуске")
 
     def log_message(self, message):
         """Запись сообщения в консоль"""
         timestamp = datetime.now().strftime('%H:%M:%S.%f')[:-3]
         print(f"[{timestamp}] {message}")
+
+    def alarm_stop(self,diff):
+        """Выполнение последовательности аварийной остановки"""
+        self.log_message("=== АВАРИЙНАЯ ОСТАНОВКА ===")
+        
+        alarm_data = self.simulator.Alarm_stop()
+        
+        # Записываем аварийные данные в регистры
+        self._write_alarm_data_to_registers(alarm_data,diff)
+        
+
+    def _write_alarm_data_to_registers(self, alarm_data,diff):
+        """Записывает данные аварийной остановки в регистры"""
+        total_steps = len(alarm_data['Time']) 
+        self.nex_idx += diff
+        # Инициализация переменных для управления временем
+        write_start_time = time.time()
+        
+        while self.nex_idx != total_steps:      
+            self._write_single_step_to_registers(alarm_data, self.nex_idx)
+            self.nex_idx += 1
+            time.sleep(0.1)
+
+        # Завершение записи
+        if not self.stop_monitoring and self.nex_idx >= total_steps - 1:
+            total_time = time.time() - write_start_time
+            self.log_message(f" Этап завершен. Всего шагов: {total_steps}, время: {total_time:.1f}с")
+            self.start_init_from_registers()
 
     def update_simulation_registers(self, sim_data, idx):
         current_time = sim_data['Time'][idx] if 'Time' in sim_data else idx
@@ -96,62 +115,77 @@ class ModbusServer:
             f.write(f"=== Step {idx} (Time: {current_time}s) ===\n")
             for k in keys:
                 v = sim_data[k][idx] if isinstance(sim_data[k], list) else sim_data[k]
+                length_val = sim_data['Length'][idx] if isinstance(sim_data['Length'], list) else sim_data['Length']
                 f.write(f"  {k}: {v}\n")
             f.write(f"  Flags: StartCap={StartCap_val}, EndCap={EndCap_val}, Gap_feedback={Gap_feedback_val}, Speed_feedback={Speed_feedback_val}\n")
             f.write("\n")
 
     def start_init_from_registers(self):
         """Инициализация (Init) прокатки из БД по биту и сохранение симулятора в self.simulator"""
-        if self.simulation_running:
-            self.log_message("Сейчас выполняется симуляция — Init не запускается.")
-            return
 
-        try:
+        # Обнуление регистров для чтения с ПЛК: с 12 по 31 (всего 20 регистров)
+        self.hr_data_combined.setValues(12, [0]*20)
+
+        # Записать 350 в регистры для 'Gap' (18 и 19)
+        gap_regs = float_to_regs(350)
+        self.hr_data_combined.setValues(18, gap_regs)
+
+        conn = psycopg2.connect(
+            host="localhost",
+            database="test_bd_1",  
+            user="postgres",          
+            password="postgres",      
+            port="5432"
+        )
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM slabs ORDER BY id DESC LIMIT 1")
+        last_row = cur.fetchone()
+        
+        id, Length_slab, Width_slab, Thikness_slab, Temperature_slab, Material_slab, Diametr_roll, Material_roll,is_used = last_row
+        while is_used == True:
             cur.execute("SELECT * FROM slabs ORDER BY id DESC LIMIT 1")
             last_row = cur.fetchone()
-            if not last_row:
-                self.log_message("Нет записей в таблице slabs для Init.")
-                return
-            id, Length_slab, Width_slab, Thikness_slab, Temperature_slab, Material_slab, Diametr_roll, Material_roll = last_row
+            id, Length_slab, Width_slab, Thikness_slab, Temperature_slab, Material_slab, Diametr_roll, Material_roll,is_used = last_row
+            self.log_message("Ожидание инициализации")
+            time.sleep(1)
+        
+        from RollingMillSimulator import RollingMillSimulator
+        sim = RollingMillSimulator(
+            L=0,b=0,h_0=0,S=0,StartTemp=0,RightStopCap=0,
+            DV=0,MV=0,MS=0,OutTemp=0,DR=0,SteelGrade=0,
+            V0=0,V1=0,VS=0,Dir_of_rot=0,LeftStopCap=0,
+            d1=0,d2=0,d=0, V_Valk_Per=0,StartS=350
+        )
+        ms_clean = (Material_slab or "").replace(' ', '')
+        sim.Init(
+            Length_slab=Length_slab,
+            Width_slab=Width_slab,
+            Thikness_slab=Thikness_slab,
+            Temperature_slab=Temperature_slab,
+            Material_slab=ms_clean,
+            Diametr_roll=Diametr_roll,
+            Material_roll=Material_roll
+        )
+        # Сохраняем симулятор в сервере — для возможного дальнейшего использования
+        self.simulator = sim
+        self.initialized = True
 
-            # Создаём экземпляр симулятора и выполняем Init с данными из БД
-            from RollingMillSimulator import RollingMillSimulator
-            sim = RollingMillSimulator(
-                L=0,b=0,h_0=0,S=0,StartTemp=0,RightStopCap=0,
-                DV=0,MV=0,MS=0,OutTemp=0,DR=0,SteelGrade=0,
-                V0=0,V1=0,VS=0,Dir_of_rot=0,LeftStopCap=0,
-                d1=0,d2=0,d=0, V_Valk_Per=0,StartS=0
-            )
-            ms_clean = (Material_slab or "").replace(' ', '')
-            sim.Init(
-                Length_slab=Length_slab,
-                Width_slab=Width_slab,
-                Thikness_slab=Thikness_slab,
-                Temperature_slab=Temperature_slab,
-                Material_slab=ms_clean,
-                Diametr_roll=Diametr_roll,
-                Material_roll=Material_roll
-            )
-
-            # Сохраняем симулятор в сервере — для возможного дальнейшего использования
-            self.simulator = sim
-            self.initialized = True
-
-            # Логируем уставки Init
-            self.log_message("Выполнен Init с параметрами из БД:")
-            for name, val in [
-                ("Length_slab", Length_slab),
-                ("Width_slab", Width_slab),
-                ("Thikness_slab", Thikness_slab),
-                ("Temperature_slab", Temperature_slab),
-                ("Material_slab", ms_clean),
-                ("Diametr_roll", Diametr_roll),
-                ("Material_roll", Material_roll),
-            ]:
-                self.log_message(f"  {name}: {val}")
-
-        except Exception as e:
-            self.log_message(f"Ошибка Init из БД: {e}")
+        # Логируем уставки Init
+        self.log_message("Выполнена инициализация с начальными параметрами из БД:")
+        for name, val in [
+            ("Длина сляба", Length_slab),
+            ("Ширина сляба", Width_slab),
+            ("Толщина сляба", Thikness_slab),
+            ("Температура сляба", Temperature_slab),
+            ("Материал сляба", ms_clean),
+            ("Диаметр валков", Diametr_roll),
+            ("Материал валков", Material_roll),
+        ]:
+            self.log_message(f"  {name}: {val}")
+        cur.execute(f"UPDATE public.slabs  SET is_used=true WHERE id = {id};")
+        conn.commit()
+        cur.close()
+        conn.close()
 
     def run_server(self,IP,port):
         """Запуск Modbus сервера"""
@@ -164,21 +198,30 @@ class ModbusServer:
             self.stop_monitoring = True
 
     def write_simulation_data_to_registers(self, sim_data):
-        total_steps = len(sim_data['Time']) 
-
+        total_steps = len(sim_data['Time'])    
+        diff = total_steps - self.prev_total_steps
+        self.prev_total_steps = total_steps
+  
         # Инициализация переменных для управления временем
         write_start_time = time.time()
         
         while self.nex_idx != total_steps:      
             self._write_single_step_to_registers(sim_data, self.nex_idx)
-            time.sleep(0.1)
             self.nex_idx += 1
-        
+            diff -= 1
+            regs = self.hr_data_combined.getValues(1, 11)
+            reg8 = regs[8]
+            Alarm = bool(reg8 & 0x08)
+            if Alarm == True:
+                self.alarm_stop(diff)
+                return
+            time.sleep(0.1)
+
         # Завершение записи
         if not self.stop_monitoring and self.nex_idx >= total_steps - 1:
             total_time = time.time() - write_start_time
-            self.log_message(f" Запись данных завершена! Всего шагов: {total_steps}, время: {total_time:.1f}с")
-            self.log_message(f" Переход к следующему этапу. Текущий счетчик: {self.counter}")
+            self.log_message(f" Этап завершен. Всего шагов: {total_steps}, время: {total_time:.1f}с")
+            self.log_message(f" Переход к следующему этапу.")
 
     
     def _write_single_step_to_registers(self, sim_data, idx):
@@ -232,7 +275,10 @@ class ModbusServer:
                     params.append(f"{k[:3]}:{v:6.1f}")
                 elif k in ['Moment', 'Power']:
                     params.append(f"{k[:1]}:{v:6.1f}")
-            
+            # Добавляем длину в лог
+            if 'Length' in sim_data:
+                length_val = sim_data['Length'][idx] if isinstance(sim_data['Length'], list) else sim_data['Length']
+                params.append(f"Len:{length_val:6.1f}")
             f.write(" ".join(params))
             f.write(" | ")
             
@@ -249,18 +295,17 @@ class ModbusServer:
     def monitor_registers(self):
         while not self.stop_monitoring:
             # Читаем регистры
-            regs = self.hr_data_combined.getValues(1, 31)
+            regs = self.hr_data_combined.getValues(1, 9)
             reg8 = regs[8]
-
+    
             Start = bool(reg8 & 0x10)
             Start_Gap = bool(reg8 & 0x20)
             Start_Accel = bool(reg8 & 0x40)
             Start_Roll = bool(reg8 & 0x80)
             
-            if Start:
+            if Start == True:
                 if Start_Gap and self.counter == 0 and self.counter2 < 2:
                     Roll_pos = regs_to_float(regs[2], regs[3])
-                    self.log_message(Roll_pos)
                     Dir_of_rot_valk = bool(reg8 & 0x01)
                     self.log_message("ЗАПУСК Gap_Valk...")
                     self.log_message(f"Параметры: Roll_pos={Roll_pos}, Dir_of_rot_valk={Dir_of_rot_valk}")
@@ -273,7 +318,6 @@ class ModbusServer:
 
                 if Start_Accel and self.counter == 1 and self.counter2 < 2:
                     Num_of_revol_rolls = regs_to_float(regs[0], regs[1])
-                    self.log_message(Num_of_revol_rolls)
                     Dir_of_rot_rolg = bool(reg8 & 0x02)
                     self.log_message("ЗАПУСК Accel_Valk...")
                     self.log_message(f"Параметры: Num_of_revol_rolls={Num_of_revol_rolls}")
@@ -287,8 +331,6 @@ class ModbusServer:
                 if Start_Roll and self.counter == 2 and self.counter2 <= 2:
                     Num_of_revol_0rollg = regs_to_float(regs[4], regs[5])
                     Num_of_revol_1rollg = regs_to_float(regs[6], regs[7])
-                    self.log_message(Num_of_revol_0rollg)
-                    self.log_message(Num_of_revol_1rollg)
                     Dir_of_rot = bool(reg8 & 0x02)
                     self.log_message("ЗАПУСК Approaching_to_Roll...")
                     sim_result = self.simulator._Approching_to_Roll_(
@@ -308,16 +350,16 @@ class ModbusServer:
                     self.flag = 0
                     self.counter2 += 1
                     self.log_message(f"Завершено")
-            if Start == False:
+            else:
                 self.counter = 0
                 self.counter2 = 0
-            time.sleep(0.1)
+                self.timer += 0.1   
 
-    # def monitoring_alarm(self):
-    #     while not self.stop_monitoring:
-    #         reg8 = self.hr_data_combined.getValues(9, 1)[0] 
-    #         alarm = bool(reg8 & 0x08)
-    #         if alarm 
+                if self.timer > 1 :
+                    self.log_message("Ожидание нажатия кнопки старт")
+                    self.timer = 0
+              
+            time.sleep(0.1)
 
 def main():
 

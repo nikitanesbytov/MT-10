@@ -139,6 +139,8 @@ class RollingMillSimulator(RollingMill):
         Gap_flag = self.Gap_feedbackLog[-1]
         current_time = self.time_log[-1]
         CurrentS = self.gap_log[-1]
+        self.h_0 = self.h_0 if CurrentS == 350 else CurrentS
+        print(self.h_0)
         speed_V0 = self.speed_V0[-1] 
         speed_V1 = self.speed_V1[-1] 
         self.Dir_of_rot = Dir_of_rot_valk
@@ -195,7 +197,8 @@ class RollingMillSimulator(RollingMill):
             'StartCap': self.LeftCap,
             'EndCap':self.RightCap,
             'Gap_feedback': self.Gap_feedbackLog,
-            'Speed_feedback': self.Speed_V_feedbackLog
+            'Speed_feedback': self.Speed_V_feedbackLog,
+            'Length' : self.length_log
         }
     
     def _Accel_Valk_(self,Num_of_revol_rolls,Dir_of_rot_L_rolg,Dir_of_rot_R_rolg):
@@ -249,7 +252,8 @@ class RollingMillSimulator(RollingMill):
             'StartCap': self.LeftCap,
             'EndCap':self.RightCap,
             'Gap_feedback': self.Gap_feedbackLog,
-            'Speed_feedback': self.Speed_V_feedbackLog
+            'Speed_feedback': self.Speed_V_feedbackLog,
+            'Length' : self.length_log
         }
 
 
@@ -263,16 +267,17 @@ class RollingMillSimulator(RollingMill):
         Right_Cap = self.RightCap[-1]
         speed_V0 = 0
         speed_V1 = 0
-        
+
         self.Dir_of_rot = Dir_of_rot
         # self.V0 = (2 * pi * self.DR/2 * Num_of_revol_0rollg) / 60
         # self.V1 = (2 * pi * self.DR/2 * Num_of_revol_1rollg) / 60
         #Находим ближайшую точку соприкосновения сляба с валками
         Offset = sqrt((self.DV/2)**2 - (self.DV/2 - ((self.h_0 - self.h_1)/2))**2)
+
         if self.Dir_of_rot == 0:
             time_accel = ((self.V0) / (self.accel))
             S1 = ((self.accel) * time_accel**2)/2
-            S2 = (self.d1 + self.d/2 - self.L - Offset) - S1
+            S2 = (self.d1 + self.d/2 - self.L - Offset) - S1 
             time_max_speed = (S2 / (Num_of_revol_0rollg))
             time_move = (time_accel + time_max_speed)
         else:
@@ -369,7 +374,8 @@ class RollingMillSimulator(RollingMill):
             'StartCap': self.LeftCap,
             'EndCap':self.RightCap,
             'Gap_feedback': self.Gap_feedbackLog,
-            'Speed_feedback': self.Speed_V_feedbackLog
+            'Speed_feedback': self.Speed_V_feedbackLog,
+            'Length' : self.length_log
         }
 
 
@@ -402,6 +408,53 @@ class RollingMillSimulator(RollingMill):
         GenTemp = self.GenTemp(Temp=self.temperature_log[-1],TempDrDConRoll=TempDrDConRoll,TempDrPlDeform=TempDrPlDeform,TempDrBPass=0) 
           
         if self.Dir_of_rot == 0:
+            while current_pos_x1 != self.d1 + self.d/2:
+                current_pos_x1 = min(current_pos_x1 + self.speed_V[-1]  * self.time_step,self.d1 + self.d/2)
+                current_pos_x = min(current_pos_x + self.speed_V[-1] * self.time_step,self.d1 + self.d/2 -current_length) 
+                current_length = current_pos_x1 - current_pos_x               
+                Effort += self.roughness(Effort,0.03)
+                Moment += self.roughness(Moment,0.03)
+                Power += self.roughness(Power,0.03)
+                if current_pos_x1 >= 2700 and current_pos_x <= 2700:
+                    Pyro2 = GenTemp
+                else:
+                    Pyro2 = self.TempV + self.roughness(self.TempV,0.07)
+                
+                if current_pos_x <= 2000:
+                    Pyro1 = GenTemp
+                else:
+                    Pyro1 = self.TempV + self.roughness(self.TempV,0.07)
+                
+                if current_pos_x1 >= self.RightStopCap and current_pos_x <= self.RightStopCap:
+                    RightCap = 1
+                else:
+                    RightCap = 0
+                
+                if current_pos_x1 >= self.LeftStopCap and current_pos_x <= self.LeftStopCap:
+                    LeftCap = 1
+                else:
+                    LeftCap = 0 
+                current_time += self.time_step
+                self._update_logs(time=round(current_time,2), 
+                        gap=round(self.gap_log[-1],2), 
+                        speed_V=round(self.speed_V[-1],2), 
+                        temp=round(GenTemp,2), 
+                        pyrometr_1=round(Pyro1,2),
+                        pyrometr_2=round(Pyro2,2), 
+                        pos_x=round(current_pos_x,2), 
+                        pos_x1=round(current_pos_x1,2), 
+                        speed_V0=round(self.speed_V0[-1],2), 
+                        speed_V1=round(self.speed_V1[-1],2), 
+                        length=round(current_length,2),
+                        effort=round(Effort/1000,2),
+                        moment=round(Moment/1000,2),
+                        power= round(Power/1000,2),
+                        LeftCap=LeftCap,
+                        RightCap=RightCap,
+                        Gap_feedback = self.Gap_feedbackLog[-1],
+                        Speed_V_feedback = self.Speed_V_feedbackLog[-1]
+                        ) 
+            
             while current_pos_x <= self.d1 + self.d/2:
                 current_pos_x1 = current_pos_x1 + self.speed_V[-1] * Length_coef * self.time_step
                 current_pos_x = current_pos_x + self.speed_V[-1] * self.time_step
@@ -450,6 +503,52 @@ class RollingMillSimulator(RollingMill):
                         Speed_V_feedback = self.Speed_V_feedbackLog[-1]
                         ) 
         else:
+            while current_pos_x != self.d1 + self.d/2:
+                current_pos_x = max(current_pos_x - self.speed_V[-1]  * self.time_step,self.d1 + self.d/2)
+                current_pos_x1 = max(current_pos_x1 - self.speed_V[-1] * self.time_step,self.d1 + self.d/2 + current_length)
+                current_length = current_pos_x1 - current_pos_x
+                Effort += self.roughness(Effort,0.03)
+                Moment += self.roughness(Moment,0.03)
+                Power += self.roughness(Power,0.03)
+                if current_pos_x1 <= 2700 and current_pos_x >= 2700:
+                    Pyro2 = GenTemp
+                else:  
+                    Pyro2 = self.TempV + self.roughness(self.TempV,0.07)
+                if current_pos_x <= 2000:
+                    Pyro1 = GenTemp
+                else:
+                    Pyro1 = self.TempV + self.roughness(self.TempV,0.07) 
+
+                if current_pos_x <= self.RightStopCap and current_pos_x1 >= self.RightStopCap:
+                    RightCap = 1
+                else:
+                    RightCap = 0 
+
+                if current_pos_x <= self.LeftStopCap and current_pos_x1 >= self.LeftStopCap:
+                    LeftCap = 1
+                else:
+                    LeftCap = 0  
+                current_time += self.time_step
+                self._update_logs(time=round(current_time,2), 
+                        gap=round(self.gap_log[-1],2), 
+                        speed_V=round(self.speed_V[-1],2), 
+                        temp=round(GenTemp,2), 
+                        pyrometr_1=round(Pyro1,2),
+                        pyrometr_2=round(Pyro2,2), 
+                        pos_x=round(current_pos_x,2), 
+                        pos_x1=round(current_pos_x1,2), 
+                        speed_V0=round(self.speed_V0[-1],2), 
+                        speed_V1=round(self.speed_V1[-1],2), 
+                        length=round(current_length,2),
+                        effort=round(Effort/1000,2),
+                        moment=round(Moment/1000,2),
+                        power= round(Power/1000,2),
+                        LeftCap=LeftCap,
+                        RightCap=RightCap,
+                        Gap_feedback = self.Gap_feedbackLog[-1],
+                        Speed_V_feedback = self.Speed_V_feedbackLog[-1]
+                        )        
+            
             while current_pos_x1 >= self.d1 + self.d/2:
                 current_pos_x = current_pos_x - self.speed_V[-1] * Length_coef * self.time_step
                 current_pos_x1 = current_pos_x1 - self.speed_V[-1] * self.time_step
@@ -509,7 +608,8 @@ class RollingMillSimulator(RollingMill):
             'StartCap': self.LeftCap,
             'EndCap':self.RightCap,
             'Gap_feedback': self.Gap_feedbackLog,
-            'Speed_feedback': self.Speed_V_feedbackLog
+            'Speed_feedback': self.Speed_V_feedbackLog,
+            'Length' : self.length_log
         }
 
     def _simulate_exit_from_rolls(self):
@@ -710,18 +810,20 @@ class RollingMillSimulator(RollingMill):
             'StartCap': self.LeftCap,
             'EndCap':self.RightCap,
             'Gap_feedback': self.Gap_feedbackLog,
-            'Speed_feedback': self.Speed_V_feedbackLog
+            'Speed_feedback': self.Speed_V_feedbackLog,
+            'Length' : self.length_log
         }
 
     def Alarm_stop(self):
         "Аварийная остановка прокатного стана"
         current_time = self.time_log[-1]
-        while self.speed_V[-1] > 0 or self.speed_V0[-1] > 0 or self.speed_V1[-1] > 0 or self.gap_log[-1] != 300:
+        current_gap = self.gap_log[-1]
+        while self.speed_V[-1] > 0 or self.speed_V0[-1] > 0 or self.speed_V1[-1] > 0 or self.gap_log[-1] != 350:
             current_speed = max(self.speed_V[-1] - self.accel * self.time_step,0)
             current_V0 = max(self.speed_V0[-1] - self.accel * self.time_step,0)
             current_V1 = max(self.speed_V1[-1] - self.accel * self.time_step,0)
-            current_gap =  min(current_gap + self.VS, 300) if current_gap < 300 else max(current_gap - self.VS, 300)
-            if current_gap == 300:
+            current_gap =  min(current_gap + self.VS, 350) if current_gap < 350 else max(current_gap - self.VS, 350)
+            if current_gap == 350:
                 GapCap = 1
             else:
                 GapCap = 0
@@ -757,11 +859,13 @@ class RollingMillSimulator(RollingMill):
             'Pressure': self.effort_log,
             'StartCap': self.LeftCap,
             'EndCap':self.RightCap,
-            'Gap_feedback': self.Gap_feedbackLog,
-            'Speed_feedback': self.Speed_V_feedbackLog
+            'Gap_feedback':self.Gap_feedbackLog,
+            'Speed_feedback':self.Speed_V_feedbackLog,
+            'Length':self.length_log
         } 
     
     def Init(self, Length_slab, Width_slab, Thikness_slab, Temperature_slab, Material_slab, Diametr_roll, Material_roll):
+        self.CurrentS = 350
         self.TempV=28
         self.L = Length_slab
         self.b = Width_slab
