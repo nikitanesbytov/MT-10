@@ -1,7 +1,7 @@
 from math import *
 
 class RollingMill:
-    def __init__(self,DR,L,b,h_0,StartTemp,DV,MV,MS,OutTemp,SteelGrade,V0,V1,S,V_Valk_Per,StartS,d1,d2,d,VS,Dir_of_rot,LeftStopCap,RightStopCap):
+    def __init__(self,DR,L,b,h_0,StartTemp,DV,MV,MS,OutTemp,SteelGrade,V0,V1,S,V_Valk_Per,StartS,d1,d2,d,VS,Dir_of_rot):
         #Параметры сляба(Задает оператор)
         self.L = L #Начальная длина сляба(мм)
         self.b = b #Ширина сляба(мм)
@@ -103,7 +103,7 @@ class RollingMill:
         #RelDef - Степень деформации
         #CurrentTemp - Нынешняя температура
         #LK - Длина дуги контакта(мм)
-        return Sigmaf
+        return Sigmaf #[Мпа]
     
     def Moment(self,LK,h_0,h_1,Effort):
         "Расчет момента прокатки(кНм)"
@@ -162,30 +162,33 @@ class RollingMill:
         elif ((LK/h_average) > 4):
             n_frict = 1 + (LK/h_average)/4
 
-        n_zone = (LK / h_average) ** -0.4
+        if LK/h_average < 1:
+            n_zone = (LK / h_average) ** -0.4
+        else:
+            n_zone = 1
        
         P = 1.15 * n_frict * n_zone * DefResistance 
-        return P
+        return P #[Мпа]
     
     def ContactArcLen(self,DV,h_0,h_1) -> float:
         "Длина дуги контакта"
         LK = sqrt(DV/2 * (h_0 - h_1))
         return LK #мм
     
+    def TempDrBPass(self, T0, Time,width,height):
+        "Падение температуры между пропусками"
+        P0 =  2 * (width + height) # Периметр поперечного сечения
+        F0 = width * height  # Площадь поперечного сечения
+        cube_root = (0.0255 * P0 * Time / F0 + (1000 / (T0 + 273)) ** 3) ** (1/3)
+        delta_t0 = T0 - (1000 / cube_root) + 273
+        return delta_t0
+    
     # def ContactArea(self,b_0, b_1, LK) -> float:
     #     "Площадь контакта"
     #     b_average = (b_0 + b_1) / 2
     #     F = b_average * LK
     #     return F
-    
-    # def AbsWidening(self,LK, S, Iteration, h_0, h_1) -> float:
-    #     "Абсолютное уширение"
-    #     delta_b = (LK - S[Iteration] / 2 / h_1) * log(h_0 / h_1) / 2
-    #     return delta_b
 
-    def FinalLength(self,h_0,h_1,L):
-        FinalLength = L * (h_0 / h_1)
-        return FinalLength
 
 
      

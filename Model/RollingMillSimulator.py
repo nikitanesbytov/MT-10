@@ -1,120 +1,124 @@
 from math import *
 from RollingMill import RollingMill
 import random
+from openpyxl import Workbook
+from openpyxl.styles import Font, Alignment, Border, Side
 
 class RollingMillSimulator(RollingMill):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.time_log = [0]#Лог отображения нынешнего иммитируемого времени
-        self.temperature_log = [self.StartTemp]#Лог изменения температуры сляба
-        self.length_log = [self.L]#Лог изменения длины сляба
-        self.height_log = [self.h_0]#Лог толщины сляба(перед началом прокатки)(мм)
-        self.LeftCap = [0]#Левый концевик
-        self.RightCap = [0]#Правый концевик
-        self.x_log = [0]#Лог начальной координаты сляба
-        self.x1_log = [self.L]#Лог конечной координаты сляба
-        self.pyrometr_1 = [self.TempV]#Лог пирометра перед валками
-        self.pyrometr_2 = [self.TempV]#Лог пирометра после валков
-        self.gap_log = [self.CurrentS]#Лог раствора валков(мм)
-        self.speed_V = [0]#Лог скорости варщения валков(об/c)
-        self.speed_V0 = [0]#Лог скорости вращения рольгангов до валков(об/c)
-        self.speed_V1 = [0]#Лог скорости вращения рольгангов после валков(об/c)
-        self.effort_log = [0]#Лог усилия прокаткатки(кН)
-        self.moment_log = [0]#Лог момента прокаткатки(кН*м)
-        self.power_log = [0]#Лог мощности прокатки(кВт)
-        self.Gap_feedbackLog = [0]#Лог флага обратной свзяи о выхождении раствора на заданную уставку 
-        self.Speed_V_feedbackLog = [0]#Лог флага обратной свзяи о выхождении скорости валков на заданную уставку
-        self.time_step = 0.1#Шаг времени
-        #Лог - это ныншнее значение представленных ТПов
+        self.time_log = [0]  # Лог отображения нынешнего иммитируемого времени
+        self.temperature_log = [self.StartTemp]  # Лог изменения температуры сляба
+        self.length_log = [self.L]  # Лог изменения длины сляба
+        self.height_log = [self.h_0]  # Лог толщины сляба(перед началом прокатки)(мм)
+        self.LeftCap = [0]  # Левый концевик
+        self.RightCap = [0]  # Правый концевик
+        self.x_log = [0]  # Лог начальной координаты сляба
+        self.x1_log = [self.L]  # Лог конечной координаты сляба
+        self.pyrometr_1 = [self.TempV]  # Лог пирометра перед валками
+        self.pyrometr_2 = [self.TempV]  # Лог пирометра после валков
+        self.gap_log = [self.CurrentS]  # Лог раствора валков(мм)
+        self.speed_V = [0]  # Лог скорости варщения валков(об/c)
+        self.speed_V0 = [0]  # Лог скорости вращения рольгангов до валков(об/c)
+        self.speed_V1 = [0]  # Лог скорости вращения рольгангов после валков(об/c)
+        self.effort_log = [0]  # Лог усилия прокаткатки(кН)
+        self.moment_log = [0]  # Лог момента прокаткатки(кН*м)
+        self.power_log = [0]  # Лог мощности прокатки(кВт)
+        self.Gap_feedbackLog = [0]  # Лог флага обратной свзяи о выхождении раствора на заданную уставку 
+        self.Speed_V_feedbackLog = [0]  # Лог флага обратной свзяи о выхождении скорости валков на заданную уставку
+        self.time_step = 0.1  # Шаг времени
 
-    def roughness(self,number,Range) -> float:
+    def roughness(self, number, Range) -> float:
         'Генерация случайного отклонения на +- n процентов от заданного числа для симуляции неровностей сляба'
         five_percent = number * Range
         random_deviation = random.uniform(-five_percent, five_percent)
         return random_deviation
         
-    def linear_interpolation(self,start, end, steps) -> float:
+    def linear_interpolation(self, start, end, steps) -> float:
         "Линейная интерполяция, возвращающая шаг смещения величины"
         if steps <= 0:
             raise ValueError("Количество шагов должно быть положительным")
         step_size = (end - start) / steps
         return step_size
     
-    def save_logs_to_file(self, filename="rolling_log.txt"):
-        "Сохраняет логи в файл в виде отформатированной таблицы"
-        with open(filename, 'w') as f:
-            col_widths = {
-                'Time': 8,
-                'Pyro1': 8,
-                'Pyro2': 8,
-                'Temp': 8,
-                'Effort' : 8,
-                'Gap': 8,   
-                'Speed_V': 8,
-                'Speed_V0': 8,
-                'Speed_V1': 8,
-                'LeftCap': 8,
-                'RightCap': 8,
-                'Moment' : 8,
-                'Power' : 8,
-                'GapCap': 8,
-                'SpeedCap': 8,
-                'x(deb)' : 8,
-                'x1(deb)' : 8,
-                'length(deb)': 8
-            }
-            # Заголовки таблицы
-            headers = [
-                f"{'Time':<{col_widths['Time']}}",
-                f"{'Pyro1':<{col_widths['Pyro1']}}",
-                f"{'Pyro2':<{col_widths['Pyro2']}}",
-                f"{'Temp':<{col_widths['Temp']}}",
-                f"{'Effort':<{col_widths['Effort']}}",
-                f"{'Gap':<{col_widths['Gap']}}",
-                f"{'Speed_V':<{col_widths['Speed_V']}}",
-                f"{'Speed_V0':<{col_widths['Speed_V0']}}",
-                f"{'Speed_V1':<{col_widths['Speed_V1']}}",
-                f"{'LeftCap':<{col_widths['LeftCap']}}",
-                f"{'RightCap':<{col_widths['RightCap']}}",
-                f"{'Moment':<{col_widths['Moment']}}",
-                f"{'Power':<{col_widths['Power']}}",
-                f"{'GapCap':<{col_widths['GapCap']}}",
-                f"{'SpeedCap':<{col_widths['SpeedCap']}}",
-                f"{'x(deb)':<{col_widths['x(deb)']}}",
-                f"{'x1(deb)':<{col_widths['x1(deb)']}}",
-                f"{'length(deb)':<{col_widths['length(deb)']}}"
-
-
+    def save_logs_to_excel(self, filename="rolling_log.xlsx"):
+        "Сохраняет логи в XLSX файл с русскими названиями столбцов и форматированием"
+        # Создаем новую книгу Excel
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Логи прокатки"
+        
+        # Русские названия столбцов
+        headers = [
+            'Время (с)',
+            'Пирометр 1 (°C)',
+            'Пирометр 2 (°C)', 
+            'Температура сляба (°C)',
+            'Усилие прокатки (кН)',
+            'Зазор валков (мм)',
+            'Скорость валков (мм/c)',
+            'Скорость рольгангов 0 (мм/c)',
+            'Скорость рольгангов 1 (мм/c)',
+            'Левый концевик',
+            'Правый концевик',
+            'Момент прокатки (кН*м)',
+            'Мощность прокатки (кВт)',
+            'Флаг зазора',
+            'Флаг скорости',
+            'Координата X (мм)',
+            'Координата X1 (мм)',
+            'Длина сляба (мм)'
+        ]
+        
+        # Записываем заголовки
+        for col, header in enumerate(headers, 1):
+            cell = ws.cell(row=1, column=col, value=header)
+            # Форматирование заголовков
+            cell.font = Font(bold=True, size=12)
+            cell.alignment = Alignment(horizontal='center', vertical='center')
+        
+        # Записываем данные
+        for row_idx in range(len(self.time_log)):
+            row_data = [
+                self.time_log[row_idx],
+                self.pyrometr_1[row_idx],
+                self.pyrometr_2[row_idx],
+                self.temperature_log[row_idx],
+                self.effort_log[row_idx],
+                self.gap_log[row_idx],
+                self.speed_V[row_idx],
+                self.speed_V0[row_idx],
+                self.speed_V1[row_idx],
+                self.LeftCap[row_idx],
+                self.RightCap[row_idx],
+                self.moment_log[row_idx],
+                self.power_log[row_idx],
+                self.Gap_feedbackLog[row_idx],
+                self.Speed_V_feedbackLog[row_idx],
+                self.x_log[row_idx],
+                self.x1_log[row_idx],
+                self.length_log[row_idx]
             ]
-            f.write(" | ".join(headers) + "\n")
-            f.write("-" * (sum(col_widths.values()) + 3 * (len(col_widths) - 1)) + "\n")
             
-            # Данные
-            for i in range(len(self.time_log)):
-                row = [
-                    f"{self.time_log[i]:<{col_widths['Time']}}",
-                    f"{self.pyrometr_1[i]:<{col_widths['Pyro1']}}",
-                    f"{self.pyrometr_2[i]:<{col_widths['Pyro2']}}",
-                    f"{self.temperature_log[i]:<{col_widths['Temp']}}",
-                    f"{self.effort_log[i]:<{col_widths['Effort']}}",
-                    f"{self.gap_log[i]:<{col_widths['Gap']}}",
-                    f"{self.speed_V[i]:<{col_widths['Speed_V']}}",
-                    f"{self.speed_V0[i]:<{col_widths['Speed_V0']}}",
-                    f"{self.speed_V1[i]:<{col_widths['Speed_V1']}}",
-                    f"{self.LeftCap[i]:<{col_widths['LeftCap']}}",
-                    f"{self.RightCap[i]:<{col_widths['RightCap']}}",
-                    f"{self.moment_log[i]:<{col_widths['Moment']}}",
-                    f"{self.power_log[i]:<{col_widths['Power']}}",
-                    f"{self.Gap_feedbackLog[i]:<{col_widths['GapCap']}}",
-                    f"{self.Speed_V_feedbackLog[i]:<{col_widths['SpeedCap']}}",
-                    f"{self.x_log[i]:<{col_widths['x(deb)']}}",
-                    f"{self.x1_log[i]:<{col_widths['x1(deb)']}}",
-                    f"{self.length_log[i]:<{col_widths['length(deb)']}}",
-                    
-                ]
-                f.write(" | ".join(row) + "\n")
+            for col_idx, value in enumerate(row_data, 1):
+                cell = ws.cell(row=row_idx + 2, column=col_idx, value=value)
+                # Форматирование числовых значений
+                if isinstance(value, (int, float)):
+                    cell.number_format = '0.00'
+        
+        # Настраиваем ширину столбцов
+        column_widths = [12, 12, 12, 15, 15, 12, 15, 18, 18, 12, 12, 15, 15, 10, 12, 15, 15, 15]
+        for i, width in enumerate(column_widths, 1):
+            ws.column_dimensions[chr(64 + i)].width = width
+        
+        # Добавляем автофильтр
+        ws.auto_filter.ref = ws.dimensions
+        
+        # Сохраняем файл
+        wb.save(filename)
+        print(f"Логи успешно сохранены в файл: {filename}")
     
-    def _update_logs(self, time, gap, speed_V, temp, pyrometr_1,pyrometr_2, pos_x, pos_x1, speed_V0, speed_V1, length, effort,moment,power,LeftCap,RightCap,Gap_feedback,Speed_V_feedback):
+    def _update_logs(self, time, gap, speed_V, temp, pyrometr_1, pyrometr_2, pos_x, pos_x1, speed_V0, speed_V1, length, effort, moment, power, LeftCap, RightCap, Gap_feedback, Speed_V_feedback):
         "Обновление внутренних логов без записи в файл"
         self.time_log.append(time)
         self.gap_log.append(gap)
@@ -135,12 +139,11 @@ class RollingMillSimulator(RollingMill):
         self.Gap_feedbackLog.append(Gap_feedback)
         self.Speed_V_feedbackLog.append(Speed_V_feedback)
 
-    def _Gap_Valk_(self,Roll_pos,Dir_of_rot_valk):
+    def _Gap_Valk_(self, Roll_pos, Dir_of_rot_valk): 
         Gap_flag = self.Gap_feedbackLog[-1]
         current_time = self.time_log[-1]
         CurrentS = self.gap_log[-1]
         self.h_0 = self.h_0 if CurrentS == 350 else CurrentS
-        print(self.h_0)
         speed_V0 = self.speed_V0[-1] 
         speed_V1 = self.speed_V1[-1] 
         self.Dir_of_rot = Dir_of_rot_valk
@@ -151,9 +154,10 @@ class RollingMillSimulator(RollingMill):
         self.S = Roll_pos
         target_gap = self.S
         time_gap = (abs(self.S - CurrentS)) / (self.VS)
-        final_temp = current_temp - 10
-        # temp_drop_per_ms = ((current_temp - final_temp) / time_gap) * self.time_step
-        temp_drop_per_ms = 0.5
+        final_drop = self.TempDrBPass(T0 = self.temperature_log[-1],Time = time_gap,width =self.b,height=self.h_0)
+        final_temp = current_temp - final_drop
+        temp_drop_per_ms = ((current_temp - final_temp) / time_gap) * self.time_step
+
         
         while CurrentS != target_gap:
             CurrentS = min(CurrentS + gap_change_per_ms, target_gap) if CurrentS < target_gap else max(CurrentS - gap_change_per_ms, target_gap)
@@ -162,45 +166,29 @@ class RollingMillSimulator(RollingMill):
             else:
                 Gap_flag = 0
             current_temp = max(current_temp - temp_drop_per_ms, final_temp)
-            Pyro1 = self.TempV + self.roughness(self.TempV,0.07)
-            Pyro2 = self.TempV + self.roughness(self.TempV,0.07)
+            Pyro1 = self.TempV + self.roughness(self.TempV, 0.07)
+            Pyro2 = self.TempV + self.roughness(self.TempV, 0.07)
             current_time += self.time_step
-            self._update_logs(time=round(current_time,2), 
-                              gap=round(CurrentS,2), 
+            self._update_logs(time=round(current_time, 2), 
+                              gap=round(CurrentS, 2), 
                               speed_V=0, 
-                              temp=round(current_temp,2),
-                              pyrometr_1=round(Pyro1,2),
-                              pyrometr_2=round(Pyro2,2), 
-                              pos_x=round(self.x_log[-1],2),
+                              temp=round(current_temp, 2),
+                              pyrometr_1=round(Pyro1, 2),
+                              pyrometr_2=round(Pyro2, 2), 
+                              pos_x=round(self.x_log[-1], 2),
                               pos_x1=round(self.x1_log[-1]), 
-                              speed_V0=round(speed_V0,2), 
-                              speed_V1=round(speed_V1,2), 
-                              length=round(self.length_log[-1],2),
+                              speed_V0=round(speed_V0, 2), 
+                              speed_V1=round(speed_V1, 2), 
+                              length=round(self.length_log[-1], 2),
                               effort=0,
                               moment=0,
                               power=0,
-                              LeftCap = self.LeftCap[-1],
-                              RightCap = self.RightCap[-1],
-                              Gap_feedback = Gap_flag,
-                              Speed_V_feedback = self.Speed_V_feedbackLog[-1]) 
-        return {
-            'Time': self.time_log,
-            'Pyro1': self.pyrometr_1,
-            'Pyro2': self.pyrometr_2,
-            'Power': self.power_log,
-            'Gap': self.gap_log,
-            'VRPM': self.speed_V,
-            'V0RPM': self.speed_V0,
-            'V1RPM': self.speed_V1,
-            'Moment': self.moment_log,
-            'Pressure': self.effort_log,
-            'StartCap': self.LeftCap,
-            'EndCap':self.RightCap,
-            'Gap_feedback': self.Gap_feedbackLog,
-            'Speed_feedback': self.Speed_V_feedbackLog,
-            'Length' : self.length_log
-        }
-    
+                              LeftCap=self.LeftCap[-1],
+                              RightCap=self.RightCap[-1],
+                              Gap_feedback=Gap_flag,
+                              Speed_V_feedback=self.Speed_V_feedbackLog[-1]) 
+        return self._get_current_state()
+
     def _Accel_Valk_(self,Num_of_revol_rolls,Dir_of_rot_L_rolg,Dir_of_rot_R_rolg):
         current_time = self.time_log[-1]
         current_speed = self.speed_V[-1]
@@ -208,8 +196,9 @@ class RollingMillSimulator(RollingMill):
         Speed_V_flag = self.Speed_V_feedbackLog[-1]
         
         # self.V_Valk_Per = (2 * pi * self.DV/2 * Num_of_revol_rolls) / 60
-        final_temp = current_temp - 10
         time_accel = ((Num_of_revol_rolls) / (self.accel))
+        final_drop = self.TempDrBPass(T0 = self.temperature_log[-1],Time = time_accel,width =self.b,height=self.h_0)
+        final_temp = current_temp - final_drop
         temp_drop_per_ms = ((current_temp - final_temp) / time_accel) * self.time_step
         
         while current_speed != Num_of_revol_rolls:
@@ -286,8 +275,9 @@ class RollingMillSimulator(RollingMill):
             S2 = (self.d1 + Offset) - S1              
             time_max_speed = (S2 / (Num_of_revol_0rollg))
             time_move = (time_accel + time_max_speed) 
-        
-        final_temp = current_temp - 50
+
+        final_drop = self.TempDrBPass(T0 = self.temperature_log[-1],Time = time_move,width =self.b,height=self.h_0)
+        final_temp = current_temp - final_drop
         temp_drop_per_ms = ((current_temp - final_temp) / time_move) * self.time_step
 
         if self.Dir_of_rot == 0:
@@ -390,8 +380,6 @@ class RollingMillSimulator(RollingMill):
         h_0 = self.h_0
         h_1 = self.S
         RelDef = self.RelDef(h_0,h_1)
-        start_length = self.length_log[-1]
-        FinalLength = round(self.FinalLength(h_0,h_1,start_length),2)
         Length_coef = self.h_0 / self.h_1
  
         #2.Рассчет падения температуры от пластической деформации и контакта с валками
@@ -629,7 +617,8 @@ class RollingMillSimulator(RollingMill):
         time_brake_V1 = self.speed_V1[-1] / self.accel
         time_second_cycle = max(time_brake_speed, time_brake_V0, time_brake_V1)
         total_time = time_first_cycle + time_second_cycle
-        final_temp = current_temp - 10
+        final_drop = self.TempDrBPass(T0 = self.temperature_log[-1],Time = total_time,width =self.b,height=self.h_0)
+        final_temp = current_temp - final_drop
         temp_drop_per_ms = ((current_temp - final_temp) / total_time) * self.time_step
         #2.Доход сляба до конечного концевика
         if self.Dir_of_rot == 0:
@@ -864,9 +853,29 @@ class RollingMillSimulator(RollingMill):
             'Length':self.length_log
         } 
     
+    def _get_current_state(self):
+        "Возвращает текущее состояние всех логов"
+        return {
+            'Time': self.time_log,
+            'Pyro1': self.pyrometr_1,
+            'Pyro2': self.pyrometr_2,
+            'Power': self.power_log,
+            'Gap': self.gap_log,
+            'VRPM': self.speed_V,
+            'V0RPM': self.speed_V0,
+            'V1RPM': self.speed_V1,
+            'Moment': self.moment_log,
+            'Pressure': self.effort_log,
+            'StartCap': self.LeftCap,
+            'EndCap': self.RightCap,
+            'Gap_feedback': self.Gap_feedbackLog,
+            'Speed_feedback': self.Speed_V_feedbackLog,
+            'Length': self.length_log
+        }
+
     def Init(self, Length_slab, Width_slab, Thikness_slab, Temperature_slab, Material_slab, Diametr_roll, Material_roll):
         self.CurrentS = 350
-        self.TempV=28
+        self.TempV = 28
         self.L = Length_slab
         self.b = Width_slab
         self.h_0 = Thikness_slab
@@ -894,40 +903,39 @@ class RollingMillSimulator(RollingMill):
         self.Gap_feedbackLog = [0]
         self.Speed_V_feedbackLog = [0]
         self.time_step = 0.1
-        self.DV=300
-        self.R=self.DV/2
-        self.DR=40
-        self.d1=2130.0
-        self.d2=2130.0
-        self.d=440.0
-        self.MS='Austenitic steel'
+        self.DV = 300
+        self.R = self.DV/2
+        self.DR = 40
+        self.d1 = 2130.0
+        self.d2 = 2130.0
+        self.d = 440.0
+        self.MS = 'Austenitic steel'
         self.VS = 100.0
-        self.LeftStopCap = 850 #Считаем от 0 координаты
-        self.RightStopCap = 3850 #Считаем от 0 координаты
+        self.LeftStopCap = 850  # Считаем от 0 координаты
+        self.RightStopCap = 3850  # Считаем от 0 координаты
 
 if __name__ == "__main__":
     simulator = RollingMillSimulator(
-        L=0,b=0,h_0=0,S=0,StartTemp=0,RightStopCap=0,
-        DV=0,MV=0,MS=0,OutTemp=0,DR=0,SteelGrade=0,
-        V0=0,V1=0,VS=0,Dir_of_rot=0,LeftStopCap=0,
-        d1=0,d2=0,d=0, V_Valk_Per=0,StartS=0
+        L=0, b=0, h_0=0, S=0, StartTemp=0,
+        DV=0, MV=0, MS=0, OutTemp=0, DR=0, SteelGrade=0,
+        V0=0, V1=0, VS=0, Dir_of_rot=0,
+        d1=0, d2=0, d=0, V_Valk_Per=0, StartS=0,
     )
     simulator.Init(Length_slab=300, Width_slab=250, Thikness_slab=350, Temperature_slab=1200, Material_slab='Ст3сп', Diametr_roll=300, Material_roll='Сталь')
-    #1 Итерация
-    simulator._Gap_Valk_(320,0)
-    simulator._Accel_Valk_(100,0,0)
-    simulator._Approching_to_Roll_(0,100,200)
-    simulator._simulate_rolling_pass()
-    simulator._simulate_exit_from_rolls()
-    #2 Итерация
-    simulator._Gap_Valk_(290,1)
-    simulator._Accel_Valk_(100,1,1)
-    simulator._Approching_to_Roll_(1,200,100)
+    
+    # 1 Итерация
+    simulator._Gap_Valk_(330, 0)
+    simulator._Accel_Valk_(200, 0, 0)
+    simulator._Approching_to_Roll_(0, 200, 212)
     simulator._simulate_rolling_pass()
     simulator._simulate_exit_from_rolls()
     
-    simulator.save_logs_to_file("my_logs.txt")
+    # 2 Итерация
+    simulator._Gap_Valk_(300, 1)
+    simulator._Accel_Valk_(200, 1, 1)
+    simulator._Approching_to_Roll_(1, 220, 200)
+    simulator._simulate_rolling_pass()
+    simulator._simulate_exit_from_rolls()
     
-    
-
-
+    # Сохраняем в Excel
+    simulator.save_logs_to_excel("my_logs.xlsx")

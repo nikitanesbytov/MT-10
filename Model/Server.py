@@ -212,8 +212,12 @@ class ModbusServer:
             regs = self.hr_data_combined.getValues(1, 11)
             reg8 = regs[8]
             Alarm = bool(reg8 & 0x08)
+            Alarm_stop = bool(reg8 & 0x01)
             if Alarm == True:
                 self.alarm_stop(diff)
+                return
+            if Alarm_stop == True:
+                self.start_init_from_registers()
                 return
             time.sleep(0.1)
 
@@ -298,11 +302,14 @@ class ModbusServer:
             regs = self.hr_data_combined.getValues(1, 9)
             reg8 = regs[8]
     
+            Alarm_stop = bool(reg8 & 0x1)
             Start = bool(reg8 & 0x10)
             Start_Gap = bool(reg8 & 0x20)
             Start_Accel = bool(reg8 & 0x40)
             Start_Roll = bool(reg8 & 0x80)
-            
+            if Alarm_stop == True:
+                self.start_init_from_registers()
+                return
             if Start == True:
                 if Start_Gap and self.counter == 0 and self.counter2 < 2:
                     Roll_pos = regs_to_float(regs[2], regs[3])
@@ -354,11 +361,9 @@ class ModbusServer:
                 self.counter = 0
                 self.counter2 = 0
                 self.timer += 0.1   
-
                 if self.timer > 1 :
                     self.log_message("Ожидание нажатия кнопки старт")
                     self.timer = 0
-              
             time.sleep(0.1)
 
 def main():
