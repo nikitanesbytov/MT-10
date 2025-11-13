@@ -132,7 +132,7 @@ class ModbusServer:
 
         conn = psycopg2.connect(
             host="localhost",
-            database="test_bd_1",  
+            database="postgres",  
             user="postgres",          
             password="postgres",      
             port="5432"
