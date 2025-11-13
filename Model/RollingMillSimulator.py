@@ -158,7 +158,6 @@ class RollingMillSimulator(RollingMill):
         final_temp = current_temp - final_drop
         temp_drop_per_ms = ((current_temp - final_temp) / time_gap) * self.time_step
 
-        
         while CurrentS != target_gap:
             CurrentS = min(CurrentS + gap_change_per_ms, target_gap) if CurrentS < target_gap else max(CurrentS - gap_change_per_ms, target_gap)
             if CurrentS == self.S:
@@ -277,6 +276,7 @@ class RollingMillSimulator(RollingMill):
             time_move = (time_accel + time_max_speed) 
 
         final_drop = self.TempDrBPass(T0 = self.temperature_log[-1],Time = time_move,width =self.b,height=self.h_0)
+
         final_temp = current_temp - final_drop
         temp_drop_per_ms = ((current_temp - final_temp) / time_move) * self.time_step
 
@@ -389,7 +389,7 @@ class RollingMillSimulator(RollingMill):
         AvrgPressure = self.AvrgPressure(DefResistance=DefResistance,LK=ContactArcLen,h_0=h_0,h_1=h_1)
         Effort = self.Effort(LK=ContactArcLen,b=self.b,AvrgPressure=AvrgPressure)
         Moment = self.Moment(LK=ContactArcLen,h_0=h_0,h_1=h_1,Effort=Effort/1000)
-        Power = self.Power(Moment,self.speed_V[-1]/self.R)
+        Power = self.Power(Moment,self.speed_V[-1],self.DV)
         SpeedOfRolling = self.SpeedOfRolling(DV=self.DV,V=self.speed_V[-1])
         TempDrDConRoll = self.TempDrDConRoll(DV=self.DV,h_0=h_0,h_1=h_1,Temp=self.temperature_log[-1],SpeedOfRolling=SpeedOfRolling)
         TempDrPlDeform = self.TempDrPlDeform(DefResistance=DefResistance,h_0=h_0,h_1=h_1)
@@ -903,7 +903,7 @@ class RollingMillSimulator(RollingMill):
         self.Gap_feedbackLog = [0]
         self.Speed_V_feedbackLog = [0]
         self.time_step = 0.1
-        self.DV = 300
+        self.DV = Diametr_roll
         self.R = self.DV/2
         self.DR = 40
         self.d1 = 2130.0

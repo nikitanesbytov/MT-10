@@ -151,9 +151,9 @@ class ModbusServer:
         
         from RollingMillSimulator import RollingMillSimulator
         sim = RollingMillSimulator(
-            L=0,b=0,h_0=0,S=0,StartTemp=0,RightStopCap=0,
+            L=0,b=0,h_0=0,S=0,StartTemp=0,
             DV=0,MV=0,MS=0,OutTemp=0,DR=0,SteelGrade=0,
-            V0=0,V1=0,VS=0,Dir_of_rot=0,LeftStopCap=0,
+            V0=0,V1=0,VS=0,Dir_of_rot=0,
             d1=0,d2=0,d=0, V_Valk_Per=0,StartS=350
         )
         ms_clean = (Material_slab or "").replace(' ', '')
@@ -186,6 +186,7 @@ class ModbusServer:
         conn.commit()
         cur.close()
         conn.close()
+        self.nex_idx = 0
 
     def run_server(self,IP,port):
         """Запуск Modbus сервера"""
@@ -231,6 +232,7 @@ class ModbusServer:
     def _write_single_step_to_registers(self, sim_data, idx):
         """Записывает данные одного шага симуляции в регистры"""
         current_time = sim_data['Time'][idx] 
+        
         
         # Подготавливаем данные для регистров 12-29
         keys = [
@@ -309,7 +311,6 @@ class ModbusServer:
             Start_Roll = bool(reg8 & 0x80)
             if Alarm_stop == True:
                 self.start_init_from_registers()
-                return
             if Start == True:
                 if Start_Gap and self.counter == 0 and self.counter2 < 2:
                     Roll_pos = regs_to_float(regs[2], regs[3])

@@ -95,6 +95,9 @@
         <Node name="V_roll_SCADA_8" type="T_REAL" access="ReadWrite" />
         <Node name="V_roll_SCADA_9" type="T_REAL" access="ReadWrite" />
       </Node>
+      <Node name="BAT">
+        <Node name="Activate_bat" type="T_BOOL" access="ReadWrite" />
+      </Node>
       <Node name="GVL">
         <Node name="alarm" type="T_WORD" access="ReadWrite" />
         <Node name="counter" type="T_INT" access="ReadWrite" />
